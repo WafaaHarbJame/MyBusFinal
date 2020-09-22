@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "437313777858",
+    "firebase_url": "https://elaj-2f8b2.firebaseio.com",
+    "project_id": "elaj-2f8b2",
+    "storage_bucket": "elaj-2f8b2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:437313777858:android:2150d27eaf316137568b5b",
+        "android_client_info": {
+          "package_name": "com.elaj.patient"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "437313777858-dtrhumfdrnpeni09kdjmahbvvlog8ndc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAPqvlQA47luIpXtln975t60cWO2Ma5tyM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "437313777858-dtrhumfdrnpeni09kdjmahbvvlog8ndc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

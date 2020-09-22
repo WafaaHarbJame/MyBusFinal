@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <string name="fal_user_circle" translatable="false">&#xf2bd;</string>
+    <string name="fal_arrow_left" translatable="false">&#xf060;</string>
+    <string name="fal_home" translatable="false">&#xf015;</string>
+    <string name="fal_clock" translatable="false">&#xf017;</string>
+    <string name="fal_sign_out" translatable="false">&#xf08b;</string>
+    <string name="fal_angle_right" translatable="false">&#xf105;</string>
+    <string name="fal_arrow_right" translatable="false">&#xf061;</string>
+    <string name="fal_lock_alt" translatable="false">&#xf30d;</string>
+    <string name="fal_file_alt" translatable="false">&#xf15c;</string>
+    <string name="fal_share_alt" translatable="false">&#xf1e0;</string>
+    <string name="fal_paper_plane" translatable="false">&#xf1d8;</string>
+    <string name="fal_sign_in" translatable="false">&#xf090;</string>
+    <string name="fal_headphones_alt" translatable="false">&#xf58f;</string>
+    <string name="fal_star" translatable="false">&#xf005;</string>
+    <string name="fal_info_circle" translatable="false">&#xf05a;</string>
+    <string name="fal_bell" translatable="false">&#xf0f3;</string>
+    <string name="fa_map_marker" translatable="false">&#xf041;</string>
+    <string name="fal_clipboard_list" translatable="false">&#xf46d;</string>
+    <string name="fal_comment_alt_lines" translatable="false">&#xf4a6;</string>
+    <string name="fal_heart" translatable="false">&#xf004;</string>
+    <string name="fal_cog" translatable="false">&#xf013;</string>
+    <string name="fal_envelope_open" translatable="false">&#xf2b6;</string>
+    <string name="fal_map_marker_alt" translatable="false">&#xf3c5;</string>
+    <string name="fal_times" translatable="false">&#xf00d;</string>
+    <string name="fal_plus" translatable="false">&#xf067;</string>
+    <string name="fal_filter" translatable="false">&#xf0b0;</string>
+    <string name="fal_money_bill_alt" translatable="false">&#xf3d1;</string>
+    <string name="fal_credit_card_front" translatable="false">&#xf38a;</string>
+    <string name="fal_pencil" translatable="false">&#xf040;</string>
+    <string name="fal_trash" translatable="false">&#xf1f8;</string>
+    <string name="fal_file_invoice" translatable="false">&#xf570;</string>
+    <string name="fal_wallet" translatable="false">&#xf555;</string>
+    <string name="fal_usd_circle" translatable="false">&#xf2e8;</string>
+    <string name="fal_check_square" translatable="false">&#xf14a;</string>
+    <string name="fal_square" translatable="false">&#xf0c8;</string>
+    <string name="fal_location" translatable="false">&#xf601;</string>
+    <string name="fal_hand_holding_box" translatable="false">&#xf47b;</string>
+    <string name="fal_language" translatable="false">&#xf1ab;</string>
+    <string name="fal_search" translatable="false">&#xf002;</string>
+
+    <string name="fa_search" translatable="false">&#xf002;</string>
+    <string name="fa_star" translatable="false">&#xf005;</string>
+    <string name="fa_star_o" translatable="false">&#xf006;</string>
+    <string name="fa_refresh" translatable="false">&#xf021;</string>
+    <string name="fa_camera" translatable="false">&#xf030;</string>
+    <string name="fa_picture_o" translatable="false">&#xf03e;</string>
+    <string name="fa_chevron_down" translatable="false">&#xf078;</string>
+    <string name="fa_caret_right" translatable="false">&#xf0da;</string>
+    <string name="fa_angle_down" translatable="false">&#xf107;</string>
+    <string name="fa_work_hours_line" translatable="false">&#xf86c;</string>
+    <string name="fa_calendar_check" translatable="false">&#xf274;</string>
+    <string name="fa_angle_right" translatable="false">&#xf105;</string>
+    <string name="fa_pen_edit" translatable="false">&#xf304;</string>
+    <string name="fa_trash_delete" translatable="false">&#xf1f8;</string>
+    <string name="fa_angle_up" translatable="false">&#xf106;</string>
+    <string name="fa_images" translatable="false">&#xf302;</string>
+    <string name="fal_calendar_week" translatable="false">&#xf784;</string>
+    <string name="fa_calendar_week" translatable="false">&#xf784;</string>
+    <string name="fal_unlock_alt" translatable="false">&#xf13e;</string>
+    <string name="fal_globe_americas" translatable="false">&#xf57d;</string>
+    <string name="fa_heart" translatable="false">&#xf004;</string>
+    <string name="fa_heart_o" translatable="false">&#xf08a;</string>
+    <string name="fa_file_contract" translatable="false">&#xf56c;</string>
+    <string name="comment_alt_lines" translatable="false">&#xf4a6;</string>
+    <string name="fa_circle" translatable="false">&#xf111;</string>
+    <string name="fa_circle_o" translatable="false">&#xf10c;</string>
+
+
+
+</resources>

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <color name="colorPrimary">#03C5E6</color>
+    <color name="colorPrimaryDark">#01B1CF</color>
+    <color name="colorAccent">#003689</color>
+
+    <color name="header1">@color/black</color>
+    <color name="header2">@color/black3</color>
+    <color name="header3">@color/gray13</color>
+    <color name="header4">@color/gray4</color>
+    <color name="header5">@color/gray6</color>
+    <color name="header6">@color/gray5</color>
+    <color name="colorPrimary2">#B642F9</color>
+    <color name="colorPrimary3">#E45AFF</color>
+    <color name="colorPrimaryDark2">#823FF2</color>
+    <color name="colorAccent2">@color/blue14</color>
+    <color name="colorOrangeLight">#FFEBE3</color>
+    <color name="colorAccent3">#152D69</color>
+
+    <color name="toolbar_icons">@color/white</color>
+    <color name="accent_button_text">@color/white</color>
+    <!--<color name="button_text">#ffffff</color>-->
+    <color name="colorPrimaryTrans">#0AFF51D7</color>
+    <color name="colorPrimaryTrans2">#2022C279</color>
+    <color name="colorPrimaryDarkTrans">#397E46F2</color>
+    <color name="colorAccentTrans">#66B642F9</color>
+    <color name="colorAccentTrans2">#A422C279</color>
+    <color name="bottomNavActive">@color/colorPrimary</color>
+    <color name="bottomNavInactive">#626262</color>
+
+    <color name="transparent">#00ffffff</color>
+    <color name="white">#ffffff</color>
+
+    <color name="black">#000000</color>
+    <color name="black3">#2a2a2a</color>
+    <color name="black_trans">#772A2A2A</color>
+
+    <color name="gray">#f2f3f8</color>
+    <color name="gray2">#F3F3F3</color>
+    <color name="gray3">#cecece</color>
+    <color name="gray4">#666666</color>
+    <color name="gray5">#FAFAFA</color>
+    <color name="gray6">#afafaf</color>
+    <color name="gray7">#8BECE4FD</color>
+    <color name="gray8">#F3F5FA</color>
+    <color name="gray16">#7381A6</color>
+    <color name="gray13">#545454</color>
+    <color name="grey14">#E4E9F3</color>
+    <color name="green1">#11FF92</color>
+    <color name="green7">#279f4e</color>
+
+
+    <color name="red1">#FF7D76</color>
+    <color name="red2">#f8463c</color>
+    <color name="red4">#f8463c</color>
+
+    <color name="pink">#FBE7FF</color>
+    <color name="pink2">#ECE4FD</color>
+
+    <color name="yellow">#fdd835</color>
+    <color name="yellow2">#FFF5D7</color>
+    <color name="yellow3">#FFC100</color>
+    <color name="yellow_light">#FFEDB3</color>
+
+    <color name="orange">#FF7442</color>
+    <color name="orange2">#FFEBE3</color>
+    <color name="orange3">#fdc74a</color>
+
+    <color name="blue1">#00B0FF</color>
+    <color name="blue2">#E0F6FF</color>
+    <color name="blue14">#060670</color>
+
+    <color name="order_pending_text">#fdd835</color>
+    <color name="order_accepted_text">#2196F3</color>
+    <color name="order_rejected_text">#DC0F00</color>
+    <color name="order_completed_text">#44AC48</color>
+
+    <color name="order_pending_bg">#FFF5D7</color>
+    <color name="order_accepted_bg">#BEDEF8</color>
+    <color name="order_rejected_bg">#FDC3BF</color>
+    <color name="order_completed_bg">#C3FAC5</color>
+
+    <color name="mtrl_textinput_default_box_stroke_color" tools:override="true">@color/gray3</color>
+
+</resources>

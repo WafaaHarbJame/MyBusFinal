@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/_15sdp"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/round_corner_white_fill"
+        android:orientation="vertical"
+        android:padding="@dimen/_10sdp">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:layout_weight="1">
+
+            <!--<org.sufficientlysecure.htmltextview.HtmlTextView-->
+                <!--android:id="@+id/messageTxt"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginBottom="@dimen/_10sdp"-->
+                <!--android:background="@color/white"-->
+                <!--android:gravity="center"-->
+                <!--android:fontFamily="@font/cairo_regular"-->
+                <!--android:padding="@dimen/_10sdp" />-->
+
+
+            <com.elaj.patient.spichalViews.STextView
+                android:id="@+id/messageTxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:lineSpacingExtra="@dimen/_10sdp"
+                android:text="@string/dummy"
+                android:textSize="@dimen/_12ssp" />
+        </ScrollView>
+
+
+        <LinearLayout
+            android:id="@+id/okBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="visible"
+            >
+
+            <LinearLayout
+                style="@style/primaryBtnStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingEnd="@dimen/_50sdp"
+                android:paddingStart="@dimen/_50sdp"
+                >
+
+                <com.elaj.patient.spichalViews.STextViewBold
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="@string/ok"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_12ssp" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

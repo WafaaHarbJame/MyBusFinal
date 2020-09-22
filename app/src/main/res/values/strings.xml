@@ -1,0 +1,46 @@
+<resources>
+    <string name="app_name">ElajPatient</string>
+    <string name="profile">Profile</string>
+    <string name="home">Home</string>
+    <string name="search">Search</string>
+    <string name="my_questions">My Questions</string>
+    <string name="no_internet_connection">No Internet Connection</string>
+    <string name="fail_to_get_data">Fail to get data</string>
+    <string name="retry">Retry</string>
+    <string name="cancel2">Cancel</string>
+    <string name="new_account">New Account</string>
+    <string name="full_name">Full name</string>
+    <string name="mobile_number">Mobilr Number</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="you_read_agree">You read and agree</string>
+    <string name="terms_of_use">Term of use</string>
+    <string name="register">Register</string>
+    <string name="you_have_account_q">You have an account ?</string>
+    <string name="sign_in">Sign In</string>
+
+    <string name="dummy">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500</string>
+    <string name="ok">Ok</string>
+    <string name="take_pic">Take Picture</string>
+    <string name="open_gallery">Open Gallery</string>
+    <string name="soon">Soon</string>
+    <string name="reload">Reload</string>
+    <string name="no_data">No Data</string>
+    <string name="title">Title</string>
+    <string name="by_app">By App</string>
+    <string name="share_with">Share With</string>
+    <string name="fail_to_register">Fail to register</string>
+    <string name="invalid_fullname">Invalid Full Name</string>
+    <string name="invalid_mobile">Invalid Mobile</string>
+    <string name="invalid_email">Invalid Email</string>
+    <string name="enter_password">Emter Password</string>
+    <string name="enter_valid_email">Enter valid email</string>
+    <string name="password_confirm_not_match">Password confirm not match</string>
+    <string name="enter_phone_number">Enter Phone number</string>
+    <string name="valid_phone_number">Valid phone number</string>
+    <string name="please_accept_terms_of_use">Please accept terms of use</string>
+    <string name="select_country_code">Select Country Code</string>
+    <string name="enter_country_name_to_search">Enter country name or code to search</string>
+    <string name="no_address">No Address</string>
+</resources>

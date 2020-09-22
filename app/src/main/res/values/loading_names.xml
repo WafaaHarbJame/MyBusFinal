@@ -1,0 +1,7 @@
+<resources>
+
+    <string name="L_1x1" translatable="false">BallPulseIndicator</string>
+    <string name="L_2x2" translatable="false">BallClipRotateMultipleIndicator</string>
+    <string name="L_4x2" translatable="false">LineScaleIndicator</string>
+
+</resources>

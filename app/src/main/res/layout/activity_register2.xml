@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:fillViewport="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <View
+                android:id="@+id/headerBg"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_150sdp"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/roundBg"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_30sdp"
+                android:background="@drawable/round_top_corner_white_fill"
+                app:layout_constraintBottom_toBottomOf="@id/headerBg" />
+
+            <com.elaj.patient.spichalViews.STextViewIcon
+                android:id="@+id/backBtn"
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/_10sdp"
+                android:scaleX="@integer/scaleX"
+                android:text="@string/fal_arrow_left"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_15ssp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/registerHeader"
+                android:layout_width="@dimen/_130sdp"
+                android:layout_height="@dimen/_130sdp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="@dimen/_5sdp"
+                app:layout_constraintBottom_toTopOf="@id/roundBg"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/roundBg" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/registerHeader">
+
+
+                <com.elaj.patient.spichalViews.STextViewBold
+                    android:id="@+id/headerLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="@dimen/_5sdp"
+                    android:text="@string/new_account"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="@dimen/_16ssp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/registerHeader" />
+
+                <com.elaj.patient.spichalViews.STextView
+                    android:id="@+id/helloLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="@dimen/_15sdp"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="@dimen/_13ssp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/headerLabel" />
+
+
+                <com.elaj.patient.spichalViews.STextInputLayout
+                    android:id="@+id/fullNameInput"
+                    style="@style/TextInputStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_15sdp"
+                    android:layout_marginEnd="@dimen/_15sdp"
+                    android:layout_marginBottom="@dimen/_10sdp"
+                    android:hint="@string/full_name"
+                    app:layout_constraintTop_toBottomOf="@id/helloLabel">
+
+                    <com.elaj.patient.spichalViews.STextInputEditText
+                        android:id="@+id/fullNameTxt"
+                        style="@style/editTextStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textPersonName" />
+
+                </com.elaj.patient.spichalViews.STextInputLayout>
+
+                <!--                <com.elaj.patient.spichalViews.STextInputLayout-->
+                <!--                    style="@style/TextInputStyle"-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:layout_marginStart="@dimen/_15sdp"-->
+                <!--                    android:layout_marginEnd="@dimen/_15sdp"-->
+                <!--                    android:layout_marginBottom="@dimen/_10sdp"-->
+                <!--                    android:hint="@string/last_name"-->
+                <!--                    app:layout_constraintTop_toBottomOf="@id/helloLabel">-->
+
+                <!--                    <com.elaj.patient.spichalViews.STextInputEditText-->
+                <!--                        android:id="@+id/lastNameTxt"-->
+                <!--                        style="@style/editTextStyle"-->
+                <!--                        android:layout_width="match_parent"-->
+                <!--                        android:layout_height="wrap_content"-->
+                <!--                        android:inputType="textPersonName" />-->
+
+                <!--                </com.elaj.patient.spichalViews.STextInputLayout>-->
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_15sdp"
+                    android:layout_marginEnd="@dimen/_15sdp"
+                    android:layout_marginBottom="@dimen/_15sdp"
+                    android:gravity="center_vertical"
+                    android:layoutDirection="ltr"
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toBottomOf="@id/helloLabel">
+
+                    <com.elaj.patient.spichalViews.STextView
+                        android:id="@+id/countryCodeTxt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/country_code_height"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:background="@drawable/round_corner_gray_trans"
+                        android:gravity="center"
+                        android:paddingStart="@dimen/_10sdp"
+                        android:paddingEnd="@dimen/_10sdp"
+                        android:text="+966"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="@dimen/_12ssp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/mobileInput" />
+
+                    <com.elaj.patient.spichalViews.STextInputLayout
+                        android:id="@+id/mobileInput"
+                        style="@style/TextInputStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:hint="@string/mobile_number"
+                        android:nextFocusForward="@id/passwordTxt"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/countryCodeTxt"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <com.elaj.patient.spichalViews.SAutoCompleteText
+                            android:id="@+id/mobileTxt"
+                            style="@style/editTextStyle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:imeOptions="actionNext"
+                            android:inputType="phone"
+                            android:nextFocusForward="@id/passwordTxt" />
+
+                    </com.elaj.patient.spichalViews.STextInputLayout>
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <com.elaj.patient.spichalViews.STextInputLayout
+                    android:id="@+id/emailInput"
+                    style="@style/TextInputStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_15sdp"
+                    android:layout_marginEnd="@dimen/_15sdp"
+                    android:layout_marginBottom="@dimen/_10sdp"
+                    android:hint="@string/email">
+
+                    <com.elaj.patient.spichalViews.STextInputEditText
+                        android:id="@+id/emailTxt"
+                        style="@style/editTextStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textEmailAddress" />
+
+                </com.elaj.patient.spichalViews.STextInputLayout>
+
+                <com.elaj.patient.spichalViews.STextInputLayout
+                    android:id="@+id/passwordInput"
+                    style="@style/TextInputStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_15sdp"
+                    android:layout_marginEnd="@dimen/_15sdp"
+                    android:layout_marginBottom="@dimen/_10sdp"
+                    android:hint="@string/password">
+
+                    <com.elaj.patient.spichalViews.STextInputEditText
+                        android:id="@+id/passwordTxt"
+                        style="@style/editTextStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textPassword" />
+
+                </com.elaj.patient.spichalViews.STextInputLayout>
+
+                <com.elaj.patient.spichalViews.STextInputLayout
+                    android:id="@+id/confirmPasswordInput"
+                    style="@style/TextInputStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_15sdp"
+                    android:layout_marginEnd="@dimen/_15sdp"
+                    android:layout_marginBottom="@dimen/_15sdp"
+                    android:hint="@string/confirm_password">
+
+                    <com.elaj.patient.spichalViews.STextInputEditText
+                        android:id="@+id/confirmPasswordTxt"
+                        style="@style/editTextStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textPassword" />
+
+                </com.elaj.patient.spichalViews.STextInputLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <com.elaj.patient.spichalViews.SCheckBox
+                        android:id="@+id/termsCB"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/you_read_agree"
+                        android:textColor="@color/colorAccent2"
+                        android:textSize="@dimen/_12ssp" />
+
+                    <com.elaj.patient.spichalViews.STextView
+                        android:id="@+id/termsBtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:paddingTop="@dimen/_8sdp"
+                        android:paddingBottom="@dimen/_5sdp"
+                        android:text="@string/terms_of_use"
+                        android:textColor="@color/colorPrimary3"
+                        android:textSize="@dimen/_12ssp" />
+
+                </LinearLayout>
+
+                <com.elaj.patient.spichalViews.STextViewBold
+                    android:id="@+id/registerBtn"
+                    style="@style/primaryBtnStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_30sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_30sdp"
+                    android:layout_marginBottom="@dimen/_30sdp"
+                    android:text="@string/register"
+                    android:textColor="@color/white" />
+
+
+                <!--                <com.loopeer.shadow.ShadowView-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:layout_marginStart="@dimen/_30sdp"-->
+                <!--                    android:layout_marginTop="@dimen/_10sdp"-->
+                <!--                    android:layout_marginEnd="@dimen/_30sdp"-->
+                <!--                    android:layout_marginBottom="@dimen/_30sdp"-->
+                <!--                    app:backgroundColor="@color/white"-->
+                <!--                    app:cornerRadius="@dimen/round_corner_thin"-->
+                <!--                    app:shadowColor="@color/colorAccentTrans"-->
+                <!--                    app:shadowMargin="@dimen/_6sdp"-->
+                <!--                    app:shadowRadius="@dimen/_6sdp">-->
+
+
+                <!--                </com.loopeer.shadow.ShadowView>-->
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="@dimen/_40sdp"
+                    android:orientation="horizontal">
+
+                    <com.elaj.patient.spichalViews.STextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:text="@string/you_have_account_q"
+                        android:textColor="@color/colorAccent2"
+                        android:textSize="@dimen/_12ssp" />
+
+                    <com.elaj.patient.spichalViews.STextView
+                        android:id="@+id/loginBtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:text="@string/sign_in"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="@dimen/_12ssp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+            <!--<com.dreams.hululw.SpichalViews.STextView-->
+            <!--android:id="@+id/forgetPasswordBtn"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="center_horizontal"-->
+            <!--android:paddingStart="@dimen/_20sdp"-->
+            <!--android:paddingEnd="@dimen/_20sdp"-->
+            <!--android:text="@string/forget_password_q"-->
+            <!--android:textColor="@color/colorAccent2"-->
+            <!--android:textSize="@dimen/_12ssp"-->
+            <!--android:visibility="visible" />-->
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</LinearLayout>

@@ -10,7 +10,7 @@
     <string name="cancel2">Cancel</string>
     <string name="new_account">New Account</string>
     <string name="full_name">Full name</string>
-    <string name="mobile_number">Mobilr Number</string>
+    <string name="mobile_number">Mobile Number</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="confirm_password">Confirm Password</string>
@@ -46,4 +46,15 @@
     <string name="hello_in_elaj_app">Hello in Elaj App</string>
     <string name="welcome_desc">Reliable medical advice by the best doctors in the Arab world. Complete privacy and a satisfactory answer as soon as possible</string>
     <string name="continuee">Continue</string>
+    <string name="forget_password_q">Forget Password?</string>
+    <string name="login">Login</string>
+    <string name="not_have_account_q">Not Have Account?</string>
+    <string name="forget_password">Forget Password</string>
+    <string name="enter_mobile_number_to_reset_password">Enter mobile number to reset password</string>
+    <string name="reset_password">Reset Password</string>
+    <string name="enter_confirm_code_and_new_password">Enter confirm code and new password</string>
+    <string name="confirm_code">Confirm Code</string>
+    <string name="contact">Contact</string>
+    <string name="questions">Questions</string>
+    <string name="settings">Settings</string>
 </resources>

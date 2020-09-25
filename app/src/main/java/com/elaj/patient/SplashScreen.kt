@@ -3,6 +3,7 @@ package com.elaj.patient
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
+import android.os.Looper
 import android.view.Window
 import android.view.WindowManager
 import android.widget.ImageView
@@ -10,6 +11,7 @@ import com.elaj.patient.Model.MemberModel
 import com.elaj.patient.Model.ResponseEvent
 import com.elaj.patient.Model.ResultAPIModel
 import com.elaj.patient.activities.ActivityBase
+import com.elaj.patient.activities.LoginActivity
 import com.elaj.patient.activities.WelcomeActivity
 import com.elaj.patient.apiHandlers.DataFeacher
 import com.elaj.patient.apiHandlers.DataFetcherCallBack
@@ -61,7 +63,7 @@ class SplashScreen : ActivityBase() {
         DataFeacher().getCategories()
         DataFeacher().getConfig()
 
-        Handler().postDelayed({
+        Handler(Looper.getMainLooper()).postDelayed({
             // start if has access token
             if (UtilityApp.isLogin) {
                 DataFeacher(object : DataFetcherCallBack {
@@ -79,8 +81,8 @@ class SplashScreen : ActivityBase() {
                 val intent = Intent(
                     getActiviy(),
 //                    LoginActivity::class.java
-                    WelcomeActivity::class.java
-//                    BooksActivity::class.java
+//                    WelcomeActivity::class.java
+                    MainActivityBottomNav::class.java
                 )
                 intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
                 startActivity(intent)

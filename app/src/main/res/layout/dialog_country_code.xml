@@ -54,9 +54,7 @@
                 android:layout_gravity="start"
                 android:layout_marginStart="@dimen/_10sdp"
                 android:padding="@dimen/_10sdp"
-                android:text="@string/fal_times"
-                app:layout_constraintBottom_toBottomOf="@id/roundBg"
-                app:layout_constraintStart_toStartOf="parent" />
+                android:text="@string/fal_times" />
 
 
         </LinearLayout>

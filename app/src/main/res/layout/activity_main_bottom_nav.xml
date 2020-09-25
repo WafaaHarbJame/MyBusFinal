@@ -15,8 +15,9 @@
     <TextView
         android:id="@+id/shadowLY"
         android:layout_width="match_parent"
-        android:layout_height="1.2dp"
-        android:background="@color/gray"
+        android:layout_height="8dp"
+        android:layout_marginTop="-8dp"
+        android:background="@drawable/square_black_gradient_fill"
         app:layout_constraintBottom_toTopOf="@id/navLY" />
 
     <View

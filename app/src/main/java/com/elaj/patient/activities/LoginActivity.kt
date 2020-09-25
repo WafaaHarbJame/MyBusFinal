@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.telephony.TelephonyManager
 import android.widget.ArrayAdapter
 import android.widget.CheckBox
+import com.elaj.patient.MainActivityBottomNav
 import com.elaj.patient.Model.*
 import com.elaj.patient.R
 import com.elaj.patient.Utils.NumberHandler
@@ -54,6 +55,8 @@ class LoginActivity : ActivityBase() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
+        title = ""
+
         sharedPManger = SharedPManger(getActiviy())
 
         val savedData = sharedPManger?.getDataString(Constants.KEY_LOGIN_PREFERANCE)
@@ -66,36 +69,28 @@ class LoginActivity : ActivityBase() {
             setAutoCompleteSource();
         }
 
-//        loginBtn.setOnClickListener {
-//
-//            if (isValidForm()) {
-//
+        loginBtn.setOnClickListener {
+
+//            if (isValidForm())
 //                loginUser()
-//
-//            }
-//
-//
-//        }
 
-//        forgetPasswordBtn.setOnClickListener {
-//
-//            val intent = Intent(getActiviy(), ForgetPasswordActivity::class.java)
-//            startActivity(intent)
-//
-//        }
+            val intent = Intent(getActiviy(), MainActivityBottomNav::class.java)
+            startActivity(intent)
 
-/*
-        registerBtn.setOnClickListener {
 
-            val intent = Intent(getActiviy(), Register1Activity::class.java)
+        }
+
+        forgetPasswordBtn.setOnClickListener {
+
+            val intent = Intent(getActiviy(), ForgetPasswordActivity::class.java)
             startActivity(intent)
 
         }
-*/
 
-        backBtn.setOnClickListener {
+        registerBtn.setOnClickListener {
 
-            onBackPressed()
+            val intent = Intent(getActiviy(), RegisterActivity::class.java)
+            startActivity(intent)
 
         }
 
@@ -123,18 +118,6 @@ class LoginActivity : ActivityBase() {
 //
 //        }
 
-    }
-
-    override fun onStop() {
-        savePrefs()
-        super.onStop()
-
-        EventBus.getDefault().unregister(this)
-    }
-
-    override fun onStart() {
-        super.onStart()
-        EventBus.getDefault().register(this)
     }
 
     private fun initLocalCountryCode() {

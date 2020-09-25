@@ -32,13 +32,12 @@
                 android:src="@drawable/hd_login" />
 
             <com.elaj.patient.spichalViews.STextViewBold
-                android:id="@+id/signLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="-30dp"
                 android:layout_marginBottom="@dimen/_8sdp"
-                android:text="@string/sign_in"
+                android:text="@string/new_account"
                 android:textColor="@color/colorAccent"
                 android:textSize="@dimen/_15ssp" />
 
@@ -91,7 +90,7 @@
                     app:layout_constraintStart_toEndOf="@id/countryCodeTxt"
                     app:layout_constraintTop_toTopOf="parent">
 
-                    <com.elaj.patient.spichalViews.SAutoCompleteText
+                    <com.elaj.patient.spichalViews.SEditText
                         android:id="@+id/mobileTxt"
                         style="@style/editTextStyle"
                         android:layout_width="match_parent"
@@ -113,7 +112,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_15sdp"
                 android:layout_marginEnd="@dimen/_15sdp"
-                android:layout_marginBottom="@dimen/_5sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
                 android:hint="@string/password"
                 app:passwordToggleEnabled="true">
 
@@ -126,23 +125,31 @@
 
             </com.elaj.patient.spichalViews.STextInputLayout>
 
-            <com.elaj.patient.spichalViews.STextView
-                android:id="@+id/forgetPasswordBtn"
-                android:layout_width="wrap_content"
+            <com.elaj.patient.spichalViews.STextInputLayout
+                android:id="@+id/confirmPasswordInput"
+                style="@style/TextInputStyle"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_15sdp"
-                android:layout_marginBottom="@dimen/_15sdp"
-                android:paddingTop="@dimen/_8sdp"
-                android:paddingBottom="@dimen/_5sdp"
-                android:text="@string/forget_password_q"
-                android:textColor="@color/colorAccent2"
-                android:textSize="@dimen/_12ssp" />
+                android:layout_marginEnd="@dimen/_15sdp"
+                android:hint="@string/confirm_password"
+                app:passwordToggleEnabled="true">
+
+                <com.elaj.patient.spichalViews.STextInputEditText
+                    android:id="@+id/confirmPasswordTxt"
+                    style="@style/editTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPassword" />
+
+            </com.elaj.patient.spichalViews.STextInputLayout>
+
 
             <com.loopeer.shadow.ShadowView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_50sdp"
-                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_30sdp"
                 android:layout_marginEnd="@dimen/_50sdp"
                 android:layout_marginBottom="@dimen/_30sdp"
                 app:backgroundColor="@color/white"
@@ -156,7 +163,7 @@
                     style="@style/primaryBtnStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/login"
+                    android:text="@string/register"
                     android:textColor="@color/white" />
 
 
@@ -175,7 +182,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginEnd="@dimen/_10sdp"
-                    android:text="@string/not_have_account_q"
+                    android:text="@string/you_have_account_q"
                     android:textColor="@color/colorAccent2"
                     android:textSize="@dimen/_12ssp" />
 
@@ -184,7 +191,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:text="@string/new_account"
+                    android:text="@string/sign_in"
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="@dimen/_12ssp" />
 

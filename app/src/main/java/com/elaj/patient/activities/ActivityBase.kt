@@ -19,7 +19,6 @@ import com.jaeger.library.StatusBarUtil
 open class ActivityBase : AppCompatActivity() {
 
     protected var isMainActivityBottomNav = false
-    protected var isProviderDetailsActivity = false
 
     val visible = View.VISIBLE
     val gone = View.GONE
@@ -29,8 +28,8 @@ open class ActivityBase : AppCompatActivity() {
 
     //    lateinit var searchBtn: View
 //    lateinit var shareBtn: View
-    protected lateinit var aTitle: TextView
-    protected lateinit var starBtn: TextView
+//    protected lateinit var aTitle: TextView
+//    protected lateinit var starBtn: TextView
     protected lateinit var mainTitle: TextView
     lateinit var mToolbar: RelativeLayout
 
@@ -51,22 +50,22 @@ open class ActivityBase : AppCompatActivity() {
     override fun setTitle(title: CharSequence?) {
         mToolbar = findViewById(R.id.tool_bar)
         homeBtn = mToolbar.findViewById(R.id.homeBtn)
-        starBtn = mToolbar.findViewById(R.id.starBtn)
-        aTitle = mToolbar.findViewById(R.id.title)
+//        starBtn = mToolbar.findViewById(R.id.starBtn)
+//        aTitle = mToolbar.findViewById(R.id.title)
         mainTitle = mToolbar.findViewById(R.id.mainTitleTxt)
 //        searchBtn = mToolbar.findViewById(R.id.searchBtn)
 //        shareBtn = mToolbar.findViewById(R.id.shareBtn)
 
-        aTitle.text = title
+//        aTitle.text = title
         mainTitle.text = title
 
         if (isMainActivityBottomNav) {
             mainTitle.visibility = View.VISIBLE
-            aTitle.visibility = View.GONE
+//            aTitle.visibility = View.GONE
             homeBtn.visibility = View.GONE
         } else {
             mainTitle.visibility = View.GONE
-            aTitle.visibility = View.VISIBLE
+//            aTitle.visibility = View.VISIBLE
             homeBtn.visibility = View.VISIBLE
         }
 

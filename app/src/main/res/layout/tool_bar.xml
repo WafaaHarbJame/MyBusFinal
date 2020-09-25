@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/tool_bar"
     android:layout_width="match_parent"
-    android:layout_height="?android:attr/actionBarSize"
+    android:layout_height="85dp"
     android:background="@color/colorPrimary">
 
 
@@ -15,8 +15,7 @@
     <com.elaj.patient.spichalViews.STextViewIcon
         android:id="@+id/homeBtn"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_gravity="center"
+        android:layout_height="@dimen/_40sdp"
         android:foreground="?attr/selectableItemBackgroundBorderless"
         android:gravity="center"
         android:padding="@dimen/_5sdp"
@@ -26,14 +25,14 @@
         android:text="@string/fal_angle_right"
         android:textColor="@color/toolbar_icons"
         android:textSize="@dimen/_15ssp"
-        android:visibility="gone" />
+        android:visibility="visible" />
 
 
     <com.elaj.patient.spichalViews.STextViewBold
         android:id="@+id/mainTitleTxt"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_centerInParent="true"
+        android:layout_height="@dimen/_40sdp"
+        android:layout_centerHorizontal="true"
         android:ellipsize="end"
         android:gravity="center"
         android:maxWidth="@dimen/_160sdp"
@@ -43,20 +42,19 @@
         android:textSize="@dimen/_13ssp"
         android:visibility="visible" />
 
-    <com.elaj.patient.spichalViews.STextViewBold
-        android:id="@+id/title"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_toEndOf="@id/homeBtn"
-        android:ellipsize="end"
-        android:gravity="center"
-        android:maxWidth="@dimen/_160sdp"
-        android:maxLines="1"
-        android:text="@string/title"
-        android:textColor="@color/toolbar_icons"
-        android:textSize="@dimen/_13ssp"
-        android:visibility="gone" />
-
+    <!--    <com.elaj.patient.spichalViews.STextViewBold-->
+    <!--        android:id="@+id/title"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="match_parent"-->
+    <!--        android:layout_toEndOf="@id/homeBtn"-->
+    <!--        android:ellipsize="end"-->
+    <!--        android:gravity="center"-->
+    <!--        android:maxWidth="@dimen/_160sdp"-->
+    <!--        android:maxLines="1"-->
+    <!--        android:text="@string/title"-->
+    <!--        android:textColor="@color/toolbar_icons"-->
+    <!--        android:textSize="@dimen/_13ssp"-->
+    <!--        android:visibility="visible" />-->
 
     <com.elaj.patient.spichalViews.STextViewIcon
         android:id="@+id/searchBtn"
@@ -76,38 +74,38 @@
         android:visibility="gone" />
 
 
-    <com.elaj.patient.spichalViews.STextViewIcon2
-        android:id="@+id/starBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_alignWithParentIfMissing="true"
-        android:layout_gravity="center"
-        android:layout_toStartOf="@+id/filterBtn"
-        android:background="?attr/selectableItemBackgroundBorderless"
-        android:gravity="center"
-        android:padding="@dimen/_5sdp"
-        android:paddingStart="@dimen/_10sdp"
-        android:paddingEnd="@dimen/_10sdp"
-        android:text="@string/fa_star"
-        android:textColor="@color/white"
-        android:textSize="@dimen/_18ssp"
-        android:visibility="gone" />
+    <!--    <com.elaj.patient.spichalViews.STextViewIcon2-->
+    <!--        android:id="@+id/starBtn"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="match_parent"-->
+    <!--        android:layout_alignWithParentIfMissing="true"-->
+    <!--        android:layout_gravity="center"-->
+    <!--        android:layout_toStartOf="@+id/filterBtn"-->
+    <!--        android:background="?attr/selectableItemBackgroundBorderless"-->
+    <!--        android:gravity="center"-->
+    <!--        android:padding="@dimen/_5sdp"-->
+    <!--        android:paddingStart="@dimen/_10sdp"-->
+    <!--        android:paddingEnd="@dimen/_10sdp"-->
+    <!--        android:text="@string/fa_star"-->
+    <!--        android:textColor="@color/white"-->
+    <!--        android:textSize="@dimen/_18ssp"-->
+    <!--        android:visibility="gone" />-->
 
-    <com.elaj.patient.spichalViews.STextViewIcon
-        android:id="@+id/filterBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_alignParentEnd="true"
-        android:layout_gravity="center"
-        android:background="?attr/selectableItemBackgroundBorderless"
-        android:gravity="center"
-        android:padding="@dimen/_5sdp"
-        android:paddingStart="@dimen/_10sdp"
-        android:paddingEnd="@dimen/_10sdp"
-        android:text="@string/fal_filter"
-        android:textColor="@color/toolbar_icons"
-        android:textSize="@dimen/_18ssp"
-        android:visibility="gone" />
+    <!--    <com.elaj.patient.spichalViews.STextViewIcon-->
+    <!--        android:id="@+id/filterBtn"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="match_parent"-->
+    <!--        android:layout_alignParentEnd="true"-->
+    <!--        android:layout_gravity="center"-->
+    <!--        android:background="?attr/selectableItemBackgroundBorderless"-->
+    <!--        android:gravity="center"-->
+    <!--        android:padding="@dimen/_5sdp"-->
+    <!--        android:paddingStart="@dimen/_10sdp"-->
+    <!--        android:paddingEnd="@dimen/_10sdp"-->
+    <!--        android:text="@string/fal_filter"-->
+    <!--        android:textColor="@color/toolbar_icons"-->
+    <!--        android:textSize="@dimen/_18ssp"-->
+    <!--        android:visibility="gone" />-->
 
     <!--    <View-->
     <!--        android:layout_width="match_parent"-->
@@ -115,4 +113,9 @@
     <!--        android:layout_alignParentBottom="true"-->
     <!--        android:background="@color/gray" />-->
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_25sdp"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/round_top_corner_white_fill" />
 </RelativeLayout>

@@ -17,7 +17,6 @@ import com.elaj.patient.classes.DBFunction
 import com.elaj.patient.classes.GlobalData
 import com.elaj.patient.classes.UtilityApp
 import com.elaj.patient.dialogs.CountryCodeDialog
-import com.github.dhaval2404.form_validation.rule.EmailRule
 import com.github.dhaval2404.form_validation.rule.EqualRule
 import com.github.dhaval2404.form_validation.rule.LengthRule
 import com.github.dhaval2404.form_validation.rule.NonEmptyRule
@@ -25,7 +24,7 @@ import com.github.dhaval2404.form_validation.validation.FormValidator
 import com.google.firebase.iid.FirebaseInstanceId
 import com.google.firebase.iid.InstanceIdResult
 import io.michaelrocks.libphonenumber.android.PhoneNumberUtil
-import kotlinx.android.synthetic.main.activity_register2.*
+import kotlinx.android.synthetic.main.activity_register.*
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
@@ -53,12 +52,10 @@ class RegisterActivity : ActivityBase() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_register2)
+        setContentView(R.layout.activity_register)
 
-        val bundle = intent.extras;
-        if (bundle != null) {
-            isCustomer = bundle.getBoolean(Constants.KEY_IS_CUSTOMER)
-        }
+        title = ""
+
 
 
 //        countrySpinner.onItemClickListener =
@@ -98,18 +95,18 @@ class RegisterActivity : ActivityBase() {
 //            val intent = Intent(getActiviy(), ConfirmActivity::class.java)
 //            startActivity(intent)
 
-            if (isValidForm())
-                registerUser()
+//            if (isValidForm())
+//                registerUser()
 
         }
 
-        termsBtn.setOnClickListener {
-
-//            val intent = Intent(getActiviy(), PageFragmentActivity::class.java)
-//            intent.putExtra(Constants.KEY_FRAGMENT_TYPE, Constants.FRAG_TERMS)
-//            startActivity(intent)
-
-        }
+//        termsBtn.setOnClickListener {
+//
+////            val intent = Intent(getActiviy(), PageFragmentActivity::class.java)
+////            intent.putExtra(Constants.KEY_FRAGMENT_TYPE, Constants.FRAG_TERMS)
+////            startActivity(intent)
+//
+//        }
 
         loginBtn.setOnClickListener {
 
@@ -119,11 +116,6 @@ class RegisterActivity : ActivityBase() {
 
         }
 
-        backBtn.setOnClickListener {
-
-            onBackPressed()
-
-        }
 
         getCountries()
         getFCMToken()
@@ -199,9 +191,9 @@ class RegisterActivity : ActivityBase() {
 
         try {
 
-            val fullNameStr = NumberHandler.arabicToDecimal(fullNameTxt.text.toString())
+//            val fullNameStr = NumberHandler.arabicToDecimal(fullNameTxt.text.toString())
             val mobileStr = NumberHandler.arabicToDecimal(mobileTxt.text.toString())
-            val emailStr = NumberHandler.arabicToDecimal(emailTxt.text.toString())
+//            val emailStr = NumberHandler.arabicToDecimal(emailTxt.text.toString())
             val passwordStr = NumberHandler.arabicToDecimal(passwordTxt.text.toString())
 
             if (!PhoneHandler.isValidPhoneNumber(mobileStr)) {
@@ -211,8 +203,8 @@ class RegisterActivity : ActivityBase() {
 //            if (countryVal == -1)
 //                throw Exception("country")
 
-            if (!termsCB.isChecked)
-                throw Exception("terms")
+//            if (!termsCB.isChecked)
+//                throw Exception("terms")
 
 
             val registerUserModel = RegisterUserModel()
@@ -222,10 +214,9 @@ class RegisterActivity : ActivityBase() {
                     "0".toRegex(),
                     ""
                 ) else mobileStr
-            registerUserModel.full_name = fullNameStr
-            registerUserModel.email = emailStr
+//            registerUserModel.full_name = fullNameStr
+//            registerUserModel.email = emailStr
             registerUserModel.countryId = countryVal
-            registerUserModel.type = if (isCustomer) 1 else 2
             registerUserModel.password = passwordStr
             registerUserModel.isCustomer = isCustomer
             registerUserModel.fcm_token = FCMToken
@@ -314,14 +305,14 @@ class RegisterActivity : ActivityBase() {
 
     private fun isValidForm(): Boolean {
         return FormValidator.getInstance()
-            .addField(fullNameInput, NonEmptyRule(R.string.invalid_fullname))
-//            .addField(lastNameTxt, NonEmptyRule(R.string.invalid_input))
-            .addField(mobileInput, NonEmptyRule(R.string.invalid_mobile))
-            .addField(
-                emailInput,
-                NonEmptyRule(R.string.invalid_email),
-                EmailRule(R.string.enter_valid_email)
-            )
+//            .addField(fullNameInput, NonEmptyRule(R.string.invalid_fullname))
+////            .addField(lastNameTxt, NonEmptyRule(R.string.invalid_input))
+//            .addField(mobileInput, NonEmptyRule(R.string.invalid_mobile))
+//            .addField(
+//                emailInput,
+//                NonEmptyRule(R.string.invalid_email),
+//                EmailRule(R.string.enter_valid_email)
+//            )
             .addField(
                 passwordTxt,
                 NonEmptyRule(R.string.enter_password)

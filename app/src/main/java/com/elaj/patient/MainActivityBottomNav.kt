@@ -180,10 +180,6 @@ class MainActivityBottomNav : ActivityBase() {
         }
     }
 
-    fun restoreActionBar() {
-        aTitle?.text = mTitle
-    }
-
     override fun onKeyDown(keyCode: Int, event: KeyEvent): Boolean {
 //        if (GlobalData.LOGIN_TYPE == 1) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {

@@ -20,7 +20,7 @@
     <color name="toolbar_icons">@color/white</color>
     <color name="accent_button_text">@color/white</color>
     <!--<color name="button_text">#ffffff</color>-->
-    <color name="colorPrimaryTrans">#0AFF51D7</color>
+    <color name="colorPrimaryTrans">#6D03C5E6</color>
     <color name="colorPrimaryTrans2">#2022C279</color>
     <color name="colorPrimaryDarkTrans">#397E46F2</color>
     <color name="colorAccentTrans">#66B642F9</color>
@@ -33,7 +33,7 @@
 
     <color name="black">#000000</color>
     <color name="black3">#2a2a2a</color>
-    <color name="black_trans">#772A2A2A</color>
+    <color name="black_trans">#0D4A4A4A</color>
 
     <color name="gray">#f2f3f8</color>
     <color name="gray2">#F3F3F3</color>

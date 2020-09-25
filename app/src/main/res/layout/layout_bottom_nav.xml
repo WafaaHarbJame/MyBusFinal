@@ -28,7 +28,7 @@
                 android:id="@+id/tab1Icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/_5sdp"
+                android:layout_marginBottom="@dimen/bottom_nav_icon_margin"
                 android:text="@string/fal_home"
                 android:textColor="@color/bottomNavInactive"
                 android:textSize="@dimen/bottom_nav_icon" />
@@ -38,7 +38,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/_5sdp"
-                android:text="@string/profile"
+                android:text="@string/home"
                 android:textAlignment="viewStart"
                 android:textColor="@color/bottomNavInactive"
                 android:textSize="@dimen/bottom_nav_text" />
@@ -47,6 +47,8 @@
                 android:id="@+id/tab1Indc"
                 android:layout_width="match_parent"
                 android:layout_height="3dp"
+                android:layout_marginStart="@dimen/_15sdp"
+                android:layout_marginEnd="@dimen/_15sdp"
                 android:background="@color/colorPrimary"
                 android:visibility="visible" />
         </LinearLayout>
@@ -66,7 +68,7 @@
                 android:id="@+id/tab2Icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/_5sdp"
+                android:layout_marginBottom="@dimen/bottom_nav_icon_margin"
                 android:text="@string/fal_home"
                 android:textColor="@color/bottomNavInactive"
                 android:textSize="@dimen/bottom_nav_icon" />
@@ -76,7 +78,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/_5sdp"
-                android:text="@string/profile"
+                android:text="@string/questions"
                 android:textAlignment="viewStart"
                 android:textColor="@color/bottomNavInactive"
                 android:textSize="@dimen/bottom_nav_text"
@@ -86,6 +88,8 @@
                 android:id="@+id/tab2Indc"
                 android:layout_width="match_parent"
                 android:layout_height="3dp"
+                android:layout_marginStart="@dimen/_15sdp"
+                android:layout_marginEnd="@dimen/_15sdp"
                 android:background="@color/colorPrimary"
                 android:visibility="invisible" />
 
@@ -105,7 +109,7 @@
                 android:id="@+id/tab3Icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/_5sdp"
+                android:layout_marginBottom="@dimen/bottom_nav_icon_margin"
                 android:text="@string/fal_search"
                 android:textColor="@color/bottomNavInactive"
                 android:textSize="@dimen/bottom_nav_icon" />
@@ -115,7 +119,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/_5sdp"
-                android:text="@string/profile"
+                android:text="@string/contact"
                 android:textAlignment="viewStart"
                 android:textColor="@color/bottomNavInactive"
                 android:textSize="@dimen/bottom_nav_text"
@@ -125,6 +129,8 @@
                 android:id="@+id/tab3Indc"
                 android:layout_width="match_parent"
                 android:layout_height="3dp"
+                android:layout_marginStart="@dimen/_15sdp"
+                android:layout_marginEnd="@dimen/_15sdp"
                 android:background="@color/colorPrimary"
                 android:visibility="invisible" />
 
@@ -145,7 +151,7 @@
                 android:id="@+id/tab4Icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/_5sdp"
+                android:layout_marginBottom="@dimen/bottom_nav_icon_margin"
                 android:text="@string/fal_user_circle"
                 android:textColor="@color/bottomNavInactive"
                 android:textSize="@dimen/bottom_nav_icon" />
@@ -155,7 +161,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/_5sdp"
-                android:text="@string/profile"
+                android:text="@string/settings"
                 android:textAlignment="viewStart"
                 android:textColor="@color/bottomNavInactive"
                 android:textSize="@dimen/bottom_nav_text"
@@ -165,6 +171,8 @@
                 android:id="@+id/tab4Indc"
                 android:layout_width="match_parent"
                 android:layout_height="3dp"
+                android:layout_marginStart="@dimen/_15sdp"
+                android:layout_marginEnd="@dimen/_15sdp"
                 android:background="@color/colorPrimary"
                 android:visibility="invisible" />
 

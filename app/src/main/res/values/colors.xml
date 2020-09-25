@@ -26,7 +26,7 @@
     <color name="colorAccentTrans">#66B642F9</color>
     <color name="colorAccentTrans2">#A422C279</color>
     <color name="bottomNavActive">@color/colorPrimary</color>
-    <color name="bottomNavInactive">#626262</color>
+    <color name="bottomNavInactive">@color/colorAccent</color>
 
     <color name="transparent">#00ffffff</color>
     <color name="white">#ffffff</color>

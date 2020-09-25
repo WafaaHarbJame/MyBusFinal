@@ -94,9 +94,9 @@
         <item name="android:textColor">@color/white</item>
         <item name="android:background">@drawable/round_corner_primary_fill</item>
         <item name="android:gravity">center</item>
-        <item name="android:textSize">@dimen/_14ssp</item>
-        <item name="android:paddingTop">@dimen/_8sdp</item>
-        <item name="android:paddingBottom">@dimen/_8sdp</item>
+        <item name="android:textSize">@dimen/_13ssp</item>
+        <item name="android:paddingTop">@dimen/_10sdp</item>
+        <item name="android:paddingBottom">@dimen/_10sdp</item>
         <!--<item name="android:fontFamily">@font/swissra_normal</item>-->
     </style>
 

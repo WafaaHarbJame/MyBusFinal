@@ -10,6 +10,7 @@ import com.elaj.patient.Model.MemberModel
 import com.elaj.patient.Model.ResponseEvent
 import com.elaj.patient.Model.ResultAPIModel
 import com.elaj.patient.activities.ActivityBase
+import com.elaj.patient.activities.WelcomeActivity
 import com.elaj.patient.apiHandlers.DataFeacher
 import com.elaj.patient.apiHandlers.DataFetcherCallBack
 import com.elaj.patient.classes.Constants
@@ -78,7 +79,7 @@ class SplashScreen : ActivityBase() {
                 val intent = Intent(
                     getActiviy(),
 //                    LoginActivity::class.java
-                    MainActivityBottomNav::class.java
+                    WelcomeActivity::class.java
 //                    BooksActivity::class.java
                 )
                 intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK

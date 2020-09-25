@@ -43,4 +43,7 @@
     <string name="select_country_code">Select Country Code</string>
     <string name="enter_country_name_to_search">Enter country name or code to search</string>
     <string name="no_address">No Address</string>
+    <string name="hello_in_elaj_app">Hello in Elaj App</string>
+    <string name="welcome_desc">Reliable medical advice by the best doctors in the Arab world. Complete privacy and a satisfactory answer as soon as possible</string>
+    <string name="continuee">Continue</string>
 </resources>

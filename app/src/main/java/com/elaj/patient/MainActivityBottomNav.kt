@@ -12,6 +12,7 @@ import com.elaj.patient.Model.MessageEvent
 import com.elaj.patient.activities.ActivityBase
 import com.elaj.patient.classes.GlobalData
 import com.elaj.patient.classes.UtilityApp
+import com.elaj.patient.fragments.MainScreenFragment
 import com.elaj.patient.fragments.SoonFragment
 import kotlinx.android.synthetic.main.layout_bottom_nav.*
 import org.greenrobot.eventbus.EventBus
@@ -99,7 +100,7 @@ class MainActivityBottomNav : ActivityBase() {
     private fun selectBttomTab(resId: Int) {
         when (resId) {
             R.id.mainBtn -> {
-                newFragment = SoonFragment()
+                newFragment = MainScreenFragment()
                 gui_position = 0
                 mTitle = getString(R.string.home)
             }

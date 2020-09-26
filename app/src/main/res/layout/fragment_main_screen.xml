@@ -1,0 +1,81 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:fillViewport="true"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_120sdp"
+            android:background="@color/colorPrimary" />
+
+        <RelativeLayout
+            android:id="@+id/userNameLY"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/_12sdp">
+
+            <com.github.siyamed.shapeimageview.RoundedImageView
+                android:id="@+id/userImg"
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:src="@drawable/avatar"
+                app:siBorderColor="@color/colorPrimary"
+                app:siBorderWidth="1dp"
+                app:siRadius="@dimen/_15sdp" />
+
+            <com.elaj.patient.spichalViews.STextViewBold
+                android:id="@+id/usernameTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:layout_toEndOf="@id/userImg"
+                android:text="Ameer Aqel"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_12ssp" />
+
+            <com.elaj.patient.spichalViews.STextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/usernameTV"
+                android:layout_toEndOf="@id/userImg"
+                android:text="@string/good_morning"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_10ssp" />
+        </RelativeLayout>
+
+
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/userNameLY">
+
+            <com.duolingo.open.rtlviewpager.RtlViewPager
+                android:id="@+id/viewPager"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_130sdp"
+                android:clipToPadding="false"
+                android:overScrollMode="never"
+                android:paddingStart="@dimen/card_padding"
+                android:paddingLeft="@dimen/card_padding"
+                android:paddingTop="@dimen/_5sdp"
+                android:paddingEnd="@dimen/card_padding"
+                android:paddingRight="@dimen/card_padding"
+                android:paddingBottom="@dimen/_5sdp" />
+
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+
+    </RelativeLayout>
+
+
+</LinearLayout>
+

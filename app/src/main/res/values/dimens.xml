@@ -2,12 +2,14 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
     <dimen name="round_corner_big">@dimen/_45sdp</dimen>
+    <dimen name="round_corner_medium">@dimen/_25sdp</dimen>
     <dimen name="round_corner_thin">@dimen/_4sdp</dimen>
 
     <dimen name="bottom_nav_text">@dimen/_10ssp</dimen>
     <dimen name="bottom_nav_icon">@dimen/_14ssp</dimen>
     <dimen name="bottom_nav_icon_margin">@dimen/_3ssp</dimen>
     <dimen name="bottom_nav_padding">@dimen/_6sdp</dimen>
+    <dimen name="card_padding">@dimen/_30sdp</dimen>
 
     <dimen name="bottom_nav_bar_padding">@dimen/_12sdp</dimen>
     <dimen name="support_margin">@dimen/_15sdp</dimen>

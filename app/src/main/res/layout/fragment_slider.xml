@@ -1,0 +1,30 @@
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    app:cardBackgroundColor="@color/white"
+    app:cardCornerRadius="@dimen/round_corner_thin"
+    app:cardElevation="5dp"
+    app:cardUseCompatPadding="true">
+
+    <!--    <LinearLayout-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="match_parent"-->
+    <!--        android:background="@drawable/slider_bg"-->
+    <!--        android:orientation="vertical">-->
+
+    <ImageView
+        android:id="@+id/slideImg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/slider_bg" />
+
+
+    <!--    </LinearLayout>-->
+
+
+</androidx.cardview.widget.CardView>
+

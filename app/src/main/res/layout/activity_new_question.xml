@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/tool_bar"
+        layout="@layout/tool_bar" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/_minus22sdp"
+        android:fillViewport="true"
+        android:overScrollMode="never">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingTop="@dimen/_20sdp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_15sdp"
+                android:layout_marginEnd="@dimen/_15sdp"
+                android:layout_marginBottom="@dimen/_20sdp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:id="@+id/askQuestionLY"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/_5sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/round_corner_accent_fill"
+                    android:orientation="vertical"
+                    android:paddingTop="@dimen/_20sdp"
+                    android:paddingBottom="@dimen/_20sdp">
+
+                    <ImageView
+                        android:id="@+id/askQuestionIcon"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginBottom="@dimen/_10sdp"
+                        android:src="@drawable/write_question_active" />
+
+                    <com.elaj.patient.spichalViews.STextViewBold
+                        android:id="@+id/askQuestionTV"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginBottom="@dimen/_8sdp"
+                        android:text="@string/write_question"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_12ssp" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/callDoctorLY"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/round_corner_primary_light_fill"
+                    android:orientation="vertical"
+                    android:paddingTop="@dimen/_20sdp"
+                    android:paddingBottom="@dimen/_20sdp">
+
+                    <ImageView
+                        android:id="@+id/callDoctorIcon"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginBottom="@dimen/_10sdp"
+                        android:src="@drawable/call_doctor_inactive" />
+
+                    <com.elaj.patient.spichalViews.STextViewBold
+                        android:id="@+id/callDoctorTV"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginBottom="@dimen/_8sdp"
+                        android:text="@string/call_doctor"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="@dimen/_12ssp" />
+
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <com.elaj.patient.spichalViews.STextViewBold
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_15sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:text="@string/patient_details"
+                android:textColor="@color/colorAccent2"
+                android:textSize="@dimen/_12ssp" />
+
+
+            <com.elaj.patient.spichalViews.STextInputLayout
+                android:id="@+id/ageInput"
+                style="@style/TextInputStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_15sdp"
+                android:layout_marginEnd="@dimen/_15sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:hint="@string/patient_age">
+
+                <com.elaj.patient.spichalViews.STextInputEditText
+                    android:id="@+id/ageET"
+                    style="@style/editTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="numberDecimal" />
+
+            </com.elaj.patient.spichalViews.STextInputLayout>
+
+
+            <com.elaj.patient.spichalViews.STextInputLayout
+                android:id="@+id/genderInput"
+                style="@style/TextInputStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_15sdp"
+                android:layout_marginEnd="@dimen/_15sdp"
+                android:layout_marginBottom="@dimen/_15sdp"
+                android:hint="@string/gender">
+
+                <com.elaj.patient.spichalViews.AutoCompleteDropDown
+                    android:id="@+id/genderSpinner"
+                    style="@style/editTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableEnd="@drawable/ic_angle_down"
+                    android:imeOptions="actionNone"
+                    android:inputType="textAutoComplete" />
+
+            </com.elaj.patient.spichalViews.STextInputLayout>
+
+            <com.elaj.patient.spichalViews.STextViewBold
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_15sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:text="@string/disease_details"
+                android:textColor="@color/colorAccent2"
+                android:textSize="@dimen/_12ssp" />
+
+            <com.elaj.patient.spichalViews.STextInputLayout
+                android:id="@+id/titleInput"
+                style="@style/TextInputStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_15sdp"
+                android:layout_marginEnd="@dimen/_15sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:hint="@string/question_title">
+
+                <com.elaj.patient.spichalViews.STextInputEditText
+                    android:id="@+id/titleET"
+                    style="@style/editTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text" />
+
+            </com.elaj.patient.spichalViews.STextInputLayout>
+
+            <com.elaj.patient.spichalViews.STextInputLayout
+                android:id="@+id/detailsInput"
+                style="@style/TextInputStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_15sdp"
+                android:layout_marginEnd="@dimen/_15sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:hint="@string/explain_your_symptoms">
+
+                <com.elaj.patient.spichalViews.STextInputEditText
+                    android:id="@+id/detailsET"
+                    style="@style/editTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="start"
+                    android:inputType="textMultiLine"
+                    android:minHeight="@dimen/_100sdp" />
+
+            </com.elaj.patient.spichalViews.STextInputLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_15sdp"
+                android:layout_marginEnd="@dimen/_15sdp"
+                android:layout_marginBottom="@dimen/_20sdp"
+                android:clipToPadding="false"
+                android:overScrollMode="never" />
+
+            <com.loopeer.shadow.ShadowView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_50sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_50sdp"
+                android:layout_marginBottom="@dimen/_20sdp"
+                app:backgroundColor="@color/white"
+                app:cornerRadius="@dimen/round_corner_thin"
+                app:shadowColor="@color/colorPrimaryTrans"
+                app:shadowMarginBottom="@dimen/_8sdp"
+                app:shadowRadius="@dimen/_8sdp">
+
+                <com.elaj.patient.spichalViews.STextViewBold
+                    android:id="@+id/sendBtn"
+                    style="@style/primaryBtnStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/send"
+                    android:textColor="@color/white" />
+
+
+            </com.loopeer.shadow.ShadowView>
+
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</LinearLayout>

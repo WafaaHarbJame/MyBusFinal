@@ -10,7 +10,7 @@
     <color name="header4">@color/gray4</color>
     <color name="header5">@color/gray6</color>
     <color name="header6">@color/gray5</color>
-    <color name="colorPrimary2">#B642F9</color>
+    <color name="colorPrimaryLight">#edfbfd</color>
     <color name="colorPrimary3">#E45AFF</color>
     <color name="colorPrimaryDark2">#823FF2</color>
     <color name="colorAccent2">@color/blue14</color>

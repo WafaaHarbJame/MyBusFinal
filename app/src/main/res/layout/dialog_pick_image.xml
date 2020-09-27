@@ -34,7 +34,7 @@
                     android:padding="@dimen/_7sdp"
                     android:text="@string/fa_camera"
                     android:textColor="@color/gray4"
-                    android:textSize="@dimen/_40sdp"
+                    android:textSize="@dimen/_30ssp"
                     android:visibility="visible" />
 
                 <com.elaj.patient.spichalViews.STextView
@@ -43,7 +43,7 @@
                     android:padding="@dimen/_3sdp"
                     android:text="@string/take_pic"
                     android:textColor="@color/gray4"
-                    android:textSize="@dimen/_13sdp"
+                    android:textSize="@dimen/_12ssp"
                     android:visibility="visible" />
 
             </LinearLayout>
@@ -64,8 +64,8 @@
                     android:layout_height="wrap_content"
                     android:padding="@dimen/_7sdp"
                     android:text="@string/fa_picture_o"
-                    android:textColor="@color/colorPrimary2"
-                    android:textSize="@dimen/_40sdp"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/_30ssp"
                     android:visibility="visible" />
 
                 <com.elaj.patient.spichalViews.STextView
@@ -73,8 +73,8 @@
                     android:layout_height="wrap_content"
                     android:padding="@dimen/_3sdp"
                     android:text="@string/open_gallery"
-                    android:textColor="@color/colorPrimary2"
-                    android:textSize="@dimen/_13sdp"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/_12ssp"
                     android:visibility="visible" />
 
             </LinearLayout>

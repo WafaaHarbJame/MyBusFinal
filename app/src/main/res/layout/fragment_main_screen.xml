@@ -1,9 +1,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    android:fillViewport="true"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -20,7 +20,9 @@
             android:id="@+id/userNameLY"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="@dimen/_12sdp">
+            android:paddingStart="@dimen/_12sdp"
+            android:paddingTop="@dimen/_12sdp"
+            android:paddingEnd="@dimen/_12sdp">
 
             <com.github.siyamed.shapeimageview.RoundedImageView
                 android:id="@+id/userImg"
@@ -53,29 +55,52 @@
         </RelativeLayout>
 
 
-        <androidx.coordinatorlayout.widget.CoordinatorLayout
+        <!--        <androidx.coordinatorlayout.widget.CoordinatorLayout-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_below="@id/userNameLY">-->
+
+        <com.duolingo.open.rtlviewpager.RtlViewPager
+            android:id="@+id/viewPager"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@id/userNameLY">
+            android:layout_height="@dimen/_130sdp"
+            android:layout_below="@id/userNameLY"
+            android:clipToPadding="false"
+            android:overScrollMode="never"
+            android:paddingStart="@dimen/card_padding"
+            android:paddingLeft="@dimen/card_padding"
+            android:paddingTop="@dimen/_5sdp"
+            android:paddingEnd="@dimen/card_padding"
+            android:paddingRight="@dimen/card_padding"
+            android:paddingBottom="@dimen/_5sdp" />
 
-            <com.duolingo.open.rtlviewpager.RtlViewPager
-                android:id="@+id/viewPager"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_130sdp"
-                android:clipToPadding="false"
-                android:overScrollMode="never"
-                android:paddingStart="@dimen/card_padding"
-                android:paddingLeft="@dimen/card_padding"
-                android:paddingTop="@dimen/_5sdp"
-                android:paddingEnd="@dimen/card_padding"
-                android:paddingRight="@dimen/card_padding"
-                android:paddingBottom="@dimen/_5sdp" />
-
-        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+        <!--        </androidx.coordinatorlayout.widget.CoordinatorLayout>-->
 
 
     </RelativeLayout>
 
+    <com.rd.PageIndicatorView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="@dimen/_5sdp"
+        app:piv_animationType="color"
+        app:piv_radius="3dp"
+        app:piv_selectedColor="@color/colorPrimary"
+        app:piv_unselectedColor="@color/colorAccent"
+        app:piv_viewPager="@id/viewPager" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:paddingStart="@dimen/_15sdp"
+        android:paddingTop="@dimen/_10sdp"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:spanCount="2"
+        tools:itemCount="8"
+        tools:listitem="@layout/row_category" />
 
 </LinearLayout>
 

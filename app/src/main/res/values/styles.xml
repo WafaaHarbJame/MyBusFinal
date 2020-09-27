@@ -74,7 +74,7 @@
 
     <style name="RatingBarStyle" parent="Theme.AppCompat">
         <item name="colorControlNormal">@color/gray6</item>
-        <item name="colorControlActivated">@color/colorPrimary2</item>
+        <item name="colorControlActivated">@color/colorPrimary</item>
     </style>
 
     <style name="TextInputStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">

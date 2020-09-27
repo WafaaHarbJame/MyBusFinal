@@ -58,4 +58,13 @@
     <string name="questions">Questions</string>
     <string name="settings">Settings</string>
     <string name="good_morning">Good Morning</string>
+    <string name="write_question">Write Question</string>
+    <string name="patient_details">Patient details</string>
+    <string name="patient_age">Patient Age</string>
+    <string name="disease_details">Disease details</string>
+    <string name="gender">Gender</string>
+    <string name="question_title">Question Title</string>
+    <string name="explain_your_symptoms">Explain your symptoms</string>
+    <string name="send">Send</string>
+    <string name="call_doctor">Call Doctor</string>
 </resources>

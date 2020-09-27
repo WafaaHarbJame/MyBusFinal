@@ -5,6 +5,8 @@
     <dimen name="round_corner_medium">@dimen/_25sdp</dimen>
     <dimen name="round_corner_thin">@dimen/_4sdp</dimen>
 
+    <dimen name="round_corner_category">@dimen/_14sdp</dimen>
+
     <dimen name="bottom_nav_text">@dimen/_10ssp</dimen>
     <dimen name="bottom_nav_icon">@dimen/_14ssp</dimen>
     <dimen name="bottom_nav_icon_margin">@dimen/_3ssp</dimen>

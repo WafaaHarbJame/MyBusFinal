@@ -26,9 +26,11 @@ class NewQuestionActivity : ActivityBase() {
 
         }
 
+        askQuestionLY.performClick()
+
     }
 
-    fun selectButton(isWriteQuestion: Boolean) {
+    private fun selectButton(isWriteQuestion: Boolean) {
 
         askQuestionLY.background =
             ContextCompat.getDrawable(
@@ -71,6 +73,26 @@ class NewQuestionActivity : ActivityBase() {
                 if (isWriteQuestion) R.color.colorAccent else R.color.white
             )
         )
+
+        if (isWriteQuestion) {
+            patientDetailsLabel.visibility = visible
+            ageInput.visibility = visible
+            genderInput.visibility = visible
+
+            contactInfoLabel.visibility = gone
+            contactInfoHintLabel.visibility = gone
+            whatsAppInput.visibility = gone
+            skypeInput.visibility = gone
+        } else {
+            patientDetailsLabel.visibility = gone
+            ageInput.visibility = gone
+            genderInput.visibility = gone
+
+            contactInfoLabel.visibility = visible
+            contactInfoHintLabel.visibility = visible
+            whatsAppInput.visibility = visible
+            skypeInput.visibility = visible
+        }
 
     }
 

@@ -15,7 +15,7 @@
     <color name="colorPrimaryDark2">#823FF2</color>
     <color name="colorAccent2">@color/blue14</color>
     <color name="colorOrangeLight">#FFEBE3</color>
-    <color name="colorAccent3">#152D69</color>
+    <color name="colorAccent3">#647FC1</color>
 
     <color name="toolbar_icons">@color/white</color>
     <color name="accent_button_text">@color/white</color>

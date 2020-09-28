@@ -67,4 +67,8 @@
     <string name="explain_your_symptoms">Explain your symptoms</string>
     <string name="send">Send</string>
     <string name="call_doctor">Call Doctor</string>
+    <string name="will_contact_you_by_doctor">The Doctor will contact you by Skype or WhatsApp</string>
+    <string name="skype_number">Skype Number</string>
+    <string name="whatsapp_number">WhatsApp Number</string>
+    <string name="contacts_info">Contact Info</string>
 </resources>

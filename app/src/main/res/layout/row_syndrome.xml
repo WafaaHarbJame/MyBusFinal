@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="start"
+    android:gravity="center_vertical|start"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/rowLY"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="@dimen/_15sdp"
+        android:paddingTop="@dimen/_10sdp"
+        android:paddingEnd="@dimen/_15sdp"
+        android:paddingBottom="@dimen/_10sdp">
+
+        <com.elaj.patient.spichalViews.STextView
+            android:id="@+id/nameTxt"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:layout_weight="1"
+            android:text="@string/title"
+            android:textAlignment="viewStart"
+            android:textColor="@color/colorAccent"
+            android:textSize="@dimen/_12ssp" />
+
+        <com.elaj.patient.spichalViews.STextView
+            android:id="@+id/codeTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="start|center_vertical"
+            android:text="+966"
+            android:textColor="@color/gray4"
+            android:textSize="@dimen/_12ssp" />
+
+    </LinearLayout>
+
+</RelativeLayout>

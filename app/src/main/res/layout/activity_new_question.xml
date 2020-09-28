@@ -44,8 +44,8 @@
 
                     <ImageView
                         android:id="@+id/askQuestionIcon"
-                        android:layout_width="@dimen/_30sdp"
-                        android:layout_height="@dimen/_30sdp"
+                        android:layout_width="@dimen/_35sdp"
+                        android:layout_height="@dimen/_35sdp"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginBottom="@dimen/_10sdp"
                         android:src="@drawable/write_question_active" />
@@ -76,8 +76,8 @@
 
                     <ImageView
                         android:id="@+id/callDoctorIcon"
-                        android:layout_width="@dimen/_30sdp"
-                        android:layout_height="@dimen/_30sdp"
+                        android:layout_width="@dimen/_35sdp"
+                        android:layout_height="@dimen/_35sdp"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginBottom="@dimen/_10sdp"
                         android:src="@drawable/call_doctor_inactive" />
@@ -97,6 +97,7 @@
             </LinearLayout>
 
             <com.elaj.patient.spichalViews.STextViewBold
+                android:id="@+id/patientDetailsLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_15sdp"
@@ -201,15 +202,74 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_15sdp"
                 android:layout_marginEnd="@dimen/_15sdp"
-                android:layout_marginBottom="@dimen/_20sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
                 android:clipToPadding="false"
                 android:overScrollMode="never" />
+
+            <com.elaj.patient.spichalViews.STextViewBold
+                android:id="@+id/contactInfoLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_15sdp"
+                android:layout_marginBottom="@dimen/_3sdp"
+                android:text="@string/contacts_info"
+                android:textColor="@color/colorAccent2"
+                android:textSize="@dimen/_12ssp" />
+
+            <com.elaj.patient.spichalViews.STextView
+                android:id="@+id/contactInfoHintLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_15sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:text="@string/will_contact_you_by_doctor"
+                android:textColor="@color/colorAccent3"
+                android:textSize="@dimen/_10ssp" />
+
+            <com.elaj.patient.spichalViews.STextInputLayout
+                android:id="@+id/whatsAppInput"
+                style="@style/TextInputStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_15sdp"
+                android:layout_marginEnd="@dimen/_15sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:hint="@string/whatsapp_number">
+
+                <com.elaj.patient.spichalViews.STextInputEditText
+                    android:id="@+id/whatsAppET"
+                    style="@style/editTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="phone" />
+
+            </com.elaj.patient.spichalViews.STextInputLayout>
+
+            <com.elaj.patient.spichalViews.STextInputLayout
+                android:id="@+id/skypeInput"
+                style="@style/TextInputStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_15sdp"
+                android:layout_marginEnd="@dimen/_15sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:hint="@string/skype_number">
+
+                <com.elaj.patient.spichalViews.STextInputEditText
+                    android:id="@+id/skypeET"
+                    style="@style/editTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="phone" />
+
+            </com.elaj.patient.spichalViews.STextInputLayout>
+
 
             <com.loopeer.shadow.ShadowView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_50sdp"
-                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_20sdp"
                 android:layout_marginEnd="@dimen/_50sdp"
                 android:layout_marginBottom="@dimen/_20sdp"
                 app:backgroundColor="@color/white"

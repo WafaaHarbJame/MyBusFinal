@@ -21,22 +21,40 @@
         <com.elaj.patient.spichalViews.STextView
             android:id="@+id/nameTxt"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/_10sdp"
             android:layout_weight="1"
-            android:text="@string/title"
+            android:text="Has Stress"
             android:textAlignment="viewStart"
             android:textColor="@color/colorAccent"
             android:textSize="@dimen/_12ssp" />
 
-        <com.elaj.patient.spichalViews.STextView
-            android:id="@+id/codeTxt"
+        <RadioGroup
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="start|center_vertical"
-            android:text="+966"
-            android:textColor="@color/gray4"
-            android:textSize="@dimen/_12ssp" />
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <com.elaj.patient.spichalViews.SRadioButton
+                android:id="@+id/yesRB"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:checked="true"
+                android:text="@string/yes"
+                android:textColor="@color/header2"
+                android:textSize="@dimen/_12ssp"
+                android:theme="@style/RadioButtonStyle" />
+
+            <com.elaj.patient.spichalViews.SRadioButton
+                android:id="@+id/noRB"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/no"
+                android:textColor="@color/header2"
+                android:textSize="@dimen/_12ssp"
+                android:theme="@style/RadioButtonStyle" />
+
+        </RadioGroup>
 
     </LinearLayout>
 

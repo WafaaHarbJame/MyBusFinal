@@ -71,4 +71,14 @@
     <string name="skype_number">Skype Number</string>
     <string name="whatsapp_number">WhatsApp Number</string>
     <string name="contacts_info">Contact Info</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="success_send">Success Send</string>
+    <string name="finish">Finish</string>
+    <string name="success_send_question_will_replay_soon">Success send question, will replay to you soon</string>
+    <string name="happy_contact_us">We are pleased to contact us</string>
+    <string name="fill_form_below">Fill form below</string>
+    <string name="message">Message</string>
+    <string name="message_title">Message Title</string>
+    <string name="contact_us">Contact Us</string>
 </resources>

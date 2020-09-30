@@ -12,6 +12,7 @@ import com.elaj.patient.Model.MessageEvent
 import com.elaj.patient.activities.ActivityBase
 import com.elaj.patient.classes.GlobalData
 import com.elaj.patient.classes.UtilityApp
+import com.elaj.patient.fragments.ContactUsFragment
 import com.elaj.patient.fragments.MainScreenFragment
 import com.elaj.patient.fragments.SoonFragment
 import kotlinx.android.synthetic.main.layout_bottom_nav.*
@@ -80,9 +81,9 @@ class MainActivityBottomNav : ActivityBase() {
                 R.id.mainBtn
             )
         }
-        searchBtn.setOnClickListener {
+        contactUsBtn.setOnClickListener {
             selectBttomTab(
-                R.id.searchBtn
+                R.id.contactUsBtn
             )
         }
         ordersBtn.setOnClickListener {
@@ -90,9 +91,9 @@ class MainActivityBottomNav : ActivityBase() {
                 R.id.ordersBtn
             )
         }
-        profileBtn.setOnClickListener {
+        settingsBtn.setOnClickListener {
             selectBttomTab(
-                R.id.profileBtn
+                R.id.settingsBtn
             )
         }
     }
@@ -104,17 +105,17 @@ class MainActivityBottomNav : ActivityBase() {
                 gui_position = 0
                 mTitle = getString(R.string.home)
             }
-            R.id.searchBtn -> {
-                newFragment = SoonFragment()
+            R.id.contactUsBtn -> {
+                newFragment = ContactUsFragment()
                 gui_position = 2
-                mTitle = getString(R.string.search)
+                mTitle = getString(R.string.contact_us)
             }
             R.id.ordersBtn -> {
                 newFragment = SoonFragment()
                 gui_position = 1
                 mTitle = getString(R.string.my_questions)
             }
-            R.id.profileBtn -> {
+            R.id.settingsBtn -> {
                 newFragment =
 //                    if (UtilityApp.isLogin()) AccountSettingFragment() else SettingFragment()
                     SoonFragment()

@@ -14,6 +14,7 @@ import com.elaj.patient.classes.GlobalData
 import com.elaj.patient.classes.UtilityApp
 import com.elaj.patient.fragments.ContactUsFragment
 import com.elaj.patient.fragments.MainScreenFragment
+import com.elaj.patient.fragments.RequestsFragment
 import com.elaj.patient.fragments.SoonFragment
 import kotlinx.android.synthetic.main.layout_bottom_nav.*
 import org.greenrobot.eventbus.EventBus
@@ -59,7 +60,7 @@ class MainActivityBottomNav : ActivityBase() {
 
 //        getHashKey();
 //        bottomNav.setSelectedItemId(R.id.homeBtn);
-        selectBttomTab(R.id.mainBtn)
+        selectBottomTab(R.id.mainBtn)
 
     }
 
@@ -77,28 +78,28 @@ class MainActivityBottomNav : ActivityBase() {
 
     private fun initListeners() {
         mainBtn.setOnClickListener {
-            selectBttomTab(
+            selectBottomTab(
                 R.id.mainBtn
             )
         }
         contactUsBtn.setOnClickListener {
-            selectBttomTab(
+            selectBottomTab(
                 R.id.contactUsBtn
             )
         }
         ordersBtn.setOnClickListener {
-            selectBttomTab(
+            selectBottomTab(
                 R.id.ordersBtn
             )
         }
         settingsBtn.setOnClickListener {
-            selectBttomTab(
+            selectBottomTab(
                 R.id.settingsBtn
             )
         }
     }
 
-    private fun selectBttomTab(resId: Int) {
+    private fun selectBottomTab(resId: Int) {
         when (resId) {
             R.id.mainBtn -> {
                 newFragment = MainScreenFragment()
@@ -111,7 +112,7 @@ class MainActivityBottomNav : ActivityBase() {
                 mTitle = getString(R.string.contact_us)
             }
             R.id.ordersBtn -> {
-                newFragment = SoonFragment()
+                newFragment = RequestsFragment()
                 gui_position = 1
                 mTitle = getString(R.string.my_questions)
             }
@@ -196,7 +197,7 @@ class MainActivityBottomNav : ActivityBase() {
             } else {
                 // GlobalData.SelectedObject = -1;
 //                onNavigationDrawerItemSelected(0);
-                selectBttomTab(R.id.mainBtn)
+                selectBottomTab(R.id.mainBtn)
                 //                bottomNav.setSelectedItemId(R.id.homeBtn);
                 return false
             }
@@ -218,7 +219,7 @@ class MainActivityBottomNav : ActivityBase() {
     fun onMessageEvent(event: MessageEvent) {
         if (event.type == MessageEvent.TYPE_POSITION) {
             val pos = event.data as Int
-            if (pos == 0) selectBttomTab(R.id.mainBtn) else if (pos == 1) selectBttomTab(R.id.searchBtn)
+            if (pos == 0) selectBottomTab(R.id.mainBtn)
         }
     }
 

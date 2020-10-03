@@ -95,4 +95,16 @@
     <string name="plans">Plans</string>
     <string name="rate_application">Rate App</string>
     <string name="sign_out">Sign out</string>
+    <string name="fill_form_below_to_change_password">Fill form below to change password</string>
+    <string name="current_password">Current Password</string>
+    <string name="new_password">New Password</string>
+    <string name="save">Save</string>
+    <string name="arabic">Arabic</string>
+    <string name="english">English</string>
+    <string name="change_language">Change Language</string>
+    <string name="select_app_language_want">Select app language that you want</string>
+    <string name="choose_right_plan_for_you">Choose right plan for you</string>
+    <string name="subscribe">Subscribe</string>
+    <string name="one_day_plan">One Day Plan</string>
+    <string name="can_send_question_for_one_day">you can send questions for one day</string>
 </resources>

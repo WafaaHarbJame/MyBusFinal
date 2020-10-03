@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="bottom"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/round_top_corner_white_fill"
+        android:orientation="vertical"
+        android:paddingTop="@dimen/_30sdp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:src="@drawable/hd_language" />
+
+        <com.elaj.patient.spichalViews.STextViewBold
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-25dp"
+            android:layout_marginBottom="@dimen/_8sdp"
+            android:gravity="center"
+            android:text="@string/change_language"
+            android:textColor="@color/colorAccent"
+            android:textSize="@dimen/_14ssp" />
+
+        <com.elaj.patient.spichalViews.STextView
+            android:layout_width="@dimen/_200sdp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="@dimen/_20sdp"
+            android:gravity="center"
+            android:text="@string/select_app_language_want"
+            android:textColor="@color/colorAccent3"
+            android:textSize="@dimen/_12ssp" />
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_15sdp"
+            android:layout_marginEnd="@dimen/_15sdp"
+            android:layout_marginBottom="@dimen/_30sdp"
+            android:orientation="horizontal">
+
+            <com.elaj.patient.spichalViews.SRadioButton
+                android:id="@+id/arabicRB"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_20sdp"
+                android:layout_weight="1"
+                android:text="@string/arabic"
+                android:textColor="@color/colorAccent2"
+                android:textSize="@dimen/_12ssp"
+                android:theme="@style/RadioButtonStyle" />
+
+            <com.elaj.patient.spichalViews.SRadioButton
+                android:id="@+id/englishRB"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/english"
+                android:textColor="@color/colorAccent2"
+                android:textSize="@dimen/_12ssp"
+                android:theme="@style/RadioButtonStyle" />
+
+        </RadioGroup>
+
+
+        <com.elaj.patient.spichalViews.STextViewBold
+            android:id="@+id/saveBtn"
+            style="@style/primaryBtnStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="@dimen/_50sdp"
+            android:layout_marginEnd="@dimen/_50sdp"
+            android:layout_marginBottom="@dimen/_30sdp"
+            android:gravity="center"
+            android:minWidth="@dimen/_100sdp"
+            android:text="@string/save"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_12ssp" />
+
+    </LinearLayout>
+
+</RelativeLayout>
+
+    <!--tools:context=".Dialog.MapDialog"-->

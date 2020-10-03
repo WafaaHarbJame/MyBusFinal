@@ -1,19 +1,26 @@
 package com.elaj.patient.fragments
 
 import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import com.elaj.patient.R
+import com.elaj.patient.Utils.ActivityHandler
+import com.elaj.patient.activities.PlansActivity
+import com.elaj.patient.dialogs.ChangeLanguageDialog
+import com.elaj.patient.dialogs.ChangePasswordDialog
+import kotlinx.android.synthetic.main.fragment_settings.*
 import kotlinx.android.synthetic.main.tool_bar.*
 
 
 class SettingsFragment : FragmentBase() {
     var activity: Activity? = null
 
-    //    var changeLanguageDialog: ChangeLanguageDialog? = null
+    private var changeLanguageDialog: ChangeLanguageDialog? = null
+    private var changePasswordDialog: ChangePasswordDialog? = null
     lateinit var container: FrameLayout
 
     override fun onCreateView(
@@ -39,34 +46,42 @@ class SettingsFragment : FragmentBase() {
 //        languageTxt.text =
 //            if (UtilityApp.language == Constants.Arabic) getString(R.string.arabic) else getString(R.string.english)
 //
-//        languageBtn.setOnClickListener {
-//
-//            if (changeLanguageDialog == null) {
-//                changeLanguageDialog = ChangeLanguageDialog(requireActivity())
-//                changeLanguageDialog!!.setOnDismissListener { changeLanguageDialog = null }
-//            }
-//
-//        }
+        languageBtn.setOnClickListener {
 
-//        termsBtn.setOnClickListener {
-//
+            if (changeLanguageDialog == null) {
+                changeLanguageDialog = ChangeLanguageDialog(requireActivity())
+                changeLanguageDialog!!.setOnDismissListener { changeLanguageDialog = null }
+            }
+
+        }
+
+        plansBtn.setOnClickListener {
+
+            val intent = Intent(requireActivity(), PlansActivity::class.java)
+            startActivity(intent)
+
+        }
+
+        termsBtn.setOnClickListener {
+
 //            val intent = Intent(requireActivity(), PageFragmentActivity::class.java)
 //            intent.putExtra(Constants.KEY_FRAGMENT_TYPE, Constants.FRAG_TERMS)
 //            startActivity(intent)
-//        }
+        }
 
-//        passwordBtn.setOnClickListener {
-//
-//            val intent = Intent(requireActivity(), ChangePasswordActivity::class.java)
-//            startActivity(intent)
-//
-//        }
+        passwordBtn.setOnClickListener {
 
-//        ratingBtn.setOnClickListener {
-//
-//            ActivityHandler.OpenGooglePlay(requireActivity())
-//
-//        }
+            if (changePasswordDialog == null) {
+                changePasswordDialog = ChangePasswordDialog(requireActivity())
+                changePasswordDialog!!.setOnDismissListener { changePasswordDialog = null }
+            }
+        }
+
+        ratingBtn.setOnClickListener {
+
+            ActivityHandler.OpenGooglePlay(requireActivity())
+
+        }
 
     }
 

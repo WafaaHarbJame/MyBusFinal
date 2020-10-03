@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rowLY"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="start"
+    android:background="@color/colorPrimaryLight"
+    android:gravity="center_vertical|start"
+    android:orientation="vertical"
+    android:paddingTop="@dimen/_12sdp">
+
+    <com.github.siyamed.shapeimageview.RoundedImageView
+        android:id="@+id/userImg"
+        android:layout_width="@dimen/_40sdp"
+        android:layout_height="@dimen/_40sdp"
+        android:layout_marginStart="@dimen/_15sdp"
+        android:layout_marginEnd="@dimen/_10sdp"
+        android:src="@drawable/avatar"
+        app:siBorderColor="@color/white"
+        app:siBorderWidth="1dp"
+        app:siRadius="@dimen/_17sdp" />
+
+    <com.elaj.patient.spichalViews.STextViewBold
+        android:id="@+id/userNameTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/_3sdp"
+        android:layout_toEndOf="@id/userImg"
+        android:text="Ameer Aqel"
+        android:textAlignment="viewStart"
+        android:textColor="@color/colorAccent"
+        android:textSize="@dimen/_13ssp" />
+
+    <com.elaj.patient.spichalViews.STextView
+        android:id="@+id/typeTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/userNameTV"
+        android:layout_toEndOf="@id/userImg"
+        android:text="@string/doctor"
+        android:textAlignment="viewStart"
+        android:textColor="@color/colorPrimary"
+        android:textSize="@dimen/_11ssp" />
+
+
+    <com.elaj.patient.spichalViews.STextView
+        android:id="@+id/contentTV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/userImg"
+        android:layout_marginStart="@dimen/_15sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginEnd="@dimen/_15sdp"
+        android:text="@string/dummy"
+        android:textAlignment="viewStart"
+        android:textColor="@color/colorAccent3"
+        android:textSize="@dimen/_12ssp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/contentTV"
+        android:layout_marginTop="@dimen/_12sdp"
+        android:background="@color/gray2" />
+
+
+</RelativeLayout>

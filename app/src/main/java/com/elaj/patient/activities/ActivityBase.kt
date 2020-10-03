@@ -58,13 +58,13 @@ open class ActivityBase : AppCompatActivity() {
 
 //        aTitle.text = title
         mainTitle.text = title
+        mainTitle.visibility = View.VISIBLE
 
         if (isMainActivityBottomNav) {
-            mainTitle.visibility = View.VISIBLE
 //            aTitle.visibility = View.GONE
             homeBtn.visibility = View.GONE
         } else {
-            mainTitle.visibility = View.GONE
+//            mainTitle.visibility = View.GONE
 //            aTitle.visibility = View.VISIBLE
             homeBtn.visibility = View.VISIBLE
         }

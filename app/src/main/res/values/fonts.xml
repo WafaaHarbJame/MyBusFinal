@@ -41,6 +41,7 @@
     <string name="fal_hand_holding_box" translatable="false">&#xf47b;</string>
     <string name="fal_language" translatable="false">&#xf1ab;</string>
     <string name="fal_search" translatable="false">&#xf002;</string>
+    <string name="fal_check" translatable="false">&#xf00c;</string>
 
     <string name="fa_search" translatable="false">&#xf002;</string>
     <string name="fa_star" translatable="false">&#xf005;</string>
@@ -68,6 +69,7 @@
     <string name="comment_alt_lines" translatable="false">&#xf4a6;</string>
     <string name="fa_circle" translatable="false">&#xf111;</string>
     <string name="fa_circle_o" translatable="false">&#xf10c;</string>
+    <string name="fa_clipboard_check" translatable="false">&#xf46c;</string>
 
 
 

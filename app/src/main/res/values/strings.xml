@@ -85,4 +85,14 @@
     <string name="you_can_request_to_get_help">You can request a medical consultation from one of our certified doctors to get help within minutes</string>
     <string name="send_consultation">Send Consultation</string>
     <string name="active">Active</string>
+    <string name="male">Male</string>
+    <string name="answer">Answer</string>
+    <string name="write_here">Write Here</string>
+    <string name="question_details">Question Details</string>
+    <string name="doctor">Doctor</string>
+    <string name="language">Language</string>
+    <string name="change_password">Change Password</string>
+    <string name="plans">Plans</string>
+    <string name="rate_application">Rate App</string>
+    <string name="sign_out">Sign out</string>
 </resources>

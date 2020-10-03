@@ -12,10 +12,7 @@ import com.elaj.patient.Model.MessageEvent
 import com.elaj.patient.activities.ActivityBase
 import com.elaj.patient.classes.GlobalData
 import com.elaj.patient.classes.UtilityApp
-import com.elaj.patient.fragments.ContactUsFragment
-import com.elaj.patient.fragments.MainScreenFragment
-import com.elaj.patient.fragments.RequestsFragment
-import com.elaj.patient.fragments.SoonFragment
+import com.elaj.patient.fragments.*
 import kotlinx.android.synthetic.main.layout_bottom_nav.*
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
@@ -48,8 +45,8 @@ class MainActivityBottomNav : ActivityBase() {
         mTitle = getString(R.string.app_name)
         //        setTitle("");
 
-        tab4Txt.text = getString(R.string.profile)
-        tab4Icon.text = getString(R.string.fal_cog)
+//        tab4Txt.text = getString(R.string.profile)
+//        tab4Icon.text = getString(R.string.fal_cog)
 
 
         tabTextArr = arrayOf(tab1Txt, tab2Txt, tab3Txt, tab4Txt)
@@ -119,7 +116,7 @@ class MainActivityBottomNav : ActivityBase() {
             R.id.settingsBtn -> {
                 newFragment =
 //                    if (UtilityApp.isLogin()) AccountSettingFragment() else SettingFragment()
-                    SoonFragment()
+                    SettingsFragment()
                 gui_position = 3
                 mTitle = getString(R.string.profile)
             }

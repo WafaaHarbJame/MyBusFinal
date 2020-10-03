@@ -1,6 +1,7 @@
 package com.elaj.patient.adapters
 
 import android.app.Activity
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +12,7 @@ import com.elaj.patient.Model.AllRequestsModel
 import com.elaj.patient.Model.RequestModel
 import com.elaj.patient.Model.ResultAPIModel
 import com.elaj.patient.R
+import com.elaj.patient.activities.QuestionDetailsActivity
 import com.elaj.patient.apiHandlers.DataFeacher
 import com.elaj.patient.apiHandlers.DataFetcherCallBack
 import com.elaj.patient.classes.OnLoadMoreListener
@@ -122,10 +124,10 @@ class RequestsAdapter(
 
             itemView?.setOnClickListener {
 //                val requestsModel: RequestModel? = objectsModelList[adapterPosition]
-//
-//                val intent = Intent(activity, RequestDetailsActivity::class.java)
+
+                val intent = Intent(activity, QuestionDetailsActivity::class.java)
 //                intent.putExtra(Constants.KEY_REQUEST_ID, requestsModel?.id)
-//                activity.startActivity(intent)
+                activity.startActivity(intent)
 
             }
         }

@@ -115,7 +115,7 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_25sdp"
+        android:layout_height="28dp"
         android:layout_alignParentBottom="true"
         android:background="@drawable/round_top_corner_white_fill" />
 </RelativeLayout>

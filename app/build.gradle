@@ -95,12 +95,13 @@ dependencies {
     implementation 'com.aminography:choosephotohelper:1.0.5'
 
     implementation 'com.google.firebase:firebase-core:17.5.0'
-    implementation 'com.google.firebase:firebase-messaging:20.2.4'
-    implementation 'com.google.firebase:firebase-firestore:21.6.0'
+    implementation 'com.google.firebase:firebase-messaging:20.3.0'
+    implementation 'com.google.firebase:firebase-firestore:21.7.0'
     implementation 'com.google.firebase:firebase-analytics:17.5.0'
-    implementation 'com.google.android.gms:play-services-maps:17.0.0'
-    implementation 'com.google.android.gms:play-services-location:17.0.0'
+//    implementation 'com.google.android.gms:play-services-maps:17.0.0'
+//    implementation 'com.google.android.gms:play-services-location:17.0.0'
 
     implementation 'com.github.blennerSilva:AwesomeDialog:2.0.6'
+    implementation 'com.xiaofeng.android:flowlayoutmanager:1.2.3.2'
 
 }

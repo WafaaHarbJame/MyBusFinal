@@ -114,6 +114,7 @@ object Constants {
     const val KEY_GENDER = "key_gender"
     const val KEY_USERNAME = "key_username"
     const val KEY_USER_ID = "key_user_id"
+    const val KEY_IMAGE_URL = "key_image_url"
     const val KEY_USER_NAME = "key_user_name"
     const val KEY_CHAT_ID = "key_chat_id"
     const val KEY_CAT_NAME = "key_cat_name"
@@ -149,7 +150,8 @@ object Constants {
     const val KEY_ALBUM_NAME = "key_album_name"
     const val KEY_DATE = "key_date"
     const val KEY_BODY = "key_body"
-    const val KEY_IMAGE_URL = "key_image_url"
+    const val KEY_SLIDER_URL = "key_slider_url"
+    const val KEY_SLIDER_TITLE = "key_slider_title"
     const val KEY_IMAGE_DATA = "key_image_data"
     const val KEY_MESSAGE_ID = "key_message_id"
     const val KEY_COMPANY_CATEGORIES = "key_company_categories"
@@ -176,9 +178,9 @@ object Constants {
     const val FRAG_MUTE_ACCOUNTS = "frag_mute_accounts"
 
     /** */
-    const val DB_SectionsModel = 1
-    const val DB_SettingModel = 2
-    const val DB_Pages = 3
+    const val DB_Sliders = "sliders_db"
+    const val DB_Categories = "categories_db"
+    const val DB_Settings = "settings_db"
     const val DB_ServicesModel = 4
     const val DB_TermsModel = 5
     const val DB_RequestsModel = 6

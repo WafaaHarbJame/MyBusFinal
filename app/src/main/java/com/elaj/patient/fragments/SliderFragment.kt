@@ -7,13 +7,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.cardview.widget.CardView
 import com.elaj.patient.R
+import com.elaj.patient.classes.Constants
 import kotlinx.android.synthetic.main.fragment_slider.*
 
 class SliderFragment : FragmentBase() {
     var activity: Activity? = null
 
-    var imgUrl: String? = null
-    var link: String? = null
+    var sliderTitle: String? = null
+    var sliderUrl: String? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -36,11 +37,13 @@ class SliderFragment : FragmentBase() {
 
 //        cardView.maxCardElevation = 40f
 
-//        val bundle = arguments
-//        if (bundle != null) {
-//            imgUrl = bundle.getString(Constants.KEY_IMAGE_URL)
-////            link = bundle.getString(Constants.KEY_IMAGE_LINK)
-//        }
+        val bundle = arguments
+        if (bundle != null) {
+            sliderTitle = bundle.getString(Constants.KEY_SLIDER_TITLE)
+            sliderUrl = bundle.getString(Constants.KEY_SLIDER_URL)
+        }
+
+        titleTV.text = sliderTitle
 
 //        Glide.with(activity!!)
 //            .asBitmap()

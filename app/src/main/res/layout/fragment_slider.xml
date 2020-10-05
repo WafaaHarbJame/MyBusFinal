@@ -15,12 +15,28 @@
     <!--        android:background="@drawable/slider_bg"-->
     <!--        android:orientation="vertical">-->
 
-    <ImageView
-        android:id="@+id/slideImg"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scaleType="centerCrop"
-        android:src="@drawable/slider_bg" />
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/slideImg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/slider_bg" />
+
+        <com.elaj.patient.spichalViews.STextView
+            android:id="@+id/titleTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_12ssp" />
+
+    </FrameLayout>
 
 
     <!--    </LinearLayout>-->

@@ -275,6 +275,40 @@ class DataFeacher(callBack: DataFetcherCallBack?) {
 
     }
 
+    fun getSliders() {
+        Log.i(TAG, "Log getSliders")
+
+        fireStoreDB?.collection(ApiUrl.Sliders.name)?.get()?.addOnCompleteListener {
+            if (it.isSuccessful) {
+                val query = it.result
+
+                val sliderList = mutableListOf<SliderModel>()
+                for (document in query!!) {
+                    val slider = document?.toObject(SliderModel::class.java)
+                    sliderList.add(slider!!)
+//                    Log.d(TAG, "${document.id} => ${document.data}")
+                }
+
+                val json = Gson().toJson(sliderList)
+                DBFunction.setSliders(json)
+//
+                dataFetcherCallBack?.Result(sliderList, Constants.SUCCESS, true)
+//
+            } else {
+                it.exception?.printStackTrace()
+            }
+
+        }
+//        val json = Gson().toJson(result!!.data)
+//        DBFunction.setCategories(json)
+//
+//        dataFetcherCallBack?.Result(result, Constants.SUCCESS, true)
+//
+//        EventBus.getDefault()
+//            .post(ResponseEvent("getCategories", Constants.SUCCESS, result))
+
+    }
+
     private fun printLog(o: Any?) {
         Log.v("Log", "Log " + o.toString())
     }

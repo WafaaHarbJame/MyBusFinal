@@ -8,17 +8,31 @@ import com.google.gson.reflect.TypeToken
 object DBFunction {
 //    static Realm realm = Realm.getDefaultInstance();
 
-    fun getCategories(): MutableList<ServiceModel>? {
+    fun getCategories(): MutableList<CategoryModel>? {
         val json: String? =
-            RootApplication.instance!!.sharedPManger!!.getDataString(Constants.KEY_CATEGORIES)
+            RootApplication.instance!!.sharedPManger!!.getDataString(Constants.DB_Categories)
         return Gson().fromJson(
             json,
-            object : TypeToken<MutableList<ServiceModel>?>() {}.type
+            object : TypeToken<MutableList<CategoryModel>?>() {}.type
         )
     }
 
     fun setCategories(json: String?) {
-        RootApplication.instance!!.sharedPManger!!.SetData(Constants.KEY_CATEGORIES, json)
+        RootApplication.instance!!.sharedPManger!!.SetData(Constants.DB_Categories, json)
+    }
+
+    fun getSliders(): MutableList<SliderModel>? {
+        val json: String? =
+            RootApplication.instance!!.sharedPManger!!.getDataString(Constants.DB_Sliders)
+        return Gson().fromJson(
+            json,
+            object : TypeToken<MutableList<SliderModel>?>() {}.type
+        )
+    }
+
+
+    fun setSliders(json: String?) {
+        RootApplication.instance!!.sharedPManger!!.SetData(Constants.DB_Sliders, json)
     }
 
     fun getCountries(): MutableList<CountryModel>? {

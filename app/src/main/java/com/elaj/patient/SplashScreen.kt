@@ -71,6 +71,7 @@ class SplashScreen : ActivityBase() {
 
         DataFeacher(null).getCategories()
         DataFeacher(null).getSettings()
+        DataFeacher(null).getSliders()
 
         Handler(Looper.getMainLooper()).postDelayed({
             // start if has access token

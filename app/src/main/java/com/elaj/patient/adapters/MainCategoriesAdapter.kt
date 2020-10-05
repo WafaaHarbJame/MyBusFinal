@@ -5,7 +5,10 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.elaj.patient.R
 import com.elaj.patient.models.CategoryModel
 import com.elaj.patient.activities.NewQuestionActivity
@@ -27,31 +30,31 @@ class MainCategoriesAdapter(
 
 //        val countryCodeModel: CountryModel = list[position]
 
-//        holder.nameTxt.text = countryCodeModel.name
-//
-//        val code = "+" + countryCodeModel.countryCode
-//        holder.codeTxt.text = code
-//
-//        Glide.with(activity!!)
-//            .asBitmap()
-//            .load(countryCodeModel.getPhoto())
-//            .placeholder(R.drawable.error_logo)
-//            .into(holder.flagImg)
-
+        if (list != null) {
+            holder.bind(list!![position])
+        }
     }
 
     override fun getItemCount(): Int {
-        return list?.size ?: 8
+        return list?.size ?: 0
     }
 
     inner class MyHolder(itemView: View?) :
         RecyclerView.ViewHolder(itemView!!) {
 
-//        val nameTxt: TextView = itemView!!.findViewById(R.id.nameTxt)
-//        val codeTxt: TextView = itemView!!.findViewById(R.id.codeTxt)
-//        val selectTxt: TextView = itemView!!.findViewById(R.id.selectTxt)
-//        val flagImg: ImageView = itemView!!.findViewById(R.id.flagImg)
+        private val nameTV: TextView = itemView!!.findViewById(R.id.nameTV)
+        private val categoryImg: ImageView = itemView!!.findViewById(R.id.categoryImg)
 
+        fun bind(categoryModel: CategoryModel) {
+
+            nameTV.text = categoryModel.name
+
+            Glide.with(activity!!)
+                .asBitmap()
+                .load(categoryModel.photo)
+                .placeholder(R.drawable.error_logo)
+                .into(categoryImg)
+        }
 
         init {
 

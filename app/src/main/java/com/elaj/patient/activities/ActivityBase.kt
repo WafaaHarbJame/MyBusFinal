@@ -1,7 +1,6 @@
 package com.elaj.patient.activities
 
 import android.app.Activity
-import android.content.Context
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
@@ -10,13 +9,11 @@ import android.widget.EditText
 import android.widget.RelativeLayout
 import android.widget.TextView
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
+import com.akexorcist.localizationactivity.ui.LocalizationActivity
 import com.elaj.patient.R
-import com.franmontiel.localechanger.LocaleChanger
-import com.jaeger.library.StatusBarUtil
 
 
-open class ActivityBase : AppCompatActivity() {
+open class ActivityBase : LocalizationActivity() {
 
     protected var isMainActivityBottomNav = false
 
@@ -32,12 +29,6 @@ open class ActivityBase : AppCompatActivity() {
 //    protected lateinit var starBtn: TextView
     protected lateinit var mainTitle: TextView
     lateinit var mToolbar: RelativeLayout
-
-    override fun attachBaseContext(base: Context?) {
-//        var base: Context? = base
-//       var base = LocaleChanger.configureBaseContext(base)
-        super.attachBaseContext(LocaleChanger.configureBaseContext(base))
-    }
 
     override fun onStart() {
         super.onStart()

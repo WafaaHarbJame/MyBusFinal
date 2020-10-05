@@ -1,6 +1,6 @@
 package com.elaj.patient.classes
 
-import com.elaj.patient.Model.*
+import com.elaj.patient.models.*
 import com.elaj.patient.RootApplication
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -47,12 +47,12 @@ object DBFunction {
 //        RootApplication.instance!!.sharedPManger!!.SetData(Constants.KEY_CITIES, json)
 //    }
 
-    fun getSettings(): ConfigModel? {
+    fun getSettings(): SettingsModel? {
         val json: String? =
             RootApplication.instance!!.sharedPManger!!.getDataString(Constants.KEY_SETTINGS)
         return Gson().fromJson(
             json,
-            object : TypeToken<ConfigModel?>() {}.type
+            object : TypeToken<SettingsModel?>() {}.type
         )
     }
 

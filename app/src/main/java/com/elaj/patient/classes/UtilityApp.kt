@@ -4,7 +4,7 @@ import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
 import android.provider.Settings
 import androidx.core.content.pm.PackageInfoCompat
-import com.elaj.patient.Model.MemberModel
+import com.elaj.patient.models.MemberModel
 import com.elaj.patient.RootApplication
 import com.google.gson.Gson
 
@@ -122,6 +122,13 @@ object UtilityApp {
                 Constants.KEY_MEMBER_LANGUAGE,
                 language
             )
+        }
+
+    val isEnglish: Boolean
+        get() {
+            return RootApplication.instance!!.sharedPManger!!.getDataString(
+                Constants.KEY_MEMBER_LANGUAGE
+            )?.equals(Constants.English)!!
         }
 
     var userData: MemberModel?

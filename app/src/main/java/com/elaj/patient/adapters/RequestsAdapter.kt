@@ -8,9 +8,9 @@ import android.view.ViewGroup
 import android.widget.ProgressBar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.elaj.patient.Model.AllRequestsModel
-import com.elaj.patient.Model.RequestModel
-import com.elaj.patient.Model.ResultAPIModel
+import com.elaj.patient.models.AllRequestsModel
+import com.elaj.patient.models.RequestModel
+import com.elaj.patient.models.ResultAPIModel
 import com.elaj.patient.R
 import com.elaj.patient.activities.QuestionDetailsActivity
 import com.elaj.patient.apiHandlers.DataFeacher

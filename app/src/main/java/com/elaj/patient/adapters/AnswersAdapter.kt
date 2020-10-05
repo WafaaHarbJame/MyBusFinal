@@ -7,11 +7,8 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.elaj.patient.Model.CountryModel
-import com.elaj.patient.Model.SyndromeModel
+import com.elaj.patient.models.SyndromeModel
 import com.elaj.patient.R
-import com.elaj.patient.apiHandlers.DataFetcherCallBack
 
 class AnswersAdapter(
     private val activity: Activity?,

@@ -16,6 +16,7 @@
         android:src="@drawable/welcome_img" />
 
     <com.elaj.patient.spichalViews.STextViewBold
+        android:id="@+id/titleTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
@@ -25,6 +26,7 @@
         android:textSize="@dimen/_13ssp" />
 
     <com.elaj.patient.spichalViews.STextView
+        android:id="@+id/bodyTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"

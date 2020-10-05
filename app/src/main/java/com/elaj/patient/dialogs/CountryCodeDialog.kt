@@ -11,7 +11,7 @@ import android.view.Window
 import android.view.WindowManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.elaj.patient.Model.CountryModel
+import com.elaj.patient.models.CountryModel
 import com.elaj.patient.R
 import com.elaj.patient.adapters.CountryCodeAdapter
 import com.elaj.patient.apiHandlers.DataFeacher
@@ -143,7 +143,7 @@ class CountryCodeDialog(
                     if (IsSuccess)
                         getCountryCodes()
                 }
-            }).getConfig()
+            }).getSettings()
         } else {
             if (countryCodeModels != null) {
                 selectCountry()

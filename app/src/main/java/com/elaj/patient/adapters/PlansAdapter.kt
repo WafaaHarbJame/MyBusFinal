@@ -4,15 +4,11 @@ import android.app.Activity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.LinearLayout
-import android.widget.RadioButton
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.elaj.patient.Model.CountryModel
-import com.elaj.patient.Model.SyndromeModel
+import com.elaj.patient.models.SyndromeModel
 import com.elaj.patient.R
 import com.elaj.patient.apiHandlers.DataFetcherCallBack
 

@@ -11,14 +11,12 @@ import android.media.RingtoneManager
 import android.os.Build
 import android.util.Log
 import androidx.core.app.NotificationCompat
-import com.elaj.patient.Model.MemberModel
-import com.elaj.patient.Model.MessageEvent
+import com.elaj.patient.models.MemberModel
 import com.elaj.patient.R
 import com.elaj.patient.classes.Constants
 import com.elaj.patient.classes.UtilityApp
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
-import org.greenrobot.eventbus.EventBus
 
 class fcmService : FirebaseMessagingService() {
 

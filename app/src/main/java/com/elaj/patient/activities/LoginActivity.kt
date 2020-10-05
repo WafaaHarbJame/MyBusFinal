@@ -1,36 +1,23 @@
 package com.elaj.patient.activities
 
-import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.telephony.TelephonyManager
 import android.widget.ArrayAdapter
-import android.widget.CheckBox
 import com.elaj.patient.MainActivityBottomNav
-import com.elaj.patient.Model.*
+import com.elaj.patient.models.*
 import com.elaj.patient.R
-import com.elaj.patient.Utils.NumberHandler
-import com.elaj.patient.Utils.PhoneHandler
 import com.elaj.patient.Utils.SharedPManger
-import com.elaj.patient.apiHandlers.DataFeacher
-import com.elaj.patient.apiHandlers.DataFetcherCallBack
 import com.elaj.patient.classes.Constants
-import com.elaj.patient.classes.GlobalData
-import com.elaj.patient.classes.UtilityApp
 import com.elaj.patient.classes.UtilityApp.fCMToken
 import com.elaj.patient.dialogs.CountryCodeDialog
-import com.github.dhaval2404.form_validation.rule.NonEmptyRule
-import com.github.dhaval2404.form_validation.validation.FormValidator
 import com.google.firebase.iid.FirebaseInstanceId
 import com.google.firebase.iid.InstanceIdResult
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import io.michaelrocks.libphonenumber.android.PhoneNumberUtil
 import kotlinx.android.synthetic.main.activity_login.*
-import org.greenrobot.eventbus.EventBus
-import org.greenrobot.eventbus.Subscribe
-import org.greenrobot.eventbus.ThreadMode
 
 
 class LoginActivity : ActivityBase() {

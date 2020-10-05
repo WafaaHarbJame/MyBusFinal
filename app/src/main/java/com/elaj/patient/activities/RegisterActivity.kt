@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.telephony.TelephonyManager
 import android.widget.ArrayAdapter
 import android.widget.CheckBox
-import com.elaj.patient.Model.*
+import com.elaj.patient.models.*
 import com.elaj.patient.R
 import com.elaj.patient.Utils.NumberHandler
 import com.elaj.patient.Utils.PhoneHandler
@@ -55,7 +55,6 @@ class RegisterActivity : ActivityBase() {
         setContentView(R.layout.activity_register)
 
         title = ""
-
 
 
 //        countrySpinner.onItemClickListener =
@@ -154,7 +153,7 @@ class RegisterActivity : ActivityBase() {
                     if (IsSuccess)
                         getCountries()
                 }
-            }).getConfig()
+            }).getSettings()
 
         } else {
 //            countryData.clear()
@@ -228,7 +227,7 @@ class RegisterActivity : ActivityBase() {
 //                R.string.please_wait_register,
 //                true
 //            )
-            DataFeacher().registerHandle(registerUserModel)
+//            DataFeacher(null).registerHandle(registerUserModel)
 
         } catch (e: Exception) {
 

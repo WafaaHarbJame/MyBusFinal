@@ -1,18 +1,20 @@
 package com.elaj.patient.activities
 
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
-import android.view.Window
-import android.view.WindowInsets
-import android.view.WindowManager
 import com.elaj.patient.MainActivityBottomNav
+import com.elaj.patient.models.SettingsModel
 import com.elaj.patient.R
+import com.elaj.patient.apiHandlers.DataFeacher
+import com.elaj.patient.apiHandlers.DataFetcherCallBack
+import com.elaj.patient.classes.DBFunction
+import com.elaj.patient.classes.UtilityApp
 import kotlinx.android.synthetic.main.activity_welcome.*
 
 
 class WelcomeActivity : ActivityBase() {
 
+    var settingsModel: SettingsModel? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,12 +33,32 @@ class WelcomeActivity : ActivityBase() {
 
         continueBtn.setOnClickListener {
 
-//            val intent = Intent(getActiviy(), MainActivityBottomNav::class.java)
-            val intent = Intent(getActiviy(), LoginActivity::class.java)
+            UtilityApp.isFirstLogin = false
+
+            val intent = Intent(getActiviy(), MainActivityBottomNav::class.java)
             startActivity(intent)
+//            val intent = Intent(getActiviy(), LoginActivity::class.java)
 
         }
 
+        getSettings()
+
+        titleTV.text = settingsModel?.welcome?.title
+        bodyTV.text = settingsModel?.welcome?.body
+
+
+    }
+
+    private fun getSettings() {
+
+        settingsModel = DBFunction.getSettings()
+        if (settingsModel == null) {
+            DataFeacher(object : DataFetcherCallBack {
+                override fun Result(obj: Any?, func: String?, IsSuccess: Boolean) {
+                    settingsModel = obj as SettingsModel?
+                }
+            }).getSettings()
+        }
     }
 
 

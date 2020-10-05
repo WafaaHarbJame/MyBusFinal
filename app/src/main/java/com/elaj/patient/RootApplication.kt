@@ -1,22 +1,19 @@
 package com.elaj.patient
 
-import android.app.Application
 import android.content.Context
-import android.content.res.Configuration
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.multidex.MultiDex
+import com.akexorcist.localizationactivity.ui.LocalizationApplication
 import com.elaj.patient.Utils.SharedPManger
 import com.elaj.patient.classes.Constants
 import com.elaj.patient.classes.UtilityApp
-import com.franmontiel.localechanger.LocaleChanger
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreSettings
 import com.google.firebase.messaging.FirebaseMessaging
 import java.util.*
-import kotlin.collections.ArrayList
 
 
-class RootApplication : Application() {
+class RootApplication : LocalizationApplication() {
 
 
     @get:Synchronized
@@ -85,12 +82,6 @@ class RootApplication : Application() {
 //
 //        }
 
-        val locales = ArrayList<Locale>()
-        locales.add(Locale(Constants.English))
-        locales.add(Locale(Constants.Arabic))
-
-        LocaleChanger.initialize(this, locales)
-
         var appLanguage = UtilityApp.language
         if (appLanguage == null)
 //            appLanguage = Locale.getDefault().language;
@@ -100,24 +91,14 @@ class RootApplication : Application() {
         UtilityApp.language = appLanguage
 //        }
 
-        LocaleChanger.setLocale(Locale(appLanguage))
-
         FirebaseMessaging.getInstance().subscribeToTopic("promotional_$appLanguage")
 
         //        FirebaseMessaging.getInstance().subscribeToTopic(Constants.NOTIFICATION_TOPIC);
         instance = this
     }
 
-    override fun onConfigurationChanged(newConfig: Configuration) {
-        super.onConfigurationChanged(newConfig)
+    override fun getDefaultLanguage(): Locale {
+        return Locale.getDefault()
+    }
 
-        LocaleChanger.onConfigurationChanged()
-
-        //        LocaleUtils.updateConfig(rootApplication, newConfig);
-    } //    private class RootMigration implements RealmMigration {
-//        @Override
-//        public void migrate(DynamicRealm realm, long oldVersion, long newVersion) {
-//
-//        }
-//    }
 }

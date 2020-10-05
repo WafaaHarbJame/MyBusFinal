@@ -8,7 +8,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.elaj.patient.Model.CountryModel
+import com.elaj.patient.models.CountryModel
 import com.elaj.patient.R
 import com.elaj.patient.apiHandlers.DataFetcherCallBack
 import com.bumptech.glide.Glide

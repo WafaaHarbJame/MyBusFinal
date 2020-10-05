@@ -7,10 +7,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager.widget.ViewPager
-import com.elaj.patient.Model.CardViewPager.CardFragmentPagerAdapter
-import com.elaj.patient.Model.CardViewPager.ShadowTransformer
+import com.elaj.patient.models.CardViewPager.CardFragmentPagerAdapter
+import com.elaj.patient.models.CardViewPager.ShadowTransformer
 import com.elaj.patient.R
 import com.elaj.patient.adapters.MainCategoriesAdapter
 import kotlinx.android.synthetic.main.fragment_main_screen.*

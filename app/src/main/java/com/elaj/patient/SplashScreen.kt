@@ -5,15 +5,13 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.view.Window
 import android.view.WindowInsets
 import android.view.WindowManager
 import android.widget.ImageView
-import com.elaj.patient.Model.MemberModel
-import com.elaj.patient.Model.ResponseEvent
-import com.elaj.patient.Model.ResultAPIModel
+import com.elaj.patient.models.MemberModel
+import com.elaj.patient.models.ResponseEvent
+import com.elaj.patient.models.ResultAPIModel
 import com.elaj.patient.activities.ActivityBase
-import com.elaj.patient.activities.LoginActivity
 import com.elaj.patient.activities.WelcomeActivity
 import com.elaj.patient.apiHandlers.DataFeacher
 import com.elaj.patient.apiHandlers.DataFetcherCallBack
@@ -71,8 +69,8 @@ class SplashScreen : ActivityBase() {
 
 //        GlobalData.IS_CUSTOMER = false
 
-        DataFeacher().getCategories()
-        DataFeacher().getConfig()
+        DataFeacher(null).getCategories()
+        DataFeacher(null).getSettings()
 
         Handler(Looper.getMainLooper()).postDelayed({
             // start if has access token
@@ -87,13 +85,14 @@ class SplashScreen : ActivityBase() {
                             UtilityApp.userData = user
                         }
                     }
-                }).getMyProfile()
+                })
             } else {
                 val intent = Intent(
                     getActiviy(),
-//                    LoginActivity::class.java
-                    WelcomeActivity::class.java
-//                    MainActivityBottomNav::class.java
+                    if (UtilityApp.isFirstLogin)
+                        WelcomeActivity::class.java
+                    else
+                        MainActivityBottomNav::class.java
                 )
                 intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
                 startActivity(intent)

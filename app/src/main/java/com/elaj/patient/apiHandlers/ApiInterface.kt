@@ -1,6 +1,6 @@
 package com.elaj.patient.apiHandlers
 
-import com.elaj.patient.Model.*
+import com.elaj.patient.models.*
 import okhttp3.RequestBody
 import okhttp3.ResponseBody
 import retrofit2.Call
@@ -210,8 +210,6 @@ interface ApiInterface {
     @GET("v1/me")
     fun getMyProfile(@HeaderMap headerParams: Map<String, Any?>?): Call<ResultAPIModel<MemberModel?>?>?
 
-    @GET("v1/lists")
-    fun getConfig(@HeaderMap headerParams: Map<String, Any?>?): Call<ResultAPIModel<ConfigModel?>>?
 
     @GET("v1/home-page")
     fun getCategories(@HeaderMap headerParams: Map<String, Any?>?): Call<ResultAPIModel<MutableList<ServiceModel?>?>?>?

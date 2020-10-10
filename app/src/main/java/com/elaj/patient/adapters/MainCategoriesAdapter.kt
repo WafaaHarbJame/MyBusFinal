@@ -69,6 +69,7 @@ class MainCategoriesAdapter(
 
                 val intent = Intent(activity, NewQuestionActivity::class.java)
                 intent.putExtra(Constants.KEY_CAT_ID, categoryModel?.id)
+                intent.putExtra(Constants.KEY_CAT_NAME, categoryModel?.name)
                 activity?.startActivity(intent)
 
             }

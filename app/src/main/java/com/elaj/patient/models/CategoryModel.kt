@@ -3,7 +3,7 @@ package com.elaj.patient.models
 import com.elaj.patient.classes.UtilityApp
 
 class CategoryModel {
-    var id = 0
+    var id: String? = null
     var name_ar: String? = null
     var name_en: String? = null
     var photo: String? = null

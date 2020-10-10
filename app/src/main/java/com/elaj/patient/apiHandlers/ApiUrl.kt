@@ -5,5 +5,6 @@ enum class ApiUrl {
     Settings,
     Categories,
     Sliders,
+    Syndromes,
 
 }

@@ -5,8 +5,13 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.elaj.patient.R
 import com.elaj.patient.adapters.SyndromeAdapter
+import com.elaj.patient.apiHandlers.DataFeacher
 import com.elaj.patient.apiHandlers.DataFetcherCallBack
+import com.elaj.patient.classes.Constants
+import com.elaj.patient.classes.DBFunction
 import com.elaj.patient.dialogs.SuccessSendDialog
+import com.elaj.patient.models.CategoryModel
+import com.elaj.patient.models.SyndromeModel
 import kotlinx.android.synthetic.main.activity_new_question.*
 
 
@@ -14,11 +19,20 @@ class NewQuestionActivity : ActivityBase() {
 
     var successSendDialog: SuccessSendDialog? = null
 
+    var catId: String? = null
+    var catName: String? = null
+
+    var syndromesList: MutableList<SyndromeModel>? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_new_question)
 
         title = ""
+
+        val bundle = intent.extras
+        catId = bundle?.getString(Constants.KEY_CAT_ID)
+        catName = bundle?.getString(Constants.KEY_CAT_NAME)
 
         rv.layoutManager = LinearLayoutManager(getActiviy())
 
@@ -47,13 +61,13 @@ class NewQuestionActivity : ActivityBase() {
 
         askQuestionLY.performClick()
 
-        initAdapter()
+        getCategorySyndrome()
 
     }
 
     private fun initAdapter() {
 
-        val adapter = SyndromeAdapter(getActiviy(), null, object : DataFetcherCallBack {
+        val adapter = SyndromeAdapter(getActiviy(), syndromesList, object : DataFetcherCallBack {
             override fun Result(obj: Any?, func: String?, IsSuccess: Boolean) {
 
             }
@@ -128,5 +142,17 @@ class NewQuestionActivity : ActivityBase() {
         }
 
     }
+
+    private fun getCategorySyndrome() {
+
+        DataFeacher(object : DataFetcherCallBack {
+            override fun Result(obj: Any?, func: String?, IsSuccess: Boolean) {
+                syndromesList = obj as MutableList<SyndromeModel>?
+                initAdapter()
+            }
+        }).getSliders()
+
+    }
+
 
 }

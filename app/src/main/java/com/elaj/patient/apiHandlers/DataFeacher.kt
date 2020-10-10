@@ -211,6 +211,44 @@ class DataFeacher(callBack: DataFetcherCallBack?) {
 
     }
 
+    fun getCategorySyndromes(catId: String) {
+
+        Log.i(TAG, "Log getCategorySyndromes")
+
+        fireStoreDB?.collection(ApiUrl.Categories.name)?.document(catId)
+            ?.collection(ApiUrl.Syndromes.name)?.get()
+            ?.addOnCompleteListener {
+                if (it.isSuccessful) {
+                    val query = it.result
+
+                    val syndromesList = mutableListOf<SyndromeModel>()
+                    for (document in query!!) {
+                        val syndrome = document?.toObject(SyndromeModel::class.java)
+                        syndrome?.id = document?.id
+                        syndromesList.add(syndrome!!)
+//                    Log.d(TAG, "${document.id} => ${document.data}")
+                    }
+//
+                    dataFetcherCallBack?.Result(syndromesList, Constants.SUCCESS, true)
+//
+                } else {
+                    it.exception?.printStackTrace()
+
+                    dataFetcherCallBack?.Result(null, Constants.FAIL_DATA, false)
+                }
+
+            }
+//        val json = Gson().toJson(result!!.data)
+//        DBFunction.setCategories(json)
+//
+//        dataFetcherCallBack?.Result(result, Constants.SUCCESS, true)
+//
+//        EventBus.getDefault()
+//            .post(ResponseEvent("getCategories", Constants.SUCCESS, result))
+
+    }
+
+
     fun getSettings() {
         Log.i(TAG, "Log getSettings")
 
@@ -251,6 +289,7 @@ class DataFeacher(callBack: DataFetcherCallBack?) {
                 val catList = mutableListOf<CategoryModel>()
                 for (document in query!!) {
                     val category = document?.toObject(CategoryModel::class.java)
+                    category?.id = document?.id
                     catList.add(category!!)
 //                    Log.d(TAG, "${document.id} => ${document.data}")
                 }

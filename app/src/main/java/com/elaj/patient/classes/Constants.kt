@@ -181,6 +181,7 @@ object Constants {
     const val DB_Sliders = "sliders_db"
     const val DB_Categories = "categories_db"
     const val DB_Settings = "settings_db"
+    const val DB_Plans = "plans_db"
     const val DB_ServicesModel = 4
     const val DB_TermsModel = 5
     const val DB_RequestsModel = 6

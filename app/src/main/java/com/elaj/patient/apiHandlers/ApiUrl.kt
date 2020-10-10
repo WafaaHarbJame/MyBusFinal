@@ -6,5 +6,6 @@ enum class ApiUrl {
     Categories,
     Sliders,
     Syndromes,
+    Plans,
 
 }

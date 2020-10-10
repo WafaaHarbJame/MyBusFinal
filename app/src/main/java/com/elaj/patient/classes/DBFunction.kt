@@ -48,6 +48,20 @@ object DBFunction {
         RootApplication.instance!!.sharedPManger!!.SetData(Constants.KEY_COUNTRIES, json)
     }
 
+    fun getPlans(): MutableList<PlansModel>? {
+        val json: String? =
+            RootApplication.instance!!.sharedPManger!!.getDataString(Constants.DB_Plans)
+        return Gson().fromJson(
+            json,
+            object : TypeToken<MutableList<PlansModel>?>() {}.type
+        )
+    }
+
+
+    fun setPlans(json: String?) {
+        RootApplication.instance!!.sharedPManger!!.SetData(Constants.DB_Sliders, json)
+    }
+
 //    fun getCities(): MutableList<CityModel>? {
 //        val json: String? =
 //            RootApplication.instance!!.sharedPManger!!.getDataString(Constants.KEY_CITIES)
@@ -63,21 +77,20 @@ object DBFunction {
 
     fun getSettings(): SettingsModel? {
         val json: String? =
-            RootApplication.instance!!.sharedPManger!!.getDataString(Constants.KEY_SETTINGS)
+            RootApplication.instance!!.sharedPManger!!.getDataString(Constants.DB_Settings)
         return Gson().fromJson(
             json,
             object : TypeToken<SettingsModel?>() {}.type
         )
     }
 
+    fun setSettings(json: String?) {
+        RootApplication.instance!!.sharedPManger!!.SetData(Constants.DB_Settings, json)
+    }
+
     fun setGender(json: String?) {
         RootApplication.instance!!.sharedPManger!!.SetData(Constants.KEY_GENDER, json)
     }
-
-    fun setSettings(json: String?) {
-        RootApplication.instance!!.sharedPManger!!.SetData(Constants.KEY_SETTINGS, json)
-    }
-
 
     /*************************************************************/
 

@@ -11,10 +11,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.elaj.patient.models.SyndromeModel
 import com.elaj.patient.R
 import com.elaj.patient.apiHandlers.DataFetcherCallBack
+import com.elaj.patient.models.PlansModel
 
 class PlansAdapter(
     private val activity: Activity,
-    var list: MutableList<SyndromeModel>?,
+    var list: MutableList<PlansModel>?,
     var dataFetcherCallBack: DataFetcherCallBack?
 ) :
     RecyclerView.Adapter<PlansAdapter.MyHolder>() {
@@ -30,7 +31,7 @@ class PlansAdapter(
     override fun onBindViewHolder(holder: MyHolder, position: Int) {
 
         if (list != null) {
-            val syndromeModel: SyndromeModel = list!![position]
+            val plansModel: PlansModel = list!![position]
 //        holder.nameTxt.text = countryCodeModel.name
         }
 

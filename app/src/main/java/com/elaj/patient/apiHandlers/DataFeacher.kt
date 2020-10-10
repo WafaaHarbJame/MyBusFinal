@@ -348,6 +348,40 @@ class DataFeacher(callBack: DataFetcherCallBack?) {
 
     }
 
+    fun getPlans() {
+        Log.i(TAG, "Log getPlans")
+
+        fireStoreDB?.collection(ApiUrl.Plans.name)?.get()?.addOnCompleteListener {
+            if (it.isSuccessful) {
+                val query = it.result
+
+                val objectList = mutableListOf<PlansModel>()
+                for (document in query!!) {
+                    val obj = document?.toObject(PlansModel::class.java)
+                    objectList.add(obj!!)
+//                    Log.d(TAG, "${document.id} => ${document.data}")
+                }
+
+                val json = Gson().toJson(objectList)
+                DBFunction.setPlans(json)
+//
+                dataFetcherCallBack?.Result(objectList, Constants.SUCCESS, true)
+//
+            } else {
+                it.exception?.printStackTrace()
+            }
+
+        }
+//        val json = Gson().toJson(result!!.data)
+//        DBFunction.setCategories(json)
+//
+//        dataFetcherCallBack?.Result(result, Constants.SUCCESS, true)
+//
+//        EventBus.getDefault()
+//            .post(ResponseEvent("getCategories", Constants.SUCCESS, result))
+
+    }
+
     private fun printLog(o: Any?) {
         Log.v("Log", "Log " + o.toString())
     }

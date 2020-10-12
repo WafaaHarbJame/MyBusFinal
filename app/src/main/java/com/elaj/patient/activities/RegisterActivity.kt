@@ -359,6 +359,8 @@ class RegisterActivity : ActivityBase() {
 
 
     private fun sendVerificationCode(phoneNumber:String){
+        Log.d(TAG, "phoneNumber:$phoneNumber")
+
         callbacks = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
 
             override fun onVerificationCompleted(credential: PhoneAuthCredential) {}
@@ -380,15 +382,15 @@ class RegisterActivity : ActivityBase() {
 
             }
         }
-
-        GlobalData.progressDialog(
-            getActiviy(),
-            R.string.register,
-            R.string.please_wait_register,
-            true)
+//
+//        GlobalData.progressDialog(
+//            getActiviy(),
+//            R.string.register,
+//            R.string.please_wait_register,
+//            true)
 
         PhoneAuthProvider.getInstance().verifyPhoneNumber(
-            "+9720598271758",
+          phoneNumber,
             60,
             TimeUnit.SECONDS,
             this,

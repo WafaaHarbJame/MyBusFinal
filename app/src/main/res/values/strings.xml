@@ -111,5 +111,6 @@
     <string name="please_enter_code_sent_mobile">please enter code sent to mobile</string>
     <string name="resend_confirm_code">Resend confirm code</string>
     <string name="confirm_now">Confirm Now</string>
+    <string name="please_wait_sending">Please wait sending ...</string>
 
 </resources>

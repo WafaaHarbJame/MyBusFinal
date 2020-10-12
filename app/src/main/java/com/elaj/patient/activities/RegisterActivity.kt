@@ -361,6 +361,13 @@ class RegisterActivity : ActivityBase() {
     private fun sendVerificationCode(phoneNumber:String){
         Log.d(TAG, "phoneNumber:$phoneNumber")
 
+        GlobalData.progressDialog(
+            getActiviy(),
+            R.string.register,
+            R.string.please_wait_register,
+            true)
+
+
         callbacks = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
 
             override fun onVerificationCompleted(credential: PhoneAuthCredential) {}
@@ -370,24 +377,25 @@ class RegisterActivity : ActivityBase() {
             override fun onCodeSent(
                 verificationId: String, token: PhoneAuthProvider.ForceResendingToken) {
 
-                Log.d(TAG, "onCodeSent:$verificationId")
-                GlobalData.progressDialog(
-                    getActiviy(),
-                    R.string.register,
-                    R.string.please_wait_register,
-                    false)
+                Log.d(TAG, "Log onCodeSent:$verificationId")
 
-                val intent = Intent(getActiviy(), ConfirmActivity::class.java)
-                startActivity(intent)
+                if(verificationId.isNotEmpty()){
+                    GlobalData.progressDialog(
+                        getActiviy(),
+                        R.string.register,
+                        R.string.please_wait_register,
+                        false)
+                    val intent = Intent(getActiviy(), ConfirmActivity::class.java)
+                    intent.putExtra(Constants.KEY_COUNTRY_CODE, Constants.COUNTRY_CODE)
+                    intent.putExtra(Constants.KEY_MOBILE,phoneNumber )
+                    intent.putExtra(Constants.KEY_CODE_SENT,verificationId )
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
+                    startActivity(intent)
+                }
+
 
             }
         }
-//
-//        GlobalData.progressDialog(
-//            getActiviy(),
-//            R.string.register,
-//            R.string.please_wait_register,
-//            true)
 
         PhoneAuthProvider.getInstance().verifyPhoneNumber(
           phoneNumber,

@@ -88,7 +88,7 @@
                 app:shadowRadius="@dimen/_8sdp">
 
                 <com.elaj.patient.spichalViews.STextViewBold
-                    android:id="@+id/loginBtn"
+                    android:id="@+id/confirmBtn"
                     style="@style/primaryBtnStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

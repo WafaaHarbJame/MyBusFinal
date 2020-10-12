@@ -160,6 +160,8 @@ object Constants {
     const val KEY_NOTIFICATION_ID = "key_notification_id"
     const val KEY_COUNTRY_CODE = "key_country_code"
     const val KEY_MOBILE = "key_mobile"
+    const val KEY_CODE_SENT = "key_code_sent"
+
     const val KEY_PASSWORD = "key_password"
     const val KEY_WALKTHROUGH_IMG_RES = "key_walkthrough_img_res"
     const val KEY_WALKTHROUGH_TITLE = "key_walkthrough_title"

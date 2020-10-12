@@ -2,6 +2,7 @@ package com.elaj.patient.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.TextUtils
 import android.util.Log
 import com.elaj.patient.MainActivityBottomNav
 import com.elaj.patient.R
@@ -48,15 +49,22 @@ class ConfirmActivity : ActivityBase() {
         }
 
         confirmBtn.setOnClickListener {
-            val code = NumberHandler.arabicToDecimal(codeTxt.text.toString());
-            GlobalData.progressDialog(
-                getActiviy(),
-                R.string.confirm_code,
-                R.string.please_wait_sending,
-                true
-            )
-            val credential = PhoneAuthProvider.getCredential(codeSent, code)
-            signInWithPhoneAuthCredential(credential)
+            if (TextUtils.isEmpty(codeTxt.text.toString())) {
+                codeTxt.error = getString(R.string.please_enter_code_sent_mobile);
+                codeTxt.requestFocus();
+            }
+            else {
+                val code = NumberHandler.arabicToDecimal(codeTxt.text.toString());
+                GlobalData.progressDialog(
+                    getActiviy(),
+                    R.string.confirm_code,
+                    R.string.please_wait_sending,
+                    true
+                )
+                val credential = PhoneAuthProvider.getCredential(codeSent, code)
+                signInWithPhoneAuthCredential(credential)
+
+            }
 
         }
 

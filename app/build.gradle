@@ -95,10 +95,13 @@ dependencies {
     implementation 'com.duolingo.open:rtl-viewpager:2.0.0'
     implementation 'com.aminography:choosephotohelper:1.0.5'
 
-    implementation 'com.google.firebase:firebase-core:17.5.0'
+    implementation 'com.google.firebase:firebase-core:17.5.1'
     implementation 'com.google.firebase:firebase-messaging:20.3.0'
-    implementation 'com.google.firebase:firebase-firestore:21.7.0'
-    implementation 'com.google.firebase:firebase-analytics:17.5.0'
+    implementation 'com.google.firebase:firebase-firestore:21.7.1'
+    implementation 'com.google.firebase:firebase-analytics:17.6.0'
+    implementation platform('com.google.firebase:firebase-bom:25.12.0')
+    implementation 'com.google.firebase:firebase-auth'
+
 //    implementation 'com.google.android.gms:play-services-maps:17.0.0'
 //    implementation 'com.google.android.gms:play-services-location:17.0.0'
 

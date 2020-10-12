@@ -35,7 +35,7 @@ class WelcomeActivity : ActivityBase() {
 
             UtilityApp.isFirstLogin = false
 
-            val intent = Intent(getActiviy(), MainActivityBottomNav::class.java)
+            val intent = Intent(getActiviy(), RegisterActivity::class.java)
             startActivity(intent)
 //            val intent = Intent(getActiviy(), LoginActivity::class.java)
 

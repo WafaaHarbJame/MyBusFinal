@@ -4,9 +4,8 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.telephony.TelephonyManager
+import android.util.Log
 import android.widget.ArrayAdapter
-import android.widget.CheckBox
-import com.elaj.patient.models.*
 import com.elaj.patient.R
 import com.elaj.patient.Utils.NumberHandler
 import com.elaj.patient.Utils.PhoneHandler
@@ -17,10 +16,15 @@ import com.elaj.patient.classes.DBFunction
 import com.elaj.patient.classes.GlobalData
 import com.elaj.patient.classes.UtilityApp
 import com.elaj.patient.dialogs.CountryCodeDialog
+import com.elaj.patient.models.*
 import com.github.dhaval2404.form_validation.rule.EqualRule
 import com.github.dhaval2404.form_validation.rule.LengthRule
 import com.github.dhaval2404.form_validation.rule.NonEmptyRule
 import com.github.dhaval2404.form_validation.validation.FormValidator
+import com.google.firebase.FirebaseException
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.PhoneAuthCredential
+import com.google.firebase.auth.PhoneAuthProvider
 import com.google.firebase.iid.FirebaseInstanceId
 import com.google.firebase.iid.InstanceIdResult
 import io.michaelrocks.libphonenumber.android.PhoneNumberUtil
@@ -28,6 +32,7 @@ import kotlinx.android.synthetic.main.activity_register.*
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
+import java.util.concurrent.TimeUnit
 
 
 class RegisterActivity : ActivityBase() {
@@ -36,6 +41,8 @@ class RegisterActivity : ActivityBase() {
     private var isCustomer: Boolean = false
 
     private var FCMToken: String? = ""
+    val TAG: String? = "Log"
+    var mAuth: FirebaseAuth? = null
 
 //    private var progressDialog: AwesomeProgressDialog? = null
 
@@ -47,14 +54,18 @@ class RegisterActivity : ActivityBase() {
     private var cityData: MutableList<String> = ArrayList()
     private var cityVal = 0
 
+    // Firebase Login
+    private lateinit var callbacks: PhoneAuthProvider.OnVerificationStateChangedCallbacks
+
     var selectedCountryCode = 0
     var countryCodeDialog: CountryCodeDialog? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
-
         title = ""
+        mAuth = FirebaseAuth.getInstance();
 
 
 //        countrySpinner.onItemClickListener =
@@ -86,6 +97,11 @@ class RegisterActivity : ActivityBase() {
 
         registerBtn.setOnClickListener {
 
+            val intent = Intent(getActiviy(), LoginActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+            startActivity(intent)
+
+
 //            GlobalData.IS_CUSTOMER = isCustomer
 
 //
@@ -109,10 +125,8 @@ class RegisterActivity : ActivityBase() {
 
         loginBtn.setOnClickListener {
 
-            val intent = Intent(getActiviy(), LoginActivity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
-            startActivity(intent)
-
+            if (isValidForm())
+                registerUser()
         }
 
 
@@ -190,21 +204,16 @@ class RegisterActivity : ActivityBase() {
 
         try {
 
-//            val fullNameStr = NumberHandler.arabicToDecimal(fullNameTxt.text.toString())
-            val mobileStr = NumberHandler.arabicToDecimal(mobileTxt.text.toString())
-//            val emailStr = NumberHandler.arabicToDecimal(emailTxt.text.toString())
+            var mobileStr = NumberHandler.arabicToDecimal(mobileTxt.text.toString().plus(selectedCountryCode))
             val passwordStr = NumberHandler.arabicToDecimal(passwordTxt.text.toString())
+            Log.i(TAG, "Log mobile " + mobileStr)
 
             if (!PhoneHandler.isValidPhoneNumber(mobileStr)) {
                 throw  Exception("phone")
             }
 
-//            if (countryVal == -1)
-//                throw Exception("country")
-
-//            if (!termsCB.isChecked)
-//                throw Exception("terms")
-
+            if (countryVal == -1)
+                throw Exception("country")
 
             val registerUserModel = RegisterUserModel()
             registerUserModel.countryCode = selectedCountryCode
@@ -213,8 +222,6 @@ class RegisterActivity : ActivityBase() {
                     "0".toRegex(),
                     ""
                 ) else mobileStr
-//            registerUserModel.full_name = fullNameStr
-//            registerUserModel.email = emailStr
             registerUserModel.countryId = countryVal
             registerUserModel.password = passwordStr
             registerUserModel.isCustomer = isCustomer
@@ -227,7 +234,10 @@ class RegisterActivity : ActivityBase() {
 //                R.string.please_wait_register,
 //                true
 //            )
-//            DataFeacher(null).registerHandle(registerUserModel)
+
+          //  DataFeacher(null).registerHandle(registerUserModel)
+            sendVerificationCode(registerUserModel.mobile)
+
 
         } catch (e: Exception) {
 
@@ -239,6 +249,8 @@ class RegisterActivity : ActivityBase() {
 ////                Toast(R.string.not_accept_terms)
         }
     }
+
+
 
 
     override fun onStart() {
@@ -330,16 +342,7 @@ class RegisterActivity : ActivityBase() {
                 NonEmptyRule(R.string.enter_phone_number),
                 LengthRule(10, R.string.valid_phone_number)
             )
-            .setErrorListener {
-                // Require only for CheckBox with Toast or Custom View Only
 
-                for (error in it) {
-                    if (error.view is CheckBox) {
-                        (error.view as CheckBox).error = null
-                        Toast(R.string.please_accept_terms_of_use)
-                    }
-                }
-            }
             .validate()
     }
 
@@ -353,6 +356,46 @@ class RegisterActivity : ActivityBase() {
                 }
         }
     }
+
+
+    private fun sendVerificationCode(phoneNumber:String){
+        callbacks = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+
+            override fun onVerificationCompleted(credential: PhoneAuthCredential) {}
+
+            override fun onVerificationFailed(e: FirebaseException) {}
+
+            override fun onCodeSent(
+                verificationId: String, token: PhoneAuthProvider.ForceResendingToken) {
+
+                Log.d(TAG, "onCodeSent:$verificationId")
+                GlobalData.progressDialog(
+                    getActiviy(),
+                    R.string.register,
+                    R.string.please_wait_register,
+                    false)
+
+                val intent = Intent(getActiviy(), ConfirmActivity::class.java)
+                startActivity(intent)
+
+            }
+        }
+
+        GlobalData.progressDialog(
+            getActiviy(),
+            R.string.register,
+            R.string.please_wait_register,
+            true)
+
+        PhoneAuthProvider.getInstance().verifyPhoneNumber(
+            "+9720598271758",
+            60,
+            TimeUnit.SECONDS,
+            this,
+            callbacks)
+
+    }
+
 
 
 }

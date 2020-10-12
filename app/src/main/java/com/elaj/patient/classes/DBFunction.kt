@@ -92,6 +92,10 @@ object DBFunction {
         RootApplication.instance!!.sharedPManger!!.SetData(Constants.KEY_GENDER, json)
     }
 
+    fun registerHandle(memberModel: RegisterUserModel?) {
+
+    }
+
     /*************************************************************/
 
 }

@@ -8,7 +8,7 @@ class PlansModel {
     var title_en: String? = null
     var desc_ar: String? = null
     var desc_en: String? = null
-    var price: String? = null
+    var price: Double? = null
 
     val title: String?
         get() = if (UtilityApp.isEnglish) title_en else title_ar

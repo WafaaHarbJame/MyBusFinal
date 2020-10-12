@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/tool_bar"
+        layout="@layout/tool_bar" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/_minus25sdp"
+        android:fillViewport="true"
+        android:overScrollMode="never">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingTop="@dimen/_20sdp">
+
+            <ImageView
+                android:id="@+id/loginHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:src="@drawable/hd_login" />
+
+            <com.elaj.patient.spichalViews.STextViewBold
+                android:id="@+id/signLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="-30dp"
+                android:layout_marginBottom="@dimen/_8sdp"
+                android:text="@string/confirm_code"
+                android:textColor="@color/colorAccent"
+                android:textSize="@dimen/_15ssp" />
+
+            <com.elaj.patient.spichalViews.STextView
+                android:id="@+id/helloLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="@dimen/_15sdp"
+                android:text="@string/please_enter_code_sent_mobile"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/_13ssp" />
+
+
+            <com.elaj.patient.spichalViews.STextInputLayout
+                android:id="@+id/mobileInput"
+                style="@style/TextInputStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:hint="@string/confirm_code"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/countryCodeTxt"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <com.elaj.patient.spichalViews.SAutoCompleteText
+                    android:id="@+id/codeTxt"
+                    style="@style/editTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:imeOptions="actionNext"
+                    android:inputType="number" />
+
+            </com.elaj.patient.spichalViews.STextInputLayout>
+
+            <com.loopeer.shadow.ShadowView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_50sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_50sdp"
+                android:layout_marginBottom="@dimen/_30sdp"
+                app:backgroundColor="@color/white"
+                app:cornerRadius="@dimen/round_corner_thin"
+                app:shadowColor="@color/colorPrimaryTrans"
+                app:shadowMarginBottom="@dimen/_8sdp"
+                app:shadowRadius="@dimen/_8sdp">
+
+                <com.elaj.patient.spichalViews.STextViewBold
+                    android:id="@+id/loginBtn"
+                    style="@style/primaryBtnStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/confirm_now"
+                    android:textColor="@color/white" />
+
+
+            </com.loopeer.shadow.ShadowView>
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="@dimen/_40sdp"
+                android:orientation="horizontal">
+
+                <com.elaj.patient.spichalViews.STextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:text="@string/resend_confirm_code"
+                    android:textColor="@color/colorAccent2"
+                    android:textSize="@dimen/_12ssp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</LinearLayout>

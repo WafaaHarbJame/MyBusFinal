@@ -204,7 +204,7 @@ class RegisterActivity : ActivityBase() {
 
         try {
 
-            var mobileStr = NumberHandler.arabicToDecimal(mobileTxt.text.toString().plus(selectedCountryCode))
+            var mobileStr = "+".plus(selectedCountryCode.toString()).plus(NumberHandler.arabicToDecimal(mobileTxt.text.toString()))
             val passwordStr = NumberHandler.arabicToDecimal(passwordTxt.text.toString())
             Log.i(TAG, "Log mobile " + mobileStr)
 

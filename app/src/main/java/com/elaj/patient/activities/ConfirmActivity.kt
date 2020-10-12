@@ -27,7 +27,7 @@ class ConfirmActivity : ActivityBase() {
 
     var countryCode: Int = Constants.COUNTRY_CODE
     var mobile: String = ""
-    var codeSent: String = ""
+    var verificationID: String = ""
     var code: String = ""
 
 
@@ -41,10 +41,10 @@ class ConfirmActivity : ActivityBase() {
         if (bundle != null) {
             countryCode = bundle.getInt(Constants.KEY_COUNTRY_CODE)
             mobile = bundle.getString(Constants.KEY_MOBILE)!!
-            codeSent== bundle.getString(Constants.KEY_CODE_SENT)!!
+            verificationID== bundle.getString(Constants.KEY_CODE_SENT)
             Log.i(TAG, "Log countryCode " + countryCode)
             Log.i(TAG, "Log mobile " + mobile)
-            Log.i(TAG, "Log codeSent " + codeSent)
+            Log.i(TAG, "Log verificationID  " + verificationID)
 
         }
 
@@ -61,7 +61,7 @@ class ConfirmActivity : ActivityBase() {
                     R.string.please_wait_sending,
                     true
                 )
-                val credential = PhoneAuthProvider.getCredential(codeSent, code)
+                val credential = PhoneAuthProvider.getCredential(verificationID, code)
                 signInWithPhoneAuthCredential(credential)
 
             }

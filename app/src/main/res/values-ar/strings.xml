@@ -105,5 +105,7 @@
     <string name="continuee">استمرار</string>
     <string name="please_wait_sending">الرجاء الانتظار جاري الارسال</string>
     <string name="resend">إرسال</string>
+    <string name="please_wait_login">الرجاء الانتظار جاري تسجيل الدخول</string>
+    <string name="fail_to_login"> فشل في تسجيل الدخول كلمة المرو غير صحيحة </string>
 
 </resources>

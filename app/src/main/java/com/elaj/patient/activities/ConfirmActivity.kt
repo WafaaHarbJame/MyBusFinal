@@ -23,7 +23,7 @@ import java.util.concurrent.TimeUnit
 
 class ConfirmActivity : ActivityBase() {
     private lateinit var auth: FirebaseAuth
-    val TAG: String? = "Log"
+    val TAG: String? = "ConfirmActivity"
     private lateinit var callbacks: PhoneAuthProvider.OnVerificationStateChangedCallbacks
     private var storedVerificationId: String=""
     private lateinit var resendToken: PhoneAuthProvider.ForceResendingToken

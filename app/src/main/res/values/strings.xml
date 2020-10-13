@@ -113,5 +113,7 @@
     <string name="confirm_now">Confirm Now</string>
     <string name="please_wait_sending">Please wait sending ...</string>
     <string name="resend">Resend</string>
+    <string name="please_wait_login">"Please Wait to login "</string>
+    <string name="fail_to_login">fail to login Password Wrong</string>
 
 </resources>

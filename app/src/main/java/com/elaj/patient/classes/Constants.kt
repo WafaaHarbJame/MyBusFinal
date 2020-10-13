@@ -163,6 +163,7 @@ object Constants {
     const val KEY_CODE_SENT = "key_code_sent"
 
     const val KEY_PASSWORD = "key_password"
+    const val PASSWORD = "password"
     const val KEY_WALKTHROUGH_IMG_RES = "key_walkthrough_img_res"
     const val KEY_WALKTHROUGH_TITLE = "key_walkthrough_title"
     const val KEY_WALKTHROUGH_DESC = "key_walkthrough_desc"

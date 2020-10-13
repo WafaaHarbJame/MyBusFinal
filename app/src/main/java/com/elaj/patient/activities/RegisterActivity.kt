@@ -21,9 +21,7 @@ import com.github.dhaval2404.form_validation.rule.EqualRule
 import com.github.dhaval2404.form_validation.rule.LengthRule
 import com.github.dhaval2404.form_validation.rule.NonEmptyRule
 import com.github.dhaval2404.form_validation.validation.FormValidator
-import com.google.firebase.FirebaseException
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.PhoneAuthCredential
 import com.google.firebase.auth.PhoneAuthProvider
 import com.google.firebase.iid.FirebaseInstanceId
 import com.google.firebase.iid.InstanceIdResult
@@ -32,7 +30,6 @@ import kotlinx.android.synthetic.main.activity_register.*
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
-import java.util.concurrent.TimeUnit
 
 
 class RegisterActivity : ActivityBase() {
@@ -204,7 +201,7 @@ class RegisterActivity : ActivityBase() {
 
         try {
 
-            var mobileStr = "+".plus(selectedCountryCode.toString()).plus(NumberHandler.arabicToDecimal(mobileTxt.text.toString()))
+            var mobileStr = NumberHandler.arabicToDecimal(mobileTxt.text.toString())
             val passwordStr = NumberHandler.arabicToDecimal(passwordTxt.text.toString())
             Log.i(TAG, "Log mobile " + mobileStr)
 
@@ -235,8 +232,8 @@ class RegisterActivity : ActivityBase() {
 //                true
 //            )
 
-          //  DataFeacher(null).registerHandle(registerUserModel)
-            sendVerificationCode(registerUserModel.mobile)
+            //  DataFeacher(null).registerHandle(registerUserModel)
+            goToConfirmPage()
 
 
         } catch (e: Exception) {
@@ -249,8 +246,6 @@ class RegisterActivity : ActivityBase() {
 ////                Toast(R.string.not_accept_terms)
         }
     }
-
-
 
 
     override fun onStart() {
@@ -301,12 +296,6 @@ class RegisterActivity : ActivityBase() {
                     startActivity(intent)
                     finish()
 
-//                    val intent = Intent(getActiviy(), ConfirmActivity::class.java)
-//                    intent.putExtra(Constants.KEY_COUNTRY_CODE, user.countryCode)
-//                    intent.putExtra(Constants.KEY_MOBILE, user.mobile)
-//                    startActivity(intent)
-//                    finish()
-
                 }
 
             }
@@ -316,14 +305,6 @@ class RegisterActivity : ActivityBase() {
 
     private fun isValidForm(): Boolean {
         return FormValidator.getInstance()
-//            .addField(fullNameInput, NonEmptyRule(R.string.invalid_fullname))
-////            .addField(lastNameTxt, NonEmptyRule(R.string.invalid_input))
-//            .addField(mobileInput, NonEmptyRule(R.string.invalid_mobile))
-//            .addField(
-//                emailInput,
-//                NonEmptyRule(R.string.invalid_email),
-//                EmailRule(R.string.enter_valid_email)
-//            )
             .addField(
                 passwordTxt,
                 NonEmptyRule(R.string.enter_password)
@@ -358,54 +339,24 @@ class RegisterActivity : ActivityBase() {
     }
 
 
-    private fun sendVerificationCode(phoneNumber:String){
+    private fun goToConfirmPage() {
+        val phoneNumber = "+".plus(selectedCountryCode.toString())
+            .plus(NumberHandler.arabicToDecimal(mobileTxt.text.toString()))
         Log.d(TAG, "phoneNumber:$phoneNumber")
-
         GlobalData.progressDialog(
             getActiviy(),
             R.string.register,
             R.string.please_wait_register,
-            true)
+            true
+        )
+        val intent = Intent(getActiviy(), ConfirmActivity::class.java)
+        intent.putExtra(Constants.KEY_COUNTRY_CODE, selectedCountryCode)
+        intent.putExtra(Constants.KEY_MOBILE, phoneNumber)
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
+        startActivity(intent)
 
-
-        callbacks = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
-
-            override fun onVerificationCompleted(credential: PhoneAuthCredential) {}
-
-            override fun onVerificationFailed(e: FirebaseException) {}
-
-            override fun onCodeSent(
-                verificationId: String, token: PhoneAuthProvider.ForceResendingToken) {
-
-                Log.d(TAG, "Log onCodeSent:$verificationId")
-
-                if(verificationId.isNotEmpty()){
-                    GlobalData.progressDialog(
-                        getActiviy(),
-                        R.string.register,
-                        R.string.please_wait_register,
-                        false)
-                    val intent = Intent(getActiviy(), ConfirmActivity::class.java)
-                    intent.putExtra(Constants.KEY_COUNTRY_CODE, Constants.COUNTRY_CODE)
-                    intent.putExtra(Constants.KEY_MOBILE,phoneNumber )
-                    intent.putExtra(Constants.KEY_CODE_SENT,verificationId )
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
-                    startActivity(intent)
-                }
-
-
-            }
-        }
-
-        PhoneAuthProvider.getInstance().verifyPhoneNumber(
-          phoneNumber,
-            60,
-            TimeUnit.SECONDS,
-            this,
-            callbacks)
 
     }
-
 
 
 }

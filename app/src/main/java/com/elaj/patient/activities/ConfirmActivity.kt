@@ -16,19 +16,17 @@ import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import com.google.firebase.auth.PhoneAuthCredential
 import com.google.firebase.auth.PhoneAuthProvider
 import kotlinx.android.synthetic.main.activity_confirm.*
+import kotlinx.android.synthetic.main.activity_register.*
+import java.util.concurrent.TimeUnit
 
 class ConfirmActivity : ActivityBase() {
     private lateinit var auth: FirebaseAuth
     val TAG: String? = "Log"
     private lateinit var callbacks: PhoneAuthProvider.OnVerificationStateChangedCallbacks
-    private var verificationInProgress = false
-    private var storedVerificationId: String? = ""
+    private var storedVerificationId: String=""
     private lateinit var resendToken: PhoneAuthProvider.ForceResendingToken
-
     var countryCode: Int = Constants.COUNTRY_CODE
     var mobile: String = ""
-    var verificationID: String = ""
-    var code: String = ""
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,10 +39,9 @@ class ConfirmActivity : ActivityBase() {
         if (bundle != null) {
             countryCode = bundle.getInt(Constants.KEY_COUNTRY_CODE)
             mobile = bundle.getString(Constants.KEY_MOBILE)!!
-            verificationID== bundle.getString(Constants.KEY_CODE_SENT)
             Log.i(TAG, "Log countryCode " + countryCode)
             Log.i(TAG, "Log mobile " + mobile)
-            Log.i(TAG, "Log verificationID  " + verificationID)
+            sendVerificationCode(mobile)
 
         }
 
@@ -61,11 +58,15 @@ class ConfirmActivity : ActivityBase() {
                     R.string.please_wait_sending,
                     true
                 )
-                val credential = PhoneAuthProvider.getCredential(verificationID, code)
+                val credential = PhoneAuthProvider.getCredential(storedVerificationId, code)
                 signInWithPhoneAuthCredential(credential)
 
             }
 
+        }
+
+        resendCodeBtn.setOnClickListener{
+            sendVerificationCode(mobile)
         }
 
 
@@ -82,6 +83,7 @@ class ConfirmActivity : ActivityBase() {
                         R.string.please_wait_sending,
                         false
                     )
+                    val user = task.result?.user
                     val intent = Intent(getActiviy(), MainActivityBottomNav::class.java)
                     startActivity(intent)
 
@@ -101,42 +103,40 @@ class ConfirmActivity : ActivityBase() {
             }
     }
 
-    private  fun verificationCode(){
+
+    private fun sendVerificationCode(phoneNumber:String){
+        Log.d(TAG, "phoneNumber:$phoneNumber")
+
         callbacks = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
 
             override fun onVerificationCompleted(credential: PhoneAuthCredential) {
-                Log.d(TAG, "onVerificationCompleted:$credential")
-                verificationInProgress = false
-                signInWithPhoneAuthCredential(credential)
+                //signInWithPhoneAuthCredential(credential)
             }
 
             override fun onVerificationFailed(e: FirebaseException) {
 
-                Log.w(TAG, "onVerificationFailed", e)
-                verificationInProgress = false
-
-                if (e is FirebaseAuthInvalidCredentialsException) {
-
-                } else if (e is FirebaseTooManyRequestsException) {
-
-                }
-
             }
 
             override fun onCodeSent(
-                verificationId: String,
-                token: PhoneAuthProvider.ForceResendingToken
-            ) {
-
-                Log.d(TAG, "onCodeSent:$verificationId")
+                verificationId: String, token: PhoneAuthProvider.ForceResendingToken) {
+                Log.d(TAG, "Log onCodeSent:$verificationId")
 
                 storedVerificationId = verificationId
                 resendToken = token
 
+
             }
         }
 
+        PhoneAuthProvider.getInstance().verifyPhoneNumber(
+            phoneNumber,
+            60,
+            TimeUnit.SECONDS,
+            this,
+            callbacks)
+
     }
+
 
 
 

@@ -112,6 +112,7 @@
                     android:layout_gravity="center_horizontal"
                     android:layout_marginEnd="@dimen/_10sdp"
                     android:text="@string/resend_confirm_code"
+                    android:id="@+id/resendCodeBtn"
                     android:textColor="@color/colorAccent2"
                     android:textSize="@dimen/_12ssp" />
 

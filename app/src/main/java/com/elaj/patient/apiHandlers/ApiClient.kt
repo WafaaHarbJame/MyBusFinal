@@ -15,6 +15,7 @@ import java.util.*
 import java.util.concurrent.TimeUnit
 import javax.net.ssl.TrustManager
 import javax.net.ssl.X509TrustManager
+import kotlin.jvm.Throws
 
 object ApiClient {
     val BASE_URL: String = GlobalData.ApiURL

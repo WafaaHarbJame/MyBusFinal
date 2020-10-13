@@ -8,6 +8,7 @@ import android.util.Log
 import com.elaj.patient.MainActivityBottomNav
 import com.elaj.patient.R
 import com.elaj.patient.Utils.NumberHandler
+import com.elaj.patient.apiHandlers.ApiUrl
 import com.elaj.patient.classes.Constants
 import com.elaj.patient.classes.GlobalData
 import com.google.firebase.FirebaseException
@@ -15,6 +16,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import com.google.firebase.auth.PhoneAuthCredential
 import com.google.firebase.auth.PhoneAuthProvider
+import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_confirm.*
 import java.util.concurrent.TimeUnit
 
@@ -27,6 +29,7 @@ class ConfirmActivity : ActivityBase() {
     private lateinit var resendToken: PhoneAuthProvider.ForceResendingToken
     var countryCode: Int = Constants.COUNTRY_CODE
     var mobile: String = ""
+    lateinit var db: FirebaseFirestore
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,6 +37,7 @@ class ConfirmActivity : ActivityBase() {
         setContentView(R.layout.activity_confirm)
         auth= FirebaseAuth.getInstance()
         title = ""
+        db = FirebaseFirestore.getInstance()
 
         val bundle = intent.extras
         if (bundle != null) {
@@ -60,16 +64,12 @@ class ConfirmActivity : ActivityBase() {
                 )
                 val credential = PhoneAuthProvider.getCredential(storedVerificationId, code)
                 signInWithPhoneAuthCredential(credential)
-
             }
-
         }
 
         resendCodeBtn.setOnClickListener{
             sendVerificationCode(mobile)
         }
-
-
 
     }
     private fun signInWithPhoneAuthCredential(credential: PhoneAuthCredential) {
@@ -84,8 +84,10 @@ class ConfirmActivity : ActivityBase() {
                         false
                     )
                     val user = task.result?.user
-                    val intent = Intent(getActiviy(), MainActivityBottomNav::class.java)
-                    startActivity(intent)
+                    db.collection(ApiUrl.Users.name).document(mobile).update("isVerified",true).addOnSuccessListener {
+                        val intent = Intent(getActiviy(), MainActivityBottomNav::class.java)
+                        startActivity(intent)
+                    }.addOnFailureListener { e -> Log.w(TAG, "Error updating document", e) }
 
 
                 } else {
@@ -125,7 +127,6 @@ class ConfirmActivity : ActivityBase() {
             override fun onVerificationCompleted(credential: PhoneAuthCredential) {
                 //signInWithPhoneAuthCredential(credential)
             }
-
             override fun onVerificationFailed(e: FirebaseException) {
 
             }
@@ -133,11 +134,8 @@ class ConfirmActivity : ActivityBase() {
             override fun onCodeSent(
                 verificationId: String, token: PhoneAuthProvider.ForceResendingToken) {
                 Log.d(TAG, "Log onCodeSent:$verificationId")
-
                 storedVerificationId = verificationId
                 resendToken = token
-
-
             }
         }
 
@@ -147,10 +145,6 @@ class ConfirmActivity : ActivityBase() {
             TimeUnit.SECONDS,
             this,
             callbacks)
-
     }
-
-
-
 
 }

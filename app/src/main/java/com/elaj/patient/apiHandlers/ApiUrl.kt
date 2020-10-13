@@ -7,5 +7,6 @@ enum class ApiUrl {
     Sliders,
     Syndromes,
     Plans,
+    Users,
 
 }

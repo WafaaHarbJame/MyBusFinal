@@ -45,9 +45,7 @@ class DataFeacher(callBack: DataFetcherCallBack?) {
     fun registerHandle(memberModel: RegisterUserModel?) {
 
         val params: MutableMap<String?, Any?> = HashMap()
-        params["full_name"] = memberModel?.full_name
         params["user_type"] = memberModel?.type
-        params["email"] = memberModel?.email
         params["country_code"] = memberModel?.countryCode
         params["mobile"] = memberModel?.mobile
         if (memberModel?.countryId != 0)
@@ -58,9 +56,7 @@ class DataFeacher(callBack: DataFetcherCallBack?) {
 
         Log.i(TAG, "Log registerHandle")
         Log.i(TAG, "Log headerMap $headerMap")
-        Log.i(TAG, "Log full_name ${memberModel?.full_name}")
         Log.i(TAG, "Log user_type ${memberModel?.type}")
-        Log.i(TAG, "Log email ${memberModel?.email}")
         Log.i(TAG, "Log country_code ${memberModel?.countryCode}")
         Log.i(TAG, "Log mobile ${memberModel?.mobile}")
         if (memberModel?.countryId != 0)

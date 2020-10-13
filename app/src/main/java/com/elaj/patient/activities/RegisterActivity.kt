@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter
 import com.elaj.patient.R
 import com.elaj.patient.Utils.NumberHandler
 import com.elaj.patient.Utils.PhoneHandler
+import com.elaj.patient.apiHandlers.ApiUrl
 import com.elaj.patient.apiHandlers.DataFeacher
 import com.elaj.patient.apiHandlers.DataFetcherCallBack
 import com.elaj.patient.classes.Constants
@@ -21,8 +22,10 @@ import com.github.dhaval2404.form_validation.rule.EqualRule
 import com.github.dhaval2404.form_validation.rule.LengthRule
 import com.github.dhaval2404.form_validation.rule.NonEmptyRule
 import com.github.dhaval2404.form_validation.validation.FormValidator
+import com.google.android.gms.tasks.OnSuccessListener
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.PhoneAuthProvider
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.iid.FirebaseInstanceId
 import com.google.firebase.iid.InstanceIdResult
 import io.michaelrocks.libphonenumber.android.PhoneNumberUtil
@@ -34,15 +37,9 @@ import org.greenrobot.eventbus.ThreadMode
 
 class RegisterActivity : ActivityBase() {
 
-
-    private var isCustomer: Boolean = false
-
     private var FCMToken: String? = ""
     val TAG: String? = "Log"
-    var mAuth: FirebaseAuth? = null
-
-//    private var progressDialog: AwesomeProgressDialog? = null
-
+    lateinit var db: FirebaseFirestore
     private var countryModels: MutableList<CountryModel>? = mutableListOf()
     private var countryVal = 0
 
@@ -56,14 +53,13 @@ class RegisterActivity : ActivityBase() {
 
     var selectedCountryCode = 0
     var countryCodeDialog: CountryCodeDialog? = null
-
+    private lateinit var phoneNumber:String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
         title = ""
-        mAuth = FirebaseAuth.getInstance();
-
+        db = FirebaseFirestore.getInstance()
 
 //        countrySpinner.onItemClickListener =
 //            AdapterView.OnItemClickListener { parent, view, position, id ->
@@ -98,27 +94,7 @@ class RegisterActivity : ActivityBase() {
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
             startActivity(intent)
 
-
-//            GlobalData.IS_CUSTOMER = isCustomer
-
-//
-//            }
-
-//            val intent = Intent(getActiviy(), ConfirmActivity::class.java)
-//            startActivity(intent)
-
-//            if (isValidForm())
-//                registerUser()
-
         }
-
-//        termsBtn.setOnClickListener {
-//
-////            val intent = Intent(getActiviy(), PageFragmentActivity::class.java)
-////            intent.putExtra(Constants.KEY_FRAGMENT_TYPE, Constants.FRAG_TERMS)
-////            startActivity(intent)
-//
-//        }
 
         loginBtn.setOnClickListener {
 
@@ -203,7 +179,6 @@ class RegisterActivity : ActivityBase() {
 
             var mobileStr = NumberHandler.arabicToDecimal(mobileTxt.text.toString())
             val passwordStr = NumberHandler.arabicToDecimal(passwordTxt.text.toString())
-            Log.i(TAG, "Log mobile " + mobileStr)
 
             if (!PhoneHandler.isValidPhoneNumber(mobileStr)) {
                 throw  Exception("phone")
@@ -219,22 +194,29 @@ class RegisterActivity : ActivityBase() {
                     "0".toRegex(),
                     ""
                 ) else mobileStr
-            registerUserModel.countryId = countryVal
+
+            phoneNumber = countryCodeTxt.text.toString()
+                .plus(NumberHandler.arabicToDecimal(mobileStr))
             registerUserModel.password = passwordStr
-            registerUserModel.isCustomer = isCustomer
             registerUserModel.fcm_token = FCMToken
+            registerUserModel.isVerified=false
+            registerUserModel.password=passwordStr;
+            registerUserModel.password_confirm=passwordStr
+            registerUserModel.mobileWithPlus=phoneNumber
 
+            GlobalData.progressDialog(
+                getActiviy(),
+                R.string.register,
+                R.string.please_wait_register,
+                true
+            )
 
-//            GlobalData.progressDialog(
-//                getActiviy(),
-//                R.string.register,
-//                R.string.please_wait_register,
-//                true
-//            )
+            db.collection(ApiUrl.Users.name).document(phoneNumber).set(registerUserModel).addOnSuccessListener {
+                goToConfirmPage()
+            }.addOnFailureListener {
+                Toast(R.string.fail_to_register)
 
-            //  DataFeacher(null).registerHandle(registerUserModel)
-            goToConfirmPage()
-
+            }
 
         } catch (e: Exception) {
 
@@ -339,15 +321,14 @@ class RegisterActivity : ActivityBase() {
     }
 
 
-    private fun goToConfirmPage() {
-        val phoneNumber = "+".plus(selectedCountryCode.toString())
-            .plus(NumberHandler.arabicToDecimal(mobileTxt.text.toString()))
+    private fun goToConfirmPage( ) {
+
         Log.d(TAG, "phoneNumber:$phoneNumber")
         GlobalData.progressDialog(
             getActiviy(),
             R.string.register,
             R.string.please_wait_register,
-            true
+            false
         )
         val intent = Intent(getActiviy(), ConfirmActivity::class.java)
         intent.putExtra(Constants.KEY_COUNTRY_CODE, selectedCountryCode)

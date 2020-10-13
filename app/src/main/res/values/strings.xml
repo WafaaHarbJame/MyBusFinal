@@ -109,8 +109,9 @@
     <string name="can_send_question_for_one_day">you can send questions for one day</string>
     <string name="please_wait_register">Please wait register ...</string>
     <string name="please_enter_code_sent_mobile">please enter code sent to mobile</string>
-    <string name="resend_confirm_code">Resend confirm code</string>
+    <string name="resend_confirm_code">Don\'t receive the code </string>
     <string name="confirm_now">Confirm Now</string>
     <string name="please_wait_sending">Please wait sending ...</string>
+    <string name="resend">Resend</string>
 
 </resources>

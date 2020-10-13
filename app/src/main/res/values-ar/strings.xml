@@ -104,5 +104,6 @@
     <string name="will_contact_you_by_doctor">"بامكانك التواصل مع الطبيب عبر السكايب او الواتس اب "</string>
     <string name="continuee">استمرار</string>
     <string name="please_wait_sending">الرجاء الانتظار جاري الارسال</string>
+    <string name="resend">إرسال</string>
 
 </resources>

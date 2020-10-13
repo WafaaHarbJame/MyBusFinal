@@ -2,6 +2,7 @@ package com.elaj.patient.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.text.TextUtils
 import android.util.Log
 import com.elaj.patient.MainActivityBottomNav
@@ -10,14 +11,13 @@ import com.elaj.patient.Utils.NumberHandler
 import com.elaj.patient.classes.Constants
 import com.elaj.patient.classes.GlobalData
 import com.google.firebase.FirebaseException
-import com.google.firebase.FirebaseTooManyRequestsException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import com.google.firebase.auth.PhoneAuthCredential
 import com.google.firebase.auth.PhoneAuthProvider
 import kotlinx.android.synthetic.main.activity_confirm.*
-import kotlinx.android.synthetic.main.activity_register.*
 import java.util.concurrent.TimeUnit
+
 
 class ConfirmActivity : ActivityBase() {
     private lateinit var auth: FirebaseAuth
@@ -106,6 +106,19 @@ class ConfirmActivity : ActivityBase() {
 
     private fun sendVerificationCode(phoneNumber:String){
         Log.d(TAG, "phoneNumber:$phoneNumber")
+
+        object : CountDownTimer(60000, 1000) {
+            override fun onTick(l: Long) {
+                resendCodeBtn.text = "" .plus( l / 1000)
+                resendCodeBtn.isEnabled = false
+            }
+
+            override fun onFinish() {
+                resendCodeBtn.text = getString(R.string.resend)
+                resendCodeBtn.isEnabled = true
+            }
+        }.start()
+
 
         callbacks = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
 

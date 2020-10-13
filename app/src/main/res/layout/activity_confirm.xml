@@ -110,12 +110,20 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_4sdp"
                     android:text="@string/resend_confirm_code"
-                    android:id="@+id/resendCodeBtn"
                     android:textColor="@color/colorAccent2"
                     android:textSize="@dimen/_12ssp" />
-
+                <com.elaj.patient.spichalViews.STextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text=""
+                    android:id="@+id/resendCodeBtn"
+                    android:textStyle="bold"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/_12ssp" />
             </LinearLayout>
 
         </LinearLayout>

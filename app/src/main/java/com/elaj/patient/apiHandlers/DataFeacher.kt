@@ -1,21 +1,32 @@
 package com.elaj.patient.apiHandlers
 
+import android.app.Activity
+import android.content.Intent
 import android.util.Log
+import com.elaj.patient.MainActivityBottomNav
+import com.elaj.patient.R
 import com.elaj.patient.models.*
 import com.elaj.patient.RootApplication
+import com.elaj.patient.activities.ConfirmActivity
 import com.elaj.patient.classes.Constants
 import com.elaj.patient.classes.DBFunction
+import com.elaj.patient.classes.GlobalData
+import com.elaj.patient.classes.GlobalData.Toast
 import com.google.gson.Gson
+import kotlinx.android.synthetic.main.activity_login.*
 import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
+import org.w3c.dom.Document
 import java.io.File
 
 
 class DataFeacher(callBack: DataFetcherCallBack?) {
     var dataFetcherCallBack: DataFetcherCallBack? = callBack
+        var activity: Activity? = Activity()
 
     var fireStoreDB = RootApplication.fireStoreDB
+
 
     val TAG: String? = "Log"
 
@@ -24,48 +35,60 @@ class DataFeacher(callBack: DataFetcherCallBack?) {
     var headerMap: MutableMap<String, Any?> = HashMap()
 
     /*********************************** POST Fetcher  **********************************/
-    fun loginHandle(memberModel: MemberModel?) {
+    fun loginHandle(activity: Activity,memberModel: RegisterUserModel?) {
 
         val params: MutableMap<String?, Any?> = HashMap()
-
-        params["country_code"] = memberModel?.countryCode
-        params["mobile"] = memberModel?.mobile
-        params["password"] = memberModel?.password
-        params["device_token"] = memberModel?.fcmToken
 
         Log.i(TAG, "Log loginHandle")
-        Log.i(TAG, "Log headerMap $headerMap")
-        Log.i(TAG, "Log country_code " + memberModel?.countryCode)
         Log.i(TAG, "Log mobile " + memberModel?.mobile)
         Log.i(TAG, "Log password " + memberModel?.password)
-        Log.i(TAG, "Log device_token " + memberModel?.fcmToken)
+        val phoneNumber= memberModel?.mobileWithPlus.toString()
+        this.activity=activity
+        fireStoreDB?.collection(ApiUrl.Users.name)?.document(phoneNumber)?.get()
+            ?.addOnSuccessListener { document ->
+                if (document != null) {
+                    Log.d(TAG, "DocumentSnapshot data: ${document.data}")
+                    val password=document.getString(Constants.PASSWORD)
+                    val passStr= memberModel!!.password.toString();
+                    if(password.equals(passStr)){
+
+                        val intent = Intent(activity, MainActivityBottomNav::class.java)
+                        activity.startActivity(intent)
+                    } else{
+                        Toast(activity,R.string.fail_to_login)
+                        GlobalData.progressDialog(
+                            activity,
+                            R.string.sign_in,
+                            R.string.please_wait_login,
+                            false)
+                    }
+
+
+                } else {
+                    Log.d(TAG, "No such document")
+                    Toast(activity,R.string.not_have_account_q)
+                }
+            }
+
 
     }
 
-    fun registerHandle(memberModel: RegisterUserModel?) {
+    fun registerHandle(activity: Activity,memberModel: RegisterUserModel?) {
+        val phoneNumber= memberModel?.mobileWithPlus.toString()
+        this.activity=activity
+        if (memberModel != null) {
+            fireStoreDB!!.collection(ApiUrl.Users.name).document(phoneNumber).set(memberModel)
+                .addOnSuccessListener {
+                goToConfirmPage(phoneNumber)
+            }.addOnFailureListener {
+                Toast(activity,R.string.fail_to_register)
 
-        val params: MutableMap<String?, Any?> = HashMap()
-        params["user_type"] = memberModel?.type
-        params["country_code"] = memberModel?.countryCode
-        params["mobile"] = memberModel?.mobile
-        if (memberModel?.countryId != 0)
-            params["country_id"] = memberModel?.countryId
-        params["password"] = memberModel?.password
-//        params["confirm_password"] = memberModel?.password
-        params["fcm_token"] = memberModel?.fcm_token
-
-        Log.i(TAG, "Log registerHandle")
-        Log.i(TAG, "Log headerMap $headerMap")
-        Log.i(TAG, "Log user_type ${memberModel?.type}")
-        Log.i(TAG, "Log country_code ${memberModel?.countryCode}")
-        Log.i(TAG, "Log mobile ${memberModel?.mobile}")
-        if (memberModel?.countryId != 0)
-            Log.i(TAG, "Log country_id ${memberModel?.countryId}")
-        Log.i(TAG, "Log password ${memberModel?.password}")
-//        Log.i(TAG, "Log confirm_password " + memberModel?.password)
-        Log.i(TAG, "Log fcm_token ${memberModel?.fcm_token}")
+            }
+        }
 
     }
+
+
 
     fun confirmRegister(countryCode: Int, mobile: String?, confirmCode: String) {
 
@@ -380,5 +403,21 @@ class DataFeacher(callBack: DataFetcherCallBack?) {
 
     private fun printLog(o: Any?) {
         Log.v("Log", "Log " + o.toString())
+    }
+    private fun goToConfirmPage(phoneNumber:String ) {
+
+        Log.d(TAG, "phoneNumber:$phoneNumber")
+        GlobalData.progressDialog(
+           activity,
+            R.string.register,
+            R.string.please_wait_register,
+            false
+        )
+        val intent = Intent(activity, ConfirmActivity::class.java)
+        intent.putExtra(Constants.KEY_MOBILE, phoneNumber)
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
+        activity?.startActivity(intent)
+
+
     }
 }

@@ -13,6 +13,7 @@ import com.elaj.patient.Utils.NumberHandler
 import com.elaj.patient.Utils.PhoneHandler
 import com.elaj.patient.Utils.SharedPManger
 import com.elaj.patient.apiHandlers.ApiUrl
+import com.elaj.patient.apiHandlers.DataFeacher
 import com.elaj.patient.apiHandlers.DataFetcherCallBack
 import com.elaj.patient.classes.Constants
 import com.elaj.patient.classes.GlobalData
@@ -44,8 +45,6 @@ class LoginActivity : ActivityBase() {
     private var FCMToken: String? = ""
     private var loginMemberModel: LoginMemberModel? = null
     private lateinit var phoneNumber:String
-    lateinit var db: FirebaseFirestore
-
     var sharedPManger: SharedPManger? = null
     val TAG: String? = "ConfirmActivity"
     var historyPosition = -1
@@ -66,8 +65,6 @@ class LoginActivity : ActivityBase() {
         title = ""
 
         sharedPManger = SharedPManger(getActiviy())
-        db = FirebaseFirestore.getInstance()
-
         val savedData = sharedPManger?.getDataString(Constants.KEY_LOGIN_PREFERANCE)
         historyModel =
             Gson().fromJson(
@@ -178,34 +175,7 @@ class LoginActivity : ActivityBase() {
                 R.string.please_wait_login,
                 true
             )
-
-            db.collection(ApiUrl.Users.name).document(phoneNumber).get().addOnSuccessListener {
-                    document ->
-                if (document != null) {
-                    Log.d(TAG, "DocumentSnapshot data: ${document.data}")
-                    val password=document.getString(Constants.PASSWORD)
-                    val passStr=passwordTxt.text.toString();
-                    if(password.equals(passStr)){
-
-                        val intent = Intent(getActiviy(), MainActivityBottomNav::class.java)
-                        startActivity(intent)
-                    }
-                    else{
-                        Toast(R.string.fail_to_login)
-                        GlobalData.progressDialog(
-                            getActiviy(),
-                            R.string.sign_in,
-                            R.string.please_wait_login,
-                            false)
-                    }
-
-
-                } else {
-                    Log.d(TAG, "No such document")
-                    Toast(R.string.not_have_account_q)
-                }
-            }
-
+            DataFeacher(null).loginHandle(getActiviy(),memberModel)
 //            DataFeacher().loginHandle(loginUserModel)
 
         } catch (e: Exception) {

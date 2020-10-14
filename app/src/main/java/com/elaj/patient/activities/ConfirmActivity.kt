@@ -27,7 +27,6 @@ class ConfirmActivity : ActivityBase() {
     private lateinit var callbacks: PhoneAuthProvider.OnVerificationStateChangedCallbacks
     private var storedVerificationId: String=""
     private lateinit var resendToken: PhoneAuthProvider.ForceResendingToken
-    var countryCode: Int = Constants.COUNTRY_CODE
     var mobile: String = ""
     lateinit var db: FirebaseFirestore
 
@@ -41,9 +40,7 @@ class ConfirmActivity : ActivityBase() {
 
         val bundle = intent.extras
         if (bundle != null) {
-            countryCode = bundle.getInt(Constants.KEY_COUNTRY_CODE)
             mobile = bundle.getString(Constants.KEY_MOBILE)!!
-            Log.i(TAG, "Log countryCode " + countryCode)
             Log.i(TAG, "Log mobile " + mobile)
             sendVerificationCode(mobile)
 

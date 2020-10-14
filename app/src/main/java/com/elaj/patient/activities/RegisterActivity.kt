@@ -4,12 +4,10 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.telephony.TelephonyManager
-import android.util.Log
 import android.widget.ArrayAdapter
 import com.elaj.patient.R
 import com.elaj.patient.Utils.NumberHandler
 import com.elaj.patient.Utils.PhoneHandler
-import com.elaj.patient.apiHandlers.ApiUrl
 import com.elaj.patient.apiHandlers.DataFeacher
 import com.elaj.patient.apiHandlers.DataFetcherCallBack
 import com.elaj.patient.classes.Constants
@@ -22,10 +20,6 @@ import com.github.dhaval2404.form_validation.rule.EqualRule
 import com.github.dhaval2404.form_validation.rule.LengthRule
 import com.github.dhaval2404.form_validation.rule.NonEmptyRule
 import com.github.dhaval2404.form_validation.validation.FormValidator
-import com.google.android.gms.tasks.OnSuccessListener
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.PhoneAuthProvider
-import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.iid.FirebaseInstanceId
 import com.google.firebase.iid.InstanceIdResult
 import io.michaelrocks.libphonenumber.android.PhoneNumberUtil
@@ -39,7 +33,6 @@ class RegisterActivity : ActivityBase() {
 
     private var FCMToken: String? = ""
     val TAG: String? = "Log"
-    lateinit var db: FirebaseFirestore
     private var countryModels: MutableList<CountryModel>? = mutableListOf()
     private var countryVal = 0
 
@@ -47,9 +40,6 @@ class RegisterActivity : ActivityBase() {
     private var cityModels: MutableList<CityModel>? = mutableListOf()
     private var cityData: MutableList<String> = ArrayList()
     private var cityVal = 0
-
-    // Firebase Login
-    private lateinit var callbacks: PhoneAuthProvider.OnVerificationStateChangedCallbacks
 
     var selectedCountryCode = 0
     var countryCodeDialog: CountryCodeDialog? = null
@@ -59,7 +49,7 @@ class RegisterActivity : ActivityBase() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
         title = ""
-        db = FirebaseFirestore.getInstance()
+
 
 //        countrySpinner.onItemClickListener =
 //            AdapterView.OnItemClickListener { parent, view, position, id ->
@@ -93,7 +83,6 @@ class RegisterActivity : ActivityBase() {
             val intent = Intent(getActiviy(), LoginActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
             startActivity(intent)
-
         }
 
         loginBtn.setOnClickListener {
@@ -101,7 +90,6 @@ class RegisterActivity : ActivityBase() {
             if (isValidForm())
                 registerUser()
         }
-
 
         getCountries()
         getFCMToken()
@@ -156,7 +144,6 @@ class RegisterActivity : ActivityBase() {
         }
     }
 
-
     private fun initLocalCountryCode() {
         val tm = getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
         val networkCountryIso = tm.networkCountryIso
@@ -208,27 +195,16 @@ class RegisterActivity : ActivityBase() {
                 getActiviy(),
                 R.string.register,
                 R.string.please_wait_register,
-                true
-            )
+                true)
 
-            db.collection(ApiUrl.Users.name).document(phoneNumber).set(registerUserModel).addOnSuccessListener {
-                goToConfirmPage()
-            }.addOnFailureListener {
-                Toast(R.string.fail_to_register)
-
-            }
+            DataFeacher(null).registerHandle(getActiviy(),registerUserModel)
 
         } catch (e: Exception) {
 
             e.printStackTrace()
 
-//            if (e.message == "phone")
-////                Toast(R.string.invalid_phone)
-////            else if (e.message == "terms")
-////                Toast(R.string.not_accept_terms)
         }
     }
-
 
     override fun onStart() {
         super.onStart()
@@ -318,25 +294,6 @@ class RegisterActivity : ActivityBase() {
                     UtilityApp.fCMToken = FCMToken
                 }
         }
-    }
-
-
-    private fun goToConfirmPage( ) {
-
-        Log.d(TAG, "phoneNumber:$phoneNumber")
-        GlobalData.progressDialog(
-            getActiviy(),
-            R.string.register,
-            R.string.please_wait_register,
-            false
-        )
-        val intent = Intent(getActiviy(), ConfirmActivity::class.java)
-        intent.putExtra(Constants.KEY_COUNTRY_CODE, selectedCountryCode)
-        intent.putExtra(Constants.KEY_MOBILE, phoneNumber)
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
-        startActivity(intent)
-
-
     }
 
 

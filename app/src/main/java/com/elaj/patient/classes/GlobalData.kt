@@ -51,34 +51,30 @@ object GlobalData {
     fun progressDialog(
         c: Context?,
         title: Int?,
-        msg: Int?,
-        status: Boolean
+        msg: Int?
     ) { // to show dialog insert status = true to dismiss doialog status = false
 
-        if (status) {
-            progressDialog = AwesomeProgressDialog(c)
-                .setTitle(title!!)
-                .setMessage(msg!!)
-                .setColoredCircle(R.color.colorPrimaryDark)
-                .setDialogIconAndColor(R.drawable.ic_dialog_info, R.color.white)
-                .setCancelable(false)
+        progressDialog = AwesomeProgressDialog(c)
+            .setTitle(title!!)
+            .setMessage(msg!!)
+            .setColoredCircle(R.color.colorPrimaryDark)
+            .setDialogIconAndColor(R.drawable.ic_dialog_info, R.color.white)
+            .setCancelable(false)
 
-            progressDialog?.show()
-        } else {
-            progressDialog?.hide()
-        }
-
+        progressDialog?.show()
 
     }
+
+    fun progressDialogHide() {
+        progressDialog?.hide()
+    }
+
 
     fun errorDialog(
         c: Context?,
         title: Int?,
-        msg: String?,
-        status: Boolean
-    ) { // to show dialog insert status = true to dismiss doialog status = false
+        msg: String?) { // to show dialog insert status = true to dismiss doialog status = false
 
-        if (status) {
             errorDialog = AwesomeErrorDialog(c)
                 .setTitle(title!!)
                 .setMessage(msg!!)
@@ -89,10 +85,6 @@ object GlobalData {
                 .setButtonBackgroundColor(R.color.dialogErrorBackgroundColor)
 
             errorDialog?.show()
-        } else {
-            errorDialog?.hide()
-        }
-
 
     }
 
@@ -126,7 +118,6 @@ object GlobalData {
             Toast.LENGTH_SHORT
         ).show()
     }
-
 
 
 }

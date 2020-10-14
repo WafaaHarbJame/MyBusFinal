@@ -24,7 +24,7 @@ import java.io.File
 
 class DataFeacher(callBack: DataFetcherCallBack?) {
     var dataFetcherCallBack: DataFetcherCallBack? = callBack
-        var activity: Activity? = Activity()
+    var activity: Activity? = Activity()
 
     var fireStoreDB = RootApplication.fireStoreDB
 
@@ -36,87 +36,76 @@ class DataFeacher(callBack: DataFetcherCallBack?) {
     var headerMap: MutableMap<String, Any?> = HashMap()
 
     /*********************************** POST Fetcher  **********************************/
-    fun loginHandle(activity: Activity,memberModel: RegisterUserModel?) {
+    fun loginHandle(activity: Activity, memberModel: RegisterUserModel?) {
 
         val params: MutableMap<String?, Any?> = HashMap()
 
         Log.i(TAG, "Log loginHandle")
         Log.i(TAG, "Log mobile " + memberModel?.mobile)
         Log.i(TAG, "Log password " + memberModel?.password)
-        val phoneNumber= memberModel?.mobileWithPlus.toString()
-        this.activity=activity
+        val phoneNumber = memberModel?.mobileWithPlus.toString()
+        this.activity = activity
         fireStoreDB?.collection(ApiUrl.Users.name)?.document(phoneNumber)?.get()
             ?.addOnSuccessListener { document ->
-                if (document != null) {
-                    Log.d(TAG, "DocumentSnapshot data: ${document.data}")
-                    val password=document.getString(Constants.PASSWORD)
-                    val passStr= memberModel!!.password.toString();
-                    val isVerified=document.getBoolean(Constants.isVerified)
-                    if(password.equals(passStr)){
-                        if(isVerified==true){
-                            val intent = Intent(activity, MainActivityBottomNav::class.java)
-                            activity.startActivity(intent)
-                        }
-                        else{
-                            val intent = Intent(activity, ConfirmActivity::class.java)
-                            intent.putExtra(Constants.KEY_MOBILE, phoneNumber)
-                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
-                            activity?.startActivity(intent)
-
-                        }
-
-
-                    } else{
-                        Toast(activity,R.string.fail_to_login)
-                        GlobalData.progressDialog(
-                            activity,
-                            R.string.sign_in,
-                            R.string.please_wait_login,
-                            false)
-                    }
-
-                } else {
-                    Log.d(TAG, "No such document")
-                    Toast(activity,R.string.not_have_account_q)
-                }
+                dataFetcherCallBack?.Result(document, Constants.SUCCESS, true)
             }
 
 
     }
 
-    fun registerHandle(activity: Activity,memberModel: RegisterUserModel?) {
-        val phoneNumber= memberModel?.mobileWithPlus.toString()
-        this.activity=activity
-        if (memberModel != null) {
-            fireStoreDB!!.collection(ApiUrl.Users.name).document(phoneNumber).set(memberModel)
-                .addOnSuccessListener {
-                goToConfirmPage(phoneNumber)
+    fun registerHandle(activity: Activity, memberModel: RegisterUserModel) {
+
+        Log.i(TAG, "Log countryCode ${memberModel.countryCode}")
+        Log.i(TAG, "Log mobile ${memberModel.mobile}")
+
+        val phoneNumber = memberModel.mobileWithPlus.toString()
+        this.activity = activity
+
+        fireStoreDB!!.collection(ApiUrl.Users.name).document(phoneNumber).set(memberModel)
+            .addOnSuccessListener {
+                dataFetcherCallBack?.Result(memberModel, Constants.SUCCESS, true)
             }.addOnFailureListener {
-                Toast(activity,R.string.fail_to_register)
-
+                dataFetcherCallBack?.Result(memberModel, Constants.SUCCESS, true)
             }
-        }
 
     }
 
 
+    fun confirmAccount(mobile: String) {
 
-    fun confirmRegister(countryCode: Int, mobile: String?, confirmCode: String) {
-
-        val params: MutableMap<String?, Any?> = HashMap()
-
-        params["country_code"] = countryCode
-        params["mobile"] = mobile
-        params["confirm_register"] = confirmCode
-
-        Log.i(TAG, "Log confirmRegister")
+        Log.i(TAG, "Log confirmAccount")
         Log.i(TAG, "Log headerMap $headerMap")
-        Log.i(TAG, "Log country_code $countryCode")
         Log.i(TAG, "Log mobile $mobile")
-        Log.i(TAG, "Log confirm_register $confirmCode")
+
+        RootApplication.fireStoreDB?.collection(ApiUrl.Users.name)?.document(mobile)
+            ?.update("isVerified", true)?.addOnSuccessListener {
+
+                dataFetcherCallBack?.Result("", Constants.SUCCESS, true)
+
+            }?.addOnFailureListener { e ->
+                dataFetcherCallBack?.Result("", Constants.FAIL_DATA, true)
+            }
 
     }
 
+    fun getMyAccount(mobile: String) {
+
+        Log.i(TAG, "Log confirmAccount")
+        Log.i(TAG, "Log headerMap $headerMap")
+        Log.i(TAG, "Log mobile $mobile")
+
+        RootApplication.fireStoreDB?.collection(ApiUrl.Users.name)?.document(mobile)
+            ?.get()?.addOnSuccessListener {
+
+                val user = it.toObject(MemberModel::class.java)
+
+                dataFetcherCallBack?.Result(user, Constants.SUCCESS, true)
+
+            }?.addOnFailureListener { e ->
+                dataFetcherCallBack?.Result(null, Constants.FAIL_DATA, true)
+            }
+
+    }
 
 
     fun resendConfirmRegister(countryCode: Int, mobile: String) {
@@ -416,21 +405,5 @@ class DataFeacher(callBack: DataFetcherCallBack?) {
 
     private fun printLog(o: Any?) {
         Log.v("Log", "Log " + o.toString())
-    }
-    private fun goToConfirmPage(phoneNumber:String ) {
-
-        Log.d(TAG, "phoneNumber:$phoneNumber")
-        GlobalData.progressDialog(
-           activity,
-            R.string.register,
-            R.string.please_wait_register,
-            false
-        )
-        val intent = Intent(activity, ConfirmActivity::class.java)
-        intent.putExtra(Constants.KEY_MOBILE, phoneNumber)
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
-        activity?.startActivity(intent)
-
-
     }
 }

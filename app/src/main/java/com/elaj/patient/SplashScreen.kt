@@ -12,10 +12,12 @@ import com.elaj.patient.models.MemberModel
 import com.elaj.patient.models.ResponseEvent
 import com.elaj.patient.models.ResultAPIModel
 import com.elaj.patient.activities.ActivityBase
+import com.elaj.patient.activities.LoginActivity
 import com.elaj.patient.activities.WelcomeActivity
 import com.elaj.patient.apiHandlers.DataFeacher
 import com.elaj.patient.apiHandlers.DataFetcherCallBack
 import com.elaj.patient.classes.Constants
+import com.elaj.patient.classes.GlobalData
 import com.elaj.patient.classes.UtilityApp
 import com.elaj.patient.dialogs.MyConfirmDialog
 import com.elaj.patient.dialogs.MyConfirmDialog.Click
@@ -77,24 +79,44 @@ class SplashScreen : ActivityBase() {
         Handler(Looper.getMainLooper()).postDelayed({
             // start if has access token
             if (UtilityApp.isLogin) {
+
+                val mobile = UtilityApp.userData?.mobileWithPlus
+
                 DataFeacher(object : DataFetcherCallBack {
                     override fun Result(obj: Any?, func: String?, IsSuccess: Boolean) {
-                        isGetProfile = true
+
                         if (func == Constants.SUCCESS) {
-                            val result: ResultAPIModel<MemberModel> =
-                                obj as ResultAPIModel<MemberModel>
-                            val user: MemberModel = result.data
-                            UtilityApp.userData = user
+
+//                            val user = obj
+                            UtilityApp.userData = obj as MemberModel?
+
+                            val intent = Intent(getActiviy(), MainActivityBottomNav::class.java)
+                            intent.flags =
+                                Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                            startActivity(intent)
+                            finish()
+                        } else {
+
+                            GlobalData.errorDialog(
+                                getActiviy(),
+                                R.string.confirm_account,
+                                getString(R.string.fail_confirm_account)
+                            )
+
                         }
+
+
                     }
-                })
+                }).getMyAccount(mobile!!)
+
             } else {
                 val intent = Intent(
                     getActiviy(),
                     if (UtilityApp.isFirstLogin)
                         WelcomeActivity::class.java
                     else
-                        MainActivityBottomNav::class.java
+//                        MainActivityBottomNav::class.java
+                        LoginActivity::class.java
                 )
                 intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
                 startActivity(intent)
@@ -113,39 +135,6 @@ class SplashScreen : ActivityBase() {
         EventBus.getDefault().unregister(this)
     }
 
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    fun onMessageEvent(responseEvent: ResponseEvent) {
-
-        if (responseEvent.api == "getMyProfile") {
-            when (responseEvent.type) {
-                Constants.ERROR_DATA, Constants.FAIL_DATA, Constants.NO_CONNECTION -> {
-                    if (responseEvent.type == Constants.NO_CONNECTION)
-                        Toast(R.string.no_internet_connection)
-
-                    val intent = Intent(getActiviy(), MainActivityBottomNav::class.java)
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
-                    startActivity(intent)
-                    finish()
-                }
-                Constants.UNAUTHENTICATED -> {
-                    signOut()
-                }
-                else -> {
-                    val result: ResultAPIModel<MemberModel> =
-                        responseEvent.data as ResultAPIModel<MemberModel>
-                    if (responseEvent.type == Constants.SUCCESS) {
-                        val user: MemberModel = result.data
-                        UtilityApp.userData = user
-                    }
-                    val intent = Intent(getActiviy(), MainActivityBottomNav::class.java)
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
-                    startActivity(intent)
-                    finish()
-                }
-            }
-        }
-
-    }
 
     fun signOut() {
         UtilityApp.logOut()

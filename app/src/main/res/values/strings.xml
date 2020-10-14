@@ -114,6 +114,9 @@
     <string name="please_wait_sending">Please wait sending ...</string>
     <string name="resend">Resend</string>
     <string name="please_wait_login">"Please Wait to login "</string>
-    <string name="fail_to_login">fail to login Password Wrong</string>
+    <string name="fail_to_login">Fail to login</string>
+    <string name="fail_to_login_mobile_not_match_password">Fail to login mobile or password is wrong</string>
+    <string name="confirm_account">Confirm Account</string>
+    <string name="fail_confirm_account">Fail to confirm account</string>
 
 </resources>

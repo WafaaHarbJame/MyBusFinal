@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.telephony.TelephonyManager
+import android.util.Log
 import android.widget.ArrayAdapter
 import com.elaj.patient.R
 import com.elaj.patient.Utils.NumberHandler
@@ -30,6 +31,8 @@ class RegisterActivity : ActivityBase() {
 
     private var FCMToken: String? = ""
     val TAG: String? = "Log"
+
+    //    lateinit var db: FirebaseFirestore
     private var countryModels: MutableList<CountryModel>? = mutableListOf()
     private var countryVal = 0
 
@@ -40,7 +43,7 @@ class RegisterActivity : ActivityBase() {
 
     var selectedCountryCode = 0
     var countryCodeDialog: CountryCodeDialog? = null
-    private lateinit var phoneNumber:String
+//    private lateinit var phoneNumber: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -164,9 +167,9 @@ class RegisterActivity : ActivityBase() {
             var mobileStr = NumberHandler.arabicToDecimal(mobileTxt.text.toString())
             val passwordStr = NumberHandler.arabicToDecimal(passwordTxt.text.toString())
 
-            if (!PhoneHandler.isValidPhoneNumber(mobileStr)) {
-                throw  Exception("phone")
-            }
+//            if (!PhoneHandler.isValidPhoneNumber(mobileStr)) {
+//                throw  Exception("phone")
+//            }
 
             if (countryVal == -1)
                 throw Exception("country")
@@ -175,26 +178,55 @@ class RegisterActivity : ActivityBase() {
             registerUserModel.countryCode = selectedCountryCode
             registerUserModel.mobile =
                 if (mobileStr.startsWith("0")) mobileStr.replaceFirst(
-                    "0".toRegex(),
+                    "0",
                     ""
                 ) else mobileStr
 
-            phoneNumber = countryCodeTxt.text.toString()
-                .plus(NumberHandler.arabicToDecimal(mobileStr))
-            registerUserModel.password = passwordStr
+//            phoneNumber = countryCodeTxt.text.toString()
+//                .plus(NumberHandler.arabicToDecimal(mobileStr))
             registerUserModel.fcm_token = FCMToken
-            registerUserModel.isVerified=false
-            registerUserModel.password=AESCrypt.encrypt(passwordStr);
-            registerUserModel.password_confirm=AESCrypt.encrypt(passwordStr)
-            registerUserModel.mobileWithPlus=phoneNumber
+            registerUserModel.isVerified = false
+            registerUserModel.password = AESCrypt.encrypt(passwordStr);
+            registerUserModel.password_confirm = AESCrypt.encrypt(passwordStr)
+            registerUserModel.mobileWithPlus =
+                countryCodeTxt.text.toString().plus(registerUserModel.mobile)
 
             GlobalData.progressDialog(
                 getActiviy(),
                 R.string.register,
-                R.string.please_wait_register,
-                true)
+                R.string.please_wait_register
+            )
 
-            DataFeacher(null).registerHandle(getActiviy(),registerUserModel)
+            DataFeacher(object : DataFetcherCallBack {
+                override fun Result(obj: Any?, func: String?, IsSuccess: Boolean) {
+                    GlobalData.progressDialogHide()
+
+                    if (func == Constants.SUCCESS) {
+                        Log.d(TAG, "phoneNumber:${registerUserModel.mobileWithPlus}")
+
+                        val user = MemberModel().apply {
+                            countryCode = registerUserModel.countryCode
+                            mobile = registerUserModel.mobile
+                            mobileWithPlus = registerUserModel.mobileWithPlus
+                            fcm_token = registerUserModel.fcm_token
+                            password = registerUserModel.password
+                            isVerified = true
+                        }
+                        val intent = Intent(getActiviy(), ConfirmActivity::class.java)
+                        intent.putExtra(Constants.KEY_MEMBER, user)
+                        intent.putExtra(Constants.KEY_MOBILE, registerUserModel.mobileWithPlus)
+                        startActivity(intent)
+                    } else {
+                        GlobalData.errorDialog(
+                            getActiviy(),
+                            R.string.register,
+                            getString(R.string.fail_to_register)
+                        )
+                    }
+
+
+                }
+            }).registerHandle(getActiviy(), registerUserModel)
 
         } catch (e: Exception) {
 
@@ -233,7 +265,7 @@ class RegisterActivity : ActivityBase() {
                     }
                 }
 
-                GlobalData.errorDialog(getActiviy(), R.string.register, message, true)
+                GlobalData.errorDialog(getActiviy(), R.string.register, message)
 
             } else if (responseEvent.type == Constants.FAIL_DATA) {
                 Toast(R.string.fail_to_register)
@@ -292,6 +324,5 @@ class RegisterActivity : ActivityBase() {
                 }
         }
     }
-
 
 }

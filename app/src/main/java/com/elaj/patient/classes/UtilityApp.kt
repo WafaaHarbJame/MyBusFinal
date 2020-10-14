@@ -169,14 +169,14 @@ object UtilityApp {
 //            )
 //        }
 
-    val userToken: String?
-        get() {
-            val memberModel: MemberModel? = userData
-            if (memberModel != null) {
-                return Constants.TOKEN_PREFIX + memberModel.apiToken
-            }
-            return null
-        }
+//    val userToken: String?
+//        get() {
+//            val memberModel: MemberModel? = userData
+//            if (memberModel != null) {
+//                return Constants.TOKEN_PREFIX + memberModel.apiToken
+//            }
+//            return null
+//        }
 
     //    public static void startLoginUserActivity(Context context) {
 //        User user = UtilityBakkalti.getUserData();

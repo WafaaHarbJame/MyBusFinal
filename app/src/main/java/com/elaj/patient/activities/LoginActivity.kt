@@ -12,17 +12,17 @@ import com.elaj.patient.R
 import com.elaj.patient.Utils.NumberHandler
 import com.elaj.patient.Utils.PhoneHandler
 import com.elaj.patient.Utils.SharedPManger
-import com.elaj.patient.apiHandlers.ApiUrl
 import com.elaj.patient.apiHandlers.DataFeacher
 import com.elaj.patient.apiHandlers.DataFetcherCallBack
 import com.elaj.patient.classes.AESCrypt
 import com.elaj.patient.classes.Constants
 import com.elaj.patient.classes.GlobalData
+import com.elaj.patient.classes.UtilityApp
 import com.elaj.patient.classes.UtilityApp.fCMToken
 import com.elaj.patient.dialogs.CountryCodeDialog
 import com.github.dhaval2404.form_validation.rule.NonEmptyRule
 import com.github.dhaval2404.form_validation.validation.FormValidator
-import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.iid.FirebaseInstanceId
 import com.google.firebase.iid.InstanceIdResult
 import com.google.gson.Gson
@@ -36,7 +36,6 @@ import kotlinx.android.synthetic.main.activity_login.mobileTxt
 import kotlinx.android.synthetic.main.activity_login.passwordInput
 import kotlinx.android.synthetic.main.activity_login.passwordTxt
 import kotlinx.android.synthetic.main.activity_login.registerBtn
-import kotlinx.android.synthetic.main.activity_register.*
 
 
 class LoginActivity : ActivityBase() {
@@ -45,7 +44,7 @@ class LoginActivity : ActivityBase() {
     private var history: MutableList<String> = ArrayList()
     private var FCMToken: String? = ""
     private var loginMemberModel: LoginMemberModel? = null
-    private lateinit var phoneNumber:String
+    private lateinit var phoneNumber: String
     var sharedPManger: SharedPManger? = null
     val TAG: String? = "ConfirmActivity"
     var historyPosition = -1
@@ -80,7 +79,6 @@ class LoginActivity : ActivityBase() {
 
             if (isValidForm())
                 loginUser()
-
 
 
         }
@@ -146,7 +144,7 @@ class LoginActivity : ActivityBase() {
 
         try {
 
-            var mobileStr = NumberHandler.arabicToDecimal(mobileTxt.text.toString())
+            val mobileStr = NumberHandler.arabicToDecimal(mobileTxt.text.toString())
             val passwordStr = NumberHandler.arabicToDecimal(passwordTxt.text.toString())
 
             if (!PhoneHandler.isValidPhoneNumber(mobileStr)) {
@@ -157,7 +155,7 @@ class LoginActivity : ActivityBase() {
             memberModel.countryCode = selectedCountryCode
             memberModel.mobile =
                 if (mobileStr.startsWith("0")) mobileStr.replaceFirst(
-                    "0".toRegex(),
+                    "0",
                     ""
                 ) else mobileStr
 
@@ -165,18 +163,68 @@ class LoginActivity : ActivityBase() {
                 .plus(NumberHandler.arabicToDecimal(mobileStr))
             memberModel.password = passwordStr
             memberModel.fcm_token = FCMToken
-            memberModel.isVerified=false
-            memberModel.password= AESCrypt.encrypt(passwordStr);
-            memberModel.password_confirm=AESCrypt.encrypt(passwordStr);
-            memberModel.mobileWithPlus=phoneNumber
+            memberModel.isVerified = false
+            memberModel.password = AESCrypt.encrypt(passwordStr)
+//            memberModel.password_confirm = AESCrypt.encrypt(passwordStr)
+            memberModel.mobileWithPlus = phoneNumber
 //
             GlobalData.progressDialog(
                 getActiviy(),
                 R.string.sign_in,
-                R.string.please_wait_login,
-                true
+                R.string.please_wait_login
             )
-            DataFeacher(null).loginHandle(getActiviy(),memberModel)
+            DataFeacher(object : DataFetcherCallBack {
+                override fun Result(obj: Any?, func: String?, IsSuccess: Boolean) {
+                    GlobalData.progressDialogHide()
+
+                    val document: DocumentSnapshot? = obj as DocumentSnapshot
+                    if (document != null) {
+//                        Log.d(TAG, "DocumentSnapshot data: ${document.data}")
+                        val user = document.toObject(MemberModel::class.java)
+
+                        val password = user?.password
+                        val isVerified = user?.isVerified
+                        if (password == memberModel.password) {
+                            if (isVerified == true) {
+
+                                UtilityApp.userData = user
+
+                                val intent = Intent(getActiviy(), MainActivityBottomNav::class.java)
+                                intent.flags =
+                                    Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                                startActivity(intent)
+                                finish()
+                            } else {
+                                val intent = Intent(getActiviy(), ConfirmActivity::class.java)
+                                intent.putExtra(Constants.KEY_MEMBER, user)
+                                intent.putExtra(Constants.KEY_MOBILE, phoneNumber)
+                                startActivity(intent)
+
+                            }
+
+                        } else {
+//                            Toast(R.string.fail_to_login)
+
+                            GlobalData.errorDialog(
+                                getActiviy(),
+                                R.string.login,
+                                getString(R.string.fail_to_login)
+                            )
+                        }
+
+                    } else {
+//                        Toast(R.string.not_have_account_q)
+
+                        GlobalData.errorDialog(
+                            getActiviy(),
+                            R.string.login,
+                            getString(R.string.not_have_account_q)
+                        )
+
+                    }
+
+                }
+            }).loginHandle(getActiviy(), memberModel)
 //            DataFeacher().loginHandle(loginUserModel)
 
         } catch (e: Exception) {

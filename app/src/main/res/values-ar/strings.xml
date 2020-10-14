@@ -107,5 +107,6 @@
     <string name="resend">إرسال</string>
     <string name="please_wait_login">الرجاء الانتظار جاري تسجيل الدخول</string>
     <string name="fail_to_login"> فشل في تسجيل الدخول كلمة المرو غير صحيحة </string>
+    <string name="fail_to_login_mobile_not_match_password">فشل الدخول رقم الجوال او كلمة المرور خطأ</string>
 
 </resources>

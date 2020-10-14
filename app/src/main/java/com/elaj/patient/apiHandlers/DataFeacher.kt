@@ -58,14 +58,12 @@ class DataFeacher(callBack: DataFetcherCallBack?) {
                             activity.startActivity(intent)
                         }
                         else{
-
                             val intent = Intent(activity, ConfirmActivity::class.java)
                             intent.putExtra(Constants.KEY_MOBILE, phoneNumber)
                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
                             activity?.startActivity(intent)
 
                         }
-
 
 
                     } else{

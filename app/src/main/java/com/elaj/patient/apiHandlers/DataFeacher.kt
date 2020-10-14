@@ -8,6 +8,7 @@ import com.elaj.patient.R
 import com.elaj.patient.models.*
 import com.elaj.patient.RootApplication
 import com.elaj.patient.activities.ConfirmActivity
+import com.elaj.patient.classes.AESCrypt
 import com.elaj.patient.classes.Constants
 import com.elaj.patient.classes.DBFunction
 import com.elaj.patient.classes.GlobalData
@@ -63,7 +64,6 @@ class DataFeacher(callBack: DataFetcherCallBack?) {
                             false)
                     }
 
-
                 } else {
                     Log.d(TAG, "No such document")
                     Toast(activity,R.string.not_have_account_q)
@@ -105,6 +105,8 @@ class DataFeacher(callBack: DataFetcherCallBack?) {
         Log.i(TAG, "Log confirm_register $confirmCode")
 
     }
+
+
 
     fun resendConfirmRegister(countryCode: Int, mobile: String) {
 

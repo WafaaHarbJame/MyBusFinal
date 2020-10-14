@@ -10,10 +10,7 @@ import com.elaj.patient.Utils.NumberHandler
 import com.elaj.patient.Utils.PhoneHandler
 import com.elaj.patient.apiHandlers.DataFeacher
 import com.elaj.patient.apiHandlers.DataFetcherCallBack
-import com.elaj.patient.classes.Constants
-import com.elaj.patient.classes.DBFunction
-import com.elaj.patient.classes.GlobalData
-import com.elaj.patient.classes.UtilityApp
+import com.elaj.patient.classes.*
 import com.elaj.patient.dialogs.CountryCodeDialog
 import com.elaj.patient.models.*
 import com.github.dhaval2404.form_validation.rule.EqualRule
@@ -187,8 +184,8 @@ class RegisterActivity : ActivityBase() {
             registerUserModel.password = passwordStr
             registerUserModel.fcm_token = FCMToken
             registerUserModel.isVerified=false
-            registerUserModel.password=passwordStr;
-            registerUserModel.password_confirm=passwordStr
+            registerUserModel.password=AESCrypt.encrypt(passwordStr);
+            registerUserModel.password_confirm=AESCrypt.encrypt(passwordStr)
             registerUserModel.mobileWithPlus=phoneNumber
 
             GlobalData.progressDialog(

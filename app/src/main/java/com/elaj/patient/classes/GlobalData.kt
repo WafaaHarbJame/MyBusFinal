@@ -1,17 +1,15 @@
 package com.elaj.patient.classes
 
-import android.app.Activity
-import android.app.ProgressDialog
 import android.content.Context
 import android.widget.ImageView
 import android.widget.Toast
+import com.awesomedialog.blennersilva.awesomedialoglibrary.AwesomeErrorDialog
+import com.awesomedialog.blennersilva.awesomedialoglibrary.AwesomeInfoDialog
+import com.awesomedialog.blennersilva.awesomedialoglibrary.AwesomeProgressDialog
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.elaj.patient.R
 import com.elaj.patient.RootApplication
-import com.awesomedialog.blennersilva.awesomedialoglibrary.AwesomeErrorDialog
-import com.awesomedialog.blennersilva.awesomedialoglibrary.AwesomeInfoDialog
-import com.awesomedialog.blennersilva.awesomedialoglibrary.AwesomeProgressDialog
 
 object GlobalData {
 
@@ -128,6 +126,8 @@ object GlobalData {
             Toast.LENGTH_SHORT
         ).show()
     }
+
+
 
 }
 

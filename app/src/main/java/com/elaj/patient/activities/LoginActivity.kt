@@ -15,6 +15,7 @@ import com.elaj.patient.Utils.SharedPManger
 import com.elaj.patient.apiHandlers.ApiUrl
 import com.elaj.patient.apiHandlers.DataFeacher
 import com.elaj.patient.apiHandlers.DataFetcherCallBack
+import com.elaj.patient.classes.AESCrypt
 import com.elaj.patient.classes.Constants
 import com.elaj.patient.classes.GlobalData
 import com.elaj.patient.classes.UtilityApp.fCMToken
@@ -165,8 +166,8 @@ class LoginActivity : ActivityBase() {
             memberModel.password = passwordStr
             memberModel.fcm_token = FCMToken
             memberModel.isVerified=false
-            memberModel.password=passwordStr;
-            memberModel.password_confirm=passwordStr
+            memberModel.password= AESCrypt.encrypt(passwordStr);
+            memberModel.password_confirm=AESCrypt.encrypt(passwordStr);
             memberModel.mobileWithPlus=phoneNumber
 //
             GlobalData.progressDialog(

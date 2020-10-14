@@ -51,10 +51,23 @@ class DataFeacher(callBack: DataFetcherCallBack?) {
                     Log.d(TAG, "DocumentSnapshot data: ${document.data}")
                     val password=document.getString(Constants.PASSWORD)
                     val passStr= memberModel!!.password.toString();
+                    val isVerified=document.getBoolean(Constants.isVerified)
                     if(password.equals(passStr)){
+                        if(isVerified==true){
+                            val intent = Intent(activity, MainActivityBottomNav::class.java)
+                            activity.startActivity(intent)
+                        }
+                        else{
 
-                        val intent = Intent(activity, MainActivityBottomNav::class.java)
-                        activity.startActivity(intent)
+                            val intent = Intent(activity, ConfirmActivity::class.java)
+                            intent.putExtra(Constants.KEY_MOBILE, phoneNumber)
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
+                            activity?.startActivity(intent)
+
+                        }
+
+
+
                     } else{
                         Toast(activity,R.string.fail_to_login)
                         GlobalData.progressDialog(

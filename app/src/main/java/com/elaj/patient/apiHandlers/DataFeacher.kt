@@ -1,24 +1,15 @@
 package com.elaj.patient.apiHandlers
 
 import android.app.Activity
-import android.content.Intent
 import android.util.Log
-import com.elaj.patient.MainActivityBottomNav
-import com.elaj.patient.R
-import com.elaj.patient.models.*
 import com.elaj.patient.RootApplication
-import com.elaj.patient.activities.ConfirmActivity
-import com.elaj.patient.classes.AESCrypt
 import com.elaj.patient.classes.Constants
 import com.elaj.patient.classes.DBFunction
-import com.elaj.patient.classes.GlobalData
-import com.elaj.patient.classes.GlobalData.Toast
+import com.elaj.patient.models.*
 import com.google.gson.Gson
-import kotlinx.android.synthetic.main.activity_login.*
 import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
-import org.w3c.dom.Document
 import java.io.File
 
 
@@ -38,8 +29,6 @@ class DataFeacher(callBack: DataFetcherCallBack?) {
     /*********************************** POST Fetcher  **********************************/
     fun loginHandle(activity: Activity, memberModel: RegisterUserModel?) {
 
-        val params: MutableMap<String?, Any?> = HashMap()
-
         Log.i(TAG, "Log loginHandle")
         Log.i(TAG, "Log mobile " + memberModel?.mobile)
         Log.i(TAG, "Log password " + memberModel?.password)
@@ -47,7 +36,15 @@ class DataFeacher(callBack: DataFetcherCallBack?) {
         this.activity = activity
         fireStoreDB?.collection(ApiUrl.Users.name)?.document(phoneNumber)?.get()
             ?.addOnSuccessListener { document ->
-                dataFetcherCallBack?.Result(document, Constants.SUCCESS, true)
+                if(document.exists()){
+                    dataFetcherCallBack?.Result(document, Constants.SUCCESS, true)
+
+                }
+                else{
+                    dataFetcherCallBack?.Result(null, Constants.FAIL_DATA, false)
+
+                }
+
             }
 
 
@@ -61,11 +58,21 @@ class DataFeacher(callBack: DataFetcherCallBack?) {
         val phoneNumber = memberModel.mobileWithPlus.toString()
         this.activity = activity
 
-        fireStoreDB!!.collection(ApiUrl.Users.name).document(phoneNumber).set(memberModel)
-            .addOnSuccessListener {
-                dataFetcherCallBack?.Result(memberModel, Constants.SUCCESS, true)
-            }.addOnFailureListener {
-                dataFetcherCallBack?.Result(memberModel, Constants.SUCCESS, true)
+        fireStoreDB!!.collection(ApiUrl.Users.name).document(phoneNumber).get()
+            .addOnSuccessListener { document ->
+                if(document.exists()){
+                    dataFetcherCallBack?.Result(document, Constants.FAIL_DATA, true)
+
+                } else{
+                    fireStoreDB!!.collection(ApiUrl.Users.name).document(phoneNumber).set(memberModel)
+                        .addOnSuccessListener {
+                            dataFetcherCallBack?.Result(memberModel, Constants.SUCCESS, true)
+                        }.addOnFailureListener {
+                            dataFetcherCallBack?.Result(null, Constants.FAIL_DATA, true)
+                        }
+
+                }
+
             }
 
     }
@@ -122,37 +129,46 @@ class DataFeacher(callBack: DataFetcherCallBack?) {
 
     }
 
-    fun forgetPassword(countryCode: Int, mobile: String?) {
-
-        val params: MutableMap<String?, Any?> = HashMap()
-
-        params["country_code"] = countryCode
-        params["mobile"] = mobile
-
+    fun forgetPassword( mobile: String) {
         Log.i(TAG, "Log forgetPassword")
-        Log.i(TAG, "Log headerMap $headerMap")
-        Log.i(TAG, "Log country_code $countryCode")
         Log.i(TAG, "Log mobile $mobile")
+
+        fireStoreDB?.collection(ApiUrl.Users.name)?.document(mobile)?.get()
+            ?.addOnSuccessListener { document ->
+                if(document.exists()){
+                    dataFetcherCallBack?.Result(document, Constants.SUCCESS, true)
+
+                }
+                else{
+                    dataFetcherCallBack?.Result(null, Constants.FAIL_DATA, true)
+
+                }
+            }
+            ?.addOnFailureListener {
+                dataFetcherCallBack?.Result(null, Constants.FAIL_DATA, true)
+
+            }
+
+
 
     }
 
-    fun resetPassword(countryCode: Int, mobile: String, code: String, newPassword: String) {
-
-        val params: MutableMap<String?, Any?> = HashMap()
-
-        params["country_code"] = countryCode
-        params["mobile"] = mobile
-        params["confirmation_code"] = code
-        params["new_password"] = newPassword
-        params["confirm_password"] = newPassword
+    fun resetPassword(mobile: String,newPassword: String) {
 
         Log.i(TAG, "Log resetPassword")
-        Log.i(TAG, "Log headerMap $headerMap")
-        Log.i(TAG, "Log country_code $countryCode")
         Log.i(TAG, "Log mobile $mobile")
-        Log.i(TAG, "Log confirmation_code $code")
         Log.i(TAG, "Log new_password $newPassword")
         Log.i(TAG, "Log confirm_password $newPassword")
+
+        RootApplication.fireStoreDB?.collection(ApiUrl.Users.name)?.document(mobile)
+            ?.update("isVerified", true,"password",newPassword,"password_confirm",newPassword)?.addOnSuccessListener {
+
+                dataFetcherCallBack?.Result("", Constants.SUCCESS, true)
+
+            }?.addOnFailureListener { e ->
+                dataFetcherCallBack?.Result("", Constants.FAIL_DATA, true)
+            }
+
 
     }
 

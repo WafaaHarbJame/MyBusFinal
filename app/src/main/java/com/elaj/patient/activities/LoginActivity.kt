@@ -36,6 +36,7 @@ import kotlinx.android.synthetic.main.activity_login.mobileTxt
 import kotlinx.android.synthetic.main.activity_login.passwordInput
 import kotlinx.android.synthetic.main.activity_login.passwordTxt
 import kotlinx.android.synthetic.main.activity_login.registerBtn
+import kotlinx.android.synthetic.main.activity_register.*
 
 
 class LoginActivity : ActivityBase() {
@@ -161,12 +162,11 @@ class LoginActivity : ActivityBase() {
 
             phoneNumber = countryCodeTxt.text.toString()
                 .plus(NumberHandler.arabicToDecimal(mobileStr))
-            memberModel.password = passwordStr
             memberModel.fcm_token = FCMToken
             memberModel.isVerified = false
             memberModel.password = AESCrypt.encrypt(passwordStr)
-//            memberModel.password_confirm = AESCrypt.encrypt(passwordStr)
-            memberModel.mobileWithPlus = phoneNumber
+            memberModel.mobileWithPlus = countryCodeTxt.text.toString().plus(memberModel.mobile)
+
 //
             GlobalData.progressDialog(
                 getActiviy(),
@@ -175,46 +175,45 @@ class LoginActivity : ActivityBase() {
             )
             DataFeacher(object : DataFetcherCallBack {
                 override fun Result(obj: Any?, func: String?, IsSuccess: Boolean) {
-                    GlobalData.progressDialogHide()
 
-                    val document: DocumentSnapshot? = obj as DocumentSnapshot
-                    if (document != null) {
-//                        Log.d(TAG, "DocumentSnapshot data: ${document.data}")
-                        val user = document.toObject(MemberModel::class.java)
+                        GlobalData.progressDialogHide()
+                     val document: DocumentSnapshot? = obj as DocumentSnapshot
+                        if (document != null) {
+                        Log.d(TAG, "DocumentSnapshot data: ${document.data}")
 
-                        val password = user?.password
-                        val isVerified = user?.isVerified
-                        if (password == memberModel.password) {
-                            if (isVerified == true) {
+                            val user = document.toObject(MemberModel::class.java)
+                            val password = user?.password
+                           // val isVerified = user?.isVerified
+                            val isVerified = document.get("isVerified")
+                            Log.d(TAG, "DocumentSnapshot data1: $password$isVerified")
 
-                                UtilityApp.userData = user
+                            if (password == memberModel.password) {
+                                if (isVerified == true) {
 
-                                val intent = Intent(getActiviy(), MainActivityBottomNav::class.java)
-                                intent.flags =
-                                    Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-                                startActivity(intent)
-                                finish()
+                                    UtilityApp.userData = user
+                                    val intent = Intent(getActiviy(), MainActivityBottomNav::class.java)
+                                    intent.flags =
+                                        Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                                    startActivity(intent)
+                                    finish()
+                                } else {
+                                    val intent = Intent(getActiviy(), ConfirmActivity::class.java)
+                                    intent.putExtra(Constants.KEY_MEMBER, user)
+                                    intent.putExtra(Constants.KEY_MOBILE, phoneNumber)
+                                    startActivity(intent)
+
+                                }
+
                             } else {
-                                val intent = Intent(getActiviy(), ConfirmActivity::class.java)
-                                intent.putExtra(Constants.KEY_MEMBER, user)
-                                intent.putExtra(Constants.KEY_MOBILE, phoneNumber)
-                                startActivity(intent)
-
+                                GlobalData.errorDialog(
+                                    getActiviy(),
+                                    R.string.login,
+                                    getString(R.string.fail_to_login)
+                                )
                             }
 
-                        } else {
-//                            Toast(R.string.fail_to_login)
-
-                            GlobalData.errorDialog(
-                                getActiviy(),
-                                R.string.login,
-                                getString(R.string.fail_to_login)
-                            )
                         }
-
-                    } else {
-//                        Toast(R.string.not_have_account_q)
-
+           else {
                         GlobalData.errorDialog(
                             getActiviy(),
                             R.string.login,
@@ -225,14 +224,11 @@ class LoginActivity : ActivityBase() {
 
                 }
             }).loginHandle(getActiviy(), memberModel)
-//            DataFeacher().loginHandle(loginUserModel)
 
         } catch (e: Exception) {
 
             e.printStackTrace()
 
-//            if (e.message == "phone")
-//                Toast(R.string.invalid_phone)
         }
     }
 

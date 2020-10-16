@@ -3,7 +3,7 @@
     <string name="app_name">ElajPatient</string>
     <string name="confirm_now">تأكيد</string>
     <string name="resend_confirm_code">إعادة ارسال الكود</string>
-    <string name="please_enter_code_sent_mobile">"الرجاء إدخال الرمز المرسل إلى  رقم الجوال "</string>
+    <string name="please_enter_code_sent_mobile">الرجاء إدخال الرمز المرسل إلى  رقم الجوال </string>
     <string name="please_wait_register">>الرجاء الانتظار جاري التسجيل</string>
     <string name="profile">الملف الشخصي</string>
     <string name="home">"الصفحة الرئيسية "</string>
@@ -99,8 +99,8 @@
     <string name="call_doctor">تحدث مع طبيب</string>
     <string name="disease_details">تفاصيل المرض</string>
     <string name="skype_number">رقم السكايب</string>
-    <string name="whatsapp_number">"رقم الواتس اب "</string>
-    <string name="contacts_info">"بيانات التواصل "</string>
+    <string name="whatsapp_number">رقم الواتس اب</string>
+    <string name="contacts_info">بيانات التواصل </string>
     <string name="will_contact_you_by_doctor">"بامكانك التواصل مع الطبيب عبر السكايب او الواتس اب "</string>
     <string name="continuee">استمرار</string>
     <string name="please_wait_sending">الرجاء الانتظار جاري الارسال</string>
@@ -108,5 +108,9 @@
     <string name="please_wait_login">الرجاء الانتظار جاري تسجيل الدخول</string>
     <string name="fail_to_login"> فشل في تسجيل الدخول كلمة المرو غير صحيحة </string>
     <string name="fail_to_login_mobile_not_match_password">فشل الدخول رقم الجوال او كلمة المرور خطأ</string>
+    <string name="fail_to_reset_password">فشل في استرجاع كلمة المرور</string>
+    <string name="error_in_data">"خطأ في البيانات "</string>
+    <string name="enter_confirm_password">ادخل تأكيد كلمة المرور</string>
+
 
 </resources>

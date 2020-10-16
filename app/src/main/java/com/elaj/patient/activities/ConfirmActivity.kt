@@ -44,7 +44,6 @@ class ConfirmActivity : ActivityBase() {
         setContentView(R.layout.activity_confirm)
         auth = FirebaseAuth.getInstance()
         title = ""
-//        db = FirebaseFirestore.getInstance()
 
         val bundle = intent.extras
         if (bundle != null) {

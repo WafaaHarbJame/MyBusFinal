@@ -34,7 +34,8 @@
     <string name="invalid_fullname">Invalid Full Name</string>
     <string name="invalid_mobile">Invalid Mobile</string>
     <string name="invalid_email">Invalid Email</string>
-    <string name="enter_password">Emter Password</string>
+    <string name="enter_password">Enter Password</string>
+    <string name="enter_confirm_password">Enter Confirm Password</string>
     <string name="enter_valid_email">Enter valid email</string>
     <string name="password_confirm_not_match">Password confirm not match</string>
     <string name="enter_phone_number">Enter Phone number</string>
@@ -118,5 +119,7 @@
     <string name="fail_to_login_mobile_not_match_password">Fail to login mobile or password is wrong</string>
     <string name="confirm_account">Confirm Account</string>
     <string name="fail_confirm_account">Fail to confirm account</string>
+    <string name="fail_to_reset_password">Fail to reset password</string>
+    <string name="error_in_data">Error in data</string>
 
 </resources>

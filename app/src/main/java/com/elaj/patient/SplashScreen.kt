@@ -8,9 +8,6 @@ import android.os.Looper
 import android.view.WindowInsets
 import android.view.WindowManager
 import android.widget.ImageView
-import com.elaj.patient.models.MemberModel
-import com.elaj.patient.models.ResponseEvent
-import com.elaj.patient.models.ResultAPIModel
 import com.elaj.patient.activities.ActivityBase
 import com.elaj.patient.activities.LoginActivity
 import com.elaj.patient.activities.WelcomeActivity
@@ -21,9 +18,8 @@ import com.elaj.patient.classes.GlobalData
 import com.elaj.patient.classes.UtilityApp
 import com.elaj.patient.dialogs.MyConfirmDialog
 import com.elaj.patient.dialogs.MyConfirmDialog.Click
+import com.elaj.patient.models.MemberModel
 import org.greenrobot.eventbus.EventBus
-import org.greenrobot.eventbus.Subscribe
-import org.greenrobot.eventbus.ThreadMode
 
 
 class SplashScreen : ActivityBase() {
@@ -127,12 +123,12 @@ class SplashScreen : ActivityBase() {
 
     override fun onStart() {
         super.onStart()
-        EventBus.getDefault().register(this)
+     //   EventBus.getDefault().register(this)
     }
 
     override fun onStop() {
         super.onStop()
-        EventBus.getDefault().unregister(this)
+       // EventBus.getDefault().unregister(this)
     }
 
 

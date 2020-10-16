@@ -228,6 +228,7 @@
         android:paddingBottom="@dimen/_12sdp">
 
         <com.elaj.patient.spichalViews.STextViewIcon
+            android:id="@+id/signOutIcon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/_10sdp"
@@ -236,6 +237,7 @@
             android:textSize="@dimen/_15ssp" />
 
         <com.elaj.patient.spichalViews.STextViewBold
+            android:id="@+id/signOutLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/sign_out"

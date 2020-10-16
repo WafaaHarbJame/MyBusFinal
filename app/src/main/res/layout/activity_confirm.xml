@@ -58,7 +58,8 @@
                 style="@style/TextInputStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_marginStart="@dimen/_25sdp"
+                android:layout_marginEnd="@dimen/_25sdp"
                 android:hint="@string/confirm_code"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/countryCodeTxt"
@@ -78,7 +79,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_50sdp"
-                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_30sdp"
                 android:layout_marginEnd="@dimen/_50sdp"
                 android:layout_marginBottom="@dimen/_30sdp"
                 app:backgroundColor="@color/white"
@@ -114,16 +115,17 @@
                     android:text="@string/resend_confirm_code"
                     android:textColor="@color/colorAccent2"
                     android:textSize="@dimen/_12ssp" />
+
                 <com.elaj.patient.spichalViews.STextView
+                    android:id="@+id/resendCodeBtn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:text=""
-                    android:id="@+id/resendCodeBtn"
-                    android:textStyle="bold"
                     android:layout_marginEnd="@dimen/_10sdp"
+                    android:text=""
                     android:textColor="@color/colorPrimary"
-                    android:textSize="@dimen/_12ssp" />
+                    android:textSize="@dimen/_12ssp"
+                    android:textStyle="bold" />
             </LinearLayout>
 
         </LinearLayout>

@@ -59,7 +59,7 @@ object DBFunction {
 
 
     fun setPlans(json: String?) {
-        RootApplication.instance!!.sharedPManger!!.SetData(Constants.DB_Sliders, json)
+        RootApplication.instance!!.sharedPManger!!.SetData(Constants.DB_Plans, json)
     }
 
 //    fun getCities(): MutableList<CityModel>? {

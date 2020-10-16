@@ -7,11 +7,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
+import com.elaj.patient.MainActivityBottomNav
 import com.elaj.patient.R
 import com.elaj.patient.Utils.ActivityHandler
+import com.elaj.patient.activities.LoginActivity
 import com.elaj.patient.activities.PlansActivity
+import com.elaj.patient.classes.Constants
+import com.elaj.patient.classes.UtilityApp
 import com.elaj.patient.dialogs.ChangeLanguageDialog
 import com.elaj.patient.dialogs.ChangePasswordDialog
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.fragment_settings.*
 import kotlinx.android.synthetic.main.tool_bar.*
 
@@ -43,9 +49,17 @@ class SettingsFragment : FragmentBase() {
         homeBtn.visibility = gone
 
 
-//        languageTxt.text =
-//            if (UtilityApp.language == Constants.Arabic) getString(R.string.arabic) else getString(R.string.english)
-//
+        if (UtilityApp.isLogin) {
+            signOutIcon.text = getString(R.string.fal_sign_out)
+            signOutLabel.text = getString(R.string.sign_out)
+        } else {
+            signOutIcon.text = getString(R.string.fal_sign_in)
+            signOutLabel.text = getString(R.string.sign_in)
+        }
+
+        languageTxt.text =
+            if (UtilityApp.language == Constants.Arabic) getString(R.string.arabic) else getString(R.string.english)
+
         languageBtn.setOnClickListener {
 
             if (changeLanguageDialog == null) {
@@ -80,6 +94,20 @@ class SettingsFragment : FragmentBase() {
         ratingBtn.setOnClickListener {
 
             ActivityHandler.OpenGooglePlay(requireActivity())
+
+        }
+
+        logoutBtn.setOnClickListener {
+
+            var intent = Intent(requireActivity(), LoginActivity::class.java)
+
+            if (UtilityApp.isLogin) {
+                UtilityApp.logOut()
+                FirebaseAuth.getInstance().signOut()
+                intent = Intent(requireActivity(), MainActivityBottomNav::class.java)
+            }
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+            startActivity(intent)
 
         }
 

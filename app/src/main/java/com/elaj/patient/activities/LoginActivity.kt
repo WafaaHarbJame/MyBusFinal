@@ -44,7 +44,9 @@ class LoginActivity : ActivityBase() {
     private var historyModel: MutableList<LoginMemberModel>? = null
     private var history: MutableList<String> = ArrayList()
     private var FCMToken: String? = ""
+
     private var loginMemberModel: LoginMemberModel? = null
+
     private lateinit var phoneNumber: String
     var sharedPManger: SharedPManger? = null
     val TAG: String? = "ConfirmActivity"
@@ -117,7 +119,7 @@ class LoginActivity : ActivityBase() {
                                 countryCodeTxt.text = codeStr
                             }
                         })
-                countryCodeDialog?.setOnDismissListener { dialog -> countryCodeDialog = null }
+                countryCodeDialog?.setOnDismissListener { countryCodeDialog = null }
             }
 
         }
@@ -160,8 +162,8 @@ class LoginActivity : ActivityBase() {
                     ""
                 ) else mobileStr
 
-            phoneNumber = countryCodeTxt.text.toString()
-                .plus(NumberHandler.arabicToDecimal(mobileStr))
+//            phoneNumber = countryCodeTxt.text.toString()
+//                .plus(NumberHandler.arabicToDecimal(mobileStr))
             memberModel.fcm_token = FCMToken
             memberModel.isVerified = false
             memberModel.password = AESCrypt.encrypt(passwordStr)
@@ -179,13 +181,13 @@ class LoginActivity : ActivityBase() {
                     GlobalData.progressDialogHide()
                     val document: DocumentSnapshot? = obj as DocumentSnapshot
                     if (document != null) {
-                        Log.d(TAG, "DocumentSnapshot data: ${document.data}")
+//                        Log.d(TAG, "DocumentSnapshot data: ${document.data}")
 
                         val user = document.toObject(MemberModel::class.java)
                         val password = user?.password
-                        // val isVerified = user?.isVerified
-                        val isVerified = document.get("isVerified")
-                        Log.d(TAG, "DocumentSnapshot data1: $password$isVerified")
+                        val isVerified = user?.getIsVerified()
+//                        val isVerified = document.get("isVerified")
+//                        Log.d(TAG, "DocumentSnapshot data1: $password$isVerified")
 
                         if (password == memberModel.password) {
                             if (isVerified == true) {
@@ -199,7 +201,7 @@ class LoginActivity : ActivityBase() {
                             } else {
                                 val intent = Intent(getActiviy(), ConfirmActivity::class.java)
                                 intent.putExtra(Constants.KEY_MEMBER, user)
-                                intent.putExtra(Constants.KEY_MOBILE, phoneNumber)
+                                intent.putExtra(Constants.KEY_MOBILE, memberModel.mobileWithPlus)
                                 startActivity(intent)
 
                             }
@@ -208,7 +210,7 @@ class LoginActivity : ActivityBase() {
                             GlobalData.errorDialog(
                                 getActiviy(),
                                 R.string.login,
-                                getString(R.string.fail_to_login)
+                                getString(R.string.mobile_password_not_match)
                             )
                         }
 

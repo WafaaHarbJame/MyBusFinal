@@ -25,13 +25,13 @@
             android:orientation="horizontal">
 
             <com.elaj.patient.spichalViews.STextViewIcon
-                android:layout_width="@dimen/_24sdp"
+                android:layout_width="31dp"
                 android:layout_height="@dimen/_24sdp"
                 android:layout_marginEnd="@dimen/_5sdp"
                 android:background="@drawable/round_corner_primary_fill"
                 android:gravity="center"
                 android:text="@string/fal_globe_americas"
-                android:textColor="@color/colorPrimaryDark"
+                android:textColor="@color/white"
                 android:textSize="@dimen/_14ssp" />
 
             <com.elaj.patient.spichalViews.STextViewBold
@@ -83,6 +83,7 @@
                 android:layout_height="wrap_content"
                 android:background="@null"
                 android:hint="@string/enter_country_name_to_search"
+                android:inputType="text"
                 android:paddingTop="@dimen/_12sdp"
                 android:paddingBottom="@dimen/_12sdp"
                 android:textSize="@dimen/_11ssp" />

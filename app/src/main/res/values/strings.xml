@@ -122,5 +122,6 @@
     <string name="fail_to_reset_password">Fail to reset password</string>
     <string name="error_in_data">Error in data</string>
     <string name="mobile_number_is_exist">The mobile number is used before</string>
+    <string name="mobile_password_not_match">Mobile and password not match</string>
 
 </resources>

@@ -32,13 +32,6 @@ class ForgetPasswordActivity : ActivityBase() {
 
 
     val TAG: String? = "Log"
-    private var countryModels: MutableList<CountryModel>? = mutableListOf()
-    private var countryVal = 0
-
-    private var cityAdapter: ArrayAdapter<String>? = null
-    private var cityModels: MutableList<CityModel>? = mutableListOf()
-    private var cityData: MutableList<String> = ArrayList()
-    private var cityVal = 0
 
     var selectedCountryCode = 0
     var countryCodeDialog: CountryCodeDialog? = null
@@ -54,8 +47,6 @@ class ForgetPasswordActivity : ActivityBase() {
                 forgetPassword()
         }
 
-        getCountries()
-
         initLocalCountryCode()
 
         val countryCodeStr = "+$selectedCountryCode"
@@ -69,7 +60,7 @@ class ForgetPasswordActivity : ActivityBase() {
                         object : DataFetcherCallBack {
                             override fun Result(obj: Any?, func: String?, IsSuccess: Boolean) {
                                 val countryModel = obj as CountryModel
-                                selectedCountryCode = countryModel.countryCode
+                                selectedCountryCode = countryModel.code
                                 val codeStr = "+$selectedCountryCode"
                                 countryCodeTxt.text = codeStr
                             }
@@ -79,31 +70,6 @@ class ForgetPasswordActivity : ActivityBase() {
 
         }
 
-    }
-
-    private fun getCountries() {
-        countryModels = DBFunction.getCountries()
-        if (countryModels == null || countryModels?.isEmpty()!!) {
-            DataFeacher(object : DataFetcherCallBack {
-                override fun Result(obj: Any?, func: String?, IsSuccess: Boolean) {
-
-                    if (IsSuccess)
-                        getCountries()
-                }
-            }).getSettings()
-
-        } else {
-//            countryData.clear()
-////            countryData.add(getString(R.string.select_country))
-//            for (i in 0 until countryModels?.size!!) {
-//                countryData.add(countryModels?.get(i)?.name!!)
-//            }
-//            countryAdapter = ArrayAdapter(
-//                getActiviy(), R.layout.row_spinner_item, R.id.spinnerRowTxt, countryData
-//            )
-////            countrySpinner.setDropDownViewResource(R.layout.row_popup_spinner_item)
-//            countrySpinner.setAdapter(countryAdapter)
-        }
     }
 
     private fun initLocalCountryCode() {
@@ -125,18 +91,16 @@ class ForgetPasswordActivity : ActivityBase() {
 
         try {
 
-            var mobileStr = NumberHandler.arabicToDecimal(mobileTxt.text.toString())
+            val mobileStr = NumberHandler.arabicToDecimal(mobileTxt.text.toString())
 
-            if (countryVal == -1)
-                throw Exception("country")
-            var mobile =
+            val mobile =
                 if (mobileStr.startsWith("0")) mobileStr.replaceFirst(
                     "0",
                     ""
                 ) else mobileStr
 
 
-            var phoneNumber = countryCodeTxt.text.toString().plus(mobile)
+            val phoneNumber = countryCodeTxt.text.toString().plus(mobile)
 
             GlobalData.progressDialog(
                 getActiviy(),

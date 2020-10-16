@@ -33,13 +33,13 @@ class RegisterActivity : ActivityBase() {
     val TAG: String? = "Log"
 
     //    lateinit var db: FirebaseFirestore
-    private var countryModels: MutableList<CountryModel>? = mutableListOf()
-    private var countryVal = 0
+//    private var countryModels: MutableList<CountryModel>? = mutableListOf()
+//    private var countryVal = 0
 
-    private var cityAdapter: ArrayAdapter<String>? = null
-    private var cityModels: MutableList<CityModel>? = mutableListOf()
-    private var cityData: MutableList<String> = ArrayList()
-    private var cityVal = 0
+//    private var cityAdapter: ArrayAdapter<String>? = null
+//    private var cityModels: MutableList<CityModel>? = mutableListOf()
+//    private var cityData: MutableList<String> = ArrayList()
+//    private var cityVal = 0
 
     var selectedCountryCode = 0
     var countryCodeDialog: CountryCodeDialog? = null
@@ -91,7 +91,7 @@ class RegisterActivity : ActivityBase() {
                 registerUser()
         }
 
-        getCountries()
+//        getCountries()
         getFCMToken()
 
         initLocalCountryCode()
@@ -107,7 +107,7 @@ class RegisterActivity : ActivityBase() {
                         object : DataFetcherCallBack {
                             override fun Result(obj: Any?, func: String?, IsSuccess: Boolean) {
                                 val countryModel = obj as CountryModel
-                                selectedCountryCode = countryModel.countryCode
+                                selectedCountryCode = countryModel.code
                                 val codeStr = "+$selectedCountryCode"
                                 countryCodeTxt.text = codeStr
                             }
@@ -119,30 +119,30 @@ class RegisterActivity : ActivityBase() {
 
     }
 
-    private fun getCountries() {
-        countryModels = DBFunction.getCountries()
-        if (countryModels == null || countryModels?.isEmpty()!!) {
-            DataFeacher(object : DataFetcherCallBack {
-                override fun Result(obj: Any?, func: String?, IsSuccess: Boolean) {
-
-                    if (IsSuccess)
-                        getCountries()
-                }
-            }).getSettings()
-
-        } else {
-//            countryData.clear()
-////            countryData.add(getString(R.string.select_country))
-//            for (i in 0 until countryModels?.size!!) {
-//                countryData.add(countryModels?.get(i)?.name!!)
-//            }
-//            countryAdapter = ArrayAdapter(
-//                getActiviy(), R.layout.row_spinner_item, R.id.spinnerRowTxt, countryData
-//            )
-////            countrySpinner.setDropDownViewResource(R.layout.row_popup_spinner_item)
-//            countrySpinner.setAdapter(countryAdapter)
-        }
-    }
+//    private fun getCountries() {
+//        countryModels = DBFunction.getCountries()
+//        if (countryModels == null || countryModels?.isEmpty()!!) {
+//            DataFeacher(object : DataFetcherCallBack {
+//                override fun Result(obj: Any?, func: String?, IsSuccess: Boolean) {
+//
+//                    if (IsSuccess)
+//                        getCountries()
+//                }
+//            }).getSettings()
+//
+//        } else {
+////            countryData.clear()
+//////            countryData.add(getString(R.string.select_country))
+////            for (i in 0 until countryModels?.size!!) {
+////                countryData.add(countryModels?.get(i)?.name!!)
+////            }
+////            countryAdapter = ArrayAdapter(
+////                getActiviy(), R.layout.row_spinner_item, R.id.spinnerRowTxt, countryData
+////            )
+//////            countrySpinner.setDropDownViewResource(R.layout.row_popup_spinner_item)
+////            countrySpinner.setAdapter(countryAdapter)
+//        }
+//    }
 
     private fun initLocalCountryCode() {
         val tm = getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
@@ -171,8 +171,8 @@ class RegisterActivity : ActivityBase() {
 //                throw  Exception("phone")
 //            }
 
-            if (countryVal == -1)
-                throw Exception("country")
+//            if (countryVal == -1)
+//                throw Exception("country")
 
             val registerUserModel = RegisterUserModel()
             registerUserModel.countryCode = selectedCountryCode
@@ -217,77 +217,26 @@ class RegisterActivity : ActivityBase() {
                         intent.putExtra(Constants.KEY_MOBILE, registerUserModel.mobileWithPlus)
                         startActivity(intent)
                     } else {
+                        var message = getString(R.string.fail_to_register)
+                        if (func == Constants.USER_EXIST)
+                            message = getString(R.string.mobile_number_is_exist)
+
                         GlobalData.errorDialog(
                             getActiviy(),
                             R.string.register,
-                            getString(R.string.fail_to_register)
+                            message
                         )
                     }
 
 
                 }
-            }).registerHandle(getActiviy(), registerUserModel)
+            }).registerHandle(registerUserModel)
 
         } catch (e: Exception) {
 
             e.printStackTrace()
 
         }
-    }
-
-    override fun onStart() {
-        super.onStart()
-        EventBus.getDefault().register(this)
-    }
-
-    override fun onStop() {
-        super.onStop()
-        EventBus.getDefault().unregister(this)
-    }
-
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    fun onMessageEvent(responseEvent: ResponseEvent) {
-
-        if (responseEvent.api == "registerHandle") {
-//            GlobalData.progressDialog(
-//                getActiviy(),
-//                R.string.register,
-//                R.string.please_wait_register,
-//                false
-//            )
-            if (responseEvent.type == Constants.ERROR_DATA) {
-                val result = responseEvent.data as ResultAPIModel<Any>?
-                var message = getString(R.string.fail_to_register)
-                if (result?.error != null) {
-                    val errors = result.error.details
-                    for (error in errors) {
-                        message += ("\n---\n $error")
-                    }
-                }
-
-                GlobalData.errorDialog(getActiviy(), R.string.register, message)
-
-            } else if (responseEvent.type == Constants.FAIL_DATA) {
-                Toast(R.string.fail_to_register)
-            } else if (responseEvent.type == Constants.NO_CONNECTION) {
-                Toast(R.string.no_internet_connection)
-            } else {
-                val result: ResultAPIModel<MemberModel> =
-                    responseEvent.data as ResultAPIModel<MemberModel>
-                if (responseEvent.type == Constants.SUCCESS) {
-                    val user: MemberModel = result.data
-                    UtilityApp.userData = user
-
-                    val intent = Intent(getActiviy(), Constants.MAIN_ACTIVITY_CLASS)
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
-                    startActivity(intent)
-                    finish()
-
-                }
-
-            }
-        }
-
     }
 
     private fun isValidForm(): Boolean {

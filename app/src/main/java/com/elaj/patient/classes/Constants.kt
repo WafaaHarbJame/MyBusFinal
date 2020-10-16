@@ -47,6 +47,7 @@ object Constants {
     const val SUCCESS = "success"
     const val NO_DATA = "no_data"
     const val FAIL_DATA = "fail_data"
+    const val USER_EXIST = "user_exist"
     const val SHOW_DATA = "show_data"
     const val ERROR_DATA = "error_data"
     const val NO_CONNECTION = "no_connection"
@@ -133,7 +134,6 @@ object Constants {
     const val KEY_SUB_CATS = "key_sub_cats"
     const val KEY_BOOK_URL = "key_book_url"
     const val KEY_BOOK_ID = "key_book_id"
-    const val KEY_COUNTRIES = "key_countries"
     const val KEY_NEWS_MODEL = "key_news_model"
     const val KEY_IS_FAV = "key_is_fav"
     const val KEY_BOOK_POS = "key_book_pos"
@@ -184,6 +184,7 @@ object Constants {
     /** */
     const val DB_Sliders = "sliders_db"
     const val DB_Categories = "categories_db"
+    const val DB_Countries = "countries_db"
     const val DB_Settings = "settings_db"
     const val DB_Plans = "plans_db"
     const val DB_ServicesModel = 4

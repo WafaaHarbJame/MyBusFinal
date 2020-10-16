@@ -33,26 +33,26 @@ class CountryCodeAdapter(
 
         holder.nameTxt.text = countryCodeModel.name
 
-        val code = "+" + countryCodeModel.countryCode
+        val code = "+" + countryCodeModel.code
         holder.codeTxt.text = code
 
         Glide.with(activity!!)
             .asBitmap()
-            .load(countryCodeModel.getPhoto())
+            .load(countryCodeModel.flag)
             .placeholder(R.drawable.error_logo)
             .into(holder.flagImg)
 
         if (selectedCountry?.id == countryCodeModel.id) {
-            holder.selectTxt.text = activity?.getString(R.string.fa_circle)
+            holder.selectTxt.text = activity.getString(R.string.fa_circle)
             holder.selectTxt.setTextColor(
                 ContextCompat.getColor(
-                    activity!!,
+                    activity,
                     R.color.colorPrimaryDark
                 )
             )
         } else {
-            holder.selectTxt.text = activity?.getString(R.string.fa_circle_o)
-            holder.selectTxt.setTextColor(ContextCompat.getColor(activity!!, R.color.header3))
+            holder.selectTxt.text = activity.getString(R.string.fa_circle_o)
+            holder.selectTxt.setTextColor(ContextCompat.getColor(activity, R.color.header3))
         }
 
     }

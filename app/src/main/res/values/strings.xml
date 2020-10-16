@@ -121,5 +121,6 @@
     <string name="fail_confirm_account">Fail to confirm account</string>
     <string name="fail_to_reset_password">Fail to reset password</string>
     <string name="error_in_data">Error in data</string>
+    <string name="mobile_number_is_exist">The mobile number is used before</string>
 
 </resources>

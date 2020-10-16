@@ -15,7 +15,7 @@ import java.io.File
 
 class DataFeacher(callBack: DataFetcherCallBack?) {
     var dataFetcherCallBack: DataFetcherCallBack? = callBack
-    var activity: Activity? = Activity()
+//    var activity: Activity? = Activity()
 
     var fireStoreDB = RootApplication.fireStoreDB
 
@@ -27,20 +27,18 @@ class DataFeacher(callBack: DataFetcherCallBack?) {
     var headerMap: MutableMap<String, Any?> = HashMap()
 
     /*********************************** POST Fetcher  **********************************/
-    fun loginHandle(activity: Activity, memberModel: RegisterUserModel?) {
+    fun loginHandle(memberModel: RegisterUserModel?) {
 
         Log.i(TAG, "Log loginHandle")
         Log.i(TAG, "Log mobile " + memberModel?.mobile)
         Log.i(TAG, "Log password " + memberModel?.password)
         val phoneNumber = memberModel?.mobileWithPlus.toString()
-        this.activity = activity
         fireStoreDB?.collection(ApiUrl.Users.name)?.document(phoneNumber)?.get()
             ?.addOnSuccessListener { document ->
-                if(document.exists()){
+                if (document.exists()) {
                     dataFetcherCallBack?.Result(document, Constants.SUCCESS, true)
 
-                }
-                else{
+                } else {
                     dataFetcherCallBack?.Result(null, Constants.FAIL_DATA, false)
 
                 }
@@ -50,21 +48,22 @@ class DataFeacher(callBack: DataFetcherCallBack?) {
 
     }
 
-    fun registerHandle(activity: Activity, memberModel: RegisterUserModel) {
+    fun registerHandle(memberModel: RegisterUserModel) {
 
         Log.i(TAG, "Log countryCode ${memberModel.countryCode}")
         Log.i(TAG, "Log mobile ${memberModel.mobile}")
 
         val phoneNumber = memberModel.mobileWithPlus.toString()
-        this.activity = activity
+//        this.activity = activity
 
         fireStoreDB!!.collection(ApiUrl.Users.name).document(phoneNumber).get()
             .addOnSuccessListener { document ->
-                if(document.exists()){
-                    dataFetcherCallBack?.Result(document, Constants.FAIL_DATA, true)
+                if (document.exists()) {
+                    dataFetcherCallBack?.Result(null, Constants.USER_EXIST, false)
 
-                } else{
-                    fireStoreDB!!.collection(ApiUrl.Users.name).document(phoneNumber).set(memberModel)
+                } else {
+                    fireStoreDB!!.collection(ApiUrl.Users.name).document(phoneNumber)
+                        .set(memberModel)
                         .addOnSuccessListener {
                             dataFetcherCallBack?.Result(memberModel, Constants.SUCCESS, true)
                         }.addOnFailureListener {
@@ -129,17 +128,16 @@ class DataFeacher(callBack: DataFetcherCallBack?) {
 
     }
 
-    fun forgetPassword( mobile: String) {
+    fun forgetPassword(mobile: String) {
         Log.i(TAG, "Log forgetPassword")
         Log.i(TAG, "Log mobile $mobile")
 
         fireStoreDB?.collection(ApiUrl.Users.name)?.document(mobile)?.get()
             ?.addOnSuccessListener { document ->
-                if(document.exists()){
+                if (document.exists()) {
                     dataFetcherCallBack?.Result(document, Constants.SUCCESS, true)
 
-                }
-                else{
+                } else {
                     dataFetcherCallBack?.Result(null, Constants.FAIL_DATA, true)
 
                 }
@@ -150,10 +148,9 @@ class DataFeacher(callBack: DataFetcherCallBack?) {
             }
 
 
-
     }
 
-    fun resetPassword(mobile: String,newPassword: String) {
+    fun resetPassword(mobile: String, newPassword: String) {
 
         Log.i(TAG, "Log resetPassword")
         Log.i(TAG, "Log mobile $mobile")
@@ -161,7 +158,8 @@ class DataFeacher(callBack: DataFetcherCallBack?) {
         Log.i(TAG, "Log confirm_password $newPassword")
 
         RootApplication.fireStoreDB?.collection(ApiUrl.Users.name)?.document(mobile)
-            ?.update("isVerified", true,"password",newPassword,"password_confirm",newPassword)?.addOnSuccessListener {
+            ?.update("isVerified", true, "password", newPassword, "password_confirm", newPassword)
+            ?.addOnSuccessListener {
 
                 dataFetcherCallBack?.Result("", Constants.SUCCESS, true)
 
@@ -310,9 +308,45 @@ class DataFeacher(callBack: DataFetcherCallBack?) {
 //
             } else {
                 it.exception?.printStackTrace()
+                dataFetcherCallBack?.Result(null, Constants.FAIL_DATA, false)
             }
 
         }
+
+    }
+
+    fun getCountries() {
+        Log.i(TAG, "Log getCountries")
+
+        fireStoreDB?.collection(ApiUrl.Countries.name)?.get()?.addOnCompleteListener {
+            if (it.isSuccessful) {
+                val query = it.result
+
+                val list = mutableListOf<CountryModel>()
+                for (document in query!!) {
+                    val country = document?.toObject(CountryModel::class.java)
+                    country?.id = document?.id
+                    list.add(country!!)
+//                    Log.d(TAG, "${document.id} => ${document.data}")
+                }
+
+                val json = Gson().toJson(list)
+                DBFunction.setCountries(json)
+//
+                dataFetcherCallBack?.Result(list, Constants.SUCCESS, true)
+//
+            } else {
+                it.exception?.printStackTrace()
+            }
+
+        }
+//        val json = Gson().toJson(result!!.data)
+//        DBFunction.setCategories(json)
+//
+//        dataFetcherCallBack?.Result(result, Constants.SUCCESS, true)
+//
+//        EventBus.getDefault()
+//            .post(ResponseEvent("getCategories", Constants.SUCCESS, result))
 
     }
 

@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.elaj.patient.models.CountryModel
 import com.elaj.patient.R
+import com.elaj.patient.Utils.NumberHandler
 import com.elaj.patient.adapters.CountryCodeAdapter
 import com.elaj.patient.apiHandlers.DataFeacher
 import com.elaj.patient.apiHandlers.DataFetcherCallBack
@@ -74,12 +75,12 @@ class CountryCodeDialog(
 
             override fun afterTextChanged(s: Editable) {
                 if (countryCodeModels != null) {
-                    val searchStr = s.toString()
+                    val searchStr = NumberHandler.arabicToDecimal(s.toString())
                     val list: MutableList<CountryModel> =
                         ArrayList()
                     for (countryCodeModel in countryCodeModels!!) {
                         if (countryCodeModel.name.toLowerCase()
-                                .contains(searchStr) || countryCodeModel.countryCode.toString()
+                                .contains(searchStr) || countryCodeModel.code.toString()
                                 .contains(searchStr)
                         ) list.add(countryCodeModel)
                     }
@@ -143,7 +144,7 @@ class CountryCodeDialog(
                     if (IsSuccess)
                         getCountryCodes()
                 }
-            }).getSettings()
+            }).getCountries()
         } else {
             if (countryCodeModels != null) {
                 selectCountry()
@@ -155,7 +156,7 @@ class CountryCodeDialog(
 
     private fun selectCountry() {
         for (i in countryCodeModels!!.indices) {
-            if (countryCodeModels!![i].countryCode == countryCode) {
+            if (countryCodeModels!![i].code == countryCode) {
                 selectedCountry = countryCodeModels!![i]
                 selectedPos = i
             }

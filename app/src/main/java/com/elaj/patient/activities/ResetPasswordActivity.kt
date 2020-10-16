@@ -85,61 +85,6 @@ class ResetPasswordActivity : ActivityBase() {
         }
     }
 
-    override fun onStart() {
-        super.onStart()
-        EventBus.getDefault().register(this)
-    }
-
-    override fun onStop() {
-        super.onStop()
-        EventBus.getDefault().unregister(this)
-    }
-
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    fun onMessageEvent(responseEvent: ResponseEvent) {
-
-        if (responseEvent.api == "registerHandle") {
-//            GlobalData.progressDialog(
-//                getActiviy(),
-//                R.string.register,
-//                R.string.please_wait_register,
-//                false
-//            )
-            if (responseEvent.type == Constants.ERROR_DATA) {
-                val result = responseEvent.data as ResultAPIModel<Any>?
-                var message = getString(R.string.fail_to_register)
-                if (result?.error != null) {
-                    val errors = result.error.details
-                    for (error in errors) {
-                        message += ("\n---\n $error")
-                    }
-                }
-
-                GlobalData.errorDialog(getActiviy(), R.string.register, message)
-
-            } else if (responseEvent.type == Constants.FAIL_DATA) {
-                Toast(R.string.fail_to_register)
-            } else if (responseEvent.type == Constants.NO_CONNECTION) {
-                Toast(R.string.no_internet_connection)
-            } else {
-                val result: ResultAPIModel<MemberModel> =
-                    responseEvent.data as ResultAPIModel<MemberModel>
-                if (responseEvent.type == Constants.SUCCESS) {
-                    val user: MemberModel = result.data
-                    UtilityApp.userData = user
-
-                    val intent = Intent(getActiviy(), Constants.MAIN_ACTIVITY_CLASS)
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
-                    startActivity(intent)
-                    finish()
-
-                }
-
-            }
-        }
-
-    }
-
     private fun isValidForm(): Boolean {
         return FormValidator.getInstance()
             .addField(

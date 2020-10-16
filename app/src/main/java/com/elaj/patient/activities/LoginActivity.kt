@@ -112,7 +112,7 @@ class LoginActivity : ActivityBase() {
                         object : DataFetcherCallBack {
                             override fun Result(obj: Any?, func: String?, IsSuccess: Boolean) {
                                 val countryModel = obj as CountryModel
-                                selectedCountryCode = countryModel.countryCode
+                                selectedCountryCode = countryModel.code
                                 val codeStr = "+$selectedCountryCode"
                                 countryCodeTxt.text = codeStr
                             }
@@ -176,44 +176,43 @@ class LoginActivity : ActivityBase() {
             DataFeacher(object : DataFetcherCallBack {
                 override fun Result(obj: Any?, func: String?, IsSuccess: Boolean) {
 
-                        GlobalData.progressDialogHide()
-                     val document: DocumentSnapshot? = obj as DocumentSnapshot
-                        if (document != null) {
+                    GlobalData.progressDialogHide()
+                    val document: DocumentSnapshot? = obj as DocumentSnapshot
+                    if (document != null) {
                         Log.d(TAG, "DocumentSnapshot data: ${document.data}")
 
-                            val user = document.toObject(MemberModel::class.java)
-                            val password = user?.password
-                           // val isVerified = user?.isVerified
-                            val isVerified = document.get("isVerified")
-                            Log.d(TAG, "DocumentSnapshot data1: $password$isVerified")
+                        val user = document.toObject(MemberModel::class.java)
+                        val password = user?.password
+                        // val isVerified = user?.isVerified
+                        val isVerified = document.get("isVerified")
+                        Log.d(TAG, "DocumentSnapshot data1: $password$isVerified")
 
-                            if (password == memberModel.password) {
-                                if (isVerified == true) {
+                        if (password == memberModel.password) {
+                            if (isVerified == true) {
 
-                                    UtilityApp.userData = user
-                                    val intent = Intent(getActiviy(), MainActivityBottomNav::class.java)
-                                    intent.flags =
-                                        Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-                                    startActivity(intent)
-                                    finish()
-                                } else {
-                                    val intent = Intent(getActiviy(), ConfirmActivity::class.java)
-                                    intent.putExtra(Constants.KEY_MEMBER, user)
-                                    intent.putExtra(Constants.KEY_MOBILE, phoneNumber)
-                                    startActivity(intent)
-
-                                }
-
+                                UtilityApp.userData = user
+                                val intent = Intent(getActiviy(), MainActivityBottomNav::class.java)
+                                intent.flags =
+                                    Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                                startActivity(intent)
+                                finish()
                             } else {
-                                GlobalData.errorDialog(
-                                    getActiviy(),
-                                    R.string.login,
-                                    getString(R.string.fail_to_login)
-                                )
+                                val intent = Intent(getActiviy(), ConfirmActivity::class.java)
+                                intent.putExtra(Constants.KEY_MEMBER, user)
+                                intent.putExtra(Constants.KEY_MOBILE, phoneNumber)
+                                startActivity(intent)
+
                             }
 
+                        } else {
+                            GlobalData.errorDialog(
+                                getActiviy(),
+                                R.string.login,
+                                getString(R.string.fail_to_login)
+                            )
                         }
-           else {
+
+                    } else {
                         GlobalData.errorDialog(
                             getActiviy(),
                             R.string.login,
@@ -223,7 +222,7 @@ class LoginActivity : ActivityBase() {
                     }
 
                 }
-            }).loginHandle(getActiviy(), memberModel)
+            }).loginHandle(memberModel)
 
         } catch (e: Exception) {
 

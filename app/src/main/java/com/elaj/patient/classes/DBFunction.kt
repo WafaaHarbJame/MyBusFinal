@@ -21,6 +21,19 @@ object DBFunction {
         RootApplication.instance!!.sharedPManger!!.SetData(Constants.DB_Categories, json)
     }
 
+    fun getCountries(): MutableList<CountryModel>? {
+        val json: String? =
+            RootApplication.instance!!.sharedPManger!!.getDataString(Constants.DB_Countries)
+        return Gson().fromJson(
+            json,
+            object : TypeToken<MutableList<CountryModel>?>() {}.type
+        )
+    }
+
+    fun setCountries(json: String?) {
+        RootApplication.instance!!.sharedPManger!!.SetData(Constants.DB_Countries, json)
+    }
+
     fun getSliders(): MutableList<SliderModel>? {
         val json: String? =
             RootApplication.instance!!.sharedPManger!!.getDataString(Constants.DB_Sliders)
@@ -33,19 +46,6 @@ object DBFunction {
 
     fun setSliders(json: String?) {
         RootApplication.instance!!.sharedPManger!!.SetData(Constants.DB_Sliders, json)
-    }
-
-    fun getCountries(): MutableList<CountryModel>? {
-        val json: String? =
-            RootApplication.instance!!.sharedPManger!!.getDataString(Constants.KEY_COUNTRIES)
-        return Gson().fromJson(
-            json,
-            object : TypeToken<MutableList<CountryModel>?>() {}.type
-        )
-    }
-
-    fun setCountries(json: String?) {
-        RootApplication.instance!!.sharedPManger!!.SetData(Constants.KEY_COUNTRIES, json)
     }
 
     fun getPlans(): MutableList<PlansModel>? {

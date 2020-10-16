@@ -68,6 +68,7 @@ class SplashScreen : ActivityBase() {
 //        GlobalData.IS_CUSTOMER = false
 
         DataFeacher(null).getCategories()
+        DataFeacher(null).getCountries()
         DataFeacher(null).getSettings()
         DataFeacher(null).getSliders()
         DataFeacher(null).getPlans()
@@ -123,12 +124,12 @@ class SplashScreen : ActivityBase() {
 
     override fun onStart() {
         super.onStart()
-     //   EventBus.getDefault().register(this)
+        //   EventBus.getDefault().register(this)
     }
 
     override fun onStop() {
         super.onStop()
-       // EventBus.getDefault().unregister(this)
+        // EventBus.getDefault().unregister(this)
     }
 
 

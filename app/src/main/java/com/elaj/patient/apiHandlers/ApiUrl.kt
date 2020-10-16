@@ -4,6 +4,7 @@ enum class ApiUrl {
 
     Settings,
     Categories,
+    Countries,
     Sliders,
     Syndromes,
     Plans,

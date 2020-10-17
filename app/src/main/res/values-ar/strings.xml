@@ -111,6 +111,10 @@
     <string name="fail_to_reset_password">فشل في استرجاع كلمة المرور</string>
     <string name="error_in_data">"خطأ في البيانات "</string>
     <string name="enter_confirm_password">ادخل تأكيد كلمة المرور</string>
+    <string name="enter_message_title">ادخل عنوان الرسالة </string>
+    <string name="enter_message_text">ادخل نص الرسالة </string>
+    <string name="fail_to_contact_withsupport">فشل في ارسال رسالة الى الدعم </string>
+
 
 
 </resources>

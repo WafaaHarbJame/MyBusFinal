@@ -1,6 +1,5 @@
 package com.elaj.patient.apiHandlers
 
-import android.app.Activity
 import android.util.Log
 import com.elaj.patient.RootApplication
 import com.elaj.patient.classes.Constants
@@ -169,8 +168,26 @@ class DataFeacher(callBack: DataFetcherCallBack?) {
 
 
     }
+    fun sendSupport(supportModel: SupportModel) {
+        val mobile=supportModel.mobile.toString();
+        Log.i(TAG, "Log sendSupport")
+        Log.i(TAG, "Log mobile $mobile")
 
-    fun sendSupport(title: String, details: String, file: File?) {
+        val id: String =  fireStoreDB!!.collection(mobile).document().getId()
+
+        fireStoreDB!!.collection(ApiUrl.Supports.name).document(id)
+            .set(supportModel)
+            .addOnSuccessListener {
+                dataFetcherCallBack?.Result(supportModel, Constants.SUCCESS, true)
+            }.addOnFailureListener {
+                dataFetcherCallBack?.Result(null, Constants.FAIL_DATA, true)
+            }
+
+
+
+    }
+
+    fun sendSupport1(title: String, details: String, file: File?) {
 
         val builder = MultipartBody.Builder()
         builder.setType(MultipartBody.FORM)

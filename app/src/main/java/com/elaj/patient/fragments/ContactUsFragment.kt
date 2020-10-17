@@ -107,8 +107,7 @@ class ContactUsFragment : FragmentBase() {
 
                     if (func == Constants.SUCCESS) {
                         Toast(R.string.success_send)
-                        val intent = Intent(activity, MainActivityBottomNav::class.java)
-                        startActivity(intent)
+
                         val mainScreenFragment = MainScreenFragment()
                         (activity as AppCompatActivity).supportFragmentManager
                             .beginTransaction()

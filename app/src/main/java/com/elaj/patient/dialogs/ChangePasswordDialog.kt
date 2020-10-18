@@ -54,8 +54,6 @@ class ChangePasswordDialog(
 
             if (isValidForm())
                 changePassword()
-            //dismiss()
-
         }
 
 

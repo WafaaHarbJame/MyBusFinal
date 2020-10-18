@@ -222,8 +222,6 @@ class DataFeacher(callBack: DataFetcherCallBack?) {
                 if (document.exists()) {
                     val user = document.toObject(MemberModel::class.java)
                     val password = user?.password
-                    Log.i(TAG, "Log oldPassword from fire $password")
-
                     if (oldPassword == password) {
                         RootApplication.fireStoreDB?.collection(ApiUrl.Users.name)?.document(mobile)
                             ?.update("password", newPassword, "password_confirm", newPassword)

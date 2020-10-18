@@ -6,10 +6,7 @@ import com.elaj.patient.classes.Constants
 import com.elaj.patient.classes.DBFunction
 import com.elaj.patient.models.*
 import com.google.gson.Gson
-import okhttp3.MediaType
 import okhttp3.MultipartBody
-import okhttp3.RequestBody
-import java.io.File
 
 
 class DataFeacher(callBack: DataFetcherCallBack?) {
@@ -208,6 +205,47 @@ class DataFeacher(callBack: DataFetcherCallBack?) {
                 dataFetcherCallBack?.Result("", Constants.SUCCESS, true)
             }.addOnFailureListener {
                 dataFetcherCallBack?.Result(null, Constants.FAIL_DATA, true)
+            }
+
+
+    }
+
+    fun changePassword(mobile: String?, oldPassword: String, newPassword: String) {
+
+        Log.i(TAG, "Log changePassword")
+        Log.i(TAG, "Log mobile changePassword $mobile")
+        Log.i(TAG, "Log oldPassword $oldPassword")
+        Log.i(TAG, "Log newPassword $newPassword")
+
+
+        fireStoreDB?.collection(ApiUrl.Users.name)?.document(mobile!!)?.get()
+            ?.addOnSuccessListener { document ->
+                if (document.exists()) {
+                    val user = document.toObject(MemberModel::class.java)
+                    val password = user?.password
+                    Log.i(TAG, "Log oldPassword from fire $password")
+
+                    if (oldPassword == password) {
+                        RootApplication.fireStoreDB?.collection(ApiUrl.Users.name)?.document(mobile)
+                            ?.update("password", newPassword, "password_confirm", newPassword)
+                            ?.addOnSuccessListener {
+
+                                dataFetcherCallBack?.Result("", Constants.SUCCESS, true)
+
+                            }?.addOnFailureListener { e ->
+                                dataFetcherCallBack?.Result("", Constants.FAIL_DATA, true)
+                            }
+                    }
+                    else{
+                        dataFetcherCallBack?.Result("", Constants.PASSWORD_WRONG, true)
+
+                    }
+
+                } else {
+                    dataFetcherCallBack?.Result(null, Constants.FAIL_DATA, false)
+
+                }
+
             }
 
 

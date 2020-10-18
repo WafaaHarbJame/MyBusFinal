@@ -51,7 +51,7 @@ object Constants {
     const val SHOW_DATA = "show_data"
     const val ERROR_DATA = "error_data"
     const val NO_CONNECTION = "no_connection"
-
+    const val PASSWORD_WRONG = "password_wrong"
 
     const val CUSTOMER = "customer"
     const val PROVIDER = "provider"

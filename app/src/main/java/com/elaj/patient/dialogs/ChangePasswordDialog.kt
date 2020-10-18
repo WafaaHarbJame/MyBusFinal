@@ -2,14 +2,29 @@ package com.elaj.patient.dialogs
 
 import android.app.Activity
 import android.app.Dialog
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.provider.Settings.Global.getString
+import android.util.Log
 import android.view.Gravity
 import android.view.Window
 import android.view.WindowManager
 import com.elaj.patient.R
+import com.elaj.patient.Utils.NumberHandler
+import com.elaj.patient.activities.ConfirmActivity
+import com.elaj.patient.apiHandlers.DataFeacher
+import com.elaj.patient.apiHandlers.DataFetcherCallBack
+import com.elaj.patient.classes.AESCrypt
+import com.elaj.patient.classes.Constants
+import com.elaj.patient.classes.GlobalData
+import com.elaj.patient.classes.UtilityApp
+import com.elaj.patient.models.MemberModel
+import com.github.dhaval2404.form_validation.rule.EqualRule
+import com.github.dhaval2404.form_validation.rule.NonEmptyRule
+import com.github.dhaval2404.form_validation.validation.FormValidator
 import kotlinx.android.synthetic.main.dialog_change_password.*
-import kotlinx.android.synthetic.main.dialog_confirm_send.*
+import kotlinx.android.synthetic.main.dialog_change_password.confirmPasswordTxt
 
 class ChangePasswordDialog(
     var activity: Activity?
@@ -18,6 +33,8 @@ class ChangePasswordDialog(
 
     val dialog: ChangePasswordDialog
         get() = this
+    val TAG: String? = "ChangePasswordDialog"
+
 
     init {
         window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
@@ -35,7 +52,9 @@ class ChangePasswordDialog(
 
         saveBtn.setOnClickListener {
 
-            dismiss()
+            if (isValidForm())
+                changePassword()
+            //dismiss()
 
         }
 
@@ -48,6 +67,77 @@ class ChangePasswordDialog(
 
 
     }
+
+    private fun changePassword() {
+        try {
+
+            var mobileStr = UtilityApp.userData?.mobileWithCountry;
+            val currentPasswordStr = NumberHandler.arabicToDecimal(currPasswordTV.text.toString())
+            val newPasswordStr = NumberHandler.arabicToDecimal(newPasswordTV.text.toString());
+
+            GlobalData.progressDialog(
+                activity,
+                R.string.change_password,
+                R.string.please_wait_sending
+            )
+
+            DataFeacher(object : DataFetcherCallBack {
+                override fun Result(obj: Any?, func: String?, IsSuccess: Boolean) {
+                    GlobalData.progressDialogHide()
+                    if (func == Constants.SUCCESS) {
+                     dialog.dismiss()
+                        GlobalData.successDialog(
+                            activity,
+                            R.string.change_password,
+                            activity?.getString(R.string.success_change_password)
+                        )
+
+
+                    } else {
+                        var message = activity?.getString(R.string.fail_to_change_password)
+                        if (func == Constants.PASSWORD_WRONG)
+                            message =  activity?.getString(R.string.current_password_wrong)
+
+                        GlobalData.errorDialog(
+                            activity,
+                            R.string.change_password,
+                            message
+                        )
+                    }
+
+
+                }
+            }).changePassword(mobileStr,AESCrypt.encrypt(currentPasswordStr),AESCrypt.encrypt(newPasswordStr));
+
+        } catch (e: Exception) {
+
+            e.printStackTrace()
+
+        }
+    }
+
+    private fun isValidForm(): Boolean {
+        return FormValidator.getInstance()
+            .addField(
+                currPasswordTV,
+                NonEmptyRule(R.string.enter_password)
+            )
+            .addField(
+                newPasswordTV,
+                NonEmptyRule(R.string.enter_confirm_password)
+            )
+            .addField(
+                confirmPasswordTxt,
+                NonEmptyRule(R.string.enter_password),
+                EqualRule(
+                    newPasswordTV.text.toString(),
+                    R.string.password_confirm_not_match
+                )
+            )
+
+            .validate()
+    }
+
 
 
 }

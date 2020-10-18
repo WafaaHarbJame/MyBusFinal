@@ -126,5 +126,14 @@
     <string name="enter_message_title">Enter Message Title</string>
     <string name="enter_message_text">Enter Message Text </string>
     <string name="fail_to_contact_withsupport">Fail to contact With Support </string>
+    <string name="female">Female</string>
+    <string name="empty_title">Please enter title for your question</string>
+    <string name="empty_desc">Please enter explain for your symptoms</string>
+    <string name="empty_age">"Please enter age "</string>
+    <string name="empty_gender">Please select gender</string>
+    <string name="empty_whatsapp_skype_number">Please enter WhatsApp or Skype Number to contact you</string>
+    <string name="new_question">New Question</string>
+    <string name="fail_send_question">Fail send question</string>
+    <string name="success_send_message_will_contact_soon">Success send your message, we will contact you soon</string>
 
 </resources>

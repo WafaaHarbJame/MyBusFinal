@@ -10,7 +10,7 @@ class MemberModel : Serializable {
     var type = 0
     var lang: String? = null
     var createdAt: String? = null
-    var mobileWithPlus: String? = null
+    var mobileWithCountry: String? = null
     var fcm_token: String? = null
     var password: String? = null
     var isVerified: Any? = null

@@ -77,7 +77,7 @@ class SplashScreen : ActivityBase() {
             // start if has access token
             if (UtilityApp.isLogin) {
 
-                val mobile = UtilityApp.userData?.mobileWithPlus
+                val mobile = UtilityApp.userData?.mobileWithCountry
 
                 DataFeacher(object : DataFetcherCallBack {
                     override fun Result(obj: Any?, func: String?, IsSuccess: Boolean) {

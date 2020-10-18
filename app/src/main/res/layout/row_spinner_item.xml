@@ -2,21 +2,25 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal">
+    android:orientation="vertical">
 
     <com.elaj.patient.spichalViews.STextView
         android:id="@+id/spinnerRowTxt"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
         android:gravity="start"
         android:lines="1"
         android:paddingStart="@dimen/_10sdp"
-        android:paddingTop="@dimen/_5sdp"
+        android:paddingTop="@dimen/_8sdp"
         android:paddingEnd="@dimen/_10sdp"
-        android:paddingBottom="@dimen/_5sdp"
+        android:paddingBottom="@dimen/_8sdp"
         android:text="626262622"
         android:textColor="@color/header2" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/gray" />
 
     <!--    <com.elaj.patient.spichalViews.STextViewIcon-->
     <!--        android:layout_width="wrap_content"-->

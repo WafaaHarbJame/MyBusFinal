@@ -33,6 +33,8 @@ class ContactUsFragment : FragmentBase() {
     var activity: Activity? = null
     val TAG: String? = "Log"
 
+//    var user: MemberModel? = null
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -48,6 +50,8 @@ class ContactUsFragment : FragmentBase() {
         activity = getActivity()
 
         mainTitleTxt.text = getString(R.string.contact_us)
+
+//        user = UtilityApp.userData
 
         homeBtn.visibility = gone
         sendBtn.setOnClickListener {
@@ -71,11 +75,15 @@ class ContactUsFragment : FragmentBase() {
     private fun isValidForm(): Boolean {
         return FormValidator.getInstance()
             .addField(
-                titleET,
+                titleInput,
                 NonEmptyRule(R.string.enter_message_title)
             )
             .addField(
-                messageET,
+                emailInput,
+                NonEmptyRule(R.string.enter_valid_email)
+            )
+            .addField(
+                messageInput,
                 NonEmptyRule(R.string.enter_message_text),
             )
             .validate()
@@ -85,15 +93,15 @@ class ContactUsFragment : FragmentBase() {
 
         try {
 
-            var messageTitleStr = titleET.text.toString()
-            val messageTextStr = messageET.text.toString()
-            val mobile = UtilityApp.userData?.mobileWithPlus
+            val emailStr = emailET.text.toString()
+            val messageTitleStr = titleET.text.toString()
+            val messageDescStr = messageET.text.toString()
 
 
             val supportModel = SupportModel()
-            supportModel.messageText = messageTextStr
+            supportModel.email = emailStr
             supportModel.messageTitle = messageTitleStr
-            supportModel.mobile = mobile
+            supportModel.messageText = messageDescStr
 
             GlobalData.progressDialog(
                 activity,
@@ -106,20 +114,22 @@ class ContactUsFragment : FragmentBase() {
                     GlobalData.progressDialogHide()
 
                     if (func == Constants.SUCCESS) {
-                        Toast(R.string.success_send)
 
-                        val mainScreenFragment = MainScreenFragment()
-                        (activity as AppCompatActivity).supportFragmentManager
-                            .beginTransaction()
-                            .replace(R.id.container, mainScreenFragment, "mainScreenFragment")
-                            .commit();
+                        emailET.setText("")
+                        messageET.setText("")
+                        titleET.setText("")
 
-                    } else {
-                        var message = getString(R.string.fail_to_contact_withsupport)
-                        GlobalData.errorDialog(
-                            activity,
+                        GlobalData.successDialog(
+                            requireActivity(),
                             R.string.contact_us,
-                            message
+                            getString(R.string.success_send_message_will_contact_soon)
+                        )
+                    } else {
+
+                        GlobalData.errorDialog(
+                            requireActivity(),
+                            R.string.contact_us,
+                            getString(R.string.fail_to_contact_withsupport)
                         )
                     }
 

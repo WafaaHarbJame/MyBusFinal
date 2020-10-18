@@ -31,8 +31,8 @@ class DataFeacher(callBack: DataFetcherCallBack?) {
         Log.i(TAG, "Log loginHandle")
         Log.i(TAG, "Log mobile " + memberModel?.mobile)
         Log.i(TAG, "Log password " + memberModel?.password)
-        val phoneNumber = memberModel?.mobileWithPlus.toString()
-        fireStoreDB?.collection(ApiUrl.Users.name)?.document(phoneNumber)?.get()
+        val phoneNumber = memberModel?.mobileWithCountry
+        fireStoreDB?.collection(ApiUrl.Users.name)?.document(phoneNumber!!)?.get()
             ?.addOnSuccessListener { document ->
                 if (document.exists()) {
                     dataFetcherCallBack?.Result(document, Constants.SUCCESS, true)
@@ -52,7 +52,7 @@ class DataFeacher(callBack: DataFetcherCallBack?) {
         Log.i(TAG, "Log countryCode ${memberModel.countryCode}")
         Log.i(TAG, "Log mobile ${memberModel.mobile}")
 
-        val phoneNumber = memberModel.mobileWithPlus.toString()
+        val phoneNumber = memberModel.mobileWithCountry.toString()
 //        this.activity = activity
 
         fireStoreDB!!.collection(ApiUrl.Users.name).document(phoneNumber).get()
@@ -157,7 +157,7 @@ class DataFeacher(callBack: DataFetcherCallBack?) {
         Log.i(TAG, "Log confirm_password $newPassword")
 
         RootApplication.fireStoreDB?.collection(ApiUrl.Users.name)?.document(mobile)
-            ?.update("isVerified", true, "password", newPassword, "password_confirm", newPassword)
+            ?.update("password", newPassword, "password_confirm", newPassword)
             ?.addOnSuccessListener {
 
                 dataFetcherCallBack?.Result("", Constants.SUCCESS, true)
@@ -168,14 +168,15 @@ class DataFeacher(callBack: DataFetcherCallBack?) {
 
 
     }
+
     fun sendSupport(supportModel: SupportModel) {
-        val mobile=supportModel.mobile.toString();
+
         Log.i(TAG, "Log sendSupport")
-        Log.i(TAG, "Log mobile $mobile")
+        Log.i(TAG, "Log email ${supportModel.email}")
+        Log.i(TAG, "Log messageTitle ${supportModel.messageTitle}")
+        Log.i(TAG, "Log messageText ${supportModel.messageText}")
 
-        val id: String =  fireStoreDB!!.collection(mobile).document().getId()
-
-        fireStoreDB!!.collection(ApiUrl.Supports.name).document(id)
+        fireStoreDB!!.collection(ApiUrl.Supports.name).document()
             .set(supportModel)
             .addOnSuccessListener {
                 dataFetcherCallBack?.Result(supportModel, Constants.SUCCESS, true)
@@ -184,37 +185,34 @@ class DataFeacher(callBack: DataFetcherCallBack?) {
             }
 
 
-
     }
 
-    fun sendSupport1(title: String, details: String, file: File?) {
+    fun sendQuestion(questionModel: QuestionModel) {
 
-        val builder = MultipartBody.Builder()
-        builder.setType(MultipartBody.FORM)
-
-        builder.addFormDataPart("title", title)
-        builder.addFormDataPart("message", details)
-
-        if (file != null) {
-            val requestImage: RequestBody =
-                RequestBody.create(MediaType.parse("multipart/form-data"), file)
-            builder.addFormDataPart("photo", file.lastModified().toString() + ".png", requestImage)
+        Log.i(TAG, "Log sendQuestion")
+        Log.i(TAG, "Log userMobile ${questionModel.userMobile}")
+        Log.i(TAG, "Log title ${questionModel.title}")
+        Log.i(TAG, "Log details ${questionModel.details}")
+        Log.i(TAG, "Log type ${questionModel.type}")
+        if (questionModel.type == QuestionModel.CALL) {
+            Log.i(TAG, "Log whatsAppNumber ${questionModel.whatsAppNumber}")
+            Log.i(TAG, "Log skypeNumber ${questionModel.skypeNumber}")
+        } else {
+            Log.i(TAG, "Log age ${questionModel.age}")
+            Log.i(TAG, "Log gender ${questionModel.gender}")
         }
 
-        val requestBody = builder.build()
+        fireStoreDB!!.collection(ApiUrl.Questions.name).document()
+            .set(questionModel)
+            .addOnSuccessListener {
+                dataFetcherCallBack?.Result("", Constants.SUCCESS, true)
+            }.addOnFailureListener {
+                dataFetcherCallBack?.Result(null, Constants.FAIL_DATA, true)
+            }
 
-        Log.i(TAG, "Log sendSupport")
-        Log.i(TAG, "Log headerMap $headerMap")
-        Log.i(TAG, "Log title $title")
-        Log.i(TAG, "Log message $details")
-
-//        if (dataFetcherCallBack != null)
-//            dataFetcherCallBack?.Result(null, Constants.NO_CONNECTION, false)
-//
-//        EventBus.getDefault()
-//            .post(ResponseEvent("sendSupport", Constants.NO_CONNECTION))
 
     }
+
 
     fun editProviderProfile(
         editProviderModel: EditProviderModel

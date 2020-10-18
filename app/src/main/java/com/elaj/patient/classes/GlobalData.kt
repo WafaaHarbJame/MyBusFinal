@@ -6,6 +6,7 @@ import android.widget.Toast
 import com.awesomedialog.blennersilva.awesomedialoglibrary.AwesomeErrorDialog
 import com.awesomedialog.blennersilva.awesomedialoglibrary.AwesomeInfoDialog
 import com.awesomedialog.blennersilva.awesomedialoglibrary.AwesomeProgressDialog
+import com.awesomedialog.blennersilva.awesomedialoglibrary.AwesomeSuccessDialog
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.elaj.patient.R
@@ -30,6 +31,7 @@ object GlobalData {
     private var progressDialog: AwesomeProgressDialog? = null
     private var errorDialog: AwesomeErrorDialog? = null
     private var infoDialog: AwesomeInfoDialog? = null
+    private var successDialog: AwesomeSuccessDialog? = null
 
     //============================================================================
 //============================================================================
@@ -73,18 +75,19 @@ object GlobalData {
     fun errorDialog(
         c: Context?,
         title: Int?,
-        msg: String?) { // to show dialog insert status = true to dismiss doialog status = false
+        msg: String?
+    ) { // to show dialog insert status = true to dismiss doialog status = false
 
-            errorDialog = AwesomeErrorDialog(c)
-                .setTitle(title!!)
-                .setMessage(msg!!)
-                .setColoredCircle(R.color.dialogErrorBackgroundColor)
-                .setDialogIconAndColor(R.drawable.ic_dialog_error, R.color.white)
-                .setCancelable(true)
+        errorDialog = AwesomeErrorDialog(c)
+            .setTitle(title!!)
+            .setMessage(msg!!)
+            .setColoredCircle(R.color.dialogErrorBackgroundColor)
+            .setDialogIconAndColor(R.drawable.ic_dialog_error, R.color.white)
+            .setCancelable(true)
 //                    .setButtonText(getString(R.string.ok))
-                .setButtonBackgroundColor(R.color.dialogErrorBackgroundColor)
+            .setButtonBackgroundColor(R.color.dialogErrorBackgroundColor)
 
-            errorDialog?.show()
+        errorDialog?.show()
 
     }
 
@@ -105,6 +108,25 @@ object GlobalData {
 //            .setButtonBackgroundColor(R.color.dialogErrorBackgroundColor)
 
         infoDialog?.show()
+    }
+
+    fun successDialog(
+        c: Context?,
+        title: Int?,
+        msg: String?
+    ) { // to show dialog insert status = true to dismiss doialog status = false
+
+
+        successDialog = AwesomeSuccessDialog(c)
+            .setTitle(title!!)
+            .setMessage(msg!!)
+            .setColoredCircle(R.color.dialogSuccessBackgroundColor)
+            .setDialogIconAndColor(R.drawable.ic_check, R.color.white)
+            .setCancelable(true)
+//                    .setButtonText(getString(R.string.ok))
+//            .setButtonBackgroundColor(R.color.dialogErrorBackgroundColor)
+
+        successDialog?.show()
     }
 
     fun Toast(context: Context?, msg: String?) {

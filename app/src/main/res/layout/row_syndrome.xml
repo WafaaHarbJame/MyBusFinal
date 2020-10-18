@@ -13,9 +13,7 @@
         android:background="@color/white"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:paddingStart="@dimen/_15sdp"
         android:paddingTop="@dimen/_10sdp"
-        android:paddingEnd="@dimen/_15sdp"
         android:paddingBottom="@dimen/_10sdp">
 
         <com.elaj.patient.spichalViews.STextView
@@ -24,7 +22,6 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/_10sdp"
             android:layout_weight="1"
-            android:text="Has Stress"
             android:textAlignment="viewStart"
             android:textColor="@color/colorAccent"
             android:textSize="@dimen/_12ssp" />
@@ -39,7 +36,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/_10sdp"
-                android:checked="true"
                 android:text="@string/yes"
                 android:textColor="@color/header2"
                 android:textSize="@dimen/_12ssp"

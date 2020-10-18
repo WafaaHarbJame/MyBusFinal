@@ -167,7 +167,7 @@ class LoginActivity : ActivityBase() {
             memberModel.fcm_token = FCMToken
             memberModel.isVerified = false
             memberModel.password = AESCrypt.encrypt(passwordStr)
-            memberModel.mobileWithPlus = countryCodeTxt.text.toString().plus(memberModel.mobile)
+            memberModel.mobileWithCountry = selectedCountryCode.toString().plus(memberModel.mobile)
 
 //
             GlobalData.progressDialog(
@@ -201,7 +201,7 @@ class LoginActivity : ActivityBase() {
                             } else {
                                 val intent = Intent(getActiviy(), ConfirmActivity::class.java)
                                 intent.putExtra(Constants.KEY_MEMBER, user)
-                                intent.putExtra(Constants.KEY_MOBILE, memberModel.mobileWithPlus)
+                                intent.putExtra(Constants.KEY_MOBILE, memberModel.mobileWithCountry)
                                 startActivity(intent)
 
                             }

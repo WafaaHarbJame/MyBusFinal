@@ -100,7 +100,7 @@ class ForgetPasswordActivity : ActivityBase() {
                 ) else mobileStr
 
 
-            val phoneNumber = countryCodeTxt.text.toString().plus(mobile)
+            val phoneNumber = selectedCountryCode.toString().plus(mobile)
 
             GlobalData.progressDialog(
                 getActiviy(),

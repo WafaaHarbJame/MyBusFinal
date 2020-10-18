@@ -182,14 +182,12 @@ class RegisterActivity : ActivityBase() {
                     ""
                 ) else mobileStr
 
-//            phoneNumber = countryCodeTxt.text.toString()
-//                .plus(NumberHandler.arabicToDecimal(mobileStr))
             registerUserModel.fcm_token = FCMToken
             registerUserModel.isVerified = false
             registerUserModel.password = AESCrypt.encrypt(passwordStr);
             registerUserModel.password_confirm = AESCrypt.encrypt(passwordStr)
-            registerUserModel.mobileWithPlus =
-                countryCodeTxt.text.toString().plus(registerUserModel.mobile)
+            registerUserModel.mobileWithCountry =
+                selectedCountryCode.toString().plus(registerUserModel.mobile)
 
             GlobalData.progressDialog(
                 getActiviy(),
@@ -202,19 +200,19 @@ class RegisterActivity : ActivityBase() {
                     GlobalData.progressDialogHide()
 
                     if (func == Constants.SUCCESS) {
-                        Log.d(TAG, "phoneNumber:${registerUserModel.mobileWithPlus}")
+                        Log.d(TAG, "phoneNumber:${registerUserModel.mobileWithCountry}")
 
                         val user = MemberModel().apply {
                             countryCode = registerUserModel.countryCode
                             mobile = registerUserModel.mobile
-                            mobileWithPlus = registerUserModel.mobileWithPlus
+                            mobileWithCountry = registerUserModel.mobileWithCountry
                             fcm_token = registerUserModel.fcm_token
                             password = registerUserModel.password
                             isVerified = true
                         }
                         val intent = Intent(getActiviy(), ConfirmActivity::class.java)
                         intent.putExtra(Constants.KEY_MEMBER, user)
-                        intent.putExtra(Constants.KEY_MOBILE, registerUserModel.mobileWithPlus)
+                        intent.putExtra(Constants.KEY_MOBILE, registerUserModel.mobileWithCountry)
                         startActivity(intent)
                     } else {
                         var message = getString(R.string.fail_to_register)

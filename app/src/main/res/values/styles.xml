@@ -118,6 +118,7 @@
         <!--<item name="android:background">@drawable/trans_spinner</item>-->
         <item name="android:background">@color/transparent</item>
         <item name="android:popupBackground">@color/white</item>
+
     </style>
 
     <style name="editTextStyle">

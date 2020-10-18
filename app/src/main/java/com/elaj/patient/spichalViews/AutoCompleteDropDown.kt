@@ -68,9 +68,9 @@ class AutoCompleteDropDown : AppCompatAutoCompleteTextView {
                 e.printStackTrace()
             }
             val imm =
-                getContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-            imm.hideSoftInputFromWindow(getWindowToken(), 0)
-            setKeyListener(null)
+                context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.hideSoftInputFromWindow(windowToken, 0)
+            keyListener = null
             dismissDropDown()
         } else {
             isPopup = false

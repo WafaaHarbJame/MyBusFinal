@@ -117,7 +117,7 @@
                 android:layout_marginBottom="@dimen/_10sdp"
                 android:hint="@string/patient_age">
 
-                <com.elaj.patient.spichalViews.STextInputEditText
+                <com.elaj.patient.spichalViews.SEditText
                     android:id="@+id/ageET"
                     style="@style/editTextStyle"
                     android:layout_width="match_parent"
@@ -167,7 +167,7 @@
                 android:layout_marginBottom="@dimen/_10sdp"
                 android:hint="@string/question_title">
 
-                <com.elaj.patient.spichalViews.STextInputEditText
+                <com.elaj.patient.spichalViews.SEditText
                     android:id="@+id/titleET"
                     style="@style/editTextStyle"
                     android:layout_width="match_parent"
@@ -186,7 +186,7 @@
                 android:layout_marginBottom="@dimen/_10sdp"
                 android:hint="@string/explain_your_symptoms">
 
-                <com.elaj.patient.spichalViews.STextInputEditText
+                <com.elaj.patient.spichalViews.SEditText
                     android:id="@+id/detailsET"
                     style="@style/editTextStyle"
                     android:layout_width="match_parent"
@@ -196,6 +196,13 @@
                     android:minHeight="@dimen/_100sdp" />
 
             </com.elaj.patient.spichalViews.STextInputLayout>
+
+            <ProgressBar
+                android:id="@+id/syndromeLoading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:visibility="gone" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv"
@@ -237,7 +244,7 @@
                 android:layout_marginBottom="@dimen/_10sdp"
                 android:hint="@string/whatsapp_number">
 
-                <com.elaj.patient.spichalViews.STextInputEditText
+                <com.elaj.patient.spichalViews.SEditText
                     android:id="@+id/whatsAppET"
                     style="@style/editTextStyle"
                     android:layout_width="match_parent"
@@ -256,12 +263,12 @@
                 android:layout_marginBottom="@dimen/_10sdp"
                 android:hint="@string/skype_number">
 
-                <com.elaj.patient.spichalViews.STextInputEditText
+                <com.elaj.patient.spichalViews.SEditText
                     android:id="@+id/skypeET"
                     style="@style/editTextStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="phone" />
+                    android:inputType="number" />
 
             </com.elaj.patient.spichalViews.STextInputLayout>
 

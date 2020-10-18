@@ -9,6 +9,7 @@ enum class ApiUrl {
     Syndromes,
     Plans,
     Users,
-    Supports
+    Supports,
+    Questions,
 
 }

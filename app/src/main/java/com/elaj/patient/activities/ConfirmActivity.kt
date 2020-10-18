@@ -46,13 +46,12 @@ class ConfirmActivity : ActivityBase() {
         title = ""
 
         val bundle = intent.extras
-        if (bundle != null) {
-            mobile = bundle.getString(Constants.KEY_MOBILE)!!
-            Log.i(TAG, "Log mobile $mobile")
-            sendVerificationCode(mobile)
+        mobile = bundle?.getString(Constants.KEY_MOBILE)!!
+        Log.i(TAG, "Log mobile $mobile")
 
-        }
         user = intent.getSerializableExtra(Constants.KEY_MEMBER) as MemberModel
+
+        sendVerificationCode("+$mobile")
 
         confirmBtn.setOnClickListener {
             if (TextUtils.isEmpty(codeTxt.text.toString())) {
@@ -71,7 +70,7 @@ class ConfirmActivity : ActivityBase() {
         }
 
         resendCodeBtn.setOnClickListener {
-            sendVerificationCode(mobile)
+            sendVerificationCode("+$mobile")
         }
 
     }

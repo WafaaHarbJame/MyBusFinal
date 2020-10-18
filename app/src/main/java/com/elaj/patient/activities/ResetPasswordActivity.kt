@@ -49,12 +49,10 @@ class ResetPasswordActivity : ActivityBase() {
         auth = FirebaseAuth.getInstance()
 
         val bundle = intent.extras
-        if (bundle != null) {
-            phoneNumber = bundle.getString(Constants.KEY_MOBILE)!!
-            Log.i(TAG, "Log mobile $phoneNumber")
-            sendVerificationCode(phoneNumber)
+        phoneNumber = bundle?.getString(Constants.KEY_MOBILE)!!
+//        Log.i(TAG, "Log mobile $phoneNumber")
 
-        }
+        sendVerificationCode("+$phoneNumber")
 
         resetPasswordBtn.setOnClickListener {
 
@@ -142,7 +140,8 @@ class ResetPasswordActivity : ActivityBase() {
     }
 
     private fun signInWithPhoneAuthCredential(credential: PhoneAuthCredential) {
-        val passwordStr = AESCrypt.encrypt(NumberHandler.arabicToDecimal(passwordTxt.text.toString()))
+        val passwordStr =
+            AESCrypt.encrypt(NumberHandler.arabicToDecimal(passwordTxt.text.toString()))
         auth.signInWithCredential(credential)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
@@ -153,8 +152,9 @@ class ResetPasswordActivity : ActivityBase() {
                             GlobalData.progressDialogHide()
 
                             if (func == Constants.SUCCESS) {
-                                Log.d(TAG, "phoneNumber:${phoneNumber}")
+//                                Log.d(TAG, "phoneNumber:${phoneNumber}")
                                 val intent = Intent(getActiviy(), LoginActivity::class.java)
+                                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
                                 startActivity(intent)
                             } else {
                                 GlobalData.errorDialog(
@@ -166,7 +166,7 @@ class ResetPasswordActivity : ActivityBase() {
 
 
                         }
-                    }).resetPassword(phoneNumber,passwordStr)
+                    }).resetPassword(phoneNumber, passwordStr)
 
                 } else {
                     Log.w(TAG, "signInWithCredential:failure", task.exception)
@@ -177,7 +177,6 @@ class ResetPasswordActivity : ActivityBase() {
                 }
             }
     }
-
 
 
 }

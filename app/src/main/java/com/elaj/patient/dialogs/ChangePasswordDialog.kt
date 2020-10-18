@@ -78,7 +78,7 @@ class ChangePasswordDialog(
             GlobalData.progressDialog(
                 activity,
                 R.string.change_password,
-                R.string.please_wait_sending
+                R.string.please_wait_to_change_password
             )
 
             DataFeacher(object : DataFetcherCallBack {

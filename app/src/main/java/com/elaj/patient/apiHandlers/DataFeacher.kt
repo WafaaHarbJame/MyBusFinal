@@ -217,7 +217,6 @@ class DataFeacher(callBack: DataFetcherCallBack?) {
         Log.i(TAG, "Log oldPassword $oldPassword")
         Log.i(TAG, "Log newPassword $newPassword")
 
-
         fireStoreDB?.collection(ApiUrl.Users.name)?.document(mobile!!)?.get()
             ?.addOnSuccessListener { document ->
                 if (document.exists()) {

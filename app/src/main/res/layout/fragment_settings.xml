@@ -6,50 +6,33 @@
     android:orientation="vertical">
 
     <include layout="@layout/tool_bar" />
-
     <LinearLayout
-        android:id="@+id/languageBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
         android:orientation="horizontal"
+        android:id="@+id/profileBut"
         android:paddingStart="@dimen/_15sdp"
         android:paddingTop="@dimen/_12sdp"
         android:paddingEnd="@dimen/_15sdp"
         android:paddingBottom="@dimen/_12sdp">
 
-        <com.elaj.patient.spichalViews.STextViewIcon
-            android:id="@+id/item_icon2"
+        <com.mybus.mybusapp.spichalViews.STextViewIcon
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/_10sdp"
-            android:gravity="center_vertical"
-            android:text="@string/fal_globe_americas"
+            android:gravity="start|center_vertical"
+            android:text="@string/fa_clipboard_check"
             android:textColor="@color/colorPrimary"
             android:textSize="@dimen/_15ssp" />
 
-        <com.elaj.patient.spichalViews.STextViewBold
+        <com.mybus.mybusapp.spichalViews.STextViewBold
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="start|center_vertical"
-            android:text="@string/language"
+            android:text="@string/profile"
             android:textAlignment="viewStart"
             android:textColor="@color/colorAccent"
-            android:textSize="@dimen/_12ssp" />
-
-        <Space
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1">
-
-        </Space>
-
-        <com.elaj.patient.spichalViews.STextView
-            android:id="@+id/languageTxt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="English"
-            android:textColor="@color/colorPrimary"
             android:textSize="@dimen/_12ssp" />
 
     </LinearLayout>
@@ -57,7 +40,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/gray2" />
+        android:background="@color/gray" />
 
     <LinearLayout
         android:id="@+id/passwordBtn"
@@ -70,7 +53,7 @@
         android:paddingEnd="@dimen/_15sdp"
         android:paddingBottom="@dimen/_12sdp">
 
-        <com.elaj.patient.spichalViews.STextViewIcon
+        <com.mybus.mybusapp.spichalViews.STextViewIcon
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/_10sdp"
@@ -79,8 +62,7 @@
             android:textColor="@color/colorPrimary"
             android:textSize="@dimen/_15ssp" />
 
-        <com.elaj.patient.spichalViews.STextViewBold
-            android:id="@+id/item_title_password"
+        <com.mybus.mybusapp.spichalViews.STextViewBold
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="start|center_vertical"
@@ -97,36 +79,6 @@
         android:layout_height="1dp"
         android:background="@color/gray" />
 
-    <LinearLayout
-        android:id="@+id/plansBtn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:paddingStart="@dimen/_15sdp"
-        android:paddingTop="@dimen/_12sdp"
-        android:paddingEnd="@dimen/_15sdp"
-        android:paddingBottom="@dimen/_12sdp">
-
-        <com.elaj.patient.spichalViews.STextViewIcon
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/_10sdp"
-            android:gravity="start|center_vertical"
-            android:text="@string/fa_clipboard_check"
-            android:textColor="@color/colorPrimary"
-            android:textSize="@dimen/_15ssp" />
-
-        <com.elaj.patient.spichalViews.STextViewBold
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="start|center_vertical"
-            android:text="@string/plans"
-            android:textAlignment="viewStart"
-            android:textColor="@color/colorAccent"
-            android:textSize="@dimen/_12ssp" />
-
-    </LinearLayout>
 
 
     <View
@@ -135,8 +87,12 @@
         android:background="@color/gray" />
 
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/gray" />
     <LinearLayout
-        android:id="@+id/termsBtn"
+        android:id="@+id/aboutAppBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
@@ -146,41 +102,27 @@
         android:paddingEnd="@dimen/_15sdp"
         android:paddingBottom="@dimen/_12sdp">
 
-        <com.elaj.patient.spichalViews.STextViewIcon
+        <com.mybus.mybusapp.spichalViews.STextViewIcon
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/_10sdp"
-            android:gravity="start|center_vertical"
-            android:text="@string/fa_file_contract"
+            android:text="@string/fal_info_circle"
             android:textColor="@color/colorPrimary"
             android:textSize="@dimen/_15ssp" />
 
-        <com.elaj.patient.spichalViews.STextViewBold
-            android:id="@+id/item_title3"
+        <com.mybus.mybusapp.spichalViews.STextViewBold
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="start|center_vertical"
-            android:text="@string/terms_of_use"
-            android:textAlignment="viewStart"
+            android:text="@string/about_app"
             android:textColor="@color/colorAccent"
             android:textSize="@dimen/_12ssp" />
 
-        <Space
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1">
-
-        </Space>
-
 
     </LinearLayout>
-
-
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/gray" />
-
     <LinearLayout
         android:id="@+id/ratingBtn"
         android:layout_width="match_parent"
@@ -192,7 +134,7 @@
         android:paddingEnd="@dimen/_15sdp"
         android:paddingBottom="@dimen/_12sdp">
 
-        <com.elaj.patient.spichalViews.STextViewIcon
+        <com.mybus.mybusapp.spichalViews.STextViewIcon
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/_10sdp"
@@ -200,7 +142,7 @@
             android:textColor="@color/colorPrimary"
             android:textSize="@dimen/_15ssp" />
 
-        <com.elaj.patient.spichalViews.STextViewBold
+        <com.mybus.mybusapp.spichalViews.STextViewBold
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/rate_application"
@@ -210,12 +152,11 @@
 
     </LinearLayout>
 
+
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/gray" />
-
-
     <LinearLayout
         android:id="@+id/logoutBtn"
         android:layout_width="match_parent"
@@ -227,7 +168,7 @@
         android:paddingEnd="@dimen/_15sdp"
         android:paddingBottom="@dimen/_12sdp">
 
-        <com.elaj.patient.spichalViews.STextViewIcon
+        <com.mybus.mybusapp.spichalViews.STextViewIcon
             android:id="@+id/signOutIcon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -236,7 +177,7 @@
             android:textColor="@color/colorPrimary"
             android:textSize="@dimen/_15ssp" />
 
-        <com.elaj.patient.spichalViews.STextViewBold
+        <com.mybus.mybusapp.spichalViews.STextViewBold
             android:id="@+id/signOutLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

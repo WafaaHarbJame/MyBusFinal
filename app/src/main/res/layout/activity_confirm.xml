@@ -29,20 +29,19 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginBottom="@dimen/_5sdp"
-                android:src="@drawable/hd_login" />
+                app:srcCompat="@drawable/ic_login_icon" />
 
-            <com.elaj.patient.spichalViews.STextViewBold
+            <com.mybus.mybusapp.spichalViews.STextViewBold
                 android:id="@+id/signLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="-30dp"
                 android:layout_marginBottom="@dimen/_8sdp"
                 android:text="@string/confirm_code"
                 android:textColor="@color/colorAccent"
                 android:textSize="@dimen/_15ssp" />
 
-            <com.elaj.patient.spichalViews.STextView
+            <com.mybus.mybusapp.spichalViews.STextView
                 android:id="@+id/helloLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -53,7 +52,7 @@
                 android:textSize="@dimen/_13ssp" />
 
 
-            <com.elaj.patient.spichalViews.STextInputLayout
+            <com.mybus.mybusapp.spichalViews.STextInputLayout
                 android:id="@+id/mobileInput"
                 style="@style/TextInputStyle"
                 android:layout_width="match_parent"
@@ -65,7 +64,7 @@
                 app:layout_constraintStart_toEndOf="@id/countryCodeTxt"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <com.elaj.patient.spichalViews.SAutoCompleteText
+                <com.mybus.mybusapp.spichalViews.SAutoCompleteText
                     android:id="@+id/codeTxt"
                     style="@style/editTextStyle"
                     android:layout_width="match_parent"
@@ -73,7 +72,7 @@
                     android:imeOptions="actionNext"
                     android:inputType="number" />
 
-            </com.elaj.patient.spichalViews.STextInputLayout>
+            </com.mybus.mybusapp.spichalViews.STextInputLayout>
 
             <com.loopeer.shadow.ShadowView
                 android:layout_width="match_parent"
@@ -88,7 +87,7 @@
                 app:shadowMarginBottom="@dimen/_8sdp"
                 app:shadowRadius="@dimen/_8sdp">
 
-                <com.elaj.patient.spichalViews.STextViewBold
+                <com.mybus.mybusapp.spichalViews.STextViewBold
                     android:id="@+id/confirmBtn"
                     style="@style/primaryBtnStyle"
                     android:layout_width="match_parent"
@@ -107,7 +106,7 @@
                 android:layout_marginBottom="@dimen/_40sdp"
                 android:orientation="horizontal">
 
-                <com.elaj.patient.spichalViews.STextView
+                <com.mybus.mybusapp.spichalViews.STextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
@@ -116,7 +115,7 @@
                     android:textColor="@color/colorAccent2"
                     android:textSize="@dimen/_12ssp" />
 
-                <com.elaj.patient.spichalViews.STextView
+                <com.mybus.mybusapp.spichalViews.STextView
                     android:id="@+id/resendCodeBtn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

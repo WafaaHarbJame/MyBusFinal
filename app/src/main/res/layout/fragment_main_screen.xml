@@ -13,15 +13,16 @@
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_120sdp"
-            android:background="@color/colorPrimary" />
+            android:id="@+id/view1"
+            android:layout_height="@dimen/_90sdp"
+            android:background="@drawable/draw1" />
 
         <RelativeLayout
-            android:id="@+id/userNameLY"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingStart="@dimen/_12sdp"
             android:paddingTop="@dimen/_12sdp"
+            android:id="@+id/Ly1"
             android:paddingEnd="@dimen/_12sdp">
 
             <com.github.siyamed.shapeimageview.RoundedImageView
@@ -34,73 +35,242 @@
                 app:siBorderWidth="1dp"
                 app:siRadius="@dimen/_15sdp" />
 
-            <com.elaj.patient.spichalViews.STextViewBold
+            <com.mybus.mybusapp.spichalViews.STextViewBold
                 android:id="@+id/usernameTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/_5sdp"
                 android:layout_toEndOf="@id/userImg"
-                android:text="Ameer Aqel"
+                android:text="Wafaa"
                 android:textColor="@color/white"
                 android:textSize="@dimen/_12ssp" />
 
-            <com.elaj.patient.spichalViews.STextView
+            <com.mybus.mybusapp.spichalViews.STextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/usernameTV"
                 android:layout_toEndOf="@id/userImg"
-                android:text="@string/good_morning"
+                android:text="@string/hello_in_mybus_app"
                 android:textColor="@color/white"
                 android:textSize="@dimen/_10ssp" />
         </RelativeLayout>
 
 
-        <!--        <androidx.coordinatorlayout.widget.CoordinatorLayout-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:layout_below="@id/userNameLY">-->
-
-        <com.duolingo.open.rtlviewpager.RtlViewPager
-            android:id="@+id/viewPager"
+        <LinearLayout
+            android:id="@+id/selectLocationLY"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_130sdp"
-            android:layout_below="@id/userNameLY"
-            android:clipToPadding="false"
-            android:overScrollMode="never"
-            android:paddingStart="@dimen/card_padding"
-            android:paddingLeft="@dimen/card_padding"
-            android:paddingTop="@dimen/_5sdp"
-            android:paddingEnd="@dimen/card_padding"
-            android:paddingRight="@dimen/card_padding"
-            android:paddingBottom="@dimen/_5sdp" />
+            android:layout_height="wrap_content"
+            android:background="@drawable/round_corner_primary_trans"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:layout_marginEnd="@dimen/_8sdp"
+            android:layout_below="@id/view1"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:paddingStart="@dimen/_15sdp"
+            android:paddingTop="@dimen/_15sdp"
+            android:paddingEnd="@dimen/_15sdp"
+            android:paddingBottom="@dimen/_10sdp">
 
-        <!--        </androidx.coordinatorlayout.widget.CoordinatorLayout>-->
 
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_vertical"
+                    android:layout_height="wrap_content">
+
+                    <com.mybus.mybusapp.spichalViews.STextViewBold
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/select_location"
+                        android:id="@+id/myLocationTv"
+                        android:textAlignment="viewStart"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="@dimen/_14ssp" />
+                    <Space
+                        android:layout_width="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content">
+
+                    </Space>
+                    <com.mybus.mybusapp.spichalViews.STextViewIcon
+                        android:id="@+id/editMyLocationBtn"
+                        android:layout_width="@dimen/_25sdp"
+                        android:layout_height="@dimen/_25sdp"
+                        android:layout_gravity="top|end"
+                        android:background="@drawable/round_corner_accent_fill"
+                        android:gravity="center"
+                        android:text="@string/fa_pen_edit"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_13ssp"
+                        android:visibility="gone" />
+
+                </LinearLayout>
+
+                <com.mybus.mybusapp.spichalViews.STextViewBold
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/selectLocation"
+                    android:background="@drawable/round_corner_big_gray_trans"
+                    android:hint="@string/select_your_location"
+                    android:textAlignment="viewStart"
+                    android:layout_marginTop="@dimen/_4sdp"
+                    android:textColor="@color/colorAccent3"
+                    android:padding="@dimen/_8sdp"
+                    android:drawableEnd="@drawable/ic_map_marker"
+                    android:textSize="@dimen/_11ssp" />
+
+
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/DestinationLY"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/round_corner_primary_trans"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:layout_marginEnd="@dimen/_8sdp"
+            android:layout_below="@id/selectLocationLY"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:paddingStart="@dimen/_15sdp"
+            android:paddingTop="@dimen/_15sdp"
+            android:paddingEnd="@dimen/_15sdp"
+            android:paddingBottom="@dimen/_10sdp">
+
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <com.mybus.mybusapp.spichalViews.STextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/select_destination"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="@dimen/_14ssp" />
+
+             <LinearLayout
+                 android:layout_width="match_parent"
+                 android:orientation="horizontal"
+                 android:layout_marginTop="@dimen/_2sdp"
+                 android:id="@+id/selectDistinationButton"
+                 android:background="@drawable/round_corner_big_gray_trans"
+                 android:layout_height="wrap_content">
+                 <com.mybus.mybusapp.spichalViews.STextViewBold
+                     android:layout_width="0dp"
+                     android:layout_height="wrap_content"
+                     android:hint="@string/enter_your_destination"
+                     android:textAlignment="viewStart"
+                     android:textColor="@color/colorAccent3"
+                     android:layout_weight="1"
+                     android:id="@+id/selectDestinationBut"
+                     android:padding="@dimen/_8sdp"
+                     android:textSize="@dimen/_11ssp" />
+                 <com.mybus.mybusapp.spichalViews.STextViewIcon
+                     android:id="@+id/searchBtn"
+                     android:layout_width="wrap_content"
+                     android:layout_height="match_parent"
+                     android:layout_gravity="center"
+                     android:gravity="center"
+                     android:padding="@dimen/_5sdp"
+                     android:paddingStart="@dimen/_10sdp"
+                     android:paddingEnd="@dimen/_10sdp"
+                     android:scaleX="@integer/scaleX"
+                     android:text="@string/fa_search"
+                     android:textColor="@color/tabColor1"
+                     android:textSize="@dimen/_15ssp"
+                     android:visibility="visible" />
+             </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/DriverLY"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/round_corner_primary_trans"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:layout_marginEnd="@dimen/_8sdp"
+            android:layout_below="@id/DestinationLY"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:paddingStart="@dimen/_15sdp"
+            android:paddingTop="@dimen/_15sdp"
+            android:paddingEnd="@dimen/_15sdp"
+            android:paddingBottom="@dimen/_10sdp">
+
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <com.mybus.mybusapp.spichalViews.STextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/select_driver"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="@dimen/_14ssp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="@dimen/_2sdp"
+                    android:background="@drawable/round_corner_big_gray_trans"
+                    android:layout_height="wrap_content">
+                    <com.mybus.mybusapp.spichalViews.STextViewBold
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/select_driver"
+                        android:textAlignment="viewStart"
+                        android:textColor="@color/colorAccent3"
+                        android:layout_weight="1"
+                        android:id="@+id/selectDriverBut"
+                        android:padding="@dimen/_8sdp"
+                        android:textSize="@dimen/_11ssp" />
+                    <com.mybus.mybusapp.spichalViews.STextViewIcon
+                        android:id="@+id/searchDriverBtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:padding="@dimen/_5sdp"
+                        android:paddingStart="@dimen/_10sdp"
+                        android:paddingEnd="@dimen/_10sdp"
+                        android:scaleX="@integer/scaleX"
+                        android:text="@string/fa_search"
+                        android:textColor="@color/tabColor1"
+                        android:textSize="@dimen/_15ssp"
+                        android:visibility="visible" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
 
     </RelativeLayout>
 
-    <com.rd.PageIndicatorView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="@dimen/_5sdp"
-        app:piv_animationType="color"
-        app:piv_radius="3dp"
-        app:piv_selectedColor="@color/colorPrimary"
-        app:piv_unselectedColor="@color/colorAccent"
-        app:piv_viewPager="@id/viewPager" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:clipToPadding="false"
-        android:paddingStart="@dimen/_15sdp"
-        android:paddingTop="@dimen/_10sdp"
-        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-        app:spanCount="2"
-        tools:itemCount="8"
-        tools:listitem="@layout/row_category" />
 
 </LinearLayout>
 

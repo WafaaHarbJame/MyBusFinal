@@ -29,27 +29,186 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginBottom="@dimen/_5sdp"
-                android:src="@drawable/hd_login" />
+                app:srcCompat="@drawable/ic_login_icon" />
 
-            <com.elaj.patient.spichalViews.STextViewBold
+            <com.mybus.mybusapp.spichalViews.STextViewBold
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="-30dp"
                 android:layout_marginBottom="@dimen/_8sdp"
                 android:text="@string/new_account"
                 android:textColor="@color/colorAccent"
                 android:textSize="@dimen/_15ssp" />
 
-            <com.elaj.patient.spichalViews.STextView
+            <com.mybus.mybusapp.spichalViews.STextView
                 android:id="@+id/helloLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginBottom="@dimen/_15sdp"
-                android:text="@string/hello_in_elaj_app"
+                android:visibility="gone"
+                android:text="@string/hello_in_mybus_app"
                 android:textColor="@color/colorPrimary"
                 android:textSize="@dimen/_13ssp" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="@dimen/_20sdp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingStart="@dimen/_14sdp"
+                android:paddingTop="@dimen/_7sdp"
+                android:paddingEnd="@dimen/_14sdp"
+                android:paddingBottom="@dimen/_7sdp">
+
+
+                <com.mybus.mybusapp.spichalViews.STextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/_3sdp"
+                    android:text="@string/you_now_register_as"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="@dimen/_12ssp" />
+
+                <com.mybus.mybusapp.spichalViews.STextViewBold
+                    android:id="@+id/userTypeTxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/user"
+                    android:textStyle="bold"
+                    android:textColor="@color/tabColor1"
+                    android:textSize="@dimen/_12ssp" />
+
+            </LinearLayout>
+            <com.mybus.mybusapp.spichalViews.STextInputLayout
+                style="@style/TextInputStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_15sdp"
+                android:layout_marginEnd="@dimen/_15sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:hint="@string/full_name"
+                app:layout_constraintTop_toBottomOf="@id/helloLabel">
+
+                <com.mybus.mybusapp.spichalViews.STextInputEditText
+                    android:id="@+id/fullNameTxt"
+                    style="@style/editTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName" />
+
+            </com.mybus.mybusapp.spichalViews.STextInputLayout>
+            <com.mybus.mybusapp.spichalViews.STextInputLayout
+                style="@style/TextInputStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_15sdp"
+                android:layout_marginEnd="@dimen/_15sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:hint="@string/age">
+
+                <com.mybus.mybusapp.spichalViews.SEditText
+                    android:id="@+id/ageTxt"
+                    style="@style/editTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="numberDecimal" />
+
+            </com.mybus.mybusapp.spichalViews.STextInputLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:id="@+id/busLy"
+                android:orientation="vertical"
+                android:visibility="gone"
+                android:layout_height="wrap_content">
+
+                <com.mybus.mybusapp.spichalViews.STextInputLayout
+                    style="@style/TextInputStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_15sdp"
+                    android:layout_marginEnd="@dimen/_15sdp"
+                    android:layout_marginBottom="@dimen/_10sdp"
+                    android:hint="@string/bus_number">
+
+                    <com.mybus.mybusapp.spichalViews.SEditText
+                        android:id="@+id/busNumberTxt"
+                        style="@style/editTextStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="number" />
+                </com.mybus.mybusapp.spichalViews.STextInputLayout>
+                <com.mybus.mybusapp.spichalViews.STextInputLayout
+                    style="@style/TextInputStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_15sdp"
+                    android:layout_marginEnd="@dimen/_15sdp"
+                    android:layout_marginBottom="@dimen/_10sdp"
+                    android:hint="@string/name_bus">
+
+                    <com.mybus.mybusapp.spichalViews.SEditText
+                        android:id="@+id/busNameTxt"
+                        style="@style/editTextStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="text" />
+                </com.mybus.mybusapp.spichalViews.STextInputLayout>
+
+                <com.mybus.mybusapp.spichalViews.STextInputLayout
+                    style="@style/TextInputStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_15sdp"
+                    android:layout_marginEnd="@dimen/_15sdp"
+                    android:layout_marginBottom="@dimen/_10sdp"
+                    android:hint="@string/bus_model">
+
+                    <com.mybus.mybusapp.spichalViews.SEditText
+                        android:id="@+id/busModelTxt"
+                        style="@style/editTextStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="text" />
+                </com.mybus.mybusapp.spichalViews.STextInputLayout>
+
+                <com.mybus.mybusapp.spichalViews.STextInputLayout
+                    style="@style/TextInputStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_15sdp"
+                    android:layout_marginEnd="@dimen/_15sdp"
+                    android:layout_marginBottom="@dimen/_10sdp"
+                    android:hint="@string/bus_color">
+
+                    <com.mybus.mybusapp.spichalViews.SEditText
+                        android:id="@+id/busColorTxt"
+                        style="@style/editTextStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="text" />
+                </com.mybus.mybusapp.spichalViews.STextInputLayout>
+
+                <com.mybus.mybusapp.spichalViews.STextInputLayout
+                    style="@style/TextInputStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_15sdp"
+                    android:layout_marginEnd="@dimen/_15sdp"
+                    android:layout_marginBottom="@dimen/_10sdp"
+                    android:hint="@string/numPassenger">
+
+                    <com.mybus.mybusapp.spichalViews.SEditText
+                        android:id="@+id/numSeatTxt"
+                        style="@style/editTextStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="number" />
+                </com.mybus.mybusapp.spichalViews.STextInputLayout>
+
+
+            </LinearLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -61,7 +220,7 @@
                 android:layoutDirection="ltr"
                 android:orientation="horizontal">
 
-                <com.elaj.patient.spichalViews.STextView
+                <com.mybus.mybusapp.spichalViews.STextView
                     android:id="@+id/countryCodeTxt"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/country_code_height"
@@ -78,7 +237,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="@id/mobileInput" />
 
-                <com.elaj.patient.spichalViews.STextInputLayout
+                <com.mybus.mybusapp.spichalViews.STextInputLayout
                     android:id="@+id/mobileInput"
                     style="@style/TextInputStyle"
                     android:layout_width="0dp"
@@ -90,7 +249,7 @@
                     app:layout_constraintStart_toEndOf="@id/countryCodeTxt"
                     app:layout_constraintTop_toTopOf="parent">
 
-                    <com.elaj.patient.spichalViews.SEditText
+                    <com.mybus.mybusapp.spichalViews.SEditText
                         android:id="@+id/mobileTxt"
                         style="@style/editTextStyle"
                         android:layout_width="match_parent"
@@ -99,13 +258,13 @@
                         android:inputType="phone"
                         android:nextFocusForward="@id/passwordTxt" />
 
-                </com.elaj.patient.spichalViews.STextInputLayout>
+                </com.mybus.mybusapp.spichalViews.STextInputLayout>
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-            <com.elaj.patient.spichalViews.STextInputLayout
+            <com.mybus.mybusapp.spichalViews.STextInputLayout
                 android:id="@+id/passwordInput"
                 style="@style/TextInputStyle"
                 android:layout_width="match_parent"
@@ -116,17 +275,16 @@
                 android:hint="@string/password"
                 app:passwordToggleEnabled="true">
 
-                <com.elaj.patient.spichalViews.STextInputEditText
+                <com.mybus.mybusapp.spichalViews.STextInputEditText
                     android:id="@+id/passwordTxt"
                     style="@style/editTextStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPassword" />
 
-            </com.elaj.patient.spichalViews.STextInputLayout>
+            </com.mybus.mybusapp.spichalViews.STextInputLayout>
 
-            <com.elaj.patient.spichalViews.STextInputLayout
-                android:id="@+id/confirmPasswordInput"
+            <com.mybus.mybusapp.spichalViews.STextInputLayout
                 style="@style/TextInputStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -135,14 +293,14 @@
                 android:hint="@string/confirm_password"
                 app:passwordToggleEnabled="true">
 
-                <com.elaj.patient.spichalViews.STextInputEditText
+                <com.mybus.mybusapp.spichalViews.STextInputEditText
                     android:id="@+id/confirmPasswordTxt"
                     style="@style/editTextStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPassword" />
 
-            </com.elaj.patient.spichalViews.STextInputLayout>
+            </com.mybus.mybusapp.spichalViews.STextInputLayout>
 
 
             <com.loopeer.shadow.ShadowView
@@ -158,8 +316,8 @@
                 app:shadowMarginBottom="@dimen/_8sdp"
                 app:shadowRadius="@dimen/_8sdp">
 
-                <com.elaj.patient.spichalViews.STextViewBold
-                    android:id="@+id/loginBtn"
+                <com.mybus.mybusapp.spichalViews.STextViewBold
+                    android:id="@+id/registerBtn"
                     style="@style/primaryBtnStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -177,7 +335,7 @@
                 android:layout_marginBottom="@dimen/_40sdp"
                 android:orientation="horizontal">
 
-                <com.elaj.patient.spichalViews.STextView
+                <com.mybus.mybusapp.spichalViews.STextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
@@ -186,8 +344,8 @@
                     android:textColor="@color/colorAccent2"
                     android:textSize="@dimen/_12ssp" />
 
-                <com.elaj.patient.spichalViews.STextView
-                    android:id="@+id/registerBtn"
+                <com.mybus.mybusapp.spichalViews.STextView
+                    android:id="@+id/loginBtn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"

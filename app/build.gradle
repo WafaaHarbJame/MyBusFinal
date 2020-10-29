@@ -8,7 +8,7 @@ android {
     buildToolsVersion "29.0.3"
 
     defaultConfig {
-        applicationId "com.elaj.patient"
+        applicationId "com.mybus.mybusapp"
         minSdkVersion 19
         targetSdkVersion 30
         versionCode 1
@@ -107,5 +107,12 @@ dependencies {
 
     implementation 'com.github.blennerSilva:AwesomeDialog:2.0.6'
     implementation 'com.xiaofeng.android:flowlayoutmanager:1.2.3.2'
+    implementation 'com.google.android.gms:play-services-maps:17.0.0'
+    implementation 'com.google.android.gms:play-services-location:17.0.0'
+    implementation('io.nlopez.smartlocation:library:3.3.1')/* {
+        transitive = false
+    }*/
+    implementation 'com.amitshekhar.android:android-networking:1.0.2'
+
 
 }

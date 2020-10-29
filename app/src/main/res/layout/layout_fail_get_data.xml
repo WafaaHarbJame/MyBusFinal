@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/failGetDataLY"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
@@ -16,8 +15,7 @@
         android:orientation="vertical"
         android:padding="@dimen/_13sdp">
 
-        <com.elaj.patient.spichalViews.STextView
-            android:id="@+id/failTxt"
+        <com.mybus.mybusapp.spichalViews.STextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/fail_to_get_data"
@@ -26,7 +24,6 @@
 
 
         <LinearLayout
-            android:id="@+id/refreshBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -36,14 +33,14 @@
             android:paddingStart="@dimen/_10sdp"
             android:paddingEnd="@dimen/_10sdp">
 
-            <com.elaj.patient.spichalViews.STextViewIcon
+            <com.mybus.mybusapp.spichalViews.STextViewIcon
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/fa_refresh"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_16ssp" />
 
-            <com.elaj.patient.spichalViews.STextView
+            <com.mybus.mybusapp.spichalViews.STextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_10sdp"

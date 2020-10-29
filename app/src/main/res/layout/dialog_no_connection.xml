@@ -20,7 +20,7 @@
             android:layout_marginBottom="@dimen/_10sdp"
             app:srcCompat="@drawable/no_connection" />
 
-        <com.elaj.patient.spichalViews.STextView
+        <com.mybus.mybusapp.spichalViews.STextView
             android:id="@+id/messageTxt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -37,7 +37,7 @@
             android:layout_gravity="center"
             android:visibility="visible">
 
-            <com.elaj.patient.spichalViews.STextView
+            <com.mybus.mybusapp.spichalViews.STextView
                 style="@style/primaryBtnStyle"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"

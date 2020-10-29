@@ -22,7 +22,7 @@
             android:focusableInTouchMode="true"
             android:src="@drawable/hd_confirm_send" />
 
-        <com.elaj.patient.spichalViews.STextViewBold
+        <com.mybus.mybusapp.spichalViews.STextViewBold
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="-25dp"
@@ -32,7 +32,7 @@
             android:textColor="@color/colorAccent"
             android:textSize="@dimen/_14ssp" />
 
-        <com.elaj.patient.spichalViews.STextView
+        <com.mybus.mybusapp.spichalViews.STextView
             android:layout_width="@dimen/_200sdp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -43,7 +43,7 @@
             android:textSize="@dimen/_12ssp" />
 
 
-        <com.elaj.patient.spichalViews.STextViewBold
+        <com.mybus.mybusapp.spichalViews.STextViewBold
             android:id="@+id/okBtn"
             style="@style/primaryBtnStyle"
             android:layout_width="match_parent"

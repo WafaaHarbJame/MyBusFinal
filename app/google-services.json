@@ -1,34 +1,42 @@
 {
   "project_info": {
-    "project_number": "437313777858",
-    "firebase_url": "https://elaj-2f8b2.firebaseio.com",
-    "project_id": "elaj-2f8b2",
-    "storage_bucket": "elaj-2f8b2.appspot.com"
+    "project_number": "17435552953",
+    "firebase_url": "https://my-bus-38ebc.firebaseio.com",
+    "project_id": "my-bus-38ebc",
+    "storage_bucket": "my-bus-38ebc.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:437313777858:android:2150d27eaf316137568b5b",
+        "mobilesdk_app_id": "1:17435552953:android:0c3af8b5820c1dbc867f68",
         "android_client_info": {
-          "package_name": "com.elaj.patient"
+          "package_name": "com.mybus.mybusapp"
         }
       },
       "oauth_client": [
         {
-          "client_id": "437313777858-dtrhumfdrnpeni09kdjmahbvvlog8ndc.apps.googleusercontent.com",
+          "client_id": "17435552953-v7uifaum9lsitm78m5i6fhmvtvn4mfja.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mybus.mybusapp",
+            "certificate_hash": "00a9051a33f26c73727b3e1365b0ccf4ad61fb00"
+          }
+        },
+        {
+          "client_id": "17435552953-vh1hmofim694mnvqrihd33fldhpn8pg1.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAPqvlQA47luIpXtln975t60cWO2Ma5tyM"
+          "current_key": "AIzaSyAH7TUZjov4ZtjonkPb0pto-KATIpWa4cI"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "437313777858-dtrhumfdrnpeni09kdjmahbvvlog8ndc.apps.googleusercontent.com",
+              "client_id": "17435552953-vh1hmofim694mnvqrihd33fldhpn8pg1.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

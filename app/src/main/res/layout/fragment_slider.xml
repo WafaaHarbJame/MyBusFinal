@@ -20,13 +20,12 @@
         android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/slideImg"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
             android:src="@drawable/slider_bg" />
 
-        <com.elaj.patient.spichalViews.STextView
+        <com.mybus.mybusapp.spichalViews.STextView
             android:id="@+id/titleTV"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

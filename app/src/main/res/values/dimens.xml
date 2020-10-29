@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-    <dimen name="round_corner_big">@dimen/_45sdp</dimen>
     <dimen name="round_corner_medium">@dimen/_25sdp</dimen>
     <dimen name="round_corner_thin">@dimen/_4sdp</dimen>
 
@@ -11,15 +10,9 @@
     <dimen name="bottom_nav_icon">@dimen/_14ssp</dimen>
     <dimen name="bottom_nav_icon_margin">@dimen/_3ssp</dimen>
     <dimen name="bottom_nav_padding">@dimen/_6sdp</dimen>
-    <dimen name="card_padding">@dimen/_30sdp</dimen>
 
-    <dimen name="bottom_nav_bar_padding">@dimen/_12sdp</dimen>
-    <dimen name="support_margin">@dimen/_15sdp</dimen>
-
-    <dimen name="statusbar_view_height">25dp</dimen>
     <dimen name="country_code_height">50dp</dimen>
 
-    <dimen name="_1sdp">1dp</dimen>
     <dimen name="_2sdp">2dp</dimen>
     <dimen name="_3sdp">3dp</dimen>
     <dimen name="_4sdp">4dp</dimen>
@@ -27,75 +20,30 @@
     <dimen name="_6sdp">6dp</dimen>
     <dimen name="_7sdp">7dp</dimen>
     <dimen name="_8sdp">8dp</dimen>
-    <dimen name="_9sdp">9dp</dimen>
     <dimen name="_10sdp">10dp</dimen>
-    <dimen name="_11sdp">11dp</dimen>
     <dimen name="_12sdp">12dp</dimen>
     <dimen name="_13sdp">13dp</dimen>
     <dimen name="_14sdp">14dp</dimen>
     <dimen name="_15sdp">15dp</dimen>
     <dimen name="_16sdp">16dp</dimen>
-    <dimen name="_17sdp">17dp</dimen>
-    <dimen name="_18sdp">18dp</dimen>
-    <dimen name="_19sdp">19dp</dimen>
     <dimen name="_20sdp">20dp</dimen>
-    <dimen name="_21sdp">21dp</dimen>
     <dimen name="_22sdp">22dp</dimen>
-    <dimen name="_23sdp">23dp</dimen>
     <dimen name="_24sdp">24dp</dimen>
     <dimen name="_25sdp">25dp</dimen>
-    <dimen name="_26sdp">26dp</dimen>
     <dimen name="_27sdp">27dp</dimen>
-    <dimen name="_28sdp">28dp</dimen>
-    <dimen name="_29sdp">29dp</dimen>
     <dimen name="_30sdp">30dp</dimen>
-    <dimen name="_31sdp">31dp</dimen>
-    <dimen name="_32sdp">32dp</dimen>
-    <dimen name="_33sdp">33dp</dimen>
-    <dimen name="_34sdp">34dp</dimen>
     <dimen name="_35sdp">35dp</dimen>
-    <dimen name="_36sdp">36dp</dimen>
-    <dimen name="_37sdp">37dp</dimen>
     <dimen name="_38sdp">38dp</dimen>
-    <dimen name="_39sdp">39dp</dimen>
     <dimen name="_40sdp">40dp</dimen>
-    <dimen name="_41sdp">41dp</dimen>
-    <dimen name="_42sdp">42dp</dimen>
-    <dimen name="_43sdp">43dp</dimen>
-    <dimen name="_44sdp">44dp</dimen>
-    <dimen name="_45sdp">45dp</dimen>
-    <dimen name="_46sdp">46dp</dimen>
-    <dimen name="_47sdp">47dp</dimen>
-    <dimen name="_48sdp">48dp</dimen>
-    <dimen name="_49sdp">49dp</dimen>
     <dimen name="_50sdp">50dp</dimen>
-    <dimen name="_55sdp">55dp</dimen>
-    <dimen name="_60sdp">60dp</dimen>
-    <dimen name="_65sdp">65dp</dimen>
-    <dimen name="_70sdp">70dp</dimen>
-    <dimen name="_80sdp">80dp</dimen>
     <dimen name="_85sdp">85dp</dimen>
     <dimen name="_100sdp">100dp</dimen>
-    <dimen name="_105sdp">105dp</dimen>
-    <dimen name="_140sdp">140dp</dimen>
-    <dimen name="_145sdp">145dp</dimen>
     <dimen name="_150sdp">150dp</dimen>
-    <dimen name="_155sdp">155dp</dimen>
     <dimen name="_160sdp">160dp</dimen>
     <dimen name="_165sdp">165dp</dimen>
-    <dimen name="_180sdp">180dp</dimen>
     <dimen name="_200sdp">200dp</dimen>
-    <dimen name="_250sdp">250dp</dimen>
 
-    <dimen name="_1ssp">1sp</dimen>
-    <dimen name="_2ssp">2sp</dimen>
     <dimen name="_3ssp">3sp</dimen>
-    <dimen name="_4ssp">4sp</dimen>
-    <dimen name="_5ssp">5sp</dimen>
-    <dimen name="_6ssp">6sp</dimen>
-    <dimen name="_7ssp">7sp</dimen>
-    <dimen name="_8ssp">8sp</dimen>
-    <dimen name="_9ssp">9sp</dimen>
     <dimen name="_10ssp">10sp</dimen>
     <dimen name="_11ssp">11sp</dimen>
     <dimen name="_12ssp">12sp</dimen>
@@ -103,17 +51,6 @@
     <dimen name="_14ssp">14sp</dimen>
     <dimen name="_15ssp">15sp</dimen>
     <dimen name="_16ssp">16sp</dimen>
-    <dimen name="_17ssp">17sp</dimen>
     <dimen name="_18ssp">18sp</dimen>
-    <dimen name="_19ssp">19sp</dimen>
-    <dimen name="_20ssp">20sp</dimen>
-    <dimen name="_21ssp">21sp</dimen>
-    <dimen name="_22ssp">22sp</dimen>
-    <dimen name="_23ssp">23sp</dimen>
-    <dimen name="_24ssp">24sp</dimen>
-    <dimen name="_25ssp">25sp</dimen>
-
-    <dimen name="mtrl_textinput_box_stroke_width_default" tools:ignore="PrivateResource">1dp</dimen>
-    <dimen name="mtrl_textinput_box_stroke_width_focused" tools:ignore="PrivateResource">1dp</dimen>
 
 </resources>

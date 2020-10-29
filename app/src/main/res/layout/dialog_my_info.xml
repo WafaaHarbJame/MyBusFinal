@@ -30,7 +30,7 @@
                 <!--android:padding="@dimen/_10sdp" />-->
 
 
-            <com.elaj.patient.spichalViews.STextView
+            <com.mybus.mybusapp.spichalViews.STextView
                 android:id="@+id/messageTxt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -58,7 +58,7 @@
                 android:paddingStart="@dimen/_50sdp"
                 >
 
-                <com.elaj.patient.spichalViews.STextViewBold
+                <com.mybus.mybusapp.spichalViews.STextViewBold
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"

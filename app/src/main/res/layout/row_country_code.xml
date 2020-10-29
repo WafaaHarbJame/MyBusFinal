@@ -17,7 +17,7 @@
         android:paddingEnd="@dimen/_10sdp"
         android:paddingBottom="@dimen/_7sdp">
 
-        <com.elaj.patient.spichalViews.STextViewIcon2
+        <com.mybus.mybusapp.spichalViews.STextViewIcon2
             android:id="@+id/selectTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -30,7 +30,7 @@
             android:layout_height="@dimen/_22sdp"
             android:layout_marginEnd="@dimen/_15sdp" />
 
-        <com.elaj.patient.spichalViews.STextView
+        <com.mybus.mybusapp.spichalViews.STextView
             android:id="@+id/nameTxt"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -41,7 +41,7 @@
             android:textColor="@color/gray4"
             android:textSize="@dimen/_12ssp" />
 
-        <com.elaj.patient.spichalViews.STextView
+        <com.mybus.mybusapp.spichalViews.STextView
             android:id="@+id/codeTxt"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"

@@ -6,6 +6,7 @@
     android:gravity="center_vertical|start"
     android:orientation="vertical">
 
+
     <LinearLayout
         android:id="@+id/rowLY"
         android:layout_width="match_parent"
@@ -24,36 +25,22 @@
             android:layout_marginBottom="@dimen/_10sdp"
             android:orientation="horizontal">
 
-            <com.elaj.patient.spichalViews.STextViewBold
-                android:id="@+id/titleTV"
+            <com.mybus.mybusapp.spichalViews.STextViewBold
+                android:id="@+id/nameTV"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/_10sdp"
                 android:layout_weight="1"
-                android:text="Pain in my stomach"
+                android:capitalize="sentences"
+                android:text="@string/full_name"
                 android:textAlignment="viewStart"
                 android:textColor="@color/colorAccent"
                 android:textSize="@dimen/_13ssp" />
 
-
-            <com.elaj.patient.spichalViews.STextView
-                android:id="@+id/statusTV"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/circle_corner_primary_light"
-                android:paddingStart="@dimen/_12sdp"
-                android:paddingTop="@dimen/_2sdp"
-                android:paddingEnd="@dimen/_12sdp"
-                android:paddingBottom="@dimen/_2sdp"
-                android:text="@string/active"
-                android:textAlignment="viewStart"
-                android:textColor="@color/colorPrimary"
-                android:textSize="@dimen/_12ssp" />
-
         </LinearLayout>
 
-        <com.elaj.patient.spichalViews.STextView
-            android:id="@+id/nameTxt"
+        <com.mybus.mybusapp.spichalViews.STextView
+            android:id="@+id/addressTxt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/_10sdp"
@@ -64,32 +51,90 @@
             android:textColor="@color/colorAccent3"
             android:textSize="@dimen/_12ssp" />
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
 
-            <com.elaj.patient.spichalViews.STextViewIcon
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginEnd="@dimen/_5sdp"
-                android:gravity="start|center_vertical"
-                android:text="@string/fal_calendar_week"
-                android:textColor="@color/colorAccent"
-                android:textSize="@dimen/_10ssp" />
+                <com.mybus.mybusapp.spichalViews.STextViewIcon
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/_5sdp"
+                    android:text="@string/fal_calendar_week"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="@dimen/_10ssp" />
 
-            <com.elaj.patient.spichalViews.STextView
-                android:id="@+id/codeTxt"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="start|center_vertical"
-                android:text="1-10-2020"
-                android:textColor="@color/colorPrimary"
-                android:textSize="@dimen/_10ssp" />
+                <com.mybus.mybusapp.spichalViews.STextViewBold
+                    android:id="@+id/dateTxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:text="1-10-2020"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="@dimen/_13ssp" />
+
+                <Space
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content">
+
+                </Space>
+
+                <com.mybus.mybusapp.spichalViews.STextView
+                    android:id="@+id/orderStatusBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/circle_corner_primary_light"
+                    android:paddingStart="@dimen/_12sdp"
+                    android:paddingTop="@dimen/_2sdp"
+                    android:paddingEnd="@dimen/_12sdp"
+                    android:paddingBottom="@dimen/_2sdp"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:text="@string/finish"
+                    android:textAlignment="viewStart"
+                    android:visibility="gone"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_12ssp" />
+                <com.mybus.mybusapp.spichalViews.STextView
+                    android:id="@+id/acceptBut"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/circle_corner_primary_light"
+                    android:paddingStart="@dimen/_12sdp"
+                    android:paddingTop="@dimen/_2sdp"
+                    android:paddingEnd="@dimen/_12sdp"
+                    android:paddingBottom="@dimen/_2sdp"
+                    android:text="@string/accept"
+                    android:textAlignment="viewStart"
+                    android:visibility="gone"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_12ssp" />
+                <com.mybus.mybusapp.spichalViews.STextView
+                    android:id="@+id/rejectBut"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/circle_corner_primary_light"
+                    android:paddingStart="@dimen/_12sdp"
+                    android:paddingTop="@dimen/_2sdp"
+                    android:paddingEnd="@dimen/_12sdp"
+                    android:paddingBottom="@dimen/_2sdp"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:text="@string/reject"
+                    android:textAlignment="viewStart"
+                    android:visibility="gone"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_12ssp" />
+
+
+            </LinearLayout>
+
 
         </LinearLayout>
 
 
-    </LinearLayout>
 
     <View
         android:layout_width="match_parent"

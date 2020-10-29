@@ -2,6 +2,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/white"
     android:orientation="vertical">
 
@@ -14,98 +15,22 @@
     <include layout="@layout/layout_fail_get_data" />
 
     <LinearLayout
-        android:id="@+id/dataLY"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:visibility="gone">
+        android:visibility="visible">
 
-        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-            android:id="@+id/swipeDataContainer"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-
-                <LinearLayout
-                    android:id="@+id/noDataLY"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:src="@drawable/hd_empty_questions" />
-
-                    <com.elaj.patient.spichalViews.STextViewBold
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_marginTop="-25dp"
-                        android:layout_marginBottom="@dimen/_10sdp"
-                        android:text="@string/no_questions_now"
-                        android:textColor="@color/colorAccent"
-                        android:textSize="@dimen/_14ssp" />
-
-                    <com.elaj.patient.spichalViews.STextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_marginStart="@dimen/_30sdp"
-                        android:layout_marginEnd="@dimen/_30sdp"
-                        android:layout_marginBottom="@dimen/_20sdp"
-                        android:gravity="center"
-                        android:text="@string/you_can_request_to_get_help"
-                        android:textColor="@color/colorAccent3"
-                        android:textSize="@dimen/_12ssp" />
-
-                    <com.loopeer.shadow.ShadowView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/_50sdp"
-                        android:layout_marginTop="@dimen/_20sdp"
-                        android:layout_marginEnd="@dimen/_50sdp"
-                        android:layout_marginBottom="@dimen/_20sdp"
-                        app:backgroundColor="@color/white"
-                        app:cornerRadius="@dimen/round_corner_thin"
-                        app:shadowColor="@color/colorPrimaryTrans"
-                        app:shadowMarginBottom="@dimen/_8sdp"
-                        app:shadowRadius="@dimen/_8sdp">
-
-                        <com.elaj.patient.spichalViews.STextViewBold
-                            android:id="@+id/sendBtn"
-                            style="@style/primaryBtnStyle"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/send_consultation"
-                            android:textColor="@color/white" />
-
-
-                    </com.loopeer.shadow.ShadowView>
-
-
-                </LinearLayout>
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:clipToPadding="false"
-                    android:paddingTop="@dimen/_10sdp"
-                    android:visibility="gone" />
-
-            </LinearLayout>
-
-        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-
-
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:paddingStart="@dimen/_15sdp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:itemCount="4"
+            tools:listitem="@layout/row_request" />
     </LinearLayout>
+
 
 </LinearLayout>
 

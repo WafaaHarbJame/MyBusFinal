@@ -2,17 +2,13 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/tool_bar"
     android:layout_width="match_parent"
-    android:layout_height="85dp"
-    android:background="@color/colorPrimary">
+    android:layout_height="@dimen/_100sdp"
+    android:background="@drawable/draw1">
 
 
-    <!--<LinearLayout-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="match_parent"-->
-    <!--android:gravity="start|center_vertical"-->
-    <!--android:orientation="horizontal">-->
 
-    <com.elaj.patient.spichalViews.STextViewIcon
+
+    <com.mybus.mybusapp.spichalViews.STextViewIcon
         android:id="@+id/homeBtn"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/_40sdp"
@@ -21,14 +17,14 @@
         android:padding="@dimen/_5sdp"
         android:paddingStart="@dimen/_10sdp"
         android:paddingEnd="@dimen/_10sdp"
-        android:scaleX="@integer/scaleXInv"
-        android:text="@string/fal_angle_right"
+        android:scaleX="@integer/scaleX"
+        android:text="@string/fal_arrow_left"
         android:textColor="@color/toolbar_icons"
         android:textSize="@dimen/_15ssp"
         android:visibility="visible" />
 
 
-    <com.elaj.patient.spichalViews.STextViewBold
+    <com.mybus.mybusapp.spichalViews.STextViewBold
         android:id="@+id/mainTitleTxt"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/_40sdp"
@@ -42,22 +38,9 @@
         android:textSize="@dimen/_13ssp"
         android:visibility="visible" />
 
-    <!--    <com.elaj.patient.spichalViews.STextViewBold-->
-    <!--        android:id="@+id/title"-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="match_parent"-->
-    <!--        android:layout_toEndOf="@id/homeBtn"-->
-    <!--        android:ellipsize="end"-->
-    <!--        android:gravity="center"-->
-    <!--        android:maxWidth="@dimen/_160sdp"-->
-    <!--        android:maxLines="1"-->
-    <!--        android:text="@string/title"-->
-    <!--        android:textColor="@color/toolbar_icons"-->
-    <!--        android:textSize="@dimen/_13ssp"-->
-    <!--        android:visibility="visible" />-->
 
-    <com.elaj.patient.spichalViews.STextViewIcon
-        android:id="@+id/searchBtn"
+
+    <com.mybus.mybusapp.spichalViews.STextViewIcon
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_alignParentEnd="true"
@@ -74,48 +57,11 @@
         android:visibility="gone" />
 
 
-    <!--    <com.elaj.patient.spichalViews.STextViewIcon2-->
-    <!--        android:id="@+id/starBtn"-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="match_parent"-->
-    <!--        android:layout_alignWithParentIfMissing="true"-->
-    <!--        android:layout_gravity="center"-->
-    <!--        android:layout_toStartOf="@+id/filterBtn"-->
-    <!--        android:background="?attr/selectableItemBackgroundBorderless"-->
-    <!--        android:gravity="center"-->
-    <!--        android:padding="@dimen/_5sdp"-->
-    <!--        android:paddingStart="@dimen/_10sdp"-->
-    <!--        android:paddingEnd="@dimen/_10sdp"-->
-    <!--        android:text="@string/fa_star"-->
-    <!--        android:textColor="@color/white"-->
-    <!--        android:textSize="@dimen/_18ssp"-->
-    <!--        android:visibility="gone" />-->
-
-    <!--    <com.elaj.patient.spichalViews.STextViewIcon-->
-    <!--        android:id="@+id/filterBtn"-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="match_parent"-->
-    <!--        android:layout_alignParentEnd="true"-->
-    <!--        android:layout_gravity="center"-->
-    <!--        android:background="?attr/selectableItemBackgroundBorderless"-->
-    <!--        android:gravity="center"-->
-    <!--        android:padding="@dimen/_5sdp"-->
-    <!--        android:paddingStart="@dimen/_10sdp"-->
-    <!--        android:paddingEnd="@dimen/_10sdp"-->
-    <!--        android:text="@string/fal_filter"-->
-    <!--        android:textColor="@color/toolbar_icons"-->
-    <!--        android:textSize="@dimen/_18ssp"-->
-    <!--        android:visibility="gone" />-->
-
-    <!--    <View-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="1dp"-->
-    <!--        android:layout_alignParentBottom="true"-->
-    <!--        android:background="@color/gray" />-->
+<!--    android:background="@drawable/round_top_corner_white_fill"-->
 
     <View
         android:layout_width="match_parent"
         android:layout_height="28dp"
         android:layout_alignParentBottom="true"
-        android:background="@drawable/round_top_corner_white_fill" />
+       />
 </RelativeLayout>

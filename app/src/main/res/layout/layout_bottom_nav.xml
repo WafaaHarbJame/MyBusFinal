@@ -24,7 +24,7 @@
             android:orientation="vertical"
             android:paddingTop="@dimen/bottom_nav_padding">
 
-            <com.elaj.patient.spichalViews.STextViewIcon
+            <com.mybus.mybusapp.spichalViews.STextViewIcon
                 android:id="@+id/tab1Icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -33,7 +33,7 @@
                 android:textColor="@color/bottomNavInactive"
                 android:textSize="@dimen/bottom_nav_icon" />
 
-            <com.elaj.patient.spichalViews.STextView
+            <com.mybus.mybusapp.spichalViews.STextView
                 android:id="@+id/tab1Txt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -43,14 +43,7 @@
                 android:textColor="@color/bottomNavInactive"
                 android:textSize="@dimen/bottom_nav_text" />
 
-            <TextView
-                android:id="@+id/tab1Indc"
-                android:layout_width="match_parent"
-                android:layout_height="3dp"
-                android:layout_marginStart="@dimen/_15sdp"
-                android:layout_marginEnd="@dimen/_15sdp"
-                android:background="@color/colorPrimary"
-                android:visibility="visible" />
+
         </LinearLayout>
 
         <LinearLayout
@@ -64,39 +57,31 @@
 
             android:paddingTop="@dimen/bottom_nav_padding">
 
-            <com.elaj.patient.spichalViews.STextViewIcon
+            <com.mybus.mybusapp.spichalViews.STextViewIcon
                 android:id="@+id/tab2Icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/bottom_nav_icon_margin"
-                android:text="@string/fal_comment_alt_lines"
+                android:text="@string/fal_file_invoice"
                 android:textColor="@color/bottomNavInactive"
                 android:textSize="@dimen/bottom_nav_icon" />
 
-            <com.elaj.patient.spichalViews.STextView
+            <com.mybus.mybusapp.spichalViews.STextView
                 android:id="@+id/tab2Txt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/_5sdp"
-                android:text="@string/questions"
+                android:text="@string/all_orders"
                 android:textAlignment="viewStart"
                 android:textColor="@color/bottomNavInactive"
                 android:textSize="@dimen/bottom_nav_text"
                 android:visibility="visible" />
 
-            <TextView
-                android:id="@+id/tab2Indc"
-                android:layout_width="match_parent"
-                android:layout_height="3dp"
-                android:layout_marginStart="@dimen/_15sdp"
-                android:layout_marginEnd="@dimen/_15sdp"
-                android:background="@color/colorPrimary"
-                android:visibility="invisible" />
 
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/contactUsBtn"
+            android:id="@+id/finishOrderBtn"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -105,34 +90,26 @@
             android:orientation="vertical"
             android:paddingTop="@dimen/bottom_nav_padding">
 
-            <com.elaj.patient.spichalViews.STextViewIcon
+            <com.mybus.mybusapp.spichalViews.STextViewIcon
                 android:id="@+id/tab3Icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/bottom_nav_icon_margin"
-                android:text="@string/fal_envelope_open"
+                android:text="@string/fa_bus"
                 android:textColor="@color/bottomNavInactive"
                 android:textSize="@dimen/bottom_nav_icon" />
 
-            <com.elaj.patient.spichalViews.STextView
+            <com.mybus.mybusapp.spichalViews.STextView
                 android:id="@+id/tab3Txt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/_5sdp"
-                android:text="@string/contact"
+                android:text="@string/finshed_order"
                 android:textAlignment="viewStart"
                 android:textColor="@color/bottomNavInactive"
                 android:textSize="@dimen/bottom_nav_text"
                 android:visibility="visible" />
 
-            <TextView
-                android:id="@+id/tab3Indc"
-                android:layout_width="match_parent"
-                android:layout_height="3dp"
-                android:layout_marginStart="@dimen/_15sdp"
-                android:layout_marginEnd="@dimen/_15sdp"
-                android:background="@color/colorPrimary"
-                android:visibility="invisible" />
 
         </LinearLayout>
 
@@ -147,7 +124,7 @@
 
             android:paddingTop="@dimen/bottom_nav_padding">
 
-            <com.elaj.patient.spichalViews.STextViewIcon
+            <com.mybus.mybusapp.spichalViews.STextViewIcon
                 android:id="@+id/tab4Icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -156,7 +133,7 @@
                 android:textColor="@color/bottomNavInactive"
                 android:textSize="@dimen/bottom_nav_icon" />
 
-            <com.elaj.patient.spichalViews.STextView
+            <com.mybus.mybusapp.spichalViews.STextView
                 android:id="@+id/tab4Txt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -167,14 +144,7 @@
                 android:textSize="@dimen/bottom_nav_text"
                 android:visibility="visible" />
 
-            <TextView
-                android:id="@+id/tab4Indc"
-                android:layout_width="match_parent"
-                android:layout_height="3dp"
-                android:layout_marginStart="@dimen/_15sdp"
-                android:layout_marginEnd="@dimen/_15sdp"
-                android:background="@color/colorPrimary"
-                android:visibility="invisible" />
+
 
         </LinearLayout>
 

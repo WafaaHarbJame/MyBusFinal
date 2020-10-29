@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.loopeer.shadow.ShadowView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="@dimen/_250sdp"
+    android:layout_height="wrap_content"
+    android:paddingEnd="@dimen/_10sdp"
+    app:backgroundColor="@color/white"
+    app:cornerRadius="@dimen/round_corner_thin"
+    app:shadowColor="@color/colorPrimaryTrans"
+    app:shadowMargin="@dimen/_6sdp"
+    app:shadowRadius="@dimen/round_corner_thin">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/round_corner_white_fill"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="@dimen/_10sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.github.siyamed.shapeimageview.RoundedImageView
+            android:id="@+id/providerImg"
+            android:layout_width="@dimen/_60sdp"
+            android:layout_height="@dimen/_60sdp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/avatar"
+            app:siBorderColor="@color/gray"
+            app:siBorderWidth="1dp"
+            app:siRadius="4dp" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <com.mybus.mybusapp.spichalViews.STextViewBold
+                android:id="@+id/driverNameTxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_3sdp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="wafaa jame"
+                android:textAlignment="viewStart"
+                android:textColor="@color/colorAccent"
+                android:textSize="@dimen/_12ssp" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.mybus.mybusapp.spichalViews.STextViewIcon2
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/_7sdp"
+                    android:text="@string/fa_bus"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/header3"
+                    android:textSize="@dimen/_10ssp" />
+
+                <com.mybus.mybusapp.spichalViews.STextView
+                    android:id="@+id/addressTxt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="Riyadh"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/header3"
+                    android:textSize="@dimen/_10ssp" />
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+
+</com.loopeer.shadow.ShadowView>

@@ -13,7 +13,6 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/shadowLY"
         android:layout_width="match_parent"
         android:layout_height="8dp"
         android:layout_marginTop="-8dp"
@@ -38,16 +37,5 @@
 
     </LinearLayout>
 
-    <!--<android.support.design.widget.BottomNavigationView-->
-    <!--android:id="@+id/bottomNav"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="?attr/actionBarSize"-->
-    <!--android:layout_gravity="start"-->
-    <!--android:background="@color/white"-->
-    <!--android:theme="@style/Widget.BottomNavigationView"-->
-    <!--app:elevation="8dp"-->
-    <!--app:itemIconTint="@color/selector_bottom_nav"-->
-    <!--app:itemTextColor="@color/selector_bottom_nav"-->
-    <!--app:menu="@menu/bottom_navigation_items" />-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

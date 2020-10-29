@@ -6,7 +6,7 @@
         <item name="windowActionBar">false</item>
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+
 
         <!--        <item name="android:fitsSystemWindows">true</item>-->
 
@@ -15,71 +15,9 @@
 
     </style>
 
-    <style name="FullScreenTheme" parent="AppTheme">
-
-        <item name="android:windowFullscreen">true</item>
-    </style>
-
-    <style name="TransparentStatusBar" parent="AppTheme">
-
-        <item name="android:fitsSystemWindows">true</item>
-        <item name="android:windowTranslucentStatus">true</item>
-
-    </style>
-
-    <style name="AppTheme.PopupOverlay">
-        <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
-    </style>
-
-    <style name="TabLayoutWhiteStyle" parent="Widget.Design.TabLayout">
-
-        <!--        <item name="android:textViewStyle">@style/FontTextViewStyle</item>-->
-
-        <!--<item name="tabMaxWidth">@dimen/_260sdp</item>-->
-        <item name="tabIndicatorColor">@color/colorPrimary</item>
-        <item name="tabIndicatorHeight">3dp</item>
-        <item name="tabPaddingStart">8dp</item>
-        <item name="tabPaddingEnd">8dp</item>
-        <item name="tabBackground">@color/white</item>
-        <item name="tabTextAppearance">@style/tabText</item>
-        <item name="tabTextColor">@color/header2</item>
-        <item name="tabSelectedTextColor">@color/colorPrimary</item>
-
-    </style>
-
-    <style name="tabText" parent="@android:style/TextAppearance.Widget.TabWidget">
-        <item name="android:fontFamily">@font/sky_reg</item>
-        <item name="android:textSize">@dimen/_12ssp</item>
-    </style>
-
-    <style name="BottomDialogTheme" parent="Theme.AppCompat.Light.Dialog">
-        <!-- Customize your theme here. -->
-
-        <item name="android:windowBackground">@null</item>
-        <!--<item name="android:windowNoTitle">true</item>-->
-        <item name="android:windowIsFloating">true</item>
-
-        <!--<item name="android:windowFullscreen">true</item>-->
-        <!--<item name="android:backgroundDimEnabled">true</item>-->
-
-    </style>
-
     <style name="DialogAnimation">
         <item name="android:windowEnterAnimation">@anim/slide_in_bottom</item>
         <item name="android:windowExitAnimation">@anim/slide_out_bottom</item>
-    </style>
-
-    <style name="RatingBarStyle" parent="Theme.AppCompat">
-        <item name="colorControlNormal">@color/gray6</item>
-        <item name="colorControlActivated">@color/colorPrimary</item>
-    </style>
-
-    <style name="RadioButtonStyle" parent="Theme.AppCompat">
-        <item name="colorControlNormal">@color/gray6</item>
-        <item name="colorControlActivated">@color/colorPrimary</item>
     </style>
 
     <style name="TextInputStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
@@ -111,16 +49,6 @@
         <!--<item name="android:fontFamily">@font/swissra_normal</item>-->
     </style>
 
-    <style name="spinner_trans_style">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:minHeight">@dimen/_35sdp</item>
-        <!--<item name="android:background">@drawable/trans_spinner</item>-->
-        <item name="android:background">@color/transparent</item>
-        <item name="android:popupBackground">@color/white</item>
-
-    </style>
-
     <style name="editTextStyle">
         <item name="android:textColor">@color/black</item>
         <item name="android:paddingTop">@dimen/_10sdp</item>
@@ -134,14 +62,35 @@
 
     </style>
 
-    <style name="spinnerDropDownItemStyle">
-        <item name="android:layout_marginStart">10dp</item>
-        <item name="android:paddingStart">15dp</item>
-        <item name="android:paddingEnd">15dp</item>
-        <item name="android:paddingTop">5dp</item>
-        <item name="android:paddingBottom">5dp</item>
-        <item name="android:gravity">start|center_vertical</item>
+    <style name="SwitchButtonStyle" parent="Theme.AppCompat.Light">
+        <!-- active thumb & track color (30% transparency) -->
+        <item name="colorControlActivated">@color/colorPrimaryDark</item>
+        <item name="colorControlNormal">@color/gray3</item>
 
+        <!-- inactive thumb color -->
+        <item name="colorSwitchThumbNormal">@color/colorAccent</item>
+
+        <!-- inactive track color (30% transparency) -->
+        <item name="android:colorForeground">@color/gray4</item>
+
+    </style>
+
+    <style name="TabLayoutStyle" parent="Widget.MaterialComponents.TabLayout.Colored">
+
+        <item name="tabIndicatorColor">@color/white</item>
+        <item name="tabIndicatorHeight">2dp</item>
+        <item name="tabPaddingStart">8dp</item>
+        <item name="tabPaddingEnd">8dp</item>
+        <item name="tabBackground">@color/colorPrimary</item>
+        <item name="fontFamily">@font/sky_reg</item>
+        <item name="tabTextColor">@color/colorAccent3</item>
+        <item name="tabTextAppearance">@style/TabTextSize</item>
+        <item name="tabSelectedTextColor">@color/white</item>
+    </style>
+
+    <style name="TabTextSize" parent="TextAppearance.AppCompat.Medium">
+        <item name="android:textSize">@dimen/_12ssp</item>
+        <!--        <item name="android:textColor">?android:attr/textColorSecondary</item>-->
     </style>
 
 </resources>

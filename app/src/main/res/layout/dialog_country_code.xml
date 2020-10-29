@@ -24,7 +24,7 @@
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
-            <com.elaj.patient.spichalViews.STextViewIcon
+            <com.mybus.mybusapp.spichalViews.STextViewIcon
                 android:layout_width="31dp"
                 android:layout_height="@dimen/_24sdp"
                 android:layout_marginEnd="@dimen/_5sdp"
@@ -34,7 +34,7 @@
                 android:textColor="@color/white"
                 android:textSize="@dimen/_14ssp" />
 
-            <com.elaj.patient.spichalViews.STextViewBold
+            <com.mybus.mybusapp.spichalViews.STextViewBold
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/_5sdp"
@@ -47,7 +47,7 @@
                 android:layout_height="1dp"
                 android:layout_weight="1" />
 
-            <com.elaj.patient.spichalViews.STextViewIcon
+            <com.mybus.mybusapp.spichalViews.STextViewIcon
                 android:id="@+id/closeBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -70,13 +70,13 @@
             android:paddingStart="@dimen/_10sdp"
             android:paddingEnd="@dimen/_10sdp">
 
-            <com.elaj.patient.spichalViews.STextViewIcon
+            <com.mybus.mybusapp.spichalViews.STextViewIcon
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/fal_search"
                 android:textColor="@color/header3" />
 
-            <com.elaj.patient.spichalViews.SEditText
+            <com.mybus.mybusapp.spichalViews.SEditText
                 android:id="@+id/searchTxt"
                 style="@style/editTextStyle"
                 android:layout_width="match_parent"
@@ -96,7 +96,7 @@
             android:layout_height="@dimen/_190sdp"
             android:layout_marginBottom="@dimen/_20sdp" />
 
-        <com.elaj.patient.spichalViews.SButton
+        <com.mybus.mybusapp.spichalViews.SButton
             android:id="@+id/okBtn"
             style="@style/primaryBtnStyle"
             android:layout_width="match_parent"

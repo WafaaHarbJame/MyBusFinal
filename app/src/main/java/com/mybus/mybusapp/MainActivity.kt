@@ -23,7 +23,7 @@ import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 
-class MainActivityBottomNav : ActivityBase() {
+class MainActivity : ActivityBase() {
     //    @BindView(R2.id.user) EditText username;
     private var gui_position = 0
 
@@ -37,9 +37,10 @@ class MainActivityBottomNav : ActivityBase() {
 
     private lateinit var tabTextArr: Array<TextView>
     private lateinit var tabIconsArr: Array<TextView>
-    private var qrCodeUrl: String? = null
     private  var  userType:Int = 0;
     lateinit var user: MemberModel
+    private var toOrder: Boolean = false
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,7 +54,14 @@ class MainActivityBottomNav : ActivityBase() {
 
 
          user= UtilityApp.userData!!
-        Log.d("User type", "user type$userType");
+
+        val bundle = intent.extras
+
+        if(bundle!=null){
+            toOrder = bundle?.getBoolean(Constants.KEY_TO_ORDERS)!!
+            Log.d("Log toOrder", "Log toOrder $toOrder");
+
+        }
 
         userType=user.type
 
@@ -64,23 +72,28 @@ class MainActivityBottomNav : ActivityBase() {
 
         if(userType==1){
             finishOrderBtn.visibility=visible
-            newFragment = MainScreenFragment()
+            newFragment = HomeClientFragment()
 
         }
-        else{
+        else if(userType==2){
 
             finishOrderBtn.visibility=gone
             ordersBtn.visibility=gone
-            newFragment = HomeScreenDriverFragment()
+            newFragment = HomeDriverFragment()
             tab2Txt.text=getString(R.string.all_orders);
 
+        }
 
+        if(toOrder){
+            selectBottomTab(R.id.ordersBtn)
+        }
+        else{
+            selectBottomTab(R.id.mainBtn)
 
         }
 
 
         initListeners()
-        selectBottomTab(R.id.mainBtn)
 
     }
 
@@ -124,9 +137,9 @@ class MainActivityBottomNav : ActivityBase() {
         when (resId) {
             R.id.mainBtn -> {
                 newFragment = if(userType==1){
-                    MainScreenFragment()
+                    HomeClientFragment()
                 } else{
-                    HomeScreenDriverFragment()
+                    HomeDriverFragment()
 
                 }
                 gui_position = 0
@@ -162,23 +175,17 @@ class MainActivityBottomNav : ActivityBase() {
                 mTitle = getString(R.string.profile)
             }
         }
-        chageColor(gui_position)
+        changeColor(gui_position)
 
         if (newFragment != null) {
-//            newFragment.setRetainInstance(true);
             fragmentManager = supportFragmentManager
             ft = fragmentManager!!.beginTransaction()
-//            ft!!.setCustomAnimations(
-//                R.anim.fade_in,
-//                R.anim.fade_out
-//            )
             ft!!.replace(R.id.container, newFragment!!).commitNowAllowingStateLoss()
         }
 
-//        restoreActionBar();
     }
 
-    private fun chageColor(pos: Int) {
+    private fun changeColor(pos: Int) {
         for (i in tabTextArr.indices) {
             if (i == pos) {
                 tabTextArr[i].setTextColor(
@@ -212,7 +219,6 @@ class MainActivityBottomNav : ActivityBase() {
     }
 
     override fun onKeyDown(keyCode: Int, event: KeyEvent): Boolean {
-//        if (GlobalData.LOGIN_TYPE == 1) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             if (gui_position == 0) {
                 if (GlobalData.Position == 1) {
@@ -222,11 +228,10 @@ class MainActivityBottomNav : ActivityBase() {
                 } else {
                     onBackPressed()
                 }
-            } else {
-                // GlobalData.SelectedObject = -1;
-//                onNavigationDrawerItemSelected(0);
+            }
+
+            else {
                 selectBottomTab(R.id.mainBtn)
-                //                bottomNav.setSelectedItemId(R.id.homeBtn);
                 return false
             }
         }
@@ -251,19 +256,6 @@ class MainActivityBottomNav : ActivityBase() {
         }
     }
 
-    fun signOut() {
-        UtilityApp.logOut()
-        GlobalData.Position = 0
-        val intent =
-            Intent(getActiviy(), MainActivityBottomNav::class.java)
-        intent.putExtra("Type", "Login")
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
-        startActivity(intent)
-    }
-
-    companion object {
-        const val DElAY_TIME = 350
-    }
 
     private fun getData() {
         val mobile = UtilityApp.userData?.mobileWithCountry
@@ -275,14 +267,15 @@ class MainActivityBottomNav : ActivityBase() {
                     userType= UtilityApp.userData!!.type
                     if(userType==1){
                         finishOrderBtn.visibility=visible
-                        newFragment = MainScreenFragment()
+                        newFragment = HomeClientFragment()
 
                     }
                     else{
                         finishOrderBtn.visibility=gone
-                        newFragment = HomeScreenDriverFragment()
+                        newFragment = HomeDriverFragment()
 
                     }
+
 
                     }
 

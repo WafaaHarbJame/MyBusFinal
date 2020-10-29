@@ -54,7 +54,7 @@ class SplashScreen : ActivityBase() {
     override fun onResume() {
         super.onResume()
         if (isGetProfile) {
-            val intent = Intent(getActiviy(), MainActivityBottomNav::class.java)
+            val intent = Intent(getActiviy(), MainActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
             startActivity(intent)
             finish()
@@ -81,7 +81,7 @@ class SplashScreen : ActivityBase() {
 //                            val user = obj
                             UtilityApp.userData = obj as MemberModel?
 
-                            val intent = Intent(getActiviy(), MainActivityBottomNav::class.java)
+                            val intent = Intent(getActiviy(), MainActivity::class.java)
                             intent.flags =
                                 Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
                             startActivity(intent)

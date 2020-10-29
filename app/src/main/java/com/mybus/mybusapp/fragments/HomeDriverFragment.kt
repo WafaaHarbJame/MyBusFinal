@@ -44,7 +44,7 @@ import kotlinx.android.synthetic.main.fragment_home_driver.*
 import java.util.*
 
 
-class HomeScreenDriverFragment : FragmentBase(), OnLocationUpdatedListener,
+class HomeDriverFragment : FragmentBase(), OnLocationUpdatedListener,
     OnActivityUpdatedListener, OnGeofencingTransitionListener {
 
 

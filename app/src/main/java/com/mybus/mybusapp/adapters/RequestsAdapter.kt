@@ -1,7 +1,6 @@
 package com.mybus.mybusapp.adapters
 
 import android.app.Activity
-import android.content.ContentValues
 import android.content.ContentValues.TAG
 import android.content.Intent
 import android.util.Log
@@ -9,12 +8,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.Toast
-import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
-import com.mybus.mybusapp.MainActivityBottomNav
 import com.mybus.mybusapp.R
 import com.mybus.mybusapp.Utils.MapHandler
+import com.mybus.mybusapp.activities.MapActivity
 import com.mybus.mybusapp.activities.RequestDetailsActivity
 import com.mybus.mybusapp.apiHandlers.DataFeacher
 import com.mybus.mybusapp.apiHandlers.DataFetcherCallBack
@@ -22,7 +19,6 @@ import com.mybus.mybusapp.classes.Constants
 import com.mybus.mybusapp.classes.GlobalData
 import com.mybus.mybusapp.classes.UtilityApp
 import com.mybus.mybusapp.models.RequestModel
-import kotlinx.android.synthetic.main.row_request.view.*
 
 class RequestsAdapter(
 private val activity: Activity?,
@@ -98,13 +94,25 @@ RecyclerView.Adapter<RequestsAdapter.MyHolder>() {
             }
 
             itemView.setOnClickListener {
-                val intent = Intent(activity, RequestDetailsActivity::class.java)
-                intent.putExtra(Constants.KEY_DESTINATION_LAT, requestModel.getDestinationLat())
-                intent.putExtra(Constants.KEY_DESTINATION_LNG, requestModel.getDestinationLng())
-                intent.putExtra(Constants.KEY_LAT, requestModel.getLat())
-                intent.putExtra(Constants.KEY_LNG, requestModel.getLng())
-                intent.putExtra(Constants.KEY_DRIVER_ID, requestModel.getDriver_id())
-                activity?.startActivity(intent)
+                val intent = Intent(activity, MapActivity::class.java)
+                if(requestModel.requestStatus==1&&UtilityApp.userData?.type==1) {
+                    intent.putExtra(Constants.KEY_DESTINATION_LAT, requestModel.getDestinationLat())
+                    intent.putExtra(Constants.KEY_DESTINATION_LNG, requestModel.getDestinationLng())
+                    intent.putExtra(Constants.KEY_LAT, requestModel.getLat())
+                    intent.putExtra(Constants.KEY_LNG, requestModel.getLng())
+                    intent.putExtra(Constants.KEY_DRIVER_ID, requestModel.getDriver_id())
+                    activity?.startActivity(intent)
+
+                }
+                else  if(UtilityApp.userData?.type==2){
+                    intent.putExtra(Constants.KEY_DESTINATION_LAT, requestModel.getDestinationLat())
+                    intent.putExtra(Constants.KEY_DESTINATION_LNG, requestModel.getDestinationLng())
+                    intent.putExtra(Constants.KEY_LAT, requestModel.getLat())
+                    intent.putExtra(Constants.KEY_LNG, requestModel.getLng())
+                    intent.putExtra(Constants.KEY_DRIVER_ID, requestModel.getDriver_id())
+                    activity?.startActivity(intent)
+                }
+
             }
 
 

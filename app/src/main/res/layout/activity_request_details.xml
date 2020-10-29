@@ -1,24 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:app="http://schemas.android.com/apk/res-auto"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-xmlns:tools="http://schemas.android.com/tools"
-android:background="@color/white"
-android:orientation="vertical">
-
-    <include
-        android:id="@+id/tool_bar"
-        layout="@layout/tool_bar" />
-
-<include layout="@layout/layout_pre_loading" />
-
-<include layout="@layout/layout_fail_get_data" />
-
-<LinearLayout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:visibility="visible">
+    android:orientation="vertical">
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -29,9 +15,48 @@ android:orientation="vertical">
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingStart="@dimen/_10sdp"
+            android:paddingEnd="@dimen/_10sdp">
+
+            <com.mybus.mybusapp.spichalViews.STextViewIcon
+                android:id="@+id/backBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:paddingEnd="@dimen/_20sdp"
+                android:scaleX="@integer/scaleX"
+                android:text="@string/fal_arrow_left"
+                android:textColor="@color/header2"
+                android:textSize="@dimen/_18ssp"
+                tools:ignore="RtlSymmetry" />
+
+        </RelativeLayout>
+
+
+        <com.mybus.mybusapp.spichalViews.STextViewIcon
+            android:id="@+id/myLocationBtn"
+            android:layout_width="@dimen/_38sdp"
+            android:layout_height="@dimen/_38sdp"
+            android:layout_gravity="top|end"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_marginEnd="@dimen/_15sdp"
+            android:background="@drawable/circle_corner_primary_dark_fill"
+            android:gravity="center"
+            android:text="@string/fal_location"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_13ssp"
+            android:visibility="visible" />
+
+
     </FrameLayout>
 
 </LinearLayout>
 
-</LinearLayout>
 

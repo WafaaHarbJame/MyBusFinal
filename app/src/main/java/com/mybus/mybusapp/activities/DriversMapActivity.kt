@@ -33,7 +33,6 @@ class DriversMapActivity : ActivityBase(), OnMapReadyCallback {
 
     var map: GoogleMap? = null
     var fragment: SupportMapFragment? = null
-    var cameraUpdate: CameraUpdate? = null
     var zoomLevel = 10f
     private var selectedLat = 0.0
     private var selectedLng = 0.0
@@ -59,9 +58,10 @@ class DriversMapActivity : ActivityBase(), OnMapReadyCallback {
         val bundle = intent.extras;
 
             if (bundle != null) {
-                selectedDestinationLat = bundle?.getDouble(Constants.KEY_LNG)
-                selectedDestinationLng = bundle?.getDouble(Constants.KEY_LAT)
-
+                selectedDestinationLat = bundle?.getDouble(Constants.KEY_DESTINATION_LAT)
+                selectedDestinationLng = bundle?.getDouble(Constants.KEY_DESTINATION_LNG)
+                Log.i("TAG", "Log CompleteOrderActivity destinationLat  $selectedDestinationLat")
+                Log.i("TAG", "Log CompleteOrderActivity destinationLng  $selectedDestinationLat")
             }
 
         getAllDrivers()
@@ -75,6 +75,9 @@ class DriversMapActivity : ActivityBase(), OnMapReadyCallback {
             intent.putExtra(Constants.KEY_DESTINATION_LAT, selectedDestinationLat)
             intent.putExtra(Constants.KEY_DESTINATION_LNG, selectedDestinationLng)
             intent.putExtra(Constants.KEY_DRIVER_ID, driverId)
+            Log.i("TAG", "Log confirmBtn $driverId")
+            Log.i("TAG", "Log CompleteOrderActivity destinationLat  $selectedDestinationLat")
+            Log.i("TAG", "Log CompleteOrderActivity destinationLng  $selectedDestinationLat")
             startActivity(intent)
         }
 
@@ -108,6 +111,9 @@ class DriversMapActivity : ActivityBase(), OnMapReadyCallback {
             if (markers!!.get(position).title != getString(R.string.destination_location)) {
                 val selectedDriver: AllDriversModel = allDrivesList!!.get(position)
                 driverId = selectedDriver.getMobileWithCountry()
+                Log.i("TAG", "Log driverId $driverId")
+                Toast(driverId)
+
                 confirmBtn.visibility = View.VISIBLE
 
             }

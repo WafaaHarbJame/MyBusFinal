@@ -21,7 +21,7 @@ import com.mybus.mybusapp.models.MemberModel
 import kotlinx.android.synthetic.main.fragment_main_screen.*
 
 
-class MainScreenFragment : FragmentBase() {
+class HomeClientFragment : FragmentBase() {
     var activity: Activity? = null
     private var selectdLat = 0.0
     private var selectdLng = 0.0
@@ -78,6 +78,8 @@ class MainScreenFragment : FragmentBase() {
             val intent = Intent(requireActivity(), DriversMapActivity::class.java)
             intent.putExtra(Constants.KEY_DESTINATION_LAT,selectedDestinationLat)
             intent.putExtra(Constants.KEY_DESTINATION_LNG,selectedDestinationLng)
+            Log.i("TAG", "Log HomeClientFragment destinationLat  $selectedDestinationLat")
+            Log.i("TAG", "Log HomeClientFragment destinationLng  $selectedDestinationLat")
             startActivity(intent)
 
         }

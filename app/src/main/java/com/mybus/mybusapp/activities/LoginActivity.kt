@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.telephony.TelephonyManager
 import android.util.Log
 import android.widget.ArrayAdapter
-import com.mybus.mybusapp.MainActivityBottomNav
+import com.mybus.mybusapp.MainActivity
 import com.mybus.mybusapp.models.*
 import com.mybus.mybusapp.R
 import com.mybus.mybusapp.Utils.NumberHandler
@@ -201,7 +201,7 @@ class LoginActivity : ActivityBase() {
                                 user.fullName= fullName?.toString()
                                 Log.d(TAG, "DocumentSnapshot data1: ${user.fullName}")
 
-                                val intent = Intent(getActiviy(), MainActivityBottomNav::class.java)
+                                val intent = Intent(getActiviy(), MainActivity::class.java)
                                 intent.flags =
                                     Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
                                 startActivity(intent)

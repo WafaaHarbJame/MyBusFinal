@@ -1,6 +1,6 @@
 package com.mybus.mybusapp.classes
 
-import com.mybus.mybusapp.MainActivityBottomNav
+import com.mybus.mybusapp.MainActivity
 
 
 object Constants {
@@ -13,7 +13,7 @@ object Constants {
     const val Arabic = "ar"
     const val English = "en"
 
-    val MAIN_ACTIVITY_CLASS = MainActivityBottomNav::class.java
+    val MAIN_ACTIVITY_CLASS = MainActivity::class.java
     //    public static final Class<LoginRegisterActivity> INVALID_TOKEN_ACTIVITY = LoginRegisterActivity.class;
 
     const val NORMAL_FONT = "Cairo-Regular.ttf"
@@ -185,7 +185,7 @@ object Constants {
     const val FRAG_CHAT_ARCHIVE = "frag_chat_archive"
     const val FRAG_BLOCK_ACCOUNTS = "frag_block_accounts"
     const val FRAG_MUTE_ACCOUNTS = "frag_mute_accounts"
-
+    const val KEY_TO_ORDERS = "key_to_orders"
     /** */
     const val DB_Sliders = "sliders_db"
     const val DB_Categories = "categories_db"

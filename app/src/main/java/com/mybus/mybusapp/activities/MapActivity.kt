@@ -141,6 +141,28 @@ class MapActivity : ActivityBase(), OnMapReadyCallback {
                     )
                 );
             map?.moveCamera(cameraUpdate)
+            map?.setOnMapClickListener {
+
+                map?.clear()
+                map?.addMarker(
+                    MarkerOptions()
+                        .position(
+                            LatLng(it.latitude, it.longitude)
+                        )
+                        .icon(
+                            BitmapDescriptorFactory.fromBitmap(
+                                ImageHandler.getBitmap(
+                                    getActiviy(), R.drawable.ic_map_marker
+                                )
+                            )
+                        )
+                        .title(getString(R.string.my_location))
+
+                )
+                selectedLat = it.longitude
+                selectedLng = it.latitude
+
+            }
 
         }
         if(mapType==3){

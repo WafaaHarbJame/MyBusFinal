@@ -1,27 +1,20 @@
 package com.mybus.mybusapp.activities
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import com.mybus.mybusapp.MainActivityBottomNav
+import com.mybus.mybusapp.MainActivity
 import com.mybus.mybusapp.R
 import com.mybus.mybusapp.Utils.DateHandler
 import com.mybus.mybusapp.Utils.MapHandler
-import com.mybus.mybusapp.Utils.NumberHandler
 import com.mybus.mybusapp.apiHandlers.DataFeacher
 import com.mybus.mybusapp.apiHandlers.DataFetcherCallBack
-import com.mybus.mybusapp.classes.AESCrypt
 import com.mybus.mybusapp.classes.Constants
 import com.mybus.mybusapp.classes.GlobalData
 import com.mybus.mybusapp.classes.UtilityApp
 import com.mybus.mybusapp.models.MemberModel
-import com.mybus.mybusapp.models.RegisterUserModel
 import com.mybus.mybusapp.models.RequestModel
 import kotlinx.android.synthetic.main.activity_complete_order.*
-import kotlinx.android.synthetic.main.activity_profile.*
-import kotlinx.android.synthetic.main.activity_register.*
-import java.util.ArrayList
 
 class CompleteOrderActivity : ActivityBase() {
     private var destinationLat = 0.0
@@ -31,6 +24,7 @@ class CompleteOrderActivity : ActivityBase() {
     private var driverlat = 0.0
     private var driverlng = 0.0
     private var driverId:String? = null
+    private var toOrder: Boolean = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,6 +42,10 @@ class CompleteOrderActivity : ActivityBase() {
             destinationLat = bundle.getDouble(Constants.KEY_DESTINATION_LAT)
             destinationLng = bundle.getDouble(Constants.KEY_DESTINATION_LNG)
             driverId=bundle.getString(Constants.KEY_DRIVER_ID)
+
+            Log.i("TAG", "Log CompleteOrderActivity destinationLat  $destinationLat")
+            Log.i("TAG", "Log CompleteOrderActivity destinationLng  $destinationLng")
+
             destinationTv.text=MapHandler.getGpsAddress(getActiviy(),destinationLat,destinationLng)
             locationTv.text=MapHandler.getGpsAddress(getActiviy(),UtilityApp.userData!!.lat,UtilityApp.userData!!.lng)
 
@@ -92,6 +90,7 @@ class CompleteOrderActivity : ActivityBase() {
             requestModel.destinationLng=destinationLng
             requestModel.lat= UtilityApp.userData!!.lat
             requestModel.lng= UtilityApp.userData!!.lng
+            requestModel.driver_id=driverId
             requestModel.requestDate=DateHandler.GetDateOnlyNowString()
             requestModel.requestStatus=0
 
@@ -107,7 +106,10 @@ class CompleteOrderActivity : ActivityBase() {
 
                     if (func == Constants.SUCCESS) {
                        Toast(R.string.make_order_sucess)
-                        val intent = Intent(getActiviy(), MainActivityBottomNav::class.java)
+                        val intent = Intent(getActiviy(), MainActivity::class.java)
+                        intent.putExtra(Constants.KEY_TO_ORDERS,toOrder)
+                        Log.d("Log toOrder", "Log toOrder $toOrder");
+
                         startActivity(intent)
                     } else {
                         var message = getString(R.string.fail_to_order)

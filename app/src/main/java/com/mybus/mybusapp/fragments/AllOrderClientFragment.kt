@@ -11,9 +11,15 @@ import com.mybus.mybusapp.R
 import com.mybus.mybusapp.adapters.RequestsAdapter
 import com.mybus.mybusapp.apiHandlers.DataFeacher
 import com.mybus.mybusapp.apiHandlers.DataFetcherCallBack
+import com.mybus.mybusapp.classes.Constants
 import com.mybus.mybusapp.classes.UtilityApp
 import com.mybus.mybusapp.models.RequestModel
+import kotlinx.android.synthetic.main.fragment_all_client.*
 import kotlinx.android.synthetic.main.fragment_current.*
+import kotlinx.android.synthetic.main.fragment_current.rv
+import kotlinx.android.synthetic.main.layout_fail_get_data.*
+import kotlinx.android.synthetic.main.layout_no_data.*
+import kotlinx.android.synthetic.main.layout_pre_loading.*
 import kotlinx.android.synthetic.main.tool_bar.*
 
 /**
@@ -44,7 +50,7 @@ class AllOrderClientFragment : FragmentBase() {
 
         rv.layoutManager = GridLayoutManager(getActivity(), 1)
 
-        getAllOrders()
+        getAllOrders(true)
 
 
 
@@ -62,11 +68,29 @@ class AllOrderClientFragment : FragmentBase() {
         rv.adapter = adapter
     }
 
-    private fun getAllOrders() {
+    private fun getAllOrders(loading: Boolean) {
+        if (loading) {
+            loadingProgressLY.visibility = visible
+            failGetDataLY.visibility = gone
+            dataLY.visibility = gone
+        }
             DataFeacher(object : DataFetcherCallBack {
                 override fun Result(obj: Any?, func: String?, IsSuccess: Boolean) {
-                    currentRequestList = obj as MutableList<RequestModel>?
-                    initAdapter()
+                    loadingProgressLY.visibility = gone
+                    if (swipeDataContainer.isRefreshing)
+                        swipeDataContainer.isRefreshing = false
+                    if (func == Constants.SUCCESS) {
+                        dataLY.visibility = visible
+                            rv.visibility = visible
+                        currentRequestList = obj as MutableList<RequestModel>?
+                        initAdapter()
+                    }
+                    else {
+                        failGetDataLY.visibility = visible
+                        dataLY.visibility = gone
+                    }
+
+
                 }
             }).getAllClientRequests(UtilityApp.userData?.mobileWithCountry)
         }

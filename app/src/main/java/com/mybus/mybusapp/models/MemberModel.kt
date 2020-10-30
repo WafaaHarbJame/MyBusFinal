@@ -20,11 +20,11 @@ class MemberModel : Serializable {
     var busLoading :Int = 0
     var emptySeat :Int = 0
     var fillySeat :Int = 0
-    var isSelectLocation: Any? = null
+    var isSelectLocation: Any? = ""
     var busNumber = 0
-    var busName: String? = null
-    var busColor: String? = null
-    var busModel: String? = null
+    var busName: String? = ""
+    var busColor: String? = ""
+    var busModel: String? = ""
 
     fun getIsVerified(): Boolean {
 

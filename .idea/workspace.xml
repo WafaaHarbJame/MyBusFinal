@@ -15,23 +15,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cf3dacb1-5c6a-47c8-8fdf-f4491d73de14" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/mybus/mybusapp/fragments/AllDriverRequestsFragment.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/mybus/mybusapp/fragments/CurrentDriverFragment.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_finish_driver.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/mybus/mybusapp/MainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/mybus/mybusapp/MainActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/mybus/mybusapp/activities/RegisterActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/mybus/mybusapp/activities/RegisterActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/mybus/mybusapp/fragments/AllOrderClientFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/mybus/mybusapp/fragments/AllOrderClientFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/mybus/mybusapp/fragments/AllRequestsFragment.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/mybus/mybusapp/fragments/FinishedClientFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/mybus/mybusapp/fragments/FinishedClientFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/mybus/mybusapp/fragments/FinishedDriveragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/mybus/mybusapp/fragments/FinishedDriveragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/mybus/mybusapp/fragments/HomeDriverFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/mybus/mybusapp/fragments/HomeDriverFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_all_client.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_all_client.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_all_request.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_all_request.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_finish.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_finish.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/layout_bottom_nav.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/layout_bottom_nav.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/layout_no_data.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/layout_no_data.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/layout_pre_loading.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/layout_pre_loading.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/mybus/mybusapp/SplashScreen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/mybus/mybusapp/SplashScreen.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/mybus/mybusapp/classes/Constants.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/mybus/mybusapp/classes/Constants.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/mybus/mybusapp/models/MemberModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/mybus/mybusapp/models/MemberModel.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -432,7 +419,21 @@
       <option name="project" value="LOCAL" />
       <updated>1604005459483</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="Make Order Details">
+      <created>1604054058961</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1604054058962</updated>
+    </task>
+    <task id="LOCAL-00029" summary="Make Order Details">
+      <created>1604054216793</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1604054216793</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -473,10 +474,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="628" y="225" key="AndroidCreateXmlResourceDialog/0.0.1536.824@0.0.1536.824" timestamp="1604051323656" />
-    <state x="424" y="0" key="CommitChangelistDialog2" timestamp="1604005457270">
+    <state x="424" y="0" key="CommitChangelistDialog2" timestamp="1604054214410">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="424" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1604005457270" />
+    <state x="424" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1604054214410" />
     <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1604053166180">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -505,10 +506,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="278" y="54" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1603128521047" />
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1604005462261">
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1604076434942">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1604005462261" />
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1604076434942" />
     <state x="584" y="190" key="chooseDestDirectoryDialog" timestamp="1603485580526">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

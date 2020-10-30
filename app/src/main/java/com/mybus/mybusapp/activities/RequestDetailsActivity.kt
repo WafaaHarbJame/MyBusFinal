@@ -204,23 +204,19 @@ class RequestDetailsActivity : ActivityBase(), OnMapReadyCallback {
 
                 if (error != null)
                     return@addSnapshotListener
-                if (map != null) {
-                    val currDriverLat: Double = value?.get("lat") as Double
-                    val currDriverLng: Double = value.get("lng") as Double
-                    if (driverMarker == null)
-                        driverMarker = createMarker(
-                            currDriverLat,
-                            currDriverLng,
-                            getString(R.string.driver_location),
-                            "",
-                            R.drawable.ic_map_driver
-                        )!!
-                    else {
-                        driverMarker?.remove()
-                        driverMarker?.position = LatLng(currDriverLat, currDriverLng)
-                    }
 
-                }
+                val currDriverLat: Double = value?.get("lat") as Double
+                val currDriverLng: Double = value.get("lng") as Double
+                if (driverMarker != null)
+                    driverMarker?.remove()
+                driverMarker = createMarker(
+                    currDriverLat,
+                    currDriverLng,
+                    getString(R.string.driver_location),
+                    "",
+                    R.drawable.ic_map_driver
+                )!!
+                Toast("LatLng $currDriverLat,$currDriverLng")
 
             }
     }

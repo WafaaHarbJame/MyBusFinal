@@ -28,7 +28,7 @@ class RequestDetailsActivity : ActivityBase(), OnMapReadyCallback {
 
     var map: GoogleMap? = null
     var fragment: SupportMapFragment? = null
-    var zoomLevel = 12f
+    var zoomLevel = 14f
     var isGrantPermission = false
     private var destinationLat = 0.0
     private var destinationLng = 0.0
@@ -216,7 +216,16 @@ class RequestDetailsActivity : ActivityBase(), OnMapReadyCallback {
                     "",
                     R.drawable.ic_map_driver
                 )!!
-                Toast("LatLng $currDriverLat,$currDriverLng")
+
+                val cameraUpdate =
+                    CameraUpdateFactory.newCameraPosition(
+                        CameraPosition.fromLatLngZoom(
+                            LatLng(currDriverLat, currDriverLng),
+                            zoomLevel
+                        )
+                    )
+                map?.animateCamera(cameraUpdate)
+//                Toast("LatLng $currDriverLat,$currDriverLng")
 
             }
     }

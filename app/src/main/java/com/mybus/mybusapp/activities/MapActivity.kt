@@ -131,6 +131,10 @@ class MapActivity : ActivityBase(), OnMapReadyCallback {
                 markerTitle = getString(R.string.destination_location)
 
             }
+            else -> {
+                mapMarker = R.drawable.ic_map_marker
+                markerTitle = getString(R.string.my_location)
+            }
         }
 
         map?.addMarker(

@@ -125,6 +125,7 @@
     <string name="make_order_sucess">Make Order Sucess</string>
     <string name="no_data">No Data</string>
     <string name="no_order">No Order</string>
+    <string name="pending">Pending</string>
 
 
 </resources>

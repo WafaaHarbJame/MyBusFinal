@@ -1,6 +1,8 @@
 package com.mybus.mybusapp.apiHandlers
 
+import android.app.DownloadManager
 import android.util.Log
+import com.google.firebase.firestore.Query
 import com.google.gson.Gson
 import com.mybus.mybusapp.RootApplication
 import com.mybus.mybusapp.classes.Constants
@@ -412,7 +414,9 @@ class DataFeacher(callBack: DataFetcherCallBack?) {
         Log.i(TAG, "Log getAllRequests")
         Log.i(TAG, "Log updateOrder  $clientId")
 
-        fireStoreDB?.collection(ApiUrl.Orders.name)?.whereEqualTo("clientId", clientId)
+        fireStoreDB?.collection(ApiUrl.Orders.name)
+            ?.whereEqualTo("clientId", clientId)
+            ?.orderBy("createdAt", Query.Direction.DESCENDING)
             ?.get()?.addOnCompleteListener {
                 if (it.isSuccessful) {
                     val query = it.result

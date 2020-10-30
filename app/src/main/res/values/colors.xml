@@ -35,4 +35,9 @@
 
     <color name="blue14">#3E3416</color>
 
+    <color name="order_pending">#EFB300</color>
+    <color name="order_accepted">#008C3F</color>
+    <color name="order_rejected">#F44336</color>
+    <color name="order_finished">#2196F3</color>
+
 </resources>

@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.mybus.mybusapp.R
 import com.mybus.mybusapp.Utils.MapHandler
@@ -18,13 +19,20 @@ import com.mybus.mybusapp.apiHandlers.DataFetcherCallBack
 import com.mybus.mybusapp.classes.Constants
 import com.mybus.mybusapp.classes.GlobalData
 import com.mybus.mybusapp.classes.UtilityApp
+import com.mybus.mybusapp.models.MemberModel
 import com.mybus.mybusapp.models.RequestModel
 
 class RequestsAdapter(
-private val activity: Activity?,
-var list: MutableList<RequestModel>?
+    private val activity: Activity?,
+    var list: MutableList<RequestModel>?
 ) :
-RecyclerView.Adapter<RequestsAdapter.MyHolder>() {
+    RecyclerView.Adapter<RequestsAdapter.MyHolder>() {
+
+    var user: MemberModel? = null
+
+    init {
+        user = UtilityApp.userData
+    }
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): MyHolder {
         val view = LayoutInflater.from(viewGroup.context)
@@ -56,62 +64,72 @@ RecyclerView.Adapter<RequestsAdapter.MyHolder>() {
         fun bind(requestModel: RequestModel) {
 
             nameTV.text = requestModel.getClient_name()
-            dateTxt.text=requestModel.getRequestDate()
-            addressTxt.text=MapHandler.getGpsAddress(activity,requestModel.destinationLat,requestModel.destinationLng)
+            dateTxt.text = requestModel.getRequestDate()
+            addressTxt.text = MapHandler.getGpsAddress(
+                activity,
+                requestModel.destinationLat,
+                requestModel.destinationLng
+            )
 
             // 1 accept 2 reject 3 finish
 
-            if(requestModel.requestStatus==0&&UtilityApp.userData?.type==2){
-                acceptBut.visibility=View.VISIBLE
-                rejectBut.visibility=View.VISIBLE
-            }
 
-             if(requestModel.requestStatus==1){
-                orderStatusBtn.visibility=View.VISIBLE
-                orderStatusBtn.text= activity?.getString(R.string.accepted)
-            }
-             if(requestModel.requestStatus==2){
-                orderStatusBtn.visibility=View.VISIBLE
-                orderStatusBtn.text= activity?.getString(R.string.rejecttion)
+            when (requestModel.requestStatus) {
+                0 -> {
+                    orderStatusBtn.visibility = View.VISIBLE
+                    orderStatusBtn.text = activity?.getString(R.string.pending)
+                    orderStatusBtn.background =
+                        ContextCompat.getDrawable(activity!!, R.drawable.circle_corne_order_pending)
 
-            }
-             if(requestModel.requestStatus==3){
-                orderStatusBtn.text= activity?.getString(R.string.finish)
-                orderStatusBtn.visibility=View.VISIBLE
+                    if (user?.type == 2) {
+                        acceptBut.visibility = View.VISIBLE
+                        rejectBut.visibility = View.VISIBLE
+                    } else {
+                        acceptBut.visibility = View.GONE
+                        rejectBut.visibility = View.GONE
+                    }
+
+                }
+                1 -> {
+                    orderStatusBtn.visibility = View.VISIBLE
+                    orderStatusBtn.text = activity?.getString(R.string.accepted)
+                    orderStatusBtn.background = ContextCompat.getDrawable(
+                        activity!!,
+                        R.drawable.circle_corne_order_accepted
+                    )
+                }
+                2 -> {
+                    orderStatusBtn.visibility = View.VISIBLE
+                    orderStatusBtn.text = activity?.getString(R.string.rejecttion)
+                    orderStatusBtn.background = ContextCompat.getDrawable(
+                        activity!!,
+                        R.drawable.circle_corne_order_rejected
+                    )
+
+                }
+                3 -> {
+                    orderStatusBtn.text = activity?.getString(R.string.finish)
+                    orderStatusBtn.visibility = View.VISIBLE
+                    orderStatusBtn.background = ContextCompat.getDrawable(
+                        activity!!,
+                        R.drawable.circle_corne_order_finished
+                    )
+                }
+                else -> {
+                    orderStatusBtn.visibility = View.GONE
+                }
             }
 
             acceptBut.setOnClickListener {
-                Log.i(TAG, "Log requestModel.getOrderId()"+requestModel.getOrderId())
+                Log.i(TAG, "Log requestModel.getOrderId()" + requestModel.getOrderId())
 
-                updateOrderStatus(requestModel.getOrderId(),1,adapterPosition)
+                updateOrderStatus(requestModel.getOrderId(), 1, adapterPosition)
 
             }
             rejectBut.setOnClickListener {
-                Log.i(TAG, "Log requestModel.getOrderId()"+requestModel.getOrderId())
+                Log.i(TAG, "Log requestModel.getOrderId()" + requestModel.getOrderId())
 
-                updateOrderStatus(requestModel.getOrderId(),2,adapterPosition)
-
-            }
-
-            itemView.setOnClickListener {
-                val intent = Intent(activity, MapActivity::class.java)
-                if(requestModel.requestStatus==1&&UtilityApp.userData?.type==1) {
-                    intent.putExtra(Constants.KEY_DESTINATION_LAT, requestModel.getDestinationLat())
-                    intent.putExtra(Constants.KEY_DESTINATION_LNG, requestModel.getDestinationLng())
-                    intent.putExtra(Constants.KEY_LAT, requestModel.getLat())
-                    intent.putExtra(Constants.KEY_LNG, requestModel.getLng())
-                    intent.putExtra(Constants.KEY_DRIVER_ID, requestModel.getDriver_id())
-                    activity?.startActivity(intent)
-
-                }
-                else  if(UtilityApp.userData?.type==2){
-                    intent.putExtra(Constants.KEY_DESTINATION_LAT, requestModel.getDestinationLat())
-                    intent.putExtra(Constants.KEY_DESTINATION_LNG, requestModel.getDestinationLng())
-                    intent.putExtra(Constants.KEY_LAT, requestModel.getLat())
-                    intent.putExtra(Constants.KEY_LNG, requestModel.getLng())
-                    intent.putExtra(Constants.KEY_DRIVER_ID, requestModel.getDriver_id())
-                    activity?.startActivity(intent)
-                }
+                updateOrderStatus(requestModel.getOrderId(), 2, adapterPosition)
 
             }
 
@@ -122,22 +140,25 @@ RecyclerView.Adapter<RequestsAdapter.MyHolder>() {
 
             itemView?.setOnClickListener {
 
-                var requestModel: RequestModel? = null
-                list?.let {
+                var requestModel = list!![adapterPosition]
 
-                    requestModel = list!![adapterPosition]
+                if (requestModel.requestStatus != 1 && UtilityApp.userData?.type == 1)
+                    return@setOnClickListener
 
-                }
-
-
-
-
+                val intent = Intent(activity, RequestDetailsActivity::class.java)
+//
+                intent.putExtra(Constants.KEY_DESTINATION_LAT, requestModel.getDestinationLat())
+                intent.putExtra(Constants.KEY_DESTINATION_LNG, requestModel.getDestinationLng())
+                intent.putExtra(Constants.KEY_LAT, requestModel.getLat())
+                intent.putExtra(Constants.KEY_LNG, requestModel.getLng())
+                intent.putExtra(Constants.KEY_DRIVER_ID, requestModel.getDriver_id())
+                activity?.startActivity(intent)
 
             }
         }
     }
 
-    private fun updateOrderStatus(orderNumber: String?,orderStatus: Int?,position: Int) {
+    private fun updateOrderStatus(orderNumber: String?, orderStatus: Int?, position: Int) {
         try {
             DataFeacher(object : DataFetcherCallBack {
                 override fun Result(obj: Any?, func: String?, IsSuccess: Boolean) {
@@ -162,7 +183,7 @@ RecyclerView.Adapter<RequestsAdapter.MyHolder>() {
                     }
 
                 }
-            }).updateOrder(orderNumber,orderStatus);
+            }).updateOrder(orderNumber, orderStatus);
 
         } catch (e: Exception) {
 

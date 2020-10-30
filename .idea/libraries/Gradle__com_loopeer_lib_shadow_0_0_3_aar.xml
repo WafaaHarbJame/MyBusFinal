@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Gradle: com.loopeer.lib:shadow:0.0.3@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/5fdeb0b1c07c9e033dbd1460270f3741/jetified-shadow-0.0.3/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/5fdeb0b1c07c9e033dbd1460270f3741/jetified-shadow-0.0.3/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/5fdeb0b1c07c9e033dbd1460270f3741/jetified-shadow-0.0.3/AndroidManifest.xml" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.loopeer.lib/shadow/0.0.3/85632e9d1d79c9bea880968c850957d4bffcb925/shadow-0.0.3-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

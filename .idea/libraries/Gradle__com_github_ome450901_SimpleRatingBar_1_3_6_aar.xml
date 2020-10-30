@@ -4,6 +4,9 @@
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/12429cfe8a2447b088839c29d4db06e7/jetified-SimpleRatingBar-1.3.6/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/12429cfe8a2447b088839c29d4db06e7/jetified-SimpleRatingBar-1.3.6/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/12429cfe8a2447b088839c29d4db06e7/jetified-SimpleRatingBar-1.3.6/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/5776036d8369cadb866f084dd9a044aa/jetified-SimpleRatingBar-1.3.6/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/5776036d8369cadb866f084dd9a044aa/jetified-SimpleRatingBar-1.3.6/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/5776036d8369cadb866f084dd9a044aa/jetified-SimpleRatingBar-1.3.6/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

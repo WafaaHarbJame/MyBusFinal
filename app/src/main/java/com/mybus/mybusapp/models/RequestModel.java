@@ -1,17 +1,23 @@
 package com.mybus.mybusapp.models;
 
+import com.google.firebase.firestore.ServerTimestamp;
+
+import java.util.Date;
+
 public class RequestModel {
 
-    public  String orderId;
+    public String orderId;
     public String driver_id;
     public String clientId;
     public String client_name;
     public double lat;
     public double lng;
-    public double  destinationLat;
+    public double destinationLat;
     public double destinationLng;
     public String address;
     public String requestDate;
+    @ServerTimestamp
+    public Date createdAt;
     public int requestStatus;
 
     public String getDriver_id() {

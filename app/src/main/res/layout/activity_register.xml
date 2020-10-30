@@ -46,10 +46,11 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginBottom="@dimen/_15sdp"
-                android:visibility="gone"
                 android:text="@string/hello_in_mybus_app"
                 android:textColor="@color/colorPrimary"
-                android:textSize="@dimen/_13ssp" />
+                android:textSize="@dimen/_13ssp"
+                android:visibility="gone" />
+
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -76,12 +77,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/user"
-                    android:textStyle="bold"
                     android:textColor="@color/tabColor1"
-                    android:textSize="@dimen/_12ssp" />
+                    android:textSize="@dimen/_12ssp"
+                    android:textStyle="bold" />
 
             </LinearLayout>
+
             <com.mybus.mybusapp.spichalViews.STextInputLayout
+                android:id="@+id/fullNameInput"
                 style="@style/TextInputStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -91,7 +94,7 @@
                 android:hint="@string/full_name"
                 app:layout_constraintTop_toBottomOf="@id/helloLabel">
 
-                <com.mybus.mybusapp.spichalViews.STextInputEditText
+                <com.mybus.mybusapp.spichalViews.SEditText
                     android:id="@+id/fullNameTxt"
                     style="@style/editTextStyle"
                     android:layout_width="match_parent"
@@ -99,7 +102,9 @@
                     android:inputType="textPersonName" />
 
             </com.mybus.mybusapp.spichalViews.STextInputLayout>
+
             <com.mybus.mybusapp.spichalViews.STextInputLayout
+                android:id="@+id/ageInput"
                 style="@style/TextInputStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -116,14 +121,16 @@
                     android:inputType="numberDecimal" />
 
             </com.mybus.mybusapp.spichalViews.STextInputLayout>
+
             <LinearLayout
-                android:layout_width="match_parent"
                 android:id="@+id/busLy"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:visibility="gone"
-                android:layout_height="wrap_content">
+                android:visibility="gone">
 
                 <com.mybus.mybusapp.spichalViews.STextInputLayout
+                    android:id="@+id/busNumberInput"
                     style="@style/TextInputStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -139,7 +146,9 @@
                         android:layout_height="wrap_content"
                         android:inputType="number" />
                 </com.mybus.mybusapp.spichalViews.STextInputLayout>
+
                 <com.mybus.mybusapp.spichalViews.STextInputLayout
+                    android:id="@+id/busNameInput"
                     style="@style/TextInputStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -157,6 +166,7 @@
                 </com.mybus.mybusapp.spichalViews.STextInputLayout>
 
                 <com.mybus.mybusapp.spichalViews.STextInputLayout
+                    android:id="@+id/busModelInput"
                     style="@style/TextInputStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -174,6 +184,7 @@
                 </com.mybus.mybusapp.spichalViews.STextInputLayout>
 
                 <com.mybus.mybusapp.spichalViews.STextInputLayout
+                    android:id="@+id/busColorInput"
                     style="@style/TextInputStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -191,6 +202,7 @@
                 </com.mybus.mybusapp.spichalViews.STextInputLayout>
 
                 <com.mybus.mybusapp.spichalViews.STextInputLayout
+                    android:id="@+id/numSeatInput"
                     style="@style/TextInputStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -285,6 +297,7 @@
             </com.mybus.mybusapp.spichalViews.STextInputLayout>
 
             <com.mybus.mybusapp.spichalViews.STextInputLayout
+                android:id="@+id/confirmPasswordInput"
                 style="@style/TextInputStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

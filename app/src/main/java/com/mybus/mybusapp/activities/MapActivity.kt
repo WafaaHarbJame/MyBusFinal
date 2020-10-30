@@ -40,8 +40,8 @@ class MapActivity : ActivityBase(), OnMapReadyCallback {
 
     private var latLng: LatLng? = null
     private var mapType: Int = 0
-    private var selectedLat = 0.0
-    private var selectedLng = 0.0
+    private var selectedLat = 24.7096549
+    private var selectedLng = 46.6748917
 
     var isGrantPermission = false
 
@@ -62,31 +62,25 @@ class MapActivity : ActivityBase(), OnMapReadyCallback {
         setContentView(R.layout.activity_map)
 
         markers = ArrayList()
-        latLng = LatLng(24.7096549, 46.6748917)
+        latLng = LatLng(selectedLat, selectedLng)
 
         val bundle = intent.extras;
 
         if (bundle != null) {
             mapType = bundle.getInt(Constants.KEY_MAP_TYPE)!!
-
+            selectedLat = bundle.getDouble(Constants.KEY_LAT)
+            selectedLng = bundle.getDouble(Constants.KEY_LNG)
         }
 
-        if(mapType==1){
+        if (mapType == 1) {
             checkLocationPermission()
-        }
-        else if(mapType==2){
+        } else if (mapType == 2) {
             selectBtn.visibility = View.VISIBLE
             selectBtn.text = getString(R.string.edit)
-            if (bundle != null) {
-                val lat = bundle.getDouble(Constants.KEY_LNG)
-                val lng = bundle.getDouble(Constants.KEY_LAT)
-                EditMyLocation(lat, lng)
+//            EditMyLocation(selectedLat, selectedLng)
 
-            }
-        }
-
-        else if(mapType==3){
-            selectDestinationBtn.visibility=View.VISIBLE
+        } else if (mapType == 3) {
+            selectDestinationBtn.visibility = View.VISIBLE
         }
 
         backBtn.setOnClickListener {
@@ -104,103 +98,77 @@ class MapActivity : ActivityBase(), OnMapReadyCallback {
     override fun onMapReady(googleMap: GoogleMap?) {
         map = googleMap
 
-        if(mapType==1){
-            if (isGrantPermission)
-                getMyLocation()
-            map?.setOnMapClickListener {
-
-                map?.clear()
-                map?.addMarker(
-                    MarkerOptions()
-                        .position(
-                            LatLng(it.latitude, it.longitude)
-                        )
-                        .icon(
-                            BitmapDescriptorFactory.fromBitmap(
-                                ImageHandler.getBitmap(
-                                    getActiviy(), R.drawable.ic_map_marker
-                                )
-                            )
-                        )
-                        .title(getString(R.string.my_location))
-
+        cameraUpdate =
+            CameraUpdateFactory.newCameraPosition(
+                CameraPosition.fromLatLngZoom(
+                    latLng,
+                    zoomLevel
                 )
-                selectedLat = it.longitude
-                selectedLng = it.latitude
+            )
+        map?.moveCamera(cameraUpdate)
+
+        var mapMarker = 0
+        var markerTitle = ""
+
+        when (mapType) {
+            1 -> {
+                if (isGrantPermission)
+                    getMyLocation()
+
+                mapMarker = R.drawable.ic_map_marker
+                markerTitle = getString(R.string.my_location)
 
             }
+            2 -> {
 
+                mapMarker = R.drawable.ic_map_marker
+                markerTitle = getString(R.string.my_location)
+
+            }
+            3 -> {
+
+                mapMarker = R.drawable.ic_map_destination_marker
+                markerTitle = getString(R.string.destination_location)
+
+            }
         }
 
-        if(mapType==2){
-            cameraUpdate =
-                CameraUpdateFactory.newCameraPosition(
-                    CameraPosition.fromLatLngZoom(
-                        latLng,
-                        zoomLevel
+        map?.addMarker(
+            MarkerOptions()
+                .position(latLng!!)
+                .icon(
+                    BitmapDescriptorFactory.fromBitmap(
+                        ImageHandler.getBitmap(
+                            getActiviy(), mapMarker
+                        )
                     )
-                );
-            map?.moveCamera(cameraUpdate)
-            map?.setOnMapClickListener {
-
-                map?.clear()
-                map?.addMarker(
-                    MarkerOptions()
-                        .position(
-                            LatLng(it.latitude, it.longitude)
-                        )
-                        .icon(
-                            BitmapDescriptorFactory.fromBitmap(
-                                ImageHandler.getBitmap(
-                                    getActiviy(), R.drawable.ic_map_marker
-                                )
-                            )
-                        )
-                        .title(getString(R.string.my_location))
-
                 )
-                selectedLat = it.longitude
-                selectedLng = it.latitude
+                .title(markerTitle)
 
-            }
+        )
 
-        }
-        if(mapType==3){
-            map?.setOnMapClickListener {
+        map?.setOnMapClickListener {
 
-                map?.clear()
-                map?.addMarker(
-                    MarkerOptions()
-                        .position(
-                            LatLng(it.latitude, it.longitude)
-                        )
-                        .icon(
-                            BitmapDescriptorFactory.fromBitmap(
-                                ImageHandler.getBitmap(
-                                    getActiviy(), R.drawable.ic_map_destination_marker
-                                )
-                            )
-                        )
-                        .title(getString(R.string.destination_location))
-
-                )
-                selectedLat = it.longitude
-                selectedLng = it.latitude
-
-            }
-
-        }
-        else {
-            cameraUpdate =
-                CameraUpdateFactory.newCameraPosition(
-                    CameraPosition.fromLatLngZoom(
-                        latLng,
-                        zoomLevel
+            map?.clear()
+            map?.addMarker(
+                MarkerOptions()
+                    .position(
+                        LatLng(it.latitude, it.longitude)
                     )
-                );
-            map?.moveCamera(cameraUpdate)
-        }
+                    .icon(
+                        BitmapDescriptorFactory.fromBitmap(
+                            ImageHandler.getBitmap(
+                                getActiviy(), mapMarker
+                            )
+                        )
+                    )
+                    .title(markerTitle)
 
+            )
+            selectedLat = it.latitude
+            selectedLng = it.longitude
+
+        }
 
         myLocationBtn.setOnClickListener {
 
@@ -227,8 +195,6 @@ class MapActivity : ActivityBase(), OnMapReadyCallback {
             finish()
 
         }
-
-
 
 
     }
@@ -297,7 +263,7 @@ class MapActivity : ActivityBase(), OnMapReadyCallback {
                                 latLn,
                                 zoomLevel
                             )
-                        );
+                        )
                     map?.animateCamera(cameraUpdate)
                 }
 

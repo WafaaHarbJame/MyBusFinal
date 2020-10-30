@@ -33,12 +33,13 @@ class RegisterActivity : ActivityBase() {
     private var FCMToken: String? = ""
     private var address: String? = ""
     val TAG: String? = "Log"
-    private var ageNumber:Int?=0
+    private var ageNumber: Int? = 0
     var selectedCountryCode = 966
     var countryCodeDialog: CountryCodeDialog? = null
     private var isUser: Boolean = false
-    private  var isDriverActive :Boolean = false
-    private var numSeats:Int=0
+    private var isDriverActive: Boolean = false
+
+    private var numSeats: Int = 0
     var isSelectLocation = false
     var busNumber = 0
     var busName: String? = ""
@@ -60,8 +61,8 @@ class RegisterActivity : ActivityBase() {
             userTypeTxt.text = getString(R.string.user)
         } else {
             userTypeTxt.text = getString(R.string.driver)
-            busLy.visibility=View.VISIBLE
-            isDriverActive=true
+            busLy.visibility = View.VISIBLE
+            isDriverActive = true
 
         }
 
@@ -79,30 +80,15 @@ class RegisterActivity : ActivityBase() {
         }
 
         registerBtn.setOnClickListener {
-            ageNumber= NumberHandler.arabicToDecimal(ageTxt.text.toString().trim()).toInt()
-            if (isUser) {
-                if (isValidForm()&& ageNumber!! >18){
-                    registerUser()
-                }
-                else{
-                    ageTxt?.error =getString(R.string.age_must_be_morethan)
-                    Toast(R.string.age_must_be_morethan)
-                }
 
+            val ageNumber = NumberHandler.arabicToDecimal(ageTxt.text.toString().trim())
+
+            if (isValidForm() && ageNumber.toInt() >= 18) {
+                registerUser()
+            } else {
+                ageTxt?.error = getString(R.string.age_must_be_morethan)
+                Toast(R.string.age_must_be_morethan)
             }
-            else {
-                if (isValidFormForDriver()&& ageNumber!! >18){
-                    registerUser()
-                }
-                else{
-                    ageTxt?.error =getString(R.string.age_must_be_morethan)
-                    Toast(R.string.age_must_be_morethan)
-                }
-
-            }
-
-
-
 
         }
 
@@ -154,19 +140,21 @@ class RegisterActivity : ActivityBase() {
 
         try {
 
-            var mobileStr = NumberHandler.arabicToDecimal(mobileTxt.text.toString())
+            val mobileStr = NumberHandler.arabicToDecimal(mobileTxt.text.toString())
             val passwordStr = NumberHandler.arabicToDecimal(passwordTxt.text.toString())
             val fullNameStr = NumberHandler.arabicToDecimal(fullNameTxt.text.toString())
-            val  ageStr = NumberHandler.arabicToDecimal(ageTxt.text.toString().trim())
-            if(!isUser){
-                numSeats= NumberHandler.arabicToDecimal(numSeatTxt.text.toString().trim()).toInt()
-                busName=NumberHandler.arabicToDecimal(busNameTxt.text.toString())
-                busNumber=NumberHandler.arabicToDecimal(busNumberTxt.text.toString().trim()).toInt()
-                busColor=NumberHandler.arabicToDecimal(busColorTxt.text.toString())
-                busModel=NumberHandler.arabicToDecimal(busModelTxt.text.toString())
+            val ageStr = NumberHandler.arabicToDecimal(ageTxt.text.toString().trim())
+
+            if (!isUser) {
+                numSeats = NumberHandler.arabicToDecimal(numSeatTxt.text.toString().trim()).toInt()
+                busName = NumberHandler.arabicToDecimal(busNameTxt.text.toString())
+                busNumber =
+                    NumberHandler.arabicToDecimal(busNumberTxt.text.toString().trim()).toInt()
+                busColor = NumberHandler.arabicToDecimal(busColorTxt.text.toString())
+                busModel = NumberHandler.arabicToDecimal(busModelTxt.text.toString())
             }
 
-            val registerUserModel = RegisterUserModel()
+            val registerUserModel = MemberModel()
             registerUserModel.countryCode = selectedCountryCode
             registerUserModel.mobile =
                 if (mobileStr.startsWith("0")) mobileStr.replaceFirst(
@@ -179,23 +167,19 @@ class RegisterActivity : ActivityBase() {
             registerUserModel.password_confirm = AESCrypt.encrypt(passwordStr)
             registerUserModel.mobileWithCountry =
                 selectedCountryCode.toString().plus(registerUserModel.mobile)
-            registerUserModel.age=ageStr.toInt()
-            registerUserModel.fullName=fullNameStr
-            registerUserModel.busLoading=numSeats
+            registerUserModel.age = ageStr.toInt()
+            registerUserModel.fullName = fullNameStr
+            registerUserModel.busLoading = numSeats
             registerUserModel.type = if (isUser) 1 else 2
-            registerUserModel.isDriverActive=isDriverActive
-            registerUserModel.address=address
-            registerUserModel.fillySeat=0
-            registerUserModel.emptySeat=0
-            registerUserModel.isSelectLocation=false
-            registerUserModel.busModel=busModel
-            registerUserModel.busColor=busColor
-            registerUserModel.busName=busName
-            registerUserModel.busNumber=busNumber
-
-
-
-
+            registerUserModel.isDriverActive = isDriverActive
+            registerUserModel.address = address
+            registerUserModel.fillySeat = 0
+            registerUserModel.emptySeat = 0
+            registerUserModel.isSelectLocation = false
+            registerUserModel.busModel = busModel
+            registerUserModel.busColor = busColor
+            registerUserModel.busName = busName
+            registerUserModel.busNumber = busNumber
 
 
             GlobalData.progressDialog(
@@ -211,15 +195,8 @@ class RegisterActivity : ActivityBase() {
                     if (func == Constants.SUCCESS) {
                         Log.d(TAG, "phoneNumber:${registerUserModel.mobileWithCountry}")
 
-                        val user = MemberModel().apply {
-                            countryCode = registerUserModel.countryCode
-                            mobile = registerUserModel.mobile
-                            mobileWithCountry = registerUserModel.mobileWithCountry
-                            password = registerUserModel.password
-                            isVerified = true
-                        }
                         val intent = Intent(getActiviy(), ConfirmActivity::class.java)
-                        intent.putExtra(Constants.KEY_MEMBER, user)
+                        intent.putExtra(Constants.KEY_MEMBER, registerUserModel)
                         intent.putExtra(Constants.KEY_MOBILE, registerUserModel.mobileWithCountry)
                         startActivity(intent)
                     } else {
@@ -246,105 +223,102 @@ class RegisterActivity : ActivityBase() {
     }
 
     private fun isValidForm(): Boolean {
+        if (isUser) {
+            return FormValidator.getInstance()
 
-        return FormValidator.getInstance()
-
-            .addField(
-                fullNameTxt,
-                NonEmptyRule(R.string.enter_fill_name),
-            )
-            .addField(
-                ageTxt,
-                NonEmptyRule(R.string.enter_age),
-
-
-            )
-            .addField(
-                mobileTxt,
-                NonEmptyRule(R.string.enter_phone_number),
-                LengthRule(10, R.string.valid_phone_number)
-
-            )
-
-            .addField(
-                passwordTxt,
-                NonEmptyRule(R.string.enter_password)
-            )
-            .addField(
-                confirmPasswordTxt,
-                NonEmptyRule(R.string.enter_password),
-                EqualRule(
-                    passwordTxt.text.toString(),
-                    R.string.password_confirm_not_match
+                .addField(
+                    fullNameInput,
+                    NonEmptyRule(R.string.enter_fill_name),
                 )
-            )
+                .addField(
+                    ageInput,
+                    NonEmptyRule(R.string.enter_age),
 
-            .validate()
 
-    }
-
-    private fun isValidFormForDriver(): Boolean {
-
-        return FormValidator.getInstance()
-
-            .addField(
-                fullNameTxt,
-                NonEmptyRule(R.string.enter_fill_name),
-            )
-            .addField(
-                ageTxt,
-                NonEmptyRule(R.string.enter_age),
+                    )
+                .addField(
+                    mobileInput,
+                    NonEmptyRule(R.string.enter_phone_number),
+//                    LengthRule(10, R.string.valid_phone_number)
                 )
 
-            .addField(
-                busNumberTxt,
-                NonEmptyRule(R.string.enter_bus_number),
-
+                .addField(
+                    passwordInput,
+                    NonEmptyRule(R.string.enter_password)
                 )
-            .addField(
-                busNameTxt,
-                NonEmptyRule(R.string.enter_bus_name),
-
-                )
-            .addField(
-                busModelTxt,
-                NonEmptyRule(R.string.enter_bus_model),
-
-                )
-            .addField(
-                busColorTxt,
-                NonEmptyRule(R.string.enter_bus_color),
-
+                .addField(
+                    confirmPasswordInput,
+                    NonEmptyRule(R.string.enter_password),
+                    EqualRule(
+                        passwordTxt.text.toString(),
+                        R.string.password_confirm_not_match
+                    )
                 )
 
+                .validate()
 
-            .addField(
-                numSeatTxt,
-                NonEmptyRule(R.string.enter_number_passenger),
+        } else {
+            return FormValidator.getInstance()
+
+                .addField(
+                    fullNameInput,
+                    NonEmptyRule(R.string.enter_fill_name),
+                )
+                .addField(
+                    ageInput,
+                    NonEmptyRule(R.string.enter_age),
+                )
+
+                .addField(
+                    busNumberInput,
+                    NonEmptyRule(R.string.enter_bus_number),
+
+                    )
+                .addField(
+                    busNameInput,
+                    NonEmptyRule(R.string.enter_bus_name),
+
+                    )
+                .addField(
+                    busModelInput,
+                    NonEmptyRule(R.string.enter_bus_model),
+
+                    )
+                .addField(
+                    busColorInput,
+                    NonEmptyRule(R.string.enter_bus_color),
+
+                    )
+
+
+                .addField(
+                    numSeatInput,
+                    NonEmptyRule(R.string.enter_number_passenger),
+
+                    )
+
+                .addField(
+                    mobileInput,
+                    NonEmptyRule(R.string.enter_phone_number),
+//                    LengthRule(10, R.string.valid_phone_number)
 
                 )
 
-            .addField(
-                mobileTxt,
-                NonEmptyRule(R.string.enter_phone_number),
-                LengthRule(10, R.string.valid_phone_number)
-
-            )
-
-            .addField(
-                passwordTxt,
-                NonEmptyRule(R.string.enter_password)
-            )
-            .addField(
-                confirmPasswordTxt,
-                NonEmptyRule(R.string.enter_password),
-                EqualRule(
-                    passwordTxt.text.toString(),
-                    R.string.password_confirm_not_match
+                .addField(
+                    passwordInput,
+                    NonEmptyRule(R.string.enter_password)
                 )
-            )
+                .addField(
+                    confirmPasswordInput,
+                    NonEmptyRule(R.string.enter_password),
+                    EqualRule(
+                        passwordTxt.text.toString(),
+                        R.string.password_confirm_not_match
+                    )
+                )
 
-            .validate()
+                .validate()
+        }
 
     }
 

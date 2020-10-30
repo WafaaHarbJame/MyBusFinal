@@ -26,7 +26,11 @@ import com.mybus.mybusapp.apiHandlers.DataFetcherCallBack
 import com.mybus.mybusapp.classes.Constants
 import com.mybus.mybusapp.models.AllDriversModel
 import io.nlopez.smartlocation.SmartLocation
+import kotlinx.android.synthetic.main.activity_drivers_map.*
 import kotlinx.android.synthetic.main.activity_map.*
+import kotlinx.android.synthetic.main.activity_map.backBtn
+import kotlinx.android.synthetic.main.activity_map.confirmBtn
+import kotlinx.android.synthetic.main.activity_map.myLocationBtn
 import java.util.*
 
 class DriversMapActivity : ActivityBase(), OnMapReadyCallback {
@@ -34,14 +38,16 @@ class DriversMapActivity : ActivityBase(), OnMapReadyCallback {
     var map: GoogleMap? = null
     var fragment: SupportMapFragment? = null
     var zoomLevel = 10f
-    private var selectedLat = 0.0
-    private var selectedLng = 0.0
+    private var myLocationLat = 0.0
+    private var myLocationLng = 0.0
+    private var destinationLat = 0.0
+    private var destinationLng = 0.0
+//    private var driverSelectedLat = 0.0
+//    private var driverSelectedLng = 0.0
 
     var isGrantPermission = false
 
-    private var selectedDestinationLat = 0.0
-    private var selectedDestinationLng = 0.0
-    private lateinit var  driverId:String
+    private lateinit var driverId: String
 
     var allDrivesList: MutableList<AllDriversModel>? = null
 
@@ -53,16 +59,16 @@ class DriversMapActivity : ActivityBase(), OnMapReadyCallback {
 
         markers = ArrayList()
 
-
-
         val bundle = intent.extras;
 
-            if (bundle != null) {
-                selectedDestinationLat = bundle?.getDouble(Constants.KEY_DESTINATION_LAT)
-                selectedDestinationLng = bundle?.getDouble(Constants.KEY_DESTINATION_LNG)
-                Log.i("TAG", "Log CompleteOrderActivity destinationLat  $selectedDestinationLat")
-                Log.i("TAG", "Log CompleteOrderActivity destinationLng  $selectedDestinationLat")
-            }
+        if (bundle != null) {
+            myLocationLat = bundle.getDouble(Constants.KEY_LAT)
+            myLocationLng = bundle.getDouble(Constants.KEY_LNG)
+            destinationLat = bundle.getDouble(Constants.KEY_DESTINATION_LAT)
+            destinationLng = bundle.getDouble(Constants.KEY_DESTINATION_LNG)
+//            Log.i("TAG", "Log CompleteOrderActivity destinationLat  $selectedLat")
+//            Log.i("TAG", "Log CompleteOrderActivity destinationLng  $selectedLng")
+        }
 
         getAllDrivers()
 
@@ -72,21 +78,21 @@ class DriversMapActivity : ActivityBase(), OnMapReadyCallback {
 
         confirmBtn.setOnClickListener {
             val intent = Intent(getActiviy(), CompleteOrderActivity::class.java)
-            intent.putExtra(Constants.KEY_DESTINATION_LAT, selectedDestinationLat)
-            intent.putExtra(Constants.KEY_DESTINATION_LNG, selectedDestinationLng)
+            intent.putExtra(Constants.KEY_LAT, myLocationLat)
+            intent.putExtra(Constants.KEY_LNG, myLocationLng)
+            intent.putExtra(Constants.KEY_DESTINATION_LAT, destinationLat)
+            intent.putExtra(Constants.KEY_DESTINATION_LNG, destinationLng)
             intent.putExtra(Constants.KEY_DRIVER_ID, driverId)
             Log.i("TAG", "Log confirmBtn $driverId")
-            Log.i("TAG", "Log CompleteOrderActivity destinationLat  $selectedDestinationLat")
-            Log.i("TAG", "Log CompleteOrderActivity destinationLng  $selectedDestinationLat")
+//            Log.i("TAG", "Log CompleteOrderActivity destinationLat  $selectedLat")
+//            Log.i("TAG", "Log CompleteOrderActivity destinationLng  $selectedLng")
             startActivity(intent)
         }
-
 
 
         val fm: FragmentManager = supportFragmentManager
         fragment = fm.findFragmentById(R.id.map) as SupportMapFragment
         fragment?.getMapAsync(this)
-
 
 
     }
@@ -108,8 +114,8 @@ class DriversMapActivity : ActivityBase(), OnMapReadyCallback {
 
         map?.setOnMarkerClickListener { marker ->
             val position = markers!!.indexOf(marker)
-            if (markers!!.get(position).title != getString(R.string.destination_location)) {
-                val selectedDriver: AllDriversModel = allDrivesList!!.get(position)
+            if (markers!![position].title != getString(R.string.destination_location)) {
+                val selectedDriver: AllDriversModel = allDrivesList!![position]
                 driverId = selectedDriver.getMobileWithCountry()
                 Log.i("TAG", "Log driverId $driverId")
                 Toast(driverId)
@@ -150,7 +156,6 @@ class DriversMapActivity : ActivityBase(), OnMapReadyCallback {
         myLocationBtn.setOnClickListener {
             checkLocationPermission()
         }
-
 
 
     }
@@ -251,24 +256,26 @@ class DriversMapActivity : ActivityBase(), OnMapReadyCallback {
     }
 
     private fun getAllDrivers() {
+        loadingLY.visibility = visible
         DataFeacher(object : DataFetcherCallBack {
             override fun Result(obj: Any?, func: String?, IsSuccess: Boolean) {
+                loadingLY.visibility = gone
                 allDrivesList = obj as MutableList<AllDriversModel>?
-                Log.i("allDrivesList", "Log getAllDrivers" + allDrivesList?.get(0)!!.fullName)
+//                Log.i("allDrivesList", "Log getAllDrivers" + allDrivesList?.get(0)!!.fullName)
                 AddDriversToMap()
 
             }
         }).getAllDrivers()
 
 
-
     }
+
     private fun AddDriversToMap() {
         map?.clear()
         markers!!.clear()
         for (i in allDrivesList?.indices!!) {
 
-            val allDriversModel: AllDriversModel = allDrivesList!!.get(i)
+            val allDriversModel: AllDriversModel = allDrivesList!![i]
 
             markers!!.add(
                 createMarker(
@@ -281,17 +288,27 @@ class DriversMapActivity : ActivityBase(), OnMapReadyCallback {
         }
         markers!!.add(
             createMarker(
-              selectedDestinationLat,
-               selectedDestinationLng,
-               getString(R.string.destination_location), MapHandler.getGpsAddress(getActiviy(),selectedDestinationLat,selectedDestinationLng),
+                myLocationLat,
+                myLocationLng,
+                getString(R.string.my_location),
+                MapHandler.getGpsAddress(getActiviy(), myLocationLat, myLocationLng),
                 R.drawable.ic_map_destination_marker
             )!!
         )
 
+        val latLn = LatLng(myLocationLat, myLocationLng)
+        val cameraUpdate =
+            CameraUpdateFactory.newCameraPosition(
+                CameraPosition.fromLatLngZoom(
+                    latLn,
+                    zoomLevel
+                )
+            );
+        map?.moveCamera(cameraUpdate)
 
     }
 
-    fun createMarker(
+    private fun createMarker(
         latitude: Double,
         longitude: Double,
         title: String?,

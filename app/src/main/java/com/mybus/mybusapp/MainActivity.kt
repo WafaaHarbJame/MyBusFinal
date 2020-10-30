@@ -37,8 +37,8 @@ class MainActivity : ActivityBase() {
 
     private lateinit var tabTextArr: Array<TextView>
     private lateinit var tabIconsArr: Array<TextView>
-    private  var  userType:Int = 0;
-    lateinit var user: MemberModel
+    private var userType: Int = 0;
+    var user: MemberModel? = null
     private var toOrder: Boolean = false
 
 
@@ -52,51 +52,54 @@ class MainActivity : ActivityBase() {
         tabTextArr = arrayOf(tab1Txt, tab2Txt, tab3Txt, tab4Txt)
         tabIconsArr = arrayOf(tab1Icon, tab2Icon, tab3Icon, tab4Icon)
 
+        val bundle = intent?.extras
 
-         user= UtilityApp.userData!!
-
-        val bundle = intent.extras
-
-        if(bundle!=null){
-            toOrder = bundle?.getBoolean(Constants.KEY_TO_ORDERS)!!
-            Log.d("Log toOrder", "Log toOrder $toOrder");
-
+        if (bundle != null && bundle.containsKey(Constants.KEY_TO_ORDERS)) {
+            toOrder = bundle.getBoolean(Constants.KEY_TO_ORDERS)
         }
 
-        userType=user.type
+        user = UtilityApp.userData
 
-        if(userType==0){
-            getData()
+        userType = user?.type!!
 
+//        if (userType == 0) {
+//            getData()
+//
+//        }
+
+        if (userType == 1) {
+            finishOrderBtn.visibility = visible
+        } else if (userType == 2) {
+            finishOrderBtn.visibility = gone
+            ordersBtn.visibility = gone
+            tab2Txt.text = getString(R.string.all_orders);
         }
 
-        if(userType==1){
-            finishOrderBtn.visibility=visible
-            newFragment = HomeClientFragment()
-
-        }
-        else if(userType==2){
-
-            finishOrderBtn.visibility=gone
-            ordersBtn.visibility=gone
-            newFragment = HomeDriverFragment()
-            tab2Txt.text=getString(R.string.all_orders);
-
-        }
-
-        if(toOrder){
+        if (toOrder) {
             selectBottomTab(R.id.ordersBtn)
-        }
-        else{
+        } else {
             selectBottomTab(R.id.mainBtn)
-
         }
-
 
         initListeners()
 
     }
 
+    override fun onNewIntent(intent: Intent?) {
+        super.onNewIntent(intent)
+
+        val bundle = intent?.extras
+
+        if (bundle != null && bundle.containsKey(Constants.KEY_TO_ORDERS)) {
+            toOrder = bundle.getBoolean(Constants.KEY_TO_ORDERS)
+        }
+
+        if (toOrder) {
+            selectBottomTab(R.id.ordersBtn)
+        } else {
+            selectBottomTab(R.id.mainBtn)
+        }
+    }
 
     override fun onActivityResult(
         requestCode: Int,
@@ -136,20 +139,19 @@ class MainActivity : ActivityBase() {
     private fun selectBottomTab(resId: Int) {
         when (resId) {
             R.id.mainBtn -> {
-                newFragment = if(userType==1){
+                newFragment = if (userType == 1) {
                     HomeClientFragment()
-                } else{
+                } else {
                     HomeDriverFragment()
-
                 }
                 gui_position = 0
                 mTitle = getString(R.string.home)
             }
             R.id.ordersBtn -> {
 
-                newFragment = if(userType==1){
+                newFragment = if (userType == 1) {
                     AllOrderClientFragment()
-                } else{
+                } else {
                     AllDriverRequestsFragment()
 
                 }
@@ -158,9 +160,9 @@ class MainActivity : ActivityBase() {
             }
 
             R.id.finishOrderBtn -> {
-                newFragment = if(userType==1){
+                newFragment = if (userType == 1) {
                     FinishedClientFragment()
-                } else{
+                } else {
                     FinishedDriveragment()
 
                 }
@@ -228,9 +230,7 @@ class MainActivity : ActivityBase() {
                 } else {
                     onBackPressed()
                 }
-            }
-
-            else {
+            } else {
                 selectBottomTab(R.id.mainBtn)
                 return false
             }
@@ -264,20 +264,19 @@ class MainActivity : ActivityBase() {
 
                 if (func == Constants.SUCCESS) {
                     UtilityApp.userData = obj as MemberModel?
-                    userType= UtilityApp.userData!!.type
-                    if(userType==1){
-                        finishOrderBtn.visibility=visible
+                    userType = UtilityApp.userData!!.type
+                    if (userType == 1) {
+                        finishOrderBtn.visibility = visible
                         newFragment = HomeClientFragment()
 
-                    }
-                    else{
-                        finishOrderBtn.visibility=gone
+                    } else {
+                        finishOrderBtn.visibility = gone
                         newFragment = HomeDriverFragment()
 
                     }
 
 
-                    }
+                }
 
             }
         }).getMyAccount(mobile!!)

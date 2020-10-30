@@ -35,7 +35,7 @@ public class MapHandler {
     }
 
     public static String getGpsAddress(Context c, double latitude, double longitude) {
-        Log.i("MapHandler", "Log getGpsAddress " + latitude+longitude);
+        Log.i("MapHandler", "Log getGpsAddress " + latitude + "," + longitude);
 
         try {
             Geocoder geocoder;
@@ -68,7 +68,6 @@ public class MapHandler {
     }
 
 
-
     public static void OpenGoogleMapIntent(Activity activity, String advTitle, double lat, double lng) {
 
         double latitude = lat;
@@ -83,6 +82,7 @@ public class MapHandler {
         activity.startActivity(intent);
 
     }
+
     public static String GetMapImage(String size, double latitude, double longitude) {
         return "https://maps.googleapis.com/maps/api/staticmap?center=" + latitude + "," + longitude + "&size=" + size + "&sensor=false&zoom=17&scale=2&markers=color:red|label:|" + latitude + "," + longitude
                 + "&key=" + RootApplication.Companion.getInstance().getString(R.string.mapKey) /*"AIzaSyDQ4Z76ProBcbDfVMX315ztGL61Q21mBQ0"*/;

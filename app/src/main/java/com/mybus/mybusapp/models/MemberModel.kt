@@ -11,6 +11,7 @@ class MemberModel : Serializable {
     var mobileWithCountry: String? = null
     var fullName: String? = null
     var password: String? = null
+    var password_confirm: String? = null
     var isVerified: Any? = null
     var age :Int = 0
     var lat = 0.0

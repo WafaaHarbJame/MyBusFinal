@@ -53,6 +53,7 @@ class SplashScreen : ActivityBase() {
         DataFeacher(null).getCountries()
 
         Handler(Looper.getMainLooper()).postDelayed({
+
             if (UtilityApp.isLogin) {
                 val mobile = UtilityApp.userData?.mobileWithCountry
 
@@ -67,18 +68,18 @@ class SplashScreen : ActivityBase() {
                             startActivity(intent)
                             finish()
                         } else {
+                            Toast(getString(R.string.fail_confirm_account))
+                            UtilityApp.logOut()
 
-                            GlobalData.errorDialog(
-                                getActiviy(),
-                                R.string.confirm_account,
-                                getString(R.string.fail_confirm_account)
-                            )
-
+                            val intent = Intent(getActiviy(), LoginActivity::class.java)
+                            intent.flags =
+                                Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                            startActivity(intent)
+                            finish()
                         }
 
-
                     }
-                }).getMyAccount(mobile!!)
+                }).getMyAccount(mobile)
 
             } else {
                 val intent = Intent(getActiviy(), LoginActivity::class.java)

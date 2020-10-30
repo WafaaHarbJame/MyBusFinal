@@ -29,11 +29,13 @@ class HomeClientFragment : FragmentBase() {
     private var selectedDestinationLat = 0.0
     private var selectedDestinationLng = 0.0
 
-    private var address=""
-    private var destinationAddress=""
+    private var address = ""
+    private var destinationAddress = ""
 
     var isSelectLocation = false
-    var isSelectDestination= false
+    var isSelectDestination = false
+
+    var user: MemberModel? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -50,7 +52,9 @@ class HomeClientFragment : FragmentBase() {
         super.onActivityCreated(savedInstanceState)
         activity = getActivity()
 
-            getData()
+        user = UtilityApp.userData
+
+        initData()
 
         selectLocation.setOnClickListener {
             val intent = Intent(requireActivity(), MapActivity::class.java)
@@ -62,8 +66,8 @@ class HomeClientFragment : FragmentBase() {
         editMyLocationBtn.setOnClickListener {
             val intent = Intent(requireActivity(), MapActivity::class.java)
             intent.putExtra(Constants.KEY_MAP_TYPE, 2)
-            intent.putExtra(Constants.KEY_LAT,selectdLat)
-            intent.putExtra(Constants.KEY_LNG,selectdLng)
+            intent.putExtra(Constants.KEY_LAT, selectdLat)
+            intent.putExtra(Constants.KEY_LNG, selectdLng)
             startActivityForResult(intent, MapActivity.REQUEST_SELECT_LOCATION)
         }
 
@@ -76,15 +80,36 @@ class HomeClientFragment : FragmentBase() {
 
         selectDriverBut.setOnClickListener {
             val intent = Intent(requireActivity(), DriversMapActivity::class.java)
-            intent.putExtra(Constants.KEY_DESTINATION_LAT,selectedDestinationLat)
-            intent.putExtra(Constants.KEY_DESTINATION_LNG,selectedDestinationLng)
-            Log.i("TAG", "Log HomeClientFragment destinationLat  $selectedDestinationLat")
-            Log.i("TAG", "Log HomeClientFragment destinationLng  $selectedDestinationLat")
+            intent.putExtra(Constants.KEY_LAT, selectdLat)
+            intent.putExtra(Constants.KEY_LNG, selectdLng)
+            intent.putExtra(Constants.KEY_DESTINATION_LAT, selectedDestinationLat)
+            intent.putExtra(Constants.KEY_DESTINATION_LNG, selectedDestinationLng)
+//            Log.i("TAG", "Log HomeClientFragment destinationLat  $selectedDestinationLat")
+//            Log.i("TAG", "Log HomeClientFragment destinationLng  $selectedDestinationLat")
             startActivity(intent)
 
         }
 
 
+    }
+
+    private fun initData() {
+
+        usernameTV.text = user?.fullName
+        selectdLat = user?.lat!!
+        selectdLng = user?.lng!!
+        address = user?.address!!
+        val isSelectLocation = user?.getIsSelectLocation()
+
+        if (isSelectLocation!!) {
+            selectLocation.text = user?.address
+            editMyLocationBtn.visibility = View.VISIBLE
+            myLocationTv.text = getString(R.string.my_location)
+            selectLocation.text = address
+            selectLocation.isEnabled = false
+            selectLocation.isClickable = false
+
+        }
 
     }
 
@@ -95,27 +120,28 @@ class HomeClientFragment : FragmentBase() {
 
                 if (func == Constants.SUCCESS) {
                     UtilityApp.userData = obj as MemberModel?
-                    usernameTV.text= UtilityApp.userData!!.fullName;
+                    usernameTV.text = UtilityApp.userData!!.fullName;
                     val user = UtilityApp.userData
-                    selectdLat= UtilityApp.userData!!.lat
-                    selectdLng= UtilityApp.userData!!.lng
-                    address= UtilityApp.userData!!.address!!
+                    selectdLat = UtilityApp.userData!!.lat
+                    selectdLng = UtilityApp.userData!!.lng
+                    address = UtilityApp.userData!!.address!!
                     val isSelectLocation = user?.getIsSelectLocation()
 
-                    Log.d("User type", "user isSelectLocation${UtilityApp.userData?.isSelectLocation}");
+                    Log.d(
+                        "User type",
+                        "user isSelectLocation${UtilityApp.userData?.isSelectLocation}"
+                    );
 
-                    if(isSelectLocation!!){
-                        selectLocation.text= UtilityApp.userData!!.address
-                        editMyLocationBtn.visibility=View.VISIBLE
-                        myLocationTv.text=getString(R.string.my_location)
-                        selectLocation.text=address
-                        selectLocation.isEnabled=false
-                        selectLocation.isClickable=false
+                    if (isSelectLocation!!) {
+                        selectLocation.text = UtilityApp.userData!!.address
+                        editMyLocationBtn.visibility = View.VISIBLE
+                        myLocationTv.text = getString(R.string.my_location)
+                        selectLocation.text = address
+                        selectLocation.isEnabled = false
+                        selectLocation.isClickable = false
 
 
                     }
-
-
 
 
                 }
@@ -133,25 +159,28 @@ class HomeClientFragment : FragmentBase() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == Activity.RESULT_OK) {
-            if(requestCode == MapActivity.REQUEST_SELECT_LOCATION){
+            if (requestCode == MapActivity.REQUEST_SELECT_LOCATION) {
                 val bundle = data?.extras
                 selectdLat = bundle?.getDouble(Constants.KEY_LAT)!!
                 selectdLng = bundle.getDouble(Constants.KEY_LNG)
-                address=MapHandler.getGpsAddress(context,selectdLat,selectdLng);
-                selectLocation.text=address
-                myLocationTv.text=getString(R.string.my_location)
-                editMyLocationBtn.visibility=View.VISIBLE
-                isSelectLocation=true
+                address = MapHandler.getGpsAddress(context, selectdLat, selectdLng);
+                selectLocation.text = address
+                myLocationTv.text = getString(R.string.my_location)
+                editMyLocationBtn.visibility = View.VISIBLE
+                isSelectLocation = true
                 updateData()
-            }
-            else if (requestCode == MapActivity.REQUEST_SELECT_DESTINATION_LOCATION){
+            } else if (requestCode == MapActivity.REQUEST_SELECT_DESTINATION_LOCATION) {
                 val bundle = data?.extras
                 selectedDestinationLat = bundle?.getDouble(Constants.KEY_DESTINATION_LAT)!!
                 selectedDestinationLng = bundle.getDouble(Constants.KEY_DESTINATION_LNG)
-                destinationAddress=MapHandler.getGpsAddress(context,selectedDestinationLat,selectedDestinationLng);
-                selectDestinationBut.text=destinationAddress
-                isSelectDestination=true
-                searchBtn.visibility=View.GONE
+                destinationAddress = MapHandler.getGpsAddress(
+                    context,
+                    selectedDestinationLat,
+                    selectedDestinationLng
+                );
+                selectDestinationBut.text = destinationAddress
+                isSelectDestination = true
+                searchBtn.visibility = View.GONE
             }
 
         }
@@ -164,8 +193,6 @@ class HomeClientFragment : FragmentBase() {
     }
 
 
-
-
     private fun updateData() {
         try {
             var mobileStr = UtilityApp.userData?.mobileWithCountry;
@@ -175,8 +202,8 @@ class HomeClientFragment : FragmentBase() {
                     if (func == Constants.SUCCESS) {
 
                         UtilityApp.userData?.address = address
-                        UtilityApp.userData?.lat=selectdLat
-                        UtilityApp.userData?.lat =selectdLng
+                        UtilityApp.userData?.lat = selectdLat
+                        UtilityApp.userData?.lat = selectdLng
                         GlobalData.successDialog(
                             activity,
                             R.string.select_location,
@@ -191,9 +218,9 @@ class HomeClientFragment : FragmentBase() {
                             message
                         )
                     }
-                    
+
                 }
-            }).updateData(mobileStr,selectdLat,selectdLng,address,isSelectLocation);
+            }).updateData(mobileStr, selectdLat, selectdLng, address, isSelectLocation);
 
         } catch (e: Exception) {
 
@@ -201,8 +228,6 @@ class HomeClientFragment : FragmentBase() {
 
         }
     }
-
-
 
 
 }

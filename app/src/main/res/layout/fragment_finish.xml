@@ -6,17 +6,28 @@
     android:background="@color/white"
     android:orientation="vertical">
 
-    <include layout="@layout/layout_pre_loading" />
-
-    <include layout="@layout/layout_fail_get_data" />
     <include
         android:id="@+id/tool_bar"
         layout="@layout/tool_bar" />
+
+    <include layout="@layout/layout_pre_loading" />
+
+    <include layout="@layout/layout_fail_get_data" />
+
+    <include layout="@layout/layout_no_data" />
+
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:visibility="visible">
+        android:id="@+id/dataLY"
+        android:visibility="gone">
+
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/swipeDataContainer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv"
@@ -27,6 +38,7 @@
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:itemCount="4"
             tools:listitem="@layout/row_request" />
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
     </LinearLayout>
 
 </LinearLayout>

@@ -21,7 +21,7 @@ import kotlinx.android.synthetic.main.layout_no_data.*
 import kotlinx.android.synthetic.main.layout_pre_loading.*
 import kotlinx.android.synthetic.main.tool_bar.*
 
-class FinishedDriveragment : FragmentBase() {
+class CurrentDriverFragment : FragmentBase() {
 
     var activity: Activity? = null
     var finishRequestList: MutableList<RequestModel>? = null
@@ -31,7 +31,7 @@ class FinishedDriveragment : FragmentBase() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view: View = inflater.inflate(R.layout.fragment_finish_driver, container, false)
+        val view: View = inflater.inflate(R.layout.fragment_all_request, container, false)
         activity = getActivity()
 
         return view
@@ -45,12 +45,12 @@ class FinishedDriveragment : FragmentBase() {
 
         swipeDataContainer.setOnRefreshListener {
             if (UtilityApp.isLogin)
-                getFinishedRequests(true)
+                getCurrentRequests(true)
             else
                 swipeDataContainer.isRefreshing = false
         }
 
-        getFinishedRequests(true)
+        getCurrentRequests(true)
 
 
 
@@ -69,7 +69,7 @@ class FinishedDriveragment : FragmentBase() {
     }
 
 
-    private fun getFinishedRequests(loading: Boolean) {
+    private fun getCurrentRequests(loading: Boolean) {
         if (loading) {
             loadingProgressLY.visibility = visible
             failGetDataLY.visibility = gone
@@ -108,7 +108,7 @@ class FinishedDriveragment : FragmentBase() {
 
 
             }
-        }).getFinishedRequests(UtilityApp.userData?.mobileWithCountry)
+        }).getCurrentRequests(UtilityApp.userData?.mobileWithCountry)
     }
 
 

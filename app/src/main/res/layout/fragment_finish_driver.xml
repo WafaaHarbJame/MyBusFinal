@@ -6,9 +6,6 @@
     android:background="@color/white"
     android:orientation="vertical">
 
-    <include
-        android:id="@+id/tool_bar"
-        layout="@layout/tool_bar" />
 
     <include layout="@layout/layout_pre_loading" />
 
@@ -23,10 +20,12 @@
         android:orientation="vertical"
         android:id="@+id/dataLY"
         android:visibility="gone">
+
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:id="@+id/swipeDataContainer"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv"
             android:layout_width="match_parent"
@@ -36,7 +35,6 @@
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:itemCount="4"
             tools:listitem="@layout/row_request" />
-
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
     </LinearLayout>
 

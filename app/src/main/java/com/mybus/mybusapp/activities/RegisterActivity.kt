@@ -41,9 +41,9 @@ class RegisterActivity : ActivityBase() {
     private var numSeats:Int=0
     var isSelectLocation = false
     var busNumber = 0
-    var busName: String? = null
-    var busColor: String? = null
-    var busModel: String? = null
+    var busName: String? = ""
+    var busColor: String? = ""
+    var busModel: String? = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

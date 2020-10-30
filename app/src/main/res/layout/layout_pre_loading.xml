@@ -7,12 +7,12 @@
     android:layout_weight="1"
     android:background="@color/white"
     android:gravity="center"
-    android:visibility="gone">
+    android:visibility="visible">
 
     <com.wang.avi.AVLoadingIndicatorView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:indicatorColor="@color/colorPrimaryDark2"
+        app:indicatorColor="@color/colorAccent3"
         app:indicatorName="@string/L_2x2" />
 
 </LinearLayout>

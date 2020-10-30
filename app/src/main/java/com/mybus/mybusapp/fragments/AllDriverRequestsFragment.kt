@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import com.mybus.mybusapp.R
 import com.mybus.mybusapp.adapters.RequestsAdapter
@@ -21,18 +22,22 @@ import kotlinx.android.synthetic.main.layout_no_data.*
 import kotlinx.android.synthetic.main.layout_pre_loading.*
 import kotlinx.android.synthetic.main.tool_bar.*
 
-class FinishedDriveragment : FragmentBase() {
+/**
+ * A simple [Fragment] subclass.
+ */
+class AllDriverRequestsFragment : FragmentBase() {
 
     var activity: Activity? = null
-    var finishRequestList: MutableList<RequestModel>? = null
+    var allRequeststList: MutableList<RequestModel>? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view: View = inflater.inflate(R.layout.fragment_finish_driver, container, false)
+        val view: View = inflater.inflate(R.layout.fragment_all_request, container, false)
         activity = getActivity()
+
 
         return view
     }
@@ -45,12 +50,12 @@ class FinishedDriveragment : FragmentBase() {
 
         swipeDataContainer.setOnRefreshListener {
             if (UtilityApp.isLogin)
-                getFinishedRequests(true)
+                getAllRequests(true)
             else
                 swipeDataContainer.isRefreshing = false
         }
 
-        getFinishedRequests(true)
+        getAllRequests(true)
 
 
 
@@ -64,12 +69,13 @@ class FinishedDriveragment : FragmentBase() {
 
     private fun initAdapter() {
 
-        val adapter = RequestsAdapter(getActivity(), finishRequestList)
+        val adapter = RequestsAdapter(getActivity(), allRequeststList)
         rv.adapter = adapter
     }
 
 
-    private fun getFinishedRequests(loading: Boolean) {
+
+    private fun getAllRequests(loading: Boolean) {
         if (loading) {
             loadingProgressLY.visibility = visible
             failGetDataLY.visibility = gone
@@ -86,9 +92,9 @@ class FinishedDriveragment : FragmentBase() {
                 if (func == Constants.SUCCESS) {
 
                     dataLY.visibility = visible
-                    finishRequestList = obj as MutableList<RequestModel>?
+                    allRequeststList = obj as MutableList<RequestModel>?
 
-                    if (finishRequestList?.isNotEmpty() == true) {
+                    if (allRequeststList?.isNotEmpty() == true) {
                         noDataLY.visibility = gone
                         rv.visibility = visible
                         initAdapter()
@@ -108,7 +114,7 @@ class FinishedDriveragment : FragmentBase() {
 
 
             }
-        }).getFinishedRequests(UtilityApp.userData?.mobileWithCountry)
+        }).getAllRequests(UtilityApp.userData?.mobileWithCountry)
     }
 
 

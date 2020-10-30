@@ -54,7 +54,6 @@
             android:background="?attr/selectableItemBackgroundBorderless"
             android:gravity="center"
             android:orientation="vertical"
-
             android:paddingTop="@dimen/bottom_nav_padding">
 
             <com.mybus.mybusapp.spichalViews.STextViewIcon

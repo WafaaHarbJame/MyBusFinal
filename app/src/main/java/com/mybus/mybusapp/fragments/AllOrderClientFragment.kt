@@ -28,7 +28,7 @@ import kotlinx.android.synthetic.main.tool_bar.*
 class AllOrderClientFragment : FragmentBase() {
 
     var activity: Activity? = null
-    var currentRequestList: MutableList<RequestModel>? = null
+    var allRequestList: MutableList<RequestModel>? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -50,6 +50,15 @@ class AllOrderClientFragment : FragmentBase() {
 
         rv.layoutManager = GridLayoutManager(getActivity(), 1)
 
+
+        swipeDataContainer.setOnRefreshListener {
+            if (UtilityApp.isLogin)
+                getAllOrders(true)
+            else
+                swipeDataContainer.isRefreshing = false
+        }
+
+
         getAllOrders(true)
 
 
@@ -64,7 +73,7 @@ class AllOrderClientFragment : FragmentBase() {
 
     private fun initAdapter() {
 
-        val adapter = RequestsAdapter(getActivity(), currentRequestList)
+        val adapter = RequestsAdapter(getActivity(), allRequestList)
         rv.adapter = adapter
     }
 
@@ -74,27 +83,41 @@ class AllOrderClientFragment : FragmentBase() {
             failGetDataLY.visibility = gone
             dataLY.visibility = gone
         }
-            DataFeacher(object : DataFetcherCallBack {
-                override fun Result(obj: Any?, func: String?, IsSuccess: Boolean) {
-                    loadingProgressLY.visibility = gone
-                    if (swipeDataContainer.isRefreshing)
-                        swipeDataContainer.isRefreshing = false
-                    if (func == Constants.SUCCESS) {
-                        dataLY.visibility = visible
-                            rv.visibility = visible
-                        currentRequestList = obj as MutableList<RequestModel>?
+        DataFeacher(object : DataFetcherCallBack {
+            override fun Result(obj: Any?, func: String?, IsSuccess: Boolean) {
+
+                loadingProgressLY.visibility = gone
+
+                if (swipeDataContainer.isRefreshing)
+                    swipeDataContainer.isRefreshing = false
+
+                if (func == Constants.SUCCESS) {
+
+                    dataLY.visibility = visible
+                    allRequestList = obj as MutableList<RequestModel>?
+
+                    if (allRequestList?.isNotEmpty() == true) {
+                        noDataLY.visibility = gone
+                        rv.visibility = visible
                         initAdapter()
-                    }
-                    else {
-                        failGetDataLY.visibility = visible
-                        dataLY.visibility = gone
-                    }
 
-
+                    } else {
+                        dataLY.visibility=gone
+                        noDataLY.visibility = visible
+                        rv.visibility = gone
+                    }
                 }
-            }).getAllClientRequests(UtilityApp.userData?.mobileWithCountry)
-        }
 
+
+                else {
+                    failGetDataLY.visibility = visible
+                    dataLY.visibility = gone
+                }
+
+
+            }
+        }).getAllClientRequests(UtilityApp.userData?.mobileWithCountry)
+    }
 
     }
 

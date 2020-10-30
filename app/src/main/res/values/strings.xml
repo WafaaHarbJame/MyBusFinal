@@ -124,6 +124,7 @@
     <string name="please_wait_to_make_order">Please wait to make the order</string>
     <string name="make_order_sucess">Make Order Sucess</string>
     <string name="no_data">No Data</string>
+    <string name="no_order">No Order</string>
 
 
 </resources>

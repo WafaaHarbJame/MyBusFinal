@@ -87,7 +87,7 @@ class HomeDriverFragment : FragmentBase(), OnLocationUpdatedListener,
 
         val currentBundle = Bundle()
         currentBundle.putString(Constants.KEY_TYPE, Constants.CURRENT)
-        val currentFragment: Fragment = AllOrderClientFragment()
+        val currentFragment: Fragment = CurrentDriverFragment()
         currentFragment.arguments = currentBundle
         currentFragment.retainInstance = true
 
@@ -100,7 +100,7 @@ class HomeDriverFragment : FragmentBase(), OnLocationUpdatedListener,
 
         val allOrderBundle = Bundle()
         allOrderBundle.putString(Constants.KEY_TYPE, Constants.ALL)
-        val allRequestsFragment: Fragment = AllRequestsFragment()
+        val allRequestsFragment: Fragment = AllDriverRequestsFragment()
         allRequestsFragment.arguments = allOrderBundle
         allRequestsFragment.retainInstance = true
 

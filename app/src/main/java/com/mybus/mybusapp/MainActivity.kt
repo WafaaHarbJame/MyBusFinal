@@ -150,7 +150,7 @@ class MainActivity : ActivityBase() {
                 newFragment = if(userType==1){
                     AllOrderClientFragment()
                 } else{
-                    AllRequestsFragment()
+                    AllDriverRequestsFragment()
 
                 }
                 gui_position = 1

@@ -9,6 +9,7 @@ import android.provider.Settings
 import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.FragmentManager
+import com.awesomedialog.blennersilva.awesomedialoglibrary.AwesomeSuccessDialog
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -62,7 +63,7 @@ class RequestDetailsActivity : ActivityBase(), OnMapReadyCallback {
             destinationLat = bundle.getDouble(Constants.KEY_DESTINATION_LAT)
             destinationLng = bundle.getDouble(Constants.KEY_DESTINATION_LNG)
             driverId = bundle.getString(Constants.KEY_DRIVER_ID)
-            orderID=bundle.getString(Constants.KEY_ORDER_ID)
+            orderID = bundle.getString(Constants.KEY_ORDER_ID)
 
         }
 //        println("Log lat $lat")
@@ -88,8 +89,7 @@ class RequestDetailsActivity : ActivityBase(), OnMapReadyCallback {
         }
 
         finishOrder.setOnClickListener {
-            updateOrderStatus(orderID,3)
-
+            updateOrderStatus(orderID, 3)
 
 
         }
@@ -352,20 +352,26 @@ class RequestDetailsActivity : ActivityBase(), OnMapReadyCallback {
                 override fun Result(obj: Any?, func: String?, IsSuccess: Boolean) {
                     GlobalData.progressDialogHide()
                     if (func == Constants.SUCCESS) {
-                        val emptySeatBefore= UtilityApp.userData!!.emptySeat
-                        val emptySeat:Int=emptySeatBefore+1
-                        GlobalData.successDialog(
-                            getActiviy(),
-                            R.string.change_order_status,
-                            getActiviy()?.getString(R.string.sucess_change_satus)
-                        )
+                        val emptySeatBefore = UtilityApp.userData!!.emptySeat
+                        val emptySeat: Int = emptySeatBefore + 1
+
+                        AwesomeSuccessDialog(getActiviy())
+                            .setTitle(R.string.change_order_status)
+                            .setMessage(getString(R.string.sucess_change_satus))
+                            .setColoredCircle(R.color.dialogSuccessBackgroundColor)
+                            .setDialogIconAndColor(R.drawable.ic_check, R.color.white)
+                            .setCancelable(true)
+                            .show()
+                            .setOnDismissListener {
+                                finish()
+                            }
 
                         DataFeacher(object : DataFetcherCallBack {
                             override fun Result(obj: Any?, func: String?, IsSuccess: Boolean) {
                                 GlobalData.progressDialogHide()
 
                                 if (func == Constants.SUCCESS) {
-                                    UtilityApp.userData!!.emptySeat=emptySeat
+                                    UtilityApp.userData!!.emptySeat = emptySeat
 
                                 }
 
@@ -374,7 +380,7 @@ class RequestDetailsActivity : ActivityBase(), OnMapReadyCallback {
 
 
                     } else {
-                        var message =  getActiviy()?.getString(R.string.fail_to_change_status)
+                        var message = getActiviy()?.getString(R.string.fail_to_change_status)
                         GlobalData.errorDialog(
                             getActiviy(),
                             R.string.change_order_status,

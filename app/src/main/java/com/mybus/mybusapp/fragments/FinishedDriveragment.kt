@@ -78,34 +78,35 @@ class FinishedDriveragment : FragmentBase() {
         DataFeacher(object : DataFetcherCallBack {
             override fun Result(obj: Any?, func: String?, IsSuccess: Boolean) {
 
-                loadingProgressLY.visibility = gone
+                if (isVisible){
+                    loadingProgressLY.visibility = gone
 
-                if (swipeDataContainer.isRefreshing)
-                    swipeDataContainer.isRefreshing = false
+                    if (swipeDataContainer.isRefreshing)
+                        swipeDataContainer.isRefreshing = false
 
-                if (func == Constants.SUCCESS) {
+                    if (func == Constants.SUCCESS) {
 
-                    dataLY.visibility = visible
-                    finishRequestList = obj as MutableList<RequestModel>?
+                        dataLY.visibility = visible
+                        finishRequestList = obj as MutableList<RequestModel>?
 
-                    if (finishRequestList?.isNotEmpty() == true) {
-                        noDataLY.visibility = gone
-                        rv.visibility = visible
-                        initAdapter()
+                        if (finishRequestList?.isNotEmpty() == true) {
+                            noDataLY.visibility = gone
+                            rv.visibility = visible
+                            initAdapter()
 
-                    } else {
-                        dataLY.visibility=gone
-                        noDataLY.visibility = visible
-                        rv.visibility = gone
+                        } else {
+                            noDataLY.visibility = visible
+                            rv.visibility = gone
+                        }
                     }
+
+
+                    else {
+                        failGetDataLY.visibility = visible
+                        dataLY.visibility = gone
+                    }
+
                 }
-
-
-                else {
-                    failGetDataLY.visibility = visible
-                    dataLY.visibility = gone
-                }
-
 
             }
         }).getFinishedRequests(UtilityApp.userData?.mobileWithCountry)

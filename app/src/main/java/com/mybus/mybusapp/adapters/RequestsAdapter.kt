@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.awesomedialog.blennersilva.awesomedialoglibrary.AwesomeSuccessDialog
 import com.mybus.mybusapp.R
 import com.mybus.mybusapp.Utils.MapHandler
 import com.mybus.mybusapp.activities.MapActivity
@@ -94,6 +95,8 @@ class RequestsAdapter(
                 }
                 1 -> {
                     orderStatusBtn.visibility = View.VISIBLE
+                    acceptBut.visibility = View.GONE
+                    rejectBut.visibility = View.GONE
                     orderStatusBtn.text = activity?.getString(R.string.accepted)
                     orderStatusBtn.background = ContextCompat.getDrawable(
                         activity!!,
@@ -102,6 +105,8 @@ class RequestsAdapter(
                 }
                 2 -> {
                     orderStatusBtn.visibility = View.VISIBLE
+                    acceptBut.visibility = View.GONE
+                    rejectBut.visibility = View.GONE
                     orderStatusBtn.text = activity?.getString(R.string.rejecttion)
                     orderStatusBtn.background = ContextCompat.getDrawable(
                         activity!!,
@@ -112,6 +117,8 @@ class RequestsAdapter(
                 3 -> {
                     orderStatusBtn.text = activity?.getString(R.string.finish)
                     orderStatusBtn.visibility = View.VISIBLE
+                    acceptBut.visibility = View.GONE
+                    rejectBut.visibility = View.GONE
                     orderStatusBtn.background = ContextCompat.getDrawable(
                         activity!!,
                         R.drawable.circle_corne_order_finished
@@ -142,7 +149,7 @@ class RequestsAdapter(
 
             itemView?.setOnClickListener {
 
-                var requestModel = list!![adapterPosition]
+                val requestModel = list!![adapterPosition]
 
                 if (requestModel.requestStatus != 1 && UtilityApp.userData?.type == 1)
                     return@setOnClickListener
@@ -168,22 +175,31 @@ class RequestsAdapter(
                 override fun Result(obj: Any?, func: String?, IsSuccess: Boolean) {
                     GlobalData.progressDialogHide()
                     if (func == Constants.SUCCESS) {
-                        val emptySeatBefore= UtilityApp.userData!!.emptySeat
-                        val emptySeat:Int=emptySeatBefore-1
-                        GlobalData.successDialog(
-                            activity,
-                            R.string.change_order_status,
-                            activity?.getString(R.string.sucess_change_satus)
-                        )
+                        val emptySeatBefore = UtilityApp.userData!!.emptySeat
+                        val emptySeat: Int = emptySeatBefore - 1
+                        list!![position].requestStatus = orderStatus!!
+
+                        AwesomeSuccessDialog(activity)
+                            .setTitle(R.string.change_order_status)
+                            .setMessage(activity?.getString(R.string.sucess_change_satus))
+                            .setColoredCircle(R.color.dialogSuccessBackgroundColor)
+                            .setDialogIconAndColor(R.drawable.ic_check, R.color.white)
+                            .setCancelable(true)
+                            .show()
+
+//                    .setButtonText(getString(R.string.ok))
+//            .setButtonBackgroundColor(R.color.dialogErrorBackgroundColor)
+
                         notifyItemChanged(position)
-                        notifyDataSetChanged();
-                        list!!.removeAt(position);
+                        notifyDataSetChanged()
+//                        list!!.removeAt(position)
+
                         DataFeacher(object : DataFetcherCallBack {
                             override fun Result(obj: Any?, func: String?, IsSuccess: Boolean) {
                                 GlobalData.progressDialogHide()
 
                                 if (func == Constants.SUCCESS) {
-                                UtilityApp.userData!!.emptySeat=emptySeat
+                                    UtilityApp.userData!!.emptySeat = emptySeat
 
                                 }
 

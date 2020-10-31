@@ -53,8 +53,6 @@ class CurrentDriverFragment : FragmentBase() {
         getCurrentRequests(true)
 
 
-
-
     }
 
     override fun onResume() {
@@ -78,39 +76,35 @@ class CurrentDriverFragment : FragmentBase() {
         DataFeacher(object : DataFetcherCallBack {
             override fun Result(obj: Any?, func: String?, IsSuccess: Boolean) {
 
-                loadingProgressLY.visibility = gone
+                if (isVisible){
+                    loadingProgressLY.visibility = gone
 
-                if (swipeDataContainer.isRefreshing)
-                    swipeDataContainer.isRefreshing = false
+                    if (swipeDataContainer.isRefreshing)
+                        swipeDataContainer.isRefreshing = false
 
-                if (func == Constants.SUCCESS) {
+                    if (func == Constants.SUCCESS) {
 
-                    dataLY.visibility = visible
-                    finishRequestList = obj as MutableList<RequestModel>?
+                        finishRequestList = obj as MutableList<RequestModel>?
 
-                    if (finishRequestList?.isNotEmpty() == true) {
-                        noDataLY.visibility = gone
-                        rv.visibility = visible
-                        initAdapter()
+                        dataLY.visibility = visible
+                        if (finishRequestList?.isNotEmpty() == true) {
+                            noDataLY.visibility = gone
+                            rv.visibility = visible
+                            initAdapter()
 
+                        } else {
+                            noDataLY.visibility = visible
+                            rv.visibility = gone
+                        }
                     } else {
-                        dataLY.visibility=gone
-                        noDataLY.visibility = visible
-                        rv.visibility = gone
+                        failGetDataLY.visibility = visible
+                        dataLY.visibility = gone
                     }
                 }
-
-
-                else {
-                    failGetDataLY.visibility = visible
-                    dataLY.visibility = gone
-                }
-
 
             }
         }).getCurrentRequests(UtilityApp.userData?.mobileWithCountry)
     }
-
 
 
 }

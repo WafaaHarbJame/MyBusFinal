@@ -30,6 +30,7 @@ class ProfileActivity : ActivityBase() {
     var user: MemberModel? = null
     private var userType: Int = 0;
 
+    var isDriverActive = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,8 +39,6 @@ class ProfileActivity : ActivityBase() {
         title = getString(R.string.profile)
         activity = getActiviy()
 
-        user = UtilityApp.userData
-        initData()
 
         homeBtn.setOnClickListener {
             onBackPressed()
@@ -48,6 +47,7 @@ class ProfileActivity : ActivityBase() {
         user = UtilityApp.userData
         userType = user!!.type
 
+        initData()
 
         if (userType == 1) {
             selectLocationLY.visibility = visible
@@ -82,19 +82,10 @@ class ProfileActivity : ActivityBase() {
         }
 
 
-        statusSwitch.setOnCheckedChangeListener { buttonView, isChecked ->
-            var isDriverActive = false
-            if (isChecked) {
-                isDriverActive = true
-                updateBusStatus(isDriverActive)
-            } else {
-                isDriverActive = false
-                updateBusStatus(isDriverActive)
-
-            }
-
+        statusSwitch.setOnClickListener {
+            isDriverActive = statusSwitch.isChecked
+            updateBusStatus(isDriverActive)
         }
-
 
     }
 
@@ -202,7 +193,8 @@ class ProfileActivity : ActivityBase() {
                 override fun Result(obj: Any?, func: String?, IsSuccess: Boolean) {
                     GlobalData.progressDialogHide()
                     if (func == Constants.SUCCESS) {
-                        UtilityApp.userData?.isDriverActive = isDriverActive
+                        user?.isDriverActive = isDriverActive
+                        UtilityApp.userData = user
 
                     } else {
                         var message = getActiviy()?.getString(R.string.fail_to_change_status)
@@ -241,13 +233,11 @@ class ProfileActivity : ActivityBase() {
             "isDriverActive",
             "isDriverActive${isDriverActive}"
         );
-        if (isDriverActive!!) {
-            statusSwitch.isChecked = true
-        }
+
+        statusSwitch.isChecked = isDriverActive
 
 
-
-        if (isSelectLocation!!) {
+        if (isSelectLocation) {
             selectLocation.text = user?.address
             editMyLocationBtn.visibility = View.VISIBLE
             myLocationTv.text = getString(R.string.my_location)

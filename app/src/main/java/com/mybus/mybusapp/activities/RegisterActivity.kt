@@ -133,7 +133,7 @@ class RegisterActivity : ActivityBase() {
         val phoneUtils = PhoneNumberUtil.createInstance(getActiviy())
 
 //        val supportedRegions = phoneUtils.supportedRegions
-        selectedCountryCode = phoneUtils.getCountryCodeForRegion(isoCode.toUpperCase())
+       // selectedCountryCode = phoneUtils.getCountryCodeForRegion(isoCode.toUpperCase())
     }
 
     private fun registerUser() {
@@ -170,11 +170,11 @@ class RegisterActivity : ActivityBase() {
             registerUserModel.age = ageStr.toInt()
             registerUserModel.fullName = fullNameStr
             registerUserModel.busLoading = numSeats
+            registerUserModel.emptySeat = numSeats
             registerUserModel.type = if (isUser) 1 else 2
             registerUserModel.isDriverActive = isDriverActive
             registerUserModel.address = address
             registerUserModel.fillySeat = 0
-            registerUserModel.emptySeat = 0
             registerUserModel.isSelectLocation = false
             registerUserModel.busModel = busModel
             registerUserModel.busColor = busColor

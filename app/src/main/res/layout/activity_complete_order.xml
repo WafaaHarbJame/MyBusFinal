@@ -85,7 +85,7 @@
                     style="@style/primaryBtnStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/confirm_account"
+                    android:text="@string/confirm_request"
                     android:textColor="@color/white" />
 
 

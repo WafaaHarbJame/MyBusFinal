@@ -6,6 +6,7 @@ import android.content.Intent
 import android.location.LocationManager
 import android.os.Bundle
 import android.provider.Settings
+import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.FragmentManager
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -19,10 +20,15 @@ import com.mybus.mybusapp.R
 import com.mybus.mybusapp.RootApplication
 import com.mybus.mybusapp.Utils.ImageHandler
 import com.mybus.mybusapp.apiHandlers.ApiUrl
+import com.mybus.mybusapp.apiHandlers.DataFeacher
+import com.mybus.mybusapp.apiHandlers.DataFetcherCallBack
 import com.mybus.mybusapp.classes.Constants
+import com.mybus.mybusapp.classes.GlobalData
+import com.mybus.mybusapp.classes.UtilityApp
 import com.mybus.mybusapp.models.MemberModel
 import io.nlopez.smartlocation.SmartLocation
 import kotlinx.android.synthetic.main.activity_request_details.*
+import kotlinx.android.synthetic.main.layout_bottom_nav.*
 
 class RequestDetailsActivity : ActivityBase(), OnMapReadyCallback {
 
@@ -34,13 +40,12 @@ class RequestDetailsActivity : ActivityBase(), OnMapReadyCallback {
     private var destinationLng = 0.0
     private var lat = 0.0
     private var lng = 0.0
-
-    //    private var driverlat = 0.0
-//    private var driverlng = 0.0
     private var driverId: String? = null
+    private var orderID: String? = null
 
     var driverMarker: Marker? = null
     var user: MemberModel? = null
+    private var userType: Int = 0;
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,6 +62,7 @@ class RequestDetailsActivity : ActivityBase(), OnMapReadyCallback {
             destinationLat = bundle.getDouble(Constants.KEY_DESTINATION_LAT)
             destinationLng = bundle.getDouble(Constants.KEY_DESTINATION_LNG)
             driverId = bundle.getString(Constants.KEY_DRIVER_ID)
+            orderID=bundle.getString(Constants.KEY_ORDER_ID)
 
         }
 //        println("Log lat $lat")
@@ -72,6 +78,20 @@ class RequestDetailsActivity : ActivityBase(), OnMapReadyCallback {
         val fm: FragmentManager = supportFragmentManager
         fragment = fm.findFragmentById(R.id.map) as SupportMapFragment
         fragment?.getMapAsync(this)
+
+        user = UtilityApp.userData
+        userType = user?.type!!
+        if (userType == 1) {
+            finishOrder.visibility = View.GONE
+        } else if (userType == 2) {
+            finishOrder.visibility = View.VISIBLE
+        }
+
+        finishOrder.setOnClickListener {
+            updateOrderStatus(orderID,3)
+
+
+        }
 
     }
 
@@ -325,5 +345,50 @@ class RequestDetailsActivity : ActivityBase(), OnMapReadyCallback {
         alert.show()
     }
 
+    private fun updateOrderStatus(orderNumber: String?, orderStatus: Int?) {
+        try {
+            DataFeacher(object : DataFetcherCallBack {
+                override fun Result(obj: Any?, func: String?, IsSuccess: Boolean) {
+                    GlobalData.progressDialogHide()
+                    if (func == Constants.SUCCESS) {
+                        val emptySeatBefore= UtilityApp.userData!!.emptySeat
+                        val emptySeat:Int=emptySeatBefore+1
+                        GlobalData.successDialog(
+                            getActiviy(),
+                            R.string.change_order_status,
+                            getActiviy()?.getString(R.string.sucess_change_satus)
+                        )
+
+                        DataFeacher(object : DataFetcherCallBack {
+                            override fun Result(obj: Any?, func: String?, IsSuccess: Boolean) {
+                                GlobalData.progressDialogHide()
+
+                                if (func == Constants.SUCCESS) {
+                                    UtilityApp.userData!!.emptySeat=emptySeat
+
+                                }
+
+                            }
+                        }).updateSeatData(UtilityApp.userData!!.mobileWithCountry, emptySeat);
+
+
+                    } else {
+                        var message =  getActiviy()?.getString(R.string.fail_to_change_status)
+                        GlobalData.errorDialog(
+                            getActiviy(),
+                            R.string.change_order_status,
+                            message
+                        )
+                    }
+
+                }
+            }).updateOrder(orderNumber, orderStatus);
+
+        } catch (e: Exception) {
+
+            e.printStackTrace()
+
+        }
+    }
 
 }

@@ -34,6 +34,7 @@ object Constants {
     const val KEY_IS_NOTIFY = "key_is_notify"
     const val KEY_IS_CUSTOMER = "key_is_customer"
     const val KEY_DRIVER_ID = "key_driver_id"
+    const val KEY_ORDER_ID = "key_order_id"
     const val KEY_LAT = "key_lat"
     const val KEY_LNG = "key_lng"
     const val KEY_DESTINATION_LAT = "key_destination_lat"

@@ -228,6 +228,27 @@ class DataFeacher(callBack: DataFetcherCallBack?) {
     }
 
 
+    public fun updateSeatData(
+        mobile: String?,seatNumber:Int?) {
+        fireStoreDB?.collection(ApiUrl.Users.name)?.document(mobile!!)?.get()
+            ?.addOnSuccessListener { document ->
+                if (document.exists()) {
+                    RootApplication.fireStoreDB?.collection(ApiUrl.Users.name)?.document(mobile)
+                        ?.update(
+                            "emptySeat",
+                            seatNumber)
+                        ?.addOnSuccessListener {
+                            dataFetcherCallBack?.Result("", Constants.SUCCESS, true)
+
+                        }?.addOnFailureListener { e ->
+                            dataFetcherCallBack?.Result("", Constants.FAIL_DATA, true)
+                        }
+                } else {
+                    dataFetcherCallBack?.Result("", Constants.FAIL_DATA, true)
+
+                }
+            }
+    }
     fun updateOrder(orderNumber: String?, orderStatus: Int?) {
 
         Log.i(TAG, "Log updateOrder")

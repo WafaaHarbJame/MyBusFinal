@@ -84,6 +84,8 @@ class RequestsAdapter(
                     if (user?.type == 2) {
                         acceptBut.visibility = View.VISIBLE
                         rejectBut.visibility = View.VISIBLE
+                        orderStatusBtn.visibility = View.GONE
+
                     } else {
                         acceptBut.visibility = View.GONE
                         rejectBut.visibility = View.GONE
@@ -152,6 +154,8 @@ class RequestsAdapter(
                 intent.putExtra(Constants.KEY_LAT, requestModel.getLat())
                 intent.putExtra(Constants.KEY_LNG, requestModel.getLng())
                 intent.putExtra(Constants.KEY_DRIVER_ID, requestModel.getDriver_id())
+                intent.putExtra(Constants.KEY_ORDER_ID, requestModel.getOrderId())
+
                 activity?.startActivity(intent)
 
             }
@@ -164,6 +168,8 @@ class RequestsAdapter(
                 override fun Result(obj: Any?, func: String?, IsSuccess: Boolean) {
                     GlobalData.progressDialogHide()
                     if (func == Constants.SUCCESS) {
+                        val emptySeatBefore= UtilityApp.userData!!.emptySeat
+                        val emptySeat:Int=emptySeatBefore-1
                         GlobalData.successDialog(
                             activity,
                             R.string.change_order_status,
@@ -172,6 +178,18 @@ class RequestsAdapter(
                         notifyItemChanged(position)
                         notifyDataSetChanged();
                         list!!.removeAt(position);
+                        DataFeacher(object : DataFetcherCallBack {
+                            override fun Result(obj: Any?, func: String?, IsSuccess: Boolean) {
+                                GlobalData.progressDialogHide()
+
+                                if (func == Constants.SUCCESS) {
+                                UtilityApp.userData!!.emptySeat=emptySeat
+
+                                }
+
+                            }
+                        }).updateSeatData(UtilityApp.userData!!.mobileWithCountry, emptySeat);
+
 
                     } else {
                         var message = activity?.getString(R.string.fail_to_change_status)

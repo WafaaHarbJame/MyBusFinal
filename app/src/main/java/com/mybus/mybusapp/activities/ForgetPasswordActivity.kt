@@ -31,7 +31,7 @@ class ForgetPasswordActivity : ActivityBase() {
 
     val TAG: String? = "Log"
 
-    var selectedCountryCode = 0
+    var selectedCountryCode = 966
     var countryCodeDialog: CountryCodeDialog? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -88,7 +88,7 @@ class ForgetPasswordActivity : ActivityBase() {
         }
         val phoneUtils = PhoneNumberUtil.createInstance(getActiviy())
 
-        selectedCountryCode = phoneUtils.getCountryCodeForRegion(isoCode.toUpperCase())
+     //   selectedCountryCode = phoneUtils.getCountryCodeForRegion(isoCode.toUpperCase())
     }
 
     private fun forgetPassword() {

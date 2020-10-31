@@ -147,7 +147,7 @@ class LoginActivity : ActivityBase() {
         val phoneUtils = PhoneNumberUtil.createInstance(getActiviy())
 
 //        val supportedRegions = phoneUtils.supportedRegions
-        selectedCountryCode = phoneUtils.getCountryCodeForRegion(isoCode.toUpperCase())
+      //  selectedCountryCode = phoneUtils.getCountryCodeForRegion(isoCode.toUpperCase())
     }
 
 
@@ -170,8 +170,6 @@ class LoginActivity : ActivityBase() {
                     ""
                 ) else mobileStr
 
-//            phoneNumber = countryCodeTxt.text.toString()
-//                .plus(NumberHandler.arabicToDecimal(mobileStr))
             memberModel.isVerified = false
             memberModel.password = AESCrypt.encrypt(passwordStr)
             memberModel.mobileWithCountry = selectedCountryCode.toString().plus(memberModel.mobile)
@@ -188,19 +186,20 @@ class LoginActivity : ActivityBase() {
                     GlobalData.progressDialogHide()
                     val document: DocumentSnapshot? = obj as DocumentSnapshot
                     if (document != null) {
-//                        Log.d(TAG, "DocumentSnapshot data: ${document.data}")
+                  Log.d(TAG, "DocumentSnapshot data: ${document.data}")
+
                         val user = document.toObject(MemberModel::class.java)
                         val password = user?.password
-                        val isVerified = user?.getIsVerified()
+                       // val isVerified = user?.getIsVerified()
+                        val isVerified=document.getBoolean("isVerified")
+
                         val fullName = document.get("fullName")
                         Log.d(TAG, "DocumentSnapshot data1: $fullName")
+                        Log.d(TAG, "DocumentSnapshot isVerified: ${document.getBoolean("isVerified")}")
 
                         if (password == memberModel.password) {
                             if (isVerified == true) {
                                 UtilityApp.userData = user
-                                user.fullName= fullName?.toString()
-                                Log.d(TAG, "DocumentSnapshot data1: ${user.fullName}")
-
                                 val intent = Intent(getActiviy(), MainActivity::class.java)
                                 intent.flags =
                                     Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK

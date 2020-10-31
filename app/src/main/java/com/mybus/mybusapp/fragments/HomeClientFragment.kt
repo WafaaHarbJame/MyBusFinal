@@ -203,7 +203,9 @@ class HomeClientFragment : FragmentBase() {
 
                         UtilityApp.userData?.address = address
                         UtilityApp.userData?.lat = selectdLat
-                        UtilityApp.userData?.lat = selectdLng
+                        UtilityApp.userData?.lng = selectdLng
+                        UtilityApp.userData?.isSelectLocation=isSelectLocation
+
                         GlobalData.successDialog(
                             activity,
                             R.string.select_location,

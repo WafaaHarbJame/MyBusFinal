@@ -78,7 +78,6 @@ class MapActivity : ActivityBase(), OnMapReadyCallback {
         } else if (mapType == 2) {
             selectBtn.visibility = View.VISIBLE
             selectBtn.text = getString(R.string.edit)
-//            EditMyLocation(selectedLat, selectedLng)
 
         } else if (mapType == 3) {
             selectDestinationBtn.visibility = View.VISIBLE

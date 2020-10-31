@@ -17,7 +17,6 @@ import com.mybus.mybusapp.models.*
 import com.github.dhaval2404.form_validation.rule.LengthRule
 import com.github.dhaval2404.form_validation.rule.NonEmptyRule
 import com.github.dhaval2404.form_validation.validation.FormValidator
-import io.michaelrocks.libphonenumber.android.PhoneNumberUtil
 import kotlinx.android.synthetic.main.activity_forget_password.*
 import kotlinx.android.synthetic.main.activity_forget_password.countryCodeTxt
 import kotlinx.android.synthetic.main.activity_forget_password.mobileTxt
@@ -86,7 +85,7 @@ class ForgetPasswordActivity : ActivityBase() {
         } else if (simCountryIso != null && !simCountryIso.isEmpty()) {
             isoCode = simCountryIso
         }
-        val phoneUtils = PhoneNumberUtil.createInstance(getActiviy())
+//        val phoneUtils = PhoneNumberUtil.createInstance(getActiviy())
 
      //   selectedCountryCode = phoneUtils.getCountryCodeForRegion(isoCode.toUpperCase())
     }

@@ -1,9 +1,10 @@
 <component name="libraryTable">
   <library name="Gradle: com.akexorcist:localization:1.2.6@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/7f7963fd3a805a28625e649b7cd93e90/jetified-localization-1.2.6/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/7f7963fd3a805a28625e649b7cd93e90/jetified-localization-1.2.6/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/7f7963fd3a805a28625e649b7cd93e90/jetified-localization-1.2.6/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/95b2327f1935bf52b4912f0b86b7b6db/jetified-localization-1.2.6/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/95b2327f1935bf52b4912f0b86b7b6db/jetified-localization-1.2.6/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/95b2327f1935bf52b4912f0b86b7b6db/jetified-localization-1.2.6/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.akexorcist/localization/1.2.6/cd50049ad4cf693e7408e0cbd01e3e1f548b75ef/localization-1.2.6-javadoc.jar!/" />

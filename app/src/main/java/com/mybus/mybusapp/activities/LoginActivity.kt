@@ -27,7 +27,6 @@ import com.google.firebase.iid.FirebaseInstanceId
 import com.google.firebase.iid.InstanceIdResult
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import io.michaelrocks.libphonenumber.android.PhoneNumberUtil
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_login.countryCodeTxt
 import kotlinx.android.synthetic.main.activity_login.loginBtn
@@ -144,7 +143,7 @@ class LoginActivity : ActivityBase() {
         } else if (simCountryIso != null && !simCountryIso.isEmpty()) {
             isoCode = simCountryIso
         }
-        val phoneUtils = PhoneNumberUtil.createInstance(getActiviy())
+//        val phoneUtils = PhoneNumberUtil.createInstance(getActiviy())
 
 //        val supportedRegions = phoneUtils.supportedRegions
       //  selectedCountryCode = phoneUtils.getCountryCodeForRegion(isoCode.toUpperCase())

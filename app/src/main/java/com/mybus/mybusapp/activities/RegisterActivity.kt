@@ -7,7 +7,6 @@ import android.telephony.TelephonyManager
 import android.util.Log
 import android.view.View
 import com.github.dhaval2404.form_validation.rule.EqualRule
-import com.github.dhaval2404.form_validation.rule.LengthRule
 import com.github.dhaval2404.form_validation.rule.NonEmptyRule
 import com.github.dhaval2404.form_validation.validation.FormValidator
 import com.google.firebase.iid.FirebaseInstanceId
@@ -23,8 +22,6 @@ import com.mybus.mybusapp.classes.UtilityApp
 import com.mybus.mybusapp.dialogs.CountryCodeDialog
 import com.mybus.mybusapp.models.CountryModel
 import com.mybus.mybusapp.models.MemberModel
-import com.mybus.mybusapp.models.RegisterUserModel
-import io.michaelrocks.libphonenumber.android.PhoneNumberUtil
 import kotlinx.android.synthetic.main.activity_register.*
 
 
@@ -130,7 +127,7 @@ class RegisterActivity : ActivityBase() {
         } else if (simCountryIso != null && !simCountryIso.isEmpty()) {
             isoCode = simCountryIso
         }
-        val phoneUtils = PhoneNumberUtil.createInstance(getActiviy())
+//        val phoneUtils = PhoneNumberUtil.createInstance(getActiviy())
 
 //        val supportedRegions = phoneUtils.supportedRegions
        // selectedCountryCode = phoneUtils.getCountryCodeForRegion(isoCode.toUpperCase())

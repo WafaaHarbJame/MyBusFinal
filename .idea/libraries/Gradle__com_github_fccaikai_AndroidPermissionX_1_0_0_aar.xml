@@ -1,9 +1,9 @@
 <component name="libraryTable">
   <library name="Gradle: com.github.fccaikai:AndroidPermissionX:1.0.0@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/a5958ba64cb797bf401d970749260d84/jetified-AndroidPermissionX-1.0.0/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/a5958ba64cb797bf401d970749260d84/jetified-AndroidPermissionX-1.0.0/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/a5958ba64cb797bf401d970749260d84/jetified-AndroidPermissionX-1.0.0/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/881a0e1eaa3bed3d59fd6e0c1dc21341/jetified-AndroidPermissionX-1.0.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/881a0e1eaa3bed3d59fd6e0c1dc21341/jetified-AndroidPermissionX-1.0.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/881a0e1eaa3bed3d59fd6e0c1dc21341/jetified-AndroidPermissionX-1.0.0/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

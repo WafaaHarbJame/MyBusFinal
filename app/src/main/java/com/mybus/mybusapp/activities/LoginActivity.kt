@@ -190,8 +190,8 @@ class LoginActivity : ActivityBase() {
 
                         val user = document.toObject(MemberModel::class.java)
                         val password = user?.password
-                       // val isVerified = user?.getIsVerified()
-                        val isVerified=document.getBoolean("isVerified")
+
+                        val isVerified=document.get("isVerified") as Boolean
 
                         val fullName = document.get("fullName")
                         Log.d(TAG, "DocumentSnapshot data1: $fullName")

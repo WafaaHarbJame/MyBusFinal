@@ -284,7 +284,7 @@ class DataFeacher(callBack: DataFetcherCallBack?) {
             ?.addOnSuccessListener { document ->
                 if (document.exists()) {
                     RootApplication.fireStoreDB?.collection(ApiUrl.Users.name)?.document(mobile)
-                        ?.update("isDriverActive", isDriverActive)
+                        ?.update("driverActive", isDriverActive)
                         ?.addOnSuccessListener {
                             dataFetcherCallBack?.Result("", Constants.SUCCESS, true)
 

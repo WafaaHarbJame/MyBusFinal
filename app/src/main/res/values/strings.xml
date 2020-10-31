@@ -126,6 +126,7 @@
     <string name="no_data">No Data</string>
     <string name="no_order">No Order</string>
     <string name="pending">Pending</string>
+    <string name="num_empty_seat">Number of empty seat</string>
 
 
 </resources>

@@ -110,5 +110,6 @@
     <string name="please_wait_to_make_order">Please wait to make the order</string>
     <string name="make_order_sucess">Make Order Sucess</string>
     <string name="no_order">No Order</string>
+    <string name="num_empty_seat">Number of empty seat</string>
 
 </resources>

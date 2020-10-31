@@ -16,35 +16,53 @@ import com.mybus.mybusapp.classes.UtilityApp
 import com.mybus.mybusapp.models.MemberModel
 import kotlinx.android.synthetic.main.activity_profile.*
 import kotlinx.android.synthetic.main.activity_profile.myLocationTv
+import kotlinx.android.synthetic.main.activity_register.*
 import kotlinx.android.synthetic.main.fragment_main_screen.editMyLocationBtn
 import kotlinx.android.synthetic.main.fragment_main_screen.selectLocation
+import kotlinx.android.synthetic.main.layout_bottom_nav.*
 
 class ProfileActivity : ActivityBase() {
     var activity: Activity? = null
     private var selectdLat = 0.0
     private var selectdLng = 0.0
-    private var address=""
+    private var address = ""
     var isSelectLocation = false
     var user: MemberModel? = null
+    private var userType: Int = 0;
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
 
-        title =getString(R.string.profile)
-        activity=getActiviy()
+        title = getString(R.string.profile)
+        activity = getActiviy()
 
+        user = UtilityApp.userData
+        initData()
 
         homeBtn.setOnClickListener {
             onBackPressed()
         }
 
-
-
         user = UtilityApp.userData
+        userType = user!!.type
 
-        initData()
+
+        if (userType == 1) {
+            selectLocationLY.visibility = visible
+            statusBusLY.visibility = gone
+            busLoadingLY.visibility = gone
+            emptyseatLY.visibility = gone
+
+
+        } else if (userType == 2) {
+            selectLocationLY.visibility = gone
+            statusBusLY.visibility = visible
+            busLoadingLY.visibility = visible
+            emptyseatLY.visibility = visible
+
+        }
 
 
 
@@ -65,13 +83,12 @@ class ProfileActivity : ActivityBase() {
 
 
         statusSwitch.setOnCheckedChangeListener { buttonView, isChecked ->
-            var isDriverActive=false
-            if(isChecked){
-                isDriverActive=true
+            var isDriverActive = false
+            if (isChecked) {
+                isDriverActive = true
                 updateBusStatus(isDriverActive)
-            }
-            else{
-                isDriverActive=false
+            } else {
+                isDriverActive = false
                 updateBusStatus(isDriverActive)
 
             }
@@ -79,9 +96,7 @@ class ProfileActivity : ActivityBase() {
         }
 
 
-
     }
-
 
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -113,22 +128,25 @@ class ProfileActivity : ActivityBase() {
                 if (func == Constants.SUCCESS) {
                     UtilityApp.userData = obj as MemberModel?
                     val user = UtilityApp.userData
-                    selectdLat= UtilityApp.userData!!.lat
-                    selectdLng= UtilityApp.userData!!.lng
+                    selectdLat = UtilityApp.userData!!.lat
+                    selectdLng = UtilityApp.userData!!.lng
                     val isSelectLocation = user?.getIsSelectLocation()
-                    val isDriverActive= user?.getIsDriverActive()
-                    busLoadingTv.text= user?.busLoading.toString()
-                    Log.d("User type", "user isSelectLocation${UtilityApp.userData?.isSelectLocation}" );
+                    val isDriverActive = user?.getIsDriverActive()
+                    busLoadingTv.text = user?.busLoading.toString()
+                    Log.d(
+                        "User type",
+                        "user isSelectLocation${UtilityApp.userData?.isSelectLocation}"
+                    );
 
-                    if(isSelectLocation!!){
-                        selectLocation.text= UtilityApp.userData!!.address
-                        editMyLocationBtn.visibility= View.VISIBLE
-                      //  myLocationTv.text=R.string.my_location)
+                    if (isSelectLocation!!) {
+                        selectLocation.text = UtilityApp.userData!!.address
+                        editMyLocationBtn.visibility = View.VISIBLE
+                        //  myLocationTv.text=R.string.my_location)
 
                     }
 
-                    if(isDriverActive!!){
-                        statusSwitch.isChecked=true
+                    if (isDriverActive!!) {
+                        statusSwitch.isChecked = true
 
                     }
 
@@ -151,7 +169,7 @@ class ProfileActivity : ActivityBase() {
                         UtilityApp.userData?.address = address
                         UtilityApp.userData?.lat = selectdLat
                         UtilityApp.userData?.lng = selectdLng
-                        UtilityApp.userData?.isSelectLocation=isSelectLocation
+                        UtilityApp.userData?.isSelectLocation = isSelectLocation
                         GlobalData.successDialog(
                             getActiviy(),
                             R.string.select_location,
@@ -177,18 +195,14 @@ class ProfileActivity : ActivityBase() {
         }
     }
 
-    private fun updateBusStatus(isDriverActive:Boolean) {
+    private fun updateBusStatus(isDriverActive: Boolean) {
         try {
             var mobileStr = UtilityApp.userData?.mobileWithCountry;
             DataFeacher(object : DataFetcherCallBack {
                 override fun Result(obj: Any?, func: String?, IsSuccess: Boolean) {
                     GlobalData.progressDialogHide()
                     if (func == Constants.SUCCESS) {
-//                        GlobalData.successDialog(
-//                            activity,
-//                            R.string.change_bus_status,
-//                            activity?.getString(R.string.sucess_change_satus)
-//                        )
+                        UtilityApp.userData?.isDriverActive = isDriverActive
 
                     } else {
                         var message = getActiviy()?.getString(R.string.fail_to_change_status)
@@ -200,7 +214,7 @@ class ProfileActivity : ActivityBase() {
                     }
 
                 }
-            }).updateStatus(mobileStr,isDriverActive);
+            }).updateStatus(mobileStr, isDriverActive);
 
         } catch (e: Exception) {
 
@@ -215,7 +229,18 @@ class ProfileActivity : ActivityBase() {
         selectdLat = user?.lat!!
         selectdLng = user?.lng!!
         address = user?.address!!
-        val isSelectLocation = user?.getIsSelectLocation()
+        nameTV.text = user?.fullName!!
+        mobileTv.text = user?.mobileWithCountry!!
+        busLoadingTv.text = user?.busLoading.toString()
+        emptyseatTv.text = user?.emptySeat.toString()
+
+
+        val isDriverActive = user?.getIsDriverActive() as Boolean
+        val isSelectLocation = user?.isSelectLocation as Boolean
+
+        if (isDriverActive!!) {
+            statusSwitch.isChecked = true
+        }
 
         if (isSelectLocation!!) {
             selectLocation.text = user?.address
@@ -228,5 +253,5 @@ class ProfileActivity : ActivityBase() {
         }
 
     }
-
 }
+

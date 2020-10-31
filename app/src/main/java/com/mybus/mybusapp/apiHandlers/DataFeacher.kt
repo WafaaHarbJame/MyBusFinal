@@ -228,7 +228,7 @@ class DataFeacher(callBack: DataFetcherCallBack?) {
     }
 
 
-    public fun updateSeatData(
+     fun updateSeatData(
         mobile: String?,seatNumber:Int?) {
         fireStoreDB?.collection(ApiUrl.Users.name)?.document(mobile!!)?.get()
             ?.addOnSuccessListener { document ->

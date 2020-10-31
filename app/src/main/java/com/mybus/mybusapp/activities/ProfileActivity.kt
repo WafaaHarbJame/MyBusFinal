@@ -237,10 +237,15 @@ class ProfileActivity : ActivityBase() {
 
         val isDriverActive = user?.getIsDriverActive() as Boolean
         val isSelectLocation = user?.isSelectLocation as Boolean
-
+        Log.d(
+            "isDriverActive",
+            "isDriverActive${isDriverActive}"
+        );
         if (isDriverActive!!) {
             statusSwitch.isChecked = true
         }
+
+
 
         if (isSelectLocation!!) {
             selectLocation.text = user?.address

@@ -73,6 +73,7 @@ class MapActivity : ActivityBase(), OnMapReadyCallback {
         }
 
         if (mapType == 1) {
+            selectBtn.visibility =visible
             checkLocationPermission()
         } else if (mapType == 2) {
             selectBtn.visibility = View.VISIBLE

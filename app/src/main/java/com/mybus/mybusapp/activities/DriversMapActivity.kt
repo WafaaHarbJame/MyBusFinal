@@ -290,7 +290,7 @@ class DriversMapActivity : ActivityBase(), OnMapReadyCallback {
             createMarker(
                 myLocationLat,
                 myLocationLng,
-                getString(R.string.my_location),
+                getString(R.string.destination_location),
                 MapHandler.getGpsAddress(getActiviy(), myLocationLat, myLocationLng),
                 R.drawable.ic_map_destination_marker
             )!!

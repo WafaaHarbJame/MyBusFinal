@@ -22,7 +22,6 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/_10sdp"
             android:orientation="horizontal">
 
             <com.mybus.mybusapp.spichalViews.STextViewBold
@@ -43,7 +42,6 @@
             android:id="@+id/addressTxt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/_10sdp"
             android:ellipsize="end"
             android:maxLines="2"
             android:text="@string/dummy"

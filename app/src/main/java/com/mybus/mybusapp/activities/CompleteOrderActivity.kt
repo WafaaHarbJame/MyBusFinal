@@ -120,8 +120,6 @@ class CompleteOrderActivity : ActivityBase() {
                     if (func == Constants.SUCCESS) {
                         Toast(R.string.make_order_sucess)
                         val intent = Intent(getActiviy(), MainActivity::class.java)
-                        intent.putExtra(Constants.KEY_TO_ORDERS, true)
-                        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
                         startActivity(intent)
                     } else {
                         val message = getString(R.string.fail_to_order)

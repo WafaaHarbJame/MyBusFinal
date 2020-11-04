@@ -98,13 +98,6 @@ class HomeDriverFragment : FragmentBase(), OnLocationUpdatedListener,
         completedFragment.retainInstance = true
 
 
-        val allOrderBundle = Bundle()
-        allOrderBundle.putString(Constants.KEY_TYPE, Constants.ALL)
-        val allRequestsFragment: Fragment = AllDriverRequestsFragment()
-        allRequestsFragment.arguments = allOrderBundle
-        allRequestsFragment.retainInstance = true
-
-        adapter.addFragment(allRequestsFragment, getString(R.string.all_orders))
         adapter.addFragment(currentFragment, getString(R.string.current_request))
         adapter.addFragment(completedFragment, getString(R.string.finshed_order))
 

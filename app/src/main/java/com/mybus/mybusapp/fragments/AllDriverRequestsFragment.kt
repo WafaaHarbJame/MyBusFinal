@@ -14,13 +14,11 @@ import com.mybus.mybusapp.apiHandlers.DataFetcherCallBack
 import com.mybus.mybusapp.classes.Constants
 import com.mybus.mybusapp.classes.UtilityApp
 import com.mybus.mybusapp.models.RequestModel
-import kotlinx.android.synthetic.main.fragment_all_client.*
-import kotlinx.android.synthetic.main.fragment_current.*
+import kotlinx.android.synthetic.main.fragment_all_request.*
 import kotlinx.android.synthetic.main.fragment_current.rv
 import kotlinx.android.synthetic.main.layout_fail_get_data.*
 import kotlinx.android.synthetic.main.layout_no_data.*
 import kotlinx.android.synthetic.main.layout_pre_loading.*
-import kotlinx.android.synthetic.main.tool_bar.*
 
 /**
  * A simple [Fragment] subclass.

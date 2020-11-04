@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:elevation="8dp"
+    android:clipToPadding="false"
+    android:clipChildren="false"
+    android:gravity="center"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    android:id="@+id/cardViewBillDetails"
+    android:layout_margin="@dimen/_8sdp">
+<ImageView
+    android:layout_width="wrap_content"
+    android:layout_height="@dimen/_50sdp"
+    android:layout_gravity="center"
+    android:layout_marginTop="@dimen/_8sdp"
+    android:layout_marginBottom="@dimen/_8sdp"
+    android:id="@+id/payWayImage"
+    android:src="@drawable/mada"/>
+</LinearLayout>

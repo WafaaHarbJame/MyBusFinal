@@ -499,5 +499,13 @@ class DataFeacher(callBack: DataFetcherCallBack?) {
 
     }
 
+    fun updateUserData(mobile: String?,address: String) {
+
+    }
+
+    fun updateDriverData(mobile: String?, address: String ) {
+
+    }
+
 
 }

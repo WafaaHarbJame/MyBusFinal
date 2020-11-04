@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/buttonCancel"
+        android:background="#00000000"
+        app:srcCompat="@drawable/cancel"
+        android:scaleX="@integer/scaleX"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvPayWay"
+        android:text="@string/payWay"
+        android:textSize="@dimen/_14sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvPayWay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvPayWay"
+        android:layout_margin="@dimen/_16sdp"/>
+
+    <com.loopeer.shadow.ShadowView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_50sdp"
+        android:layout_marginTop="@dimen/_30sdp"
+        android:layout_marginEnd="@dimen/_50sdp"
+        android:layout_marginBottom="@dimen/_30sdp"
+        app:backgroundColor="@color/white"
+        app:cornerRadius="@dimen/round_corner_thin"
+        app:shadowColor="@color/colorPrimaryTrans"
+        app:layout_constraintTop_toBottomOf="@+id/rvPayWay"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:shadowMarginBottom="@dimen/_8sdp"
+        app:shadowRadius="@dimen/_8sdp">
+
+        <com.mybus.mybusapp.spichalViews.STextViewBold
+            android:id="@+id/SaveBut"
+            style="@style/primaryBtnStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/save"
+            android:textColor="@color/white" />
+
+
+    </com.loopeer.shadow.ShadowView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

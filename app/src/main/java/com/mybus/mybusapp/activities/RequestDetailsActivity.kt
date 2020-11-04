@@ -6,6 +6,7 @@ import android.content.Intent
 import android.location.LocationManager
 import android.os.Bundle
 import android.provider.Settings
+import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.FragmentManager
@@ -15,6 +16,7 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.*
+import com.google.firebase.firestore.EventListener
 import com.kcode.permissionslib.main.OnRequestPermissionsCallBack
 import com.kcode.permissionslib.main.PermissionCompat
 import com.mybus.mybusapp.R
@@ -24,12 +26,14 @@ import com.mybus.mybusapp.apiHandlers.ApiUrl
 import com.mybus.mybusapp.apiHandlers.DataFeacher
 import com.mybus.mybusapp.apiHandlers.DataFetcherCallBack
 import com.mybus.mybusapp.classes.Constants
+import com.mybus.mybusapp.classes.DataCallback
 import com.mybus.mybusapp.classes.GlobalData
 import com.mybus.mybusapp.classes.UtilityApp
+import com.mybus.mybusapp.dialogs.PayWayBottomDialog
 import com.mybus.mybusapp.models.MemberModel
+import com.mybus.mybusapp.models.PayWayImage
 import io.nlopez.smartlocation.SmartLocation
 import kotlinx.android.synthetic.main.activity_request_details.*
-import kotlinx.android.synthetic.main.layout_bottom_nav.*
 
 class RequestDetailsActivity : ActivityBase(), OnMapReadyCallback {
 
@@ -66,11 +70,7 @@ class RequestDetailsActivity : ActivityBase(), OnMapReadyCallback {
             orderID = bundle.getString(Constants.KEY_ORDER_ID)
 
         }
-//        println("Log lat $lat")
-//        println("Log lng $lng")
-//        println("Log destinationLat $destinationLat")
-//        println("Log destinationLng $destinationLng")
-//        println("Log driverId $driverId")
+
 
         myLocationBtn.setOnClickListener {
             checkLocationPermission()
@@ -84,14 +84,37 @@ class RequestDetailsActivity : ActivityBase(), OnMapReadyCallback {
         userType = user?.type!!
         if (userType == 1) {
             finishOrder.visibility = View.GONE
+            payNow(orderID!!)
+
         } else if (userType == 2) {
             finishOrder.visibility = View.VISIBLE
         }
 
         finishOrder.setOnClickListener {
             updateOrderStatus(orderID, 3)
+        }
 
 
+
+        payBtn.setOnClickListener {
+            val payWayBottomDialog = PayWayBottomDialog(object : DataCallback {
+                override fun dataResult(obj: Any, func: String?, IsSuccess: Boolean) {
+                    val payWayImage: PayWayImage = obj as PayWayImage
+                    AwesomeSuccessDialog(getActiviy())
+                        .setTitle(R.string.payment)
+                        .setMessage(getString(R.string.succes_pay))
+                        .setColoredCircle(R.color.dialogSuccessBackgroundColor)
+                        .setDialogIconAndColor(R.drawable.ic_check, R.color.white)
+                        .setCancelable(true)
+                        .show()
+                        .setOnDismissListener {
+                            finish()
+                        }
+
+
+                }
+            })
+            payWayBottomDialog.show(supportFragmentManager, "payWayBottomDialog")
         }
 
     }
@@ -215,7 +238,6 @@ class RequestDetailsActivity : ActivityBase(), OnMapReadyCallback {
 //        }
 
         getOrderTracking()
-
     }
 
     private fun setDriverLocation(driverId: String) {
@@ -235,7 +257,7 @@ class RequestDetailsActivity : ActivityBase(), OnMapReadyCallback {
                     currDriverLng,
                     getString(R.string.driver_location),
                     "",
-                    R.drawable.ic_map_driver
+                    R.drawable.bus_icon1
                 )!!
 
                 val cameraUpdate =
@@ -250,6 +272,29 @@ class RequestDetailsActivity : ActivityBase(), OnMapReadyCallback {
 
             }
     }
+
+    private fun payNow(orderNumber: String) {
+        println("Log payNow $orderID")
+        RootApplication.fireStoreDB?.collection(ApiUrl.Orders.name)?.document(orderNumber)
+            ?.addSnapshotListener { value, error ->
+
+                if (error != null)
+                    return@addSnapshotListener
+
+                val requestStatus = value!!.getLong("requestStatus")
+                println("Log payNow requestStatus $requestStatus")
+
+                if (requestStatus!! == 3) {
+                    payBtn.visibility = visible
+                } else {
+                    payBtn.visibility = gone
+
+                }
+
+
+            }
+    }
+
 
     private fun checkLocationPermission() {
         try {
@@ -365,6 +410,7 @@ class RequestDetailsActivity : ActivityBase(), OnMapReadyCallback {
                             .setOnDismissListener {
                                 finish()
                             }
+
 
                         DataFeacher(object : DataFetcherCallBack {
                             override fun Result(obj: Any?, func: String?, IsSuccess: Boolean) {

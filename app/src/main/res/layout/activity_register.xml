@@ -103,24 +103,18 @@
 
             </com.mybus.mybusapp.spichalViews.STextInputLayout>
 
-            <com.mybus.mybusapp.spichalViews.STextInputLayout
-                android:id="@+id/ageInput"
-                style="@style/TextInputStyle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_15sdp"
-                android:layout_marginEnd="@dimen/_15sdp"
-                android:layout_marginBottom="@dimen/_10sdp"
-                android:hint="@string/age">
-
-                <com.mybus.mybusapp.spichalViews.SEditText
+                <com.mybus.mybusapp.spichalViews.STextView
                     android:id="@+id/ageTxt"
                     style="@style/editTextStyle"
+                    android:layout_marginStart="@dimen/_15sdp"
+                    android:layout_marginEnd="@dimen/_15sdp"
+                    android:layout_marginBottom="@dimen/_10sdp"
                     android:layout_width="match_parent"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:background="@drawable/round_corner_accent_trans"
                     android:layout_height="wrap_content"
-                    android:inputType="numberDecimal" />
+                    android:text="@string/enter_age" />
 
-            </com.mybus.mybusapp.spichalViews.STextInputLayout>
 
             <LinearLayout
                 android:id="@+id/busLy"
@@ -145,24 +139,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="number" />
-                </com.mybus.mybusapp.spichalViews.STextInputLayout>
-
-                <com.mybus.mybusapp.spichalViews.STextInputLayout
-                    android:id="@+id/busNameInput"
-                    style="@style/TextInputStyle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_15sdp"
-                    android:layout_marginEnd="@dimen/_15sdp"
-                    android:layout_marginBottom="@dimen/_10sdp"
-                    android:hint="@string/name_bus">
-
-                    <com.mybus.mybusapp.spichalViews.SEditText
-                        android:id="@+id/busNameTxt"
-                        style="@style/editTextStyle"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="text" />
                 </com.mybus.mybusapp.spichalViews.STextInputLayout>
 
                 <com.mybus.mybusapp.spichalViews.STextInputLayout
@@ -367,6 +343,37 @@
                     android:textSize="@dimen/_12ssp" />
 
             </LinearLayout>
+
+
+            <com.mybus.mybusapp.spichalViews.STextView
+                android:id="@+id/yearTxt"
+                style="@style/editTextStyle"
+                android:layout_marginStart="@dimen/_15sdp"
+                android:layout_marginEnd="@dimen/_15sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                />
+            <com.mybus.mybusapp.spichalViews.STextView
+                android:id="@+id/dayTxt"
+                style="@style/editTextStyle"
+                android:layout_marginStart="@dimen/_15sdp"
+                android:layout_marginEnd="@dimen/_15sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone" />
+            <com.mybus.mybusapp.spichalViews.STextView
+                android:id="@+id/monthTxt"
+                style="@style/editTextStyle"
+                android:layout_marginStart="@dimen/_15sdp"
+                android:layout_marginEnd="@dimen/_15sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                />
 
         </LinearLayout>
 

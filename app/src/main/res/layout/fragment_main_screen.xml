@@ -2,6 +2,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/white"
     android:orientation="vertical">
 
@@ -65,9 +66,8 @@
             android:layout_marginStart="@dimen/_8sdp"
             android:layout_marginEnd="@dimen/_8sdp"
             android:layout_below="@id/view1"
-            android:layout_marginTop="@dimen/_8sdp"
             android:paddingStart="@dimen/_15sdp"
-            android:paddingTop="@dimen/_15sdp"
+            android:paddingTop="@dimen/_10sdp"
             android:paddingEnd="@dimen/_15sdp"
             android:paddingBottom="@dimen/_10sdp">
 
@@ -213,7 +213,7 @@
             android:layout_below="@id/DestinationLY"
             android:layout_marginTop="@dimen/_8sdp"
             android:paddingStart="@dimen/_15sdp"
-            android:paddingTop="@dimen/_15sdp"
+            android:paddingTop="@dimen/_10sdp"
             android:paddingEnd="@dimen/_15sdp"
             android:paddingBottom="@dimen/_10sdp">
 
@@ -271,5 +271,56 @@
     </RelativeLayout>
 
 
+
+    <com.mybus.mybusapp.spichalViews.STextViewBold
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/_5sdp"
+        android:layout_toEndOf="@id/userImg"
+        android:text="@string/current_request"
+        android:textColor="@color/colorAccent"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:paddingStart="@dimen/_15sdp"
+        android:paddingEnd="@dimen/_15sdp"
+        android:layout_marginStart="@dimen/_15sdp"
+        android:layout_marginEnd="@dimen/_15sdp"
+        android:textSize="@dimen/_12ssp" />
+    <View
+        android:layout_width="match_parent"
+        android:background="@color/colorAccent"
+        android:layout_marginStart="@dimen/_15sdp"
+        android:layout_marginEnd="@dimen/_15sdp"
+        android:layout_height="2dp">
+
+    </View>
+
+    <include layout="@layout/layout_pre_loading" />
+
+    <include layout="@layout/layout_fail_get_data" />
+
+    <include layout="@layout/layout_no_data" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:id="@+id/dataLY"
+        android:visibility="gone">
+
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/swipeDataContainer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clipToPadding="false"
+                android:paddingStart="@dimen/_15sdp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:itemCount="4"
+                tools:listitem="@layout/row_request" />
+
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+    </LinearLayout>
 </LinearLayout>
 

@@ -8,17 +8,23 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.GridLayoutManager
 import com.mybus.mybusapp.R
 import com.mybus.mybusapp.Utils.MapHandler
 import com.mybus.mybusapp.activities.DriversMapActivity
 import com.mybus.mybusapp.activities.MapActivity
+import com.mybus.mybusapp.adapters.RequestsAdapter
 import com.mybus.mybusapp.apiHandlers.DataFeacher
 import com.mybus.mybusapp.apiHandlers.DataFetcherCallBack
 import com.mybus.mybusapp.classes.Constants
 import com.mybus.mybusapp.classes.GlobalData
 import com.mybus.mybusapp.classes.UtilityApp
 import com.mybus.mybusapp.models.MemberModel
+import com.mybus.mybusapp.models.RequestModel
 import kotlinx.android.synthetic.main.fragment_main_screen.*
+import kotlinx.android.synthetic.main.layout_fail_get_data.*
+import kotlinx.android.synthetic.main.layout_no_data.*
+import kotlinx.android.synthetic.main.layout_pre_loading.*
 
 
 class HomeClientFragment : FragmentBase() {
@@ -36,6 +42,8 @@ class HomeClientFragment : FragmentBase() {
     var isSelectDestination = false
 
     var user: MemberModel? = null
+    var allRequestList: MutableList<RequestModel>? = null
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -55,6 +63,20 @@ class HomeClientFragment : FragmentBase() {
         user = UtilityApp.userData
 
         initData()
+
+        rv.layoutManager = GridLayoutManager(getActivity(), 1)
+
+
+        swipeDataContainer.setOnRefreshListener {
+            if (UtilityApp.isLogin)
+                getAllOrders(true)
+            else
+                swipeDataContainer.isRefreshing = false
+        }
+
+
+        getAllOrders(true)
+
 
         selectLocation.setOnClickListener {
             val intent = Intent(requireActivity(), MapActivity::class.java)
@@ -230,6 +252,54 @@ class HomeClientFragment : FragmentBase() {
 
         }
     }
+    private fun getAllOrders(loading: Boolean) {
+        if (loading) {
+            loadingProgressLY.visibility = visible
+            failGetDataLY.visibility = gone
+            dataLY.visibility = gone
+        }
+        DataFeacher(object : DataFetcherCallBack {
+            override fun Result(obj: Any?, func: String?, IsSuccess: Boolean) {
+
+                loadingProgressLY.visibility = gone
+
+                if (swipeDataContainer.isRefreshing)
+                    swipeDataContainer.isRefreshing = false
+
+                if (func == Constants.SUCCESS) {
+
+                    dataLY.visibility = visible
+                    allRequestList = obj as MutableList<RequestModel>?
+
+                    if (allRequestList?.isNotEmpty() == true) {
+                        noDataLY.visibility = gone
+                        rv.visibility = visible
+                        initAdapter()
+
+                    } else {
+                        dataLY.visibility=gone
+                        noDataLY.visibility = visible
+                        rv.visibility = gone
+                    }
+                }
+
+
+                else {
+                    failGetDataLY.visibility = visible
+                    dataLY.visibility = gone
+                }
+
+
+            }
+        }).getAllClientRequests(UtilityApp.userData?.mobileWithCountry)
+    }
+
+    private fun initAdapter() {
+
+        val adapter = RequestsAdapter(getActivity(), allRequestList)
+        rv.adapter = adapter
+    }
+
 
 
 }

@@ -1,17 +1,24 @@
 package com.mybus.mybusapp.activities
 
+import android.annotation.SuppressLint
+import android.app.DatePickerDialog
+import android.app.Dialog
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.telephony.TelephonyManager
+import android.text.Editable
 import android.util.Log
 import android.view.View
+import android.widget.DatePicker
+import androidx.fragment.app.DialogFragment
 import com.github.dhaval2404.form_validation.rule.EqualRule
 import com.github.dhaval2404.form_validation.rule.NonEmptyRule
 import com.github.dhaval2404.form_validation.validation.FormValidator
 import com.google.firebase.iid.FirebaseInstanceId
 import com.google.firebase.iid.InstanceIdResult
 import com.mybus.mybusapp.R
+import com.mybus.mybusapp.Utils.DateHandler
 import com.mybus.mybusapp.Utils.NumberHandler
 import com.mybus.mybusapp.apiHandlers.DataFeacher
 import com.mybus.mybusapp.apiHandlers.DataFetcherCallBack
@@ -23,6 +30,7 @@ import com.mybus.mybusapp.dialogs.CountryCodeDialog
 import com.mybus.mybusapp.models.CountryModel
 import com.mybus.mybusapp.models.MemberModel
 import kotlinx.android.synthetic.main.activity_register.*
+import java.util.*
 
 
 class RegisterActivity : ActivityBase() {
@@ -42,6 +50,9 @@ class RegisterActivity : ActivityBase() {
     var busName: String? = ""
     var busColor: String? = ""
     var busModel: String? = ""
+     var yearStr: Int? = 0
+     var monthStr: Int? = 0
+     var dayStr: Int? = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -67,6 +78,23 @@ class RegisterActivity : ActivityBase() {
             onBackPressed()
         }
 
+        ageTxt.setOnClickListener {
+
+            val dpd = DatePickerDialog(this, { view2, thisYear, thisMonth, thisDay ->
+                monthStr = thisMonth + 1
+                dayStr = thisDay
+                yearStr = thisYear
+                ageTxt.setText(" "+ monthStr + "/" + dayStr + "/" + yearStr)
+
+                ageNumber = DateHandler.getAge(yearStr.toString().toInt(), monthStr.toString().toInt(), dayStr.toString().toInt()).toInt()
+                val newDate:Calendar =Calendar.getInstance()
+                newDate.set(thisYear, thisMonth, thisDay)
+            }, yearStr!!, monthStr!!, dayStr!!)
+            dpd.show()
+
+
+        }
+
 
 
         loginBtn.setOnClickListener {
@@ -78,9 +106,7 @@ class RegisterActivity : ActivityBase() {
 
         registerBtn.setOnClickListener {
 
-            val ageNumber = NumberHandler.arabicToDecimal(ageTxt.text.toString().trim())
-
-            if (isValidForm() && ageNumber.toInt() >= 18) {
+            if (isValidForm() && ageNumber!!.toInt() >= 18) {
                 registerUser()
             } else {
                 ageTxt?.error = getString(R.string.age_must_be_morethan)
@@ -130,7 +156,7 @@ class RegisterActivity : ActivityBase() {
 //        val phoneUtils = PhoneNumberUtil.createInstance(getActiviy())
 
 //        val supportedRegions = phoneUtils.supportedRegions
-       // selectedCountryCode = phoneUtils.getCountryCodeForRegion(isoCode.toUpperCase())
+        // selectedCountryCode = phoneUtils.getCountryCodeForRegion(isoCode.toUpperCase())
     }
 
     private fun registerUser() {
@@ -144,7 +170,6 @@ class RegisterActivity : ActivityBase() {
 
             if (!isUser) {
                 numSeats = NumberHandler.arabicToDecimal(numSeatTxt.text.toString().trim()).toInt()
-                busName = NumberHandler.arabicToDecimal(busNameTxt.text.toString())
                 busNumber =
                     NumberHandler.arabicToDecimal(busNumberTxt.text.toString().trim()).toInt()
                 busColor = NumberHandler.arabicToDecimal(busColorTxt.text.toString())
@@ -164,7 +189,7 @@ class RegisterActivity : ActivityBase() {
             registerUserModel.password_confirm = AESCrypt.encrypt(passwordStr)
             registerUserModel.mobileWithCountry =
                 selectedCountryCode.toString().plus(registerUserModel.mobile)
-            registerUserModel.age = ageStr.toInt()
+            registerUserModel.age = ageNumber!!
             registerUserModel.fullName = fullNameStr
             registerUserModel.busLoading = numSeats
             registerUserModel.emptySeat = numSeats
@@ -227,12 +252,7 @@ class RegisterActivity : ActivityBase() {
                     fullNameInput,
                     NonEmptyRule(R.string.enter_fill_name),
                 )
-                .addField(
-                    ageInput,
-                    NonEmptyRule(R.string.enter_age),
 
-
-                    )
                 .addField(
                     mobileInput,
                     NonEmptyRule(R.string.enter_phone_number),
@@ -262,7 +282,7 @@ class RegisterActivity : ActivityBase() {
                     NonEmptyRule(R.string.enter_fill_name),
                 )
                 .addField(
-                    ageInput,
+                    ageTxt,
                     NonEmptyRule(R.string.enter_age),
                 )
 
@@ -271,11 +291,7 @@ class RegisterActivity : ActivityBase() {
                     NonEmptyRule(R.string.enter_bus_number),
 
                     )
-                .addField(
-                    busNameInput,
-                    NonEmptyRule(R.string.enter_bus_name),
 
-                    )
                 .addField(
                     busModelInput,
                     NonEmptyRule(R.string.enter_bus_model),
@@ -330,5 +346,12 @@ class RegisterActivity : ActivityBase() {
                 }
         }
     }
+
+
+
+
+
+
+
 
 }

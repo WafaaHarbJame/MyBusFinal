@@ -69,6 +69,8 @@ class MainActivity : ActivityBase() {
 
         if (userType == 1) {
             finishOrderBtn.visibility = visible
+            ordersBtn.visibility = gone
+
         } else if (userType == 2) {
             finishOrderBtn.visibility = gone
             ordersBtn.visibility = gone
@@ -150,7 +152,7 @@ class MainActivity : ActivityBase() {
             R.id.ordersBtn -> {
 
                 newFragment = if (userType == 1) {
-                    AllOrderClientFragment()
+                    AllDriverRequestsFragment()
                 } else {
                     AllDriverRequestsFragment()
 

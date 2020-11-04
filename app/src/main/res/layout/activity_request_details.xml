@@ -86,6 +86,24 @@
             android:textColor="@color/white"
             android:textSize="@dimen/_13ssp"
             android:visibility="gone" />
+        <com.mybus.mybusapp.spichalViews.STextView
+            android:id="@+id/payBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center_horizontal"
+            android:layout_marginStart="@dimen/_15sdp"
+            android:layout_marginEnd="@dimen/_15sdp"
+            android:layout_marginBottom="@dimen/_15sdp"
+            android:background="@drawable/circle_corner_primary_dark_fill"
+            android:gravity="center"
+            android:paddingStart="@dimen/_20sdp"
+            android:paddingTop="@dimen/_10sdp"
+            android:paddingEnd="@dimen/_20sdp"
+            android:paddingBottom="@dimen/_10sdp"
+            android:text="@string/pay"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_13ssp"
+            android:visibility="gone" />
     </FrameLayout>
 
 </LinearLayout>

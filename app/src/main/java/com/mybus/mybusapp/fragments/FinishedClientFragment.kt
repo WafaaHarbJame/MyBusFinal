@@ -13,9 +13,6 @@ import com.mybus.mybusapp.apiHandlers.DataFetcherCallBack
 import com.mybus.mybusapp.classes.Constants
 import com.mybus.mybusapp.classes.UtilityApp
 import com.mybus.mybusapp.models.RequestModel
-import kotlinx.android.synthetic.main.fragment_all_client.*
-import kotlinx.android.synthetic.main.fragment_all_client.dataLY
-import kotlinx.android.synthetic.main.fragment_all_client.swipeDataContainer
 import kotlinx.android.synthetic.main.fragment_current.rv
 import kotlinx.android.synthetic.main.fragment_finish.*
 import kotlinx.android.synthetic.main.layout_fail_get_data.*

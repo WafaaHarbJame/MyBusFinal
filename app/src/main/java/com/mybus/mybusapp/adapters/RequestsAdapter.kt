@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.awesomedialog.blennersilva.awesomedialoglibrary.AwesomeSuccessDialog
 import com.mybus.mybusapp.R
 import com.mybus.mybusapp.Utils.MapHandler
-import com.mybus.mybusapp.activities.MapActivity
 import com.mybus.mybusapp.activities.RequestDetailsActivity
 import com.mybus.mybusapp.apiHandlers.DataFeacher
 import com.mybus.mybusapp.apiHandlers.DataFetcherCallBack
@@ -80,7 +79,7 @@ class RequestsAdapter(
                     orderStatusBtn.visibility = View.VISIBLE
                     orderStatusBtn.text = activity?.getString(R.string.pending)
                     orderStatusBtn.background =
-                        ContextCompat.getDrawable(activity!!, R.drawable.circle_corne_order_pending)
+                      ContextCompat.getDrawable(activity!!, R.drawable.circle_corne_order_pending)
 
                     if (user?.type == 2) {
                         acceptBut.visibility = View.VISIBLE
@@ -153,16 +152,13 @@ class RequestsAdapter(
 
                 if (requestModel.requestStatus != 1 && UtilityApp.userData?.type == 1)
                     return@setOnClickListener
-
                 val intent = Intent(activity, RequestDetailsActivity::class.java)
-//
                 intent.putExtra(Constants.KEY_DESTINATION_LAT, requestModel.getDestinationLat())
                 intent.putExtra(Constants.KEY_DESTINATION_LNG, requestModel.getDestinationLng())
                 intent.putExtra(Constants.KEY_LAT, requestModel.getLat())
                 intent.putExtra(Constants.KEY_LNG, requestModel.getLng())
                 intent.putExtra(Constants.KEY_DRIVER_ID, requestModel.getDriver_id())
                 intent.putExtra(Constants.KEY_ORDER_ID, requestModel.getOrderId())
-
                 activity?.startActivity(intent)
 
             }

@@ -18,7 +18,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="jar:file:/C:/Program%20Files/Android/Android%20Studio2/plugins/android/lib/android.jar!/images/material/icons/materialicons/location_on/baseline_location_on_24.xml" />
+                                      <entry key="url" value="file:/E:/Sdk/icons/material/materialicons/close/baseline_close_24.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -29,7 +29,7 @@
                         <option name="values">
                           <map>
                             <entry key="color" value="2e3649" />
-                            <entry key="outputName" value="ic_map_marker" />
+                            <entry key="outputName" value="cancel" />
                             <entry key="sourceFile" value="D:\Android Projects\My Bus\iconfinder_Rounded-31_2024644.svg" />
                           </map>
                         </option>

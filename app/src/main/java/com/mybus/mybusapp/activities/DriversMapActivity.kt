@@ -282,7 +282,7 @@ class DriversMapActivity : ActivityBase(), OnMapReadyCallback {
                     allDriversModel.getLat(),
                     allDriversModel.getLng(),
                     allDriversModel.getFullName(), allDriversModel.getAddress(),
-                    R.drawable.ic_map_driver
+                    R.drawable.bus_icon1
                 )!!
             )
         }

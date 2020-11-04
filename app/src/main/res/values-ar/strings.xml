@@ -35,12 +35,12 @@
     <string name="login">Login</string>
     <string name="not_have_account_q">Not Have Account?</string>
     <string name="forget_password">Forget Password</string>
-    <string name="enter_mobile_number_to_reset_password">Enter mobile number to reset password</string>
+    <string name="enter_mobile_number_to_reset_password">Enter mobile number to reset the  password</string>
     <string name="reset_password">Reset Password</string>
     <string name="enter_confirm_code_and_new_password">Enter confirm code and new password</string>
     <string name="confirm_code">Confirm Code</string>
     <string name="settings">Settings</string>
-    <string name="age">Age</string>
+    <string name="age">Date Birth</string>
     <string name="success_send">Success Send</string>
     <string name="finish">Finished</string>
     <string name="success_send_question_will_replay_soon">Success send question, will replay to you soon</string>
@@ -51,7 +51,7 @@
     <string name="new_password">New Password</string>
     <string name="save">Save</string>
     <string name="please_wait_register">Please wait register ...</string>
-    <string name="please_enter_code_sent_mobile">please enter code sent to mobile</string>
+    <string name="please_enter_code_sent_mobile">please enter code the  sent to  your mobile</string>
     <string name="resend_confirm_code">Don\'t receive the code </string>
     <string name="confirm_now">Confirm Now</string>
     <string name="please_wait_sending">Please wait sending ...</string>
@@ -66,14 +66,15 @@
     <string name="fail_to_change_password">Fail to change password</string>
     <string name="success_change_password">Success change password</string>
     <string name="current_password_wrong">Current password not correct</string>
-    <string name="enter_age">Enter Age</string>
+    <string name="enter_age">Enter Date Birth</string>
     <string name="age_must_be_morethan">Age Must me  more than 18</string>
     <string name="orders">My Orders</string>
     <string name="about_app">About App</string>
     <string name="user">User</string>
     <string name="you_now_register_as">You Now Register As</string>
-    <string name="numPassenger">The number of bus Seates</string>
-    <string name="enter_number_passenger">Enter The number of bus seats</string>
+    <string name="numPassenger">Bus Capacity </string>
+    <string name="enter_number_passenger">Enter Bus Capacity</string>
+
     <string name="select_location">Select Location</string>
     <string name="some_permission_denied">Some permission denied</string>
     <string name="my_location">My Location</string>
@@ -111,5 +112,12 @@
     <string name="make_order_sucess">Make Order Sucess</string>
     <string name="no_order">No Order</string>
     <string name="num_empty_seat">Number of empty seat</string>
+    <string name="date_birth">Date Birth</string>
+    <string name="update_profile">Update Profilr</string>
+    <string name="success_edit">Success Edit</string>
+    <string name="fail_to_edit">fail to edit</string>
+    <string name="pay">Pay</string>
+    <string name="payment">Payment</string>
+    <string name="succes_pay">Paid Succesfully</string>
 
 </resources>

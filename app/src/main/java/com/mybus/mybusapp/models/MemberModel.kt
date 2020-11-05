@@ -26,6 +26,8 @@ class MemberModel : Serializable {
     var busName: String? = ""
     var busColor: String? = ""
     var busModel: String? = ""
+    var email: String? = ""
+
 
     fun getIsVerified(): Boolean {
 

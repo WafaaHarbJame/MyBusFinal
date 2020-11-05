@@ -14,9 +14,6 @@ import com.mybus.mybusapp.classes.GlobalData
 import com.mybus.mybusapp.classes.UtilityApp
 import com.mybus.mybusapp.models.MemberModel
 import kotlinx.android.synthetic.main.activity_profile.*
-import kotlinx.android.synthetic.main.activity_register.*
-import kotlinx.android.synthetic.main.activity_register.ageTxt
-import kotlinx.android.synthetic.main.activity_register.fullNameTxt
 import java.util.*
 
 class ProfileActivity : ActivityBase() {
@@ -27,6 +24,8 @@ class ProfileActivity : ActivityBase() {
     var monthStr: Int? = 0
     var dayStr: Int? = 0
     private var ageNumber: Int? = 0
+    private var changeAge: Boolean=false
+    var email :String? = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,15 +53,15 @@ class ProfileActivity : ActivityBase() {
         }
 
 
-        ageTxt.setOnClickListener {
-
+        ageEt.setOnClickListener {
+            changeAge=true;
             val dpd = DatePickerDialog(this, { view2, thisYear, thisMonth, thisDay ->
                 monthStr = thisMonth + 1
                 dayStr = thisDay
                 yearStr = thisYear
-                ageTxt.setText(" "+ monthStr + "/" + dayStr + "/" + yearStr)
-
+                ageEt.setText(" "+ monthStr + "/" + dayStr + "/" + yearStr)
                 ageNumber = DateHandler.getAge(yearStr.toString().toInt(), monthStr.toString().toInt(), dayStr.toString().toInt()).toInt()
+
                 val newDate: Calendar = Calendar.getInstance()
                 newDate.set(thisYear, thisMonth, thisDay)
             }, yearStr!!, monthStr!!, dayStr!!)
@@ -72,6 +71,12 @@ class ProfileActivity : ActivityBase() {
         }
 
         updateBtn.setOnClickListener {
+            if(userType==1){
+                updateProfile()
+            }
+            else{
+                updateDriverProfile()
+            }
 
         }
 
@@ -88,13 +93,14 @@ class ProfileActivity : ActivityBase() {
 
                 if (func == Constants.SUCCESS) {
                     val user = obj as MemberModel
-                    fullNameTxt.text= Editable.Factory.getInstance().newEditable(user.fullName)
-                    ageTxt.text= Editable.Factory.getInstance().newEditable(user.age.toString())
+                    nameEt.text= Editable.Factory.getInstance().newEditable(user.fullName)
+                    ageEt.text= Editable.Factory.getInstance().newEditable(user.age.toString())
                     addressTxt.text= Editable.Factory.getInstance().newEditable(user.address)
                     busModeTxt.text= Editable.Factory.getInstance().newEditable(user.busModel)
                     busColoTxt.text= Editable.Factory.getInstance().newEditable(user.busColor)
                     busCapacityTv.text= Editable.Factory.getInstance().newEditable(user.busLoading.toString())
                     busNumbTxt.text= Editable.Factory.getInstance().newEditable(user.busNumber.toString())
+                    emailTxt.text=Editable.Factory.getInstance().newEditable(user.email.toString())
                 }
 
 
@@ -103,6 +109,18 @@ class ProfileActivity : ActivityBase() {
     }
 
     private fun updateProfile() {
+        val address=addressTxt.text.toString()
+        val name=nameEt.text.toString()
+        var age:Int
+        val email=emailTxt.text.toString()
+
+        if(changeAge){
+            age= ageNumber!!
+        }
+        else{
+            age= ageEt.text.toString().toInt()
+
+        }
 
         try {
 
@@ -127,7 +145,7 @@ class ProfileActivity : ActivityBase() {
 
 
                 }
-            }).updateUserData("","")
+            }).updateUserData(UtilityApp.userData!!.mobileWithCountry,name,address,age,email)
 
         } catch (e: Exception) {
 
@@ -135,6 +153,54 @@ class ProfileActivity : ActivityBase() {
         }
     }
 
+    private fun updateDriverProfile() {
+        val address=addressTxt.text.toString()
+        val name=nameEt.text.toString()
+        var age:Int
+        val busColor=busColoTxt.text.toString()
+        val busModel=busModeTxt.text.toString()
+        val busNumber=busNumbTxt.text.toString().toInt()
+        val busCapacity=busCapacityTv.text.toString().toInt()
+        val email=emailTxt.text.toString()
+
+        if(changeAge){
+            age= ageNumber!!
+        }
+        else{
+            age= ageEt.text.toString().toInt()
+
+        }
+
+        try {
+
+            DataFeacher(object : DataFetcherCallBack {
+                override fun Result(obj: Any?, func: String?, IsSuccess: Boolean) {
+                    GlobalData.progressDialogHide()
+
+                    if (func == Constants.SUCCESS) {
+                        GlobalData.successDialog(
+                            getActiviy(),
+                            R.string.update_profile,
+                            getString(R.string.success_edit)
+                        )
+
+                    } else {
+                        GlobalData.errorDialog(
+                            getActiviy(),
+                            R.string.update_profile,
+                            getString(R.string.fail_to_edit)
+                        )
+                    }
+
+
+                }
+            }).updateDriverData(UtilityApp.userData!!.mobileWithCountry,name,address,age,busNumber,busColor,busModel,busCapacity,email)
+
+        } catch (e: Exception) {
+
+            e.printStackTrace()
+        }
+    }
 
 
 }

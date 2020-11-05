@@ -17,7 +17,9 @@ import com.mybus.mybusapp.classes.Constants
 import com.mybus.mybusapp.classes.GlobalData
 import com.mybus.mybusapp.classes.UtilityApp
 import com.mybus.mybusapp.fragments.*
+import com.mybus.mybusapp.models.AllDriversModel
 import com.mybus.mybusapp.models.MemberModel
+import com.mybus.mybusapp.models.RegisterUserModel
 import kotlinx.android.synthetic.main.layout_bottom_nav.*
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
@@ -62,10 +64,9 @@ class MainActivity : ActivityBase() {
 
         userType = user?.type!!
 
-//        if (userType == 0) {
-//            getData()
-//
-//        }
+       // getData()
+
+
 
         if (userType == 1) {
             finishOrderBtn.visibility = visible
@@ -260,28 +261,19 @@ class MainActivity : ActivityBase() {
 
 
     private fun getData() {
-        val mobile = UtilityApp.userData?.mobileWithCountry
+        var allDrivesList: MutableList<RegisterUserModel>? = null
+
         DataFeacher(object : DataFetcherCallBack {
             override fun Result(obj: Any?, func: String?, IsSuccess: Boolean) {
 
                 if (func == Constants.SUCCESS) {
-                    UtilityApp.userData = obj as MemberModel?
-                    userType = UtilityApp.userData!!.type
-                    if (userType == 1) {
-                        finishOrderBtn.visibility = visible
-                        newFragment = HomeClientFragment()
-
-                    } else {
-                        finishOrderBtn.visibility = gone
-                        newFragment = HomeDriverFragment()
-
-                    }
-
+                    allDrivesList = obj as MutableList<RegisterUserModel>?
+                    Log.i("TAG", "Log getAllAccount"+ allDrivesList!![0].mobileWithCountry)
 
                 }
 
             }
-        }).getMyAccount(mobile!!)
+        }).getAllAccount()
     }
 
 }

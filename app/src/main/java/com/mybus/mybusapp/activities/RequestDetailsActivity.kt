@@ -281,10 +281,10 @@ class RequestDetailsActivity : ActivityBase(), OnMapReadyCallback {
                 if (error != null)
                     return@addSnapshotListener
 
-                val requestStatus = value!!.getLong("requestStatus")
+                val requestStatus = value!!.getLong("requestStatus")?.toInt()
                 println("Log payNow requestStatus $requestStatus")
 
-                if (requestStatus!! == 3) {
+                if (requestStatus!! ==3) {
                     payBtn.visibility = visible
                 } else {
                     payBtn.visibility = gone

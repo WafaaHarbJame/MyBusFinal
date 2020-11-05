@@ -1,17 +1,15 @@
 package com.mybus.mybusapp.activities
 
-import android.annotation.SuppressLint
 import android.app.DatePickerDialog
-import android.app.Dialog
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.telephony.TelephonyManager
-import android.text.Editable
 import android.util.Log
 import android.view.View
 import android.widget.DatePicker
 import androidx.fragment.app.DialogFragment
+import com.github.dhaval2404.form_validation.rule.EmailRule
 import com.github.dhaval2404.form_validation.rule.EqualRule
 import com.github.dhaval2404.form_validation.rule.NonEmptyRule
 import com.github.dhaval2404.form_validation.validation.FormValidator
@@ -53,6 +51,7 @@ class RegisterActivity : ActivityBase() {
      var yearStr: Int? = 0
      var monthStr: Int? = 0
      var dayStr: Int? = 0
+    var email :String? = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -165,8 +164,9 @@ class RegisterActivity : ActivityBase() {
 
             val mobileStr = NumberHandler.arabicToDecimal(mobileTxt.text.toString())
             val passwordStr = NumberHandler.arabicToDecimal(passwordTxt.text.toString())
-            val fullNameStr = NumberHandler.arabicToDecimal(fullNameTxt.text.toString())
+            val fullNameStr = NumberHandler.arabicToDecimal(NameTxt.text.toString())
             val ageStr = NumberHandler.arabicToDecimal(ageTxt.text.toString().trim())
+            val emailStr=NumberHandler.arabicToDecimal(emailTxt.text.toString())
 
             if (!isUser) {
                 numSeats = NumberHandler.arabicToDecimal(numSeatTxt.text.toString().trim()).toInt()
@@ -202,6 +202,7 @@ class RegisterActivity : ActivityBase() {
             registerUserModel.busColor = busColor
             registerUserModel.busName = busName
             registerUserModel.busNumber = busNumber
+            registerUserModel.email=emailStr
 
 
             GlobalData.progressDialog(
@@ -251,6 +252,13 @@ class RegisterActivity : ActivityBase() {
                 .addField(
                     fullNameInput,
                     NonEmptyRule(R.string.enter_fill_name),
+                )
+
+                .addField(
+                    emailInput,
+                    NonEmptyRule(R.string.ENTER_EMAIL),
+                    EmailRule(R.string.enter_vaild_email)
+
                 )
 
                 .addField(
@@ -317,6 +325,12 @@ class RegisterActivity : ActivityBase() {
 
                 )
 
+                .addField(
+                    emailInput,
+                    NonEmptyRule(R.string.ENTER_EMAIL),
+                    EmailRule(R.string.enter_vaild_email)
+
+                )
                 .addField(
                     passwordInput,
                     NonEmptyRule(R.string.enter_password)

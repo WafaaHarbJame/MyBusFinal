@@ -32,6 +32,7 @@ public class RegisterUserModel implements Serializable {
     public String busName;
     public String busColor;
     public String busModel;
+    public String email;
 
 
 

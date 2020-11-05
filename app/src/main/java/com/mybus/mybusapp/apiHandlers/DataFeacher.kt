@@ -29,6 +29,8 @@ class DataFeacher(callBack: DataFetcherCallBack?) {
         Log.i(TAG, "Log loginHandle")
         Log.i(TAG, "Log mobile " + memberModel?.mobile)
         Log.i(TAG, "Log password " + memberModel?.password)
+        Log.i(TAG, "Log mobileWithCountry " + memberModel?.mobileWithCountry)
+
         val phoneNumber = memberModel?.mobileWithCountry
         fireStoreDB?.collection(ApiUrl.Users.name)?.document(phoneNumber!!)?.get()
             ?.addOnSuccessListener { document ->
@@ -481,6 +483,28 @@ class DataFeacher(callBack: DataFetcherCallBack?) {
 
     }
 
+    fun getAllAccount() {
+        Log.i(TAG, "Log getAllAccount")
+        fireStoreDB?.collection(ApiUrl.Users.name)?.whereEqualTo("email", "wafaajame@gmail.com")
+            ?.get()?.addOnCompleteListener {
+                if (it.isSuccessful) {
+                    val query = it.result
+                    val allAccountList = mutableListOf<RegisterUserModel>()
+                    for (document in query!!) {
+                        val allDriversModel = document?.toObject(RegisterUserModel::class.java)
+                        allAccountList.add(allDriversModel!!)
+                    }
+
+                    dataFetcherCallBack?.Result(allAccountList, Constants.SUCCESS, true)
+                } else {
+                    it.exception?.printStackTrace()
+                }
+
+            }
+
+    }
+
+
     fun orderHandler(requestModel: MutableMap<String, Any?>) {
         Log.i(TAG, "Log orderHandler")
         Log.i(TAG, "Log clientId ${requestModel["clientId"]}")
@@ -499,11 +523,27 @@ class DataFeacher(callBack: DataFetcherCallBack?) {
 
     }
 
-    fun updateUserData(mobile: String?,address: String) {
+    fun updateUserData(mobile: String?,name: String?,address: String,age:Int,email:String) {
+
+        RootApplication.fireStoreDB?.collection(ApiUrl.Users.name)?.document(mobile!!)
+            ?.update("fullName", name,"address",address,"age",age,"email",email)?.addOnSuccessListener {
+                dataFetcherCallBack?.Result("", Constants.SUCCESS, true)
+
+            }?.addOnFailureListener { e ->
+                dataFetcherCallBack?.Result("", Constants.FAIL_DATA, true)
+            }
+
 
     }
 
-    fun updateDriverData(mobile: String?, address: String ) {
+    fun updateDriverData(mobile: String?,name: String?,address: String,age:Int,busNumber:Int,busColor:String,busModel:String,busCapacity:Int,email:String) {
+        RootApplication.fireStoreDB?.collection(ApiUrl.Users.name)?.document(mobile!!)
+            ?.update("fullName", name,"address",address,"age",age,"busModel",busModel,"busColor",busColor,"busLoading",busCapacity,"busNumber",busNumber,"email",email)?.addOnSuccessListener {
+                dataFetcherCallBack?.Result("", Constants.SUCCESS, true)
+
+            }?.addOnFailureListener { e ->
+                dataFetcherCallBack?.Result("", Constants.FAIL_DATA, true)
+            }
 
     }
 

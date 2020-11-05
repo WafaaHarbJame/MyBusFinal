@@ -52,6 +52,37 @@
                 android:textColor="@color/colorPrimary"
                 android:textSize="@dimen/_13ssp" />
 
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_15sdp"
+                android:layout_marginEnd="@dimen/_15sdp"
+                android:layout_marginBottom="@dimen/_30sdp"
+                android:orientation="horizontal">
+
+                <com.mybus.mybusapp.spichalViews.SRadioButton
+                    android:id="@+id/mobileRB"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/sign_in_with_mobile"
+                    android:textColor="@color/colorAccent2"
+                    android:textSize="@dimen/_12ssp"
+                    android:checked="true"
+                    android:theme="@style/RadioButtonStyle" />
+
+                <com.mybus.mybusapp.spichalViews.SRadioButton
+                    android:id="@+id/emailRB"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/sign_in_with_email"
+                    android:textColor="@color/colorAccent2"
+                    android:textSize="@dimen/_12ssp"
+                    android:theme="@style/RadioButtonStyle" />
+
+            </RadioGroup>
+
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -59,6 +90,7 @@
                 android:layout_marginEnd="@dimen/_15sdp"
                 android:layout_marginBottom="@dimen/_10sdp"
                 android:gravity="center_vertical"
+                android:id="@+id/mobileLy"
                 android:layoutDirection="ltr"
                 android:orientation="horizontal">
 
@@ -105,7 +137,26 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
+            <com.mybus.mybusapp.spichalViews.STextInputLayout
+                android:id="@+id/emailInput"
+                style="@style/TextInputStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_15sdp"
+                android:layout_marginEnd="@dimen/_15sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:visibility="gone"
+                android:hint="@string/email"
+                app:layout_constraintTop_toBottomOf="@id/helloLabel">
 
+                <com.mybus.mybusapp.spichalViews.SEditText
+                    android:id="@+id/emailTxt"
+                    style="@style/editTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textEmailAddress" />
+
+            </com.mybus.mybusapp.spichalViews.STextInputLayout>
             <com.mybus.mybusapp.spichalViews.STextInputLayout
                 android:id="@+id/passwordInput"
                 style="@style/TextInputStyle"
@@ -125,6 +176,7 @@
                     android:inputType="textPassword" />
 
             </com.mybus.mybusapp.spichalViews.STextInputLayout>
+
 
             <com.mybus.mybusapp.spichalViews.STextView
                 android:id="@+id/forgetPasswordBtn"

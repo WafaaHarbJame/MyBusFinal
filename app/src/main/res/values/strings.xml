@@ -113,7 +113,7 @@
     <string name="accept">accept</string>
     <string name="reject">Reject</string>
     <string name="rejecttion">Rejected</string>
-    <string name="sucess_change_satus">Sucess</string>
+    <string name="sucess_change_satus">Success</string>
     <string name="change_order_status">Change Order Status</string>
     <string name="accepted">Accepted</string>
     <string name="order_details">Order Deatils</string>
@@ -122,19 +122,25 @@
     <string name="fail_to_order">fail_to_order</string>
     <string name="make_order">Make Order</string>
     <string name="please_wait_to_make_order">Please wait to make the order</string>
-    <string name="make_order_sucess">Make Order Sucess</string>
+    <string name="make_order_sucess">Make Order Success</string>
     <string name="no_data">No Data</string>
     <string name="no_order">No Order</string>
     <string name="pending">Pending</string>
     <string name="num_empty_seat">Number of empty seat</string>
     <string name="date_birth">Date Birth</string>
-    <string name="update_profile">Update Profilr</string>
+    <string name="update_profile">Update Profile</string>
     <string name="success_edit">Success Edit</string>
     <string name="fail_to_edit">fail to edit</string>
     <string name="pay">Pay</string>
     <string name="payWay">Pay Way</string>
     <string name="payment">Payment</string>
-    <string name="succes_pay">Paid Succesfully</string>
+    <string name="succes_pay">Paid Successfully</string>
+    <string name="address">Address</string>
+    <string name="ENTER_EMAIL">Enter Email</string>
+    <string name="enter_vaild_email">Enter Valid Email</string>
+    <string name="email">"Email "</string>
+    <string name="sign_in_with_email">Sign in by email</string>
+    <string name="sign_in_with_mobile">Sign In by Mobile</string>
 
 
 </resources>

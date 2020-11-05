@@ -119,5 +119,9 @@
     <string name="pay">Pay</string>
     <string name="payment">Payment</string>
     <string name="succes_pay">Paid Succesfully</string>
-
+    <string name="address">Address</string>
+    <string name="ENTER_EMAIL">Enter Email</string>
+    <string name="enter_vaild_email">Enter Valid Email</string>
+    <string name="email">"Email "</string>
+    <string name="sign_in_with_mobile">Sign In with Mobile</string>
 </resources>

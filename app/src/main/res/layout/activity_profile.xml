@@ -53,7 +53,7 @@
                 app:layout_constraintTop_toBottomOf="@id/helloLabel">
 
                 <com.mybus.mybusapp.spichalViews.SEditText
-                    android:id="@+id/fullNameTxt"
+                    android:id="@+id/nameEt"
                     style="@style/editTextStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -63,6 +63,25 @@
 
 
             <com.mybus.mybusapp.spichalViews.STextInputLayout
+                android:id="@+id/emailInput"
+                style="@style/TextInputStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_15sdp"
+                android:layout_marginEnd="@dimen/_15sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:hint="@string/email"
+                app:layout_constraintTop_toBottomOf="@id/helloLabel">
+
+                <com.mybus.mybusapp.spichalViews.SEditText
+                    android:id="@+id/emailTxt"
+                    style="@style/editTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textEmailAddress" />
+
+            </com.mybus.mybusapp.spichalViews.STextInputLayout>
+            <com.mybus.mybusapp.spichalViews.STextInputLayout
                 android:id="@+id/addressInput"
                 style="@style/TextInputStyle"
                 android:layout_width="match_parent"
@@ -70,7 +89,7 @@
                 android:layout_marginStart="@dimen/_15sdp"
                 android:layout_marginEnd="@dimen/_15sdp"
                 android:layout_marginBottom="@dimen/_10sdp"
-                android:hint="@string/no_address"
+                android:hint="@string/address"
                 app:layout_constraintTop_toBottomOf="@id/helloLabel">
 
                 <com.mybus.mybusapp.spichalViews.SEditText
@@ -82,7 +101,15 @@
 
             </com.mybus.mybusapp.spichalViews.STextInputLayout>
             <com.mybus.mybusapp.spichalViews.STextView
-                android:id="@+id/ageTxt"
+                android:layout_marginStart="@dimen/_15sdp"
+                android:layout_marginEnd="@dimen/_15sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/date_birth" />
+
+            <com.mybus.mybusapp.spichalViews.STextView
+                android:id="@+id/ageEt"
                 style="@style/editTextStyle"
                 android:layout_marginStart="@dimen/_15sdp"
                 android:layout_marginEnd="@dimen/_15sdp"

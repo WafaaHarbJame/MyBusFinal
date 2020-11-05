@@ -95,7 +95,7 @@
                 app:layout_constraintTop_toBottomOf="@id/helloLabel">
 
                 <com.mybus.mybusapp.spichalViews.SEditText
-                    android:id="@+id/fullNameTxt"
+                    android:id="@+id/NameTxt"
                     style="@style/editTextStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -103,6 +103,25 @@
 
             </com.mybus.mybusapp.spichalViews.STextInputLayout>
 
+            <com.mybus.mybusapp.spichalViews.STextInputLayout
+                android:id="@+id/emailInput"
+                style="@style/TextInputStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_15sdp"
+                android:layout_marginEnd="@dimen/_15sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:hint="@string/email"
+                app:layout_constraintTop_toBottomOf="@id/helloLabel">
+
+                <com.mybus.mybusapp.spichalViews.SEditText
+                    android:id="@+id/emailTxt"
+                    style="@style/editTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textEmailAddress" />
+
+            </com.mybus.mybusapp.spichalViews.STextInputLayout>
                 <com.mybus.mybusapp.spichalViews.STextView
                     android:id="@+id/ageTxt"
                     style="@style/editTextStyle"

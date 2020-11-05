@@ -9,6 +9,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.mybus.mybusapp.R
 import com.mybus.mybusapp.Utils.MapHandler
 import com.mybus.mybusapp.activities.DriversMapActivity
@@ -64,7 +66,8 @@ class HomeClientFragment : FragmentBase() {
 
         initData()
 
-        rv.layoutManager = GridLayoutManager(getActivity(), 1)
+        rv.isNestedScrollingEnabled = false
+        rv.layoutManager = LinearLayoutManager(getActivity())
 
 
         swipeDataContainer.setOnRefreshListener {
@@ -226,7 +229,7 @@ class HomeClientFragment : FragmentBase() {
                         UtilityApp.userData?.address = address
                         UtilityApp.userData?.lat = selectdLat
                         UtilityApp.userData?.lng = selectdLng
-                        UtilityApp.userData?.isSelectLocation=isSelectLocation
+                        UtilityApp.userData?.isSelectLocation = isSelectLocation
 
                         GlobalData.successDialog(
                             activity,
@@ -252,6 +255,7 @@ class HomeClientFragment : FragmentBase() {
 
         }
     }
+
     private fun getAllOrders(loading: Boolean) {
         if (loading) {
             loadingProgressLY.visibility = visible
@@ -277,14 +281,11 @@ class HomeClientFragment : FragmentBase() {
                         initAdapter()
 
                     } else {
-                        dataLY.visibility=gone
+                        dataLY.visibility = gone
                         noDataLY.visibility = visible
                         rv.visibility = gone
                     }
-                }
-
-
-                else {
+                } else {
                     failGetDataLY.visibility = visible
                     dataLY.visibility = gone
                 }
@@ -299,7 +300,6 @@ class HomeClientFragment : FragmentBase() {
         val adapter = RequestsAdapter(getActivity(), allRequestList)
         rv.adapter = adapter
     }
-
 
 
 }

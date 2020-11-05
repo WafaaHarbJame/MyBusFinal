@@ -17,12 +17,14 @@ object Constants {
     const val ICON_OLD_AWSM_FONT = "fontawesome-webfont.ttf"
     const val TIME_ZONE = "GMT+3"
     const val Paly_Link = "https://tjmeat.com/app"
+
     const val SUCCESS = "success"
     const val FAIL_DATA = "fail_data"
     const val USER_EXIST = "user_exist"
     const val ERROR_DATA = "error_data"
     const val NO_CONNECTION = "no_connection"
     const val PASSWORD_WRONG = "password_wrong"
+
     const val CURRENT = "upcoming"
     const val COMPLETED = "completed"
     const val ALL = "all"

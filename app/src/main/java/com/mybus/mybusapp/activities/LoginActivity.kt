@@ -58,7 +58,7 @@ class LoginActivity : ActivityBase() {
     var mobile = ""
     var selectedCountryCode = 966
     var countryCodeDialog: CountryCodeDialog? = null
-    var emailLog:Boolean=false
+    var emailLog: Boolean = false
 
     companion object {
         const val REQUEST_LOGIN = 110
@@ -76,18 +76,18 @@ class LoginActivity : ActivityBase() {
         }
 
         mobileRB.setOnClickListener {
-           emailTxt.visibility=gone
-            emailInput.visibility=gone
-            mobileLy.visibility=visible
-            emailLog=false
+            emailTxt.visibility = gone
+            emailInput.visibility = gone
+            mobileLy.visibility = visible
+            emailLog = false
 
         }
 
         emailRB.setOnClickListener {
-            emailTxt.visibility=visible
-            emailInput.visibility=visible
-            mobileLy.visibility=gone
-            emailLog=true
+            emailTxt.visibility = visible
+            emailInput.visibility = visible
+            mobileLy.visibility = gone
+            emailLog = true
 
         }
 
@@ -111,8 +111,12 @@ class LoginActivity : ActivityBase() {
 
         loginBtn.setOnClickListener {
 
-            if (isValidForm())
-                loginUser()
+            if (isValidForm()) {
+                if (emailLog)
+                    checkEmail()
+                else
+                    loginUser()
+            }
 
 
         }
@@ -130,9 +134,6 @@ class LoginActivity : ActivityBase() {
             startActivity(intent)
 
         }
-
-
-
 
 
         getFCMToken()
@@ -174,51 +175,30 @@ class LoginActivity : ActivityBase() {
 //        val phoneUtils = PhoneNumberUtil.createInstance(getActiviy())
 
 //        val supportedRegions = phoneUtils.supportedRegions
-      //  selectedCountryCode = phoneUtils.getCountryCodeForRegion(isoCode.toUpperCase())
+        //  selectedCountryCode = phoneUtils.getCountryCodeForRegion(isoCode.toUpperCase())
     }
 
 
     private fun loginUser() {
         val memberModel = RegisterUserModel()
-        var userList: MutableList<RegisterUserModel>?=null
-
 
         try {
-            if(emailLog){
-                DataFeacher(object : DataFetcherCallBack {
-                        override fun Result(obj: Any?, func: String?, IsSuccess: Boolean) {
-                            if (func == Constants.SUCCESS) {
-                                userList = obj as MutableList<RegisterUserModel>?
 
-                                Log.i("TAG", "Log getAllAccount"+ userList!![0].mobileWithCountry.toString())
-                                mobileTxt.text= Editable.Factory.getInstance().newEditable(userList!![0].mobile)
-                                countryCodeTxt.text=Editable.Factory.getInstance().newEditable(userList!![0].countryCode.toString())
-                                selectedCountryCode=userList!![0].countryCode
+            val mobileStr = NumberHandler.arabicToDecimal(mobileTxt.text.toString())
+            val passwordStr = NumberHandler.arabicToDecimal(passwordTxt.text.toString())
 
+//            if (!PhoneHandler.isValidPhoneNumber(mobileStr)) {
+//                throw  Exception("phone")
+//            }
 
-                            }
+            memberModel.countryCode = selectedCountryCode
+            memberModel.mobile =
+                if (mobileStr.startsWith("0")) mobileStr.replaceFirst(
+                    "0",
+                    ""
+                ) else mobileStr
 
-                        }
-                    }).getAllAccount()
-
-
-
-                }
-
-            var mobileStr = NumberHandler.arabicToDecimal(mobileTxt.text.toString())
-            var passwordStr = NumberHandler.arabicToDecimal(passwordTxt.text.toString())
-
-            if (!PhoneHandler.isValidPhoneNumber(mobileStr)) {
-                throw  Exception("phone")
-            }
-                memberModel.countryCode = selectedCountryCode
-                memberModel.mobile =
-                    if (mobileStr.startsWith("0")) mobileStr.replaceFirst(
-                        "0",
-                        ""
-                    ) else mobileStr
-
-            memberModel.isVerified = false
+//            memberModel.isVerified = false
             memberModel.password = AESCrypt.encrypt(passwordStr)
             memberModel.mobileWithCountry = selectedCountryCode.toString().plus(memberModel.mobile)
 
@@ -233,19 +213,22 @@ class LoginActivity : ActivityBase() {
                     GlobalData.progressDialogHide()
                     val document: DocumentSnapshot? = obj as DocumentSnapshot
                     if (document != null) {
-                  Log.d(TAG, "DocumentSnapshot data: ${document.data}")
+                        Log.d(TAG, "DocumentSnapshot data: ${document.data}")
 
                         val user = document.toObject(MemberModel::class.java)
                         val password = user?.password
 
-                        val isVerified=document.get("isVerified") as Boolean
+                        val isVerified = document.get("isVerified") as Boolean
 
                         val fullName = document.get("fullName")
                         Log.d(TAG, "DocumentSnapshot data1: $fullName")
-                        Log.d(TAG, "DocumentSnapshot isVerified: ${document.getBoolean("isVerified")}")
+                        Log.d(
+                            TAG,
+                            "DocumentSnapshot isVerified: ${document.getBoolean("isVerified")}"
+                        )
 
                         if (password == memberModel.password) {
-                            if (isVerified == true) {
+                            if (isVerified) {
                                 UtilityApp.userData = user
                                 val intent = Intent(getActiviy(), MainActivity::class.java)
                                 intent.flags =
@@ -287,6 +270,51 @@ class LoginActivity : ActivityBase() {
         }
     }
 
+    private fun checkEmail() {
+
+        val emailStr = NumberHandler.arabicToDecimal(emailTxt.text.toString())
+        val passwordStr = NumberHandler.arabicToDecimal(passwordTxt.text.toString())
+
+//        if (emailLog) {
+        GlobalData.progressDialog(
+            getActiviy(), R.string.login,
+            R.string.please_wait_login
+        )
+        DataFeacher(object : DataFetcherCallBack {
+            override fun Result(obj: Any?, func: String?, IsSuccess: Boolean) {
+                GlobalData.progressDialogHide()
+                if (func == Constants.SUCCESS) {
+
+                    val user = obj as RegisterUserModel?
+
+//                    Log.i(
+//                        "TAG",
+//                        "Log getAllAccount" + user?.mobileWithCountry.toString()
+//                    )
+
+                    selectedCountryCode = user?.countryCode!!
+
+                    mobileTxt.setText(user.mobile)
+                    countryCodeTxt.text = user.countryCode.toString()
+
+                    loginUser()
+
+                } else {
+                    GlobalData.errorDialog(
+                        getActiviy(),
+                        R.string.login,
+                        getString(R.string.mobile_password_not_match)
+                    )
+                }
+
+            }
+        }).getAccountByEmail(emailStr)
+
+
+//        }
+
+    }
+
     private fun isValidForm(): Boolean {
 
         if (emailLog) {
@@ -309,8 +337,7 @@ class LoginActivity : ActivityBase() {
 
                 }
                 .validate()
-        }
-        else {
+        } else {
             return FormValidator.getInstance()
                 .addField(
                     mobileInput,
@@ -378,25 +405,25 @@ class LoginActivity : ActivityBase() {
     }
 
 
-    private fun getData() {
-        var allDrivesList: MutableList<RegisterUserModel>? = null
-        DataFeacher(object : DataFetcherCallBack {
-            override fun Result(obj: Any?, func: String?, IsSuccess: Boolean) {
-
-                if (func == Constants.SUCCESS) {
-                    allDrivesList = obj as MutableList<RegisterUserModel>?
-                    Log.i("TAG", "Log getAllAccount"+ allDrivesList!![0].mobileWithCountry)
-                    mobileTxt.text= Editable.Factory.getInstance().newEditable(allDrivesList!![0].mobile)
-                    countryCodeTxt.text=Editable.Factory.getInstance().newEditable(allDrivesList!![0].countryCode.toString())
-                    selectedCountryCode=allDrivesList!![0].countryCode
-
-                }
-
-            }
-        }).getAllAccount()
-    }
-
-
+//    private fun getData() {
+//        var allDrivesList: MutableList<RegisterUserModel>? = null
+//        DataFeacher(object : DataFetcherCallBack {
+//            override fun Result(obj: Any?, func: String?, IsSuccess: Boolean) {
+//
+//                if (func == Constants.SUCCESS) {
+//                    allDrivesList = obj as MutableList<RegisterUserModel>?
+//                    Log.i("TAG", "Log getAllAccount" + allDrivesList!![0].mobileWithCountry)
+//                    mobileTxt.text =
+//                        Editable.Factory.getInstance().newEditable(allDrivesList!![0].mobile)
+//                    countryCodeTxt.text = Editable.Factory.getInstance()
+//                        .newEditable(allDrivesList!![0].countryCode.toString())
+//                    selectedCountryCode = allDrivesList!![0].countryCode
+//
+//                }
+//
+//            }
+//        }).getAllAccount()
+//    }
 
 
 }

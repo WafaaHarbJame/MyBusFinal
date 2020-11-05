@@ -1,8 +1,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/white"
     android:orientation="vertical">
 
@@ -12,17 +12,17 @@
         android:orientation="vertical">
 
         <View
-            android:layout_width="match_parent"
             android:id="@+id/view1"
+            android:layout_width="match_parent"
             android:layout_height="@dimen/_90sdp"
             android:background="@drawable/draw1" />
 
         <RelativeLayout
+            android:id="@+id/Ly1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingStart="@dimen/_12sdp"
             android:paddingTop="@dimen/_12sdp"
-            android:id="@+id/Ly1"
             android:paddingEnd="@dimen/_12sdp">
 
             <com.github.siyamed.shapeimageview.RoundedImageView
@@ -55,272 +55,301 @@
                 android:textSize="@dimen/_10ssp" />
         </RelativeLayout>
 
-
-        <LinearLayout
-            android:id="@+id/selectLocationLY"
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/swipeDataContainer"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/round_corner_primary_trans"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:layout_marginStart="@dimen/_8sdp"
-            android:layout_marginEnd="@dimen/_8sdp"
-            android:layout_below="@id/view1"
-            android:paddingStart="@dimen/_15sdp"
-            android:paddingTop="@dimen/_10sdp"
-            android:paddingEnd="@dimen/_15sdp"
-            android:paddingBottom="@dimen/_10sdp">
+            android:layout_height="match_parent"
+            android:layout_below="@id/view1">
 
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical">
+            <androidx.core.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fillViewport="true">
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:orientation="horizontal"
-                    android:layout_gravity="center_vertical"
-                    android:gravity="center_vertical"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:clipToPadding="false"
+                    android:orientation="vertical"
+                    android:paddingTop="@dimen/_10sdp">
+
+                    <LinearLayout
+                        android:id="@+id/selectLocationLY"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/view1"
+                        android:layout_marginStart="@dimen/_8sdp"
+                        android:layout_marginEnd="@dimen/_8sdp"
+                        android:background="@drawable/round_corner_primary_trans"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingStart="@dimen/_15sdp"
+                        android:paddingTop="@dimen/_10sdp"
+                        android:paddingEnd="@dimen/_15sdp"
+                        android:paddingBottom="@dimen/_10sdp">
+
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal">
+
+                                <com.mybus.mybusapp.spichalViews.STextViewBold
+                                    android:id="@+id/myLocationTv"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/select_location"
+                                    android:textAlignment="viewStart"
+                                    android:textColor="@color/colorAccent"
+                                    android:textSize="@dimen/_14ssp" />
+
+                                <Space
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1">
+
+                                </Space>
+
+                                <com.mybus.mybusapp.spichalViews.STextViewIcon
+                                    android:id="@+id/editMyLocationBtn"
+                                    android:layout_width="@dimen/_25sdp"
+                                    android:layout_height="@dimen/_25sdp"
+                                    android:layout_gravity="top|end"
+                                    android:background="@drawable/round_corner_accent_fill"
+                                    android:gravity="center"
+                                    android:text="@string/fa_pen_edit"
+                                    android:textColor="@color/white"
+                                    android:textSize="@dimen/_13ssp"
+                                    android:visibility="gone" />
+
+                            </LinearLayout>
+
+                            <com.mybus.mybusapp.spichalViews.STextViewBold
+                                android:id="@+id/selectLocation"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_4sdp"
+                                android:background="@drawable/round_corner_big_gray_trans"
+                                android:drawableEnd="@drawable/ic_map_marker"
+                                android:hint="@string/select_your_location"
+                                android:padding="@dimen/_8sdp"
+                                android:textAlignment="viewStart"
+                                android:textColor="@color/colorAccent3"
+                                android:textSize="@dimen/_11ssp" />
+
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/DestinationLY"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/selectLocationLY"
+                        android:layout_marginStart="@dimen/_8sdp"
+                        android:layout_marginTop="@dimen/_8sdp"
+                        android:layout_marginEnd="@dimen/_8sdp"
+                        android:background="@drawable/round_corner_primary_trans"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingStart="@dimen/_15sdp"
+                        android:paddingTop="@dimen/_15sdp"
+                        android:paddingEnd="@dimen/_15sdp"
+                        android:paddingBottom="@dimen/_10sdp">
+
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <com.mybus.mybusapp.spichalViews.STextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/select_destination"
+                                android:textAlignment="viewStart"
+                                android:textColor="@color/colorAccent"
+                                android:textSize="@dimen/_14ssp" />
+
+                            <LinearLayout
+                                android:id="@+id/selectDistinationButton"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_2sdp"
+                                android:background="@drawable/round_corner_big_gray_trans"
+                                android:orientation="horizontal">
+
+                                <com.mybus.mybusapp.spichalViews.STextViewBold
+                                    android:id="@+id/selectDestinationBut"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:hint="@string/enter_your_destination"
+                                    android:padding="@dimen/_8sdp"
+                                    android:textAlignment="viewStart"
+                                    android:textColor="@color/colorAccent3"
+                                    android:textSize="@dimen/_11ssp" />
+
+                                <com.mybus.mybusapp.spichalViews.STextViewIcon
+                                    android:id="@+id/searchBtn"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_gravity="center"
+                                    android:gravity="center"
+                                    android:padding="@dimen/_5sdp"
+                                    android:paddingStart="@dimen/_10sdp"
+                                    android:paddingEnd="@dimen/_10sdp"
+                                    android:scaleX="@integer/scaleX"
+                                    android:text="@string/fa_search"
+                                    android:textColor="@color/tabColor1"
+                                    android:textSize="@dimen/_15ssp"
+                                    android:visibility="visible" />
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/DriverLY"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/DestinationLY"
+                        android:layout_marginStart="@dimen/_8sdp"
+                        android:layout_marginTop="@dimen/_8sdp"
+                        android:layout_marginEnd="@dimen/_8sdp"
+                        android:background="@drawable/round_corner_primary_trans"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingStart="@dimen/_15sdp"
+                        android:paddingTop="@dimen/_10sdp"
+                        android:paddingEnd="@dimen/_15sdp"
+                        android:paddingBottom="@dimen/_10sdp">
+
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <com.mybus.mybusapp.spichalViews.STextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/select_driver"
+                                android:textAlignment="viewStart"
+                                android:textColor="@color/colorAccent"
+                                android:textSize="@dimen/_14ssp" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_2sdp"
+                                android:background="@drawable/round_corner_big_gray_trans"
+                                android:orientation="horizontal">
+
+                                <com.mybus.mybusapp.spichalViews.STextViewBold
+                                    android:id="@+id/selectDriverBut"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:hint="@string/select_driver"
+                                    android:padding="@dimen/_8sdp"
+                                    android:textAlignment="viewStart"
+                                    android:textColor="@color/colorAccent3"
+                                    android:textSize="@dimen/_11ssp" />
+
+                                <com.mybus.mybusapp.spichalViews.STextViewIcon
+                                    android:id="@+id/searchDriverBtn"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_gravity="center"
+                                    android:gravity="center"
+                                    android:padding="@dimen/_5sdp"
+                                    android:paddingStart="@dimen/_10sdp"
+                                    android:paddingEnd="@dimen/_10sdp"
+                                    android:scaleX="@integer/scaleX"
+                                    android:text="@string/fa_search"
+                                    android:textColor="@color/tabColor1"
+                                    android:textSize="@dimen/_15ssp"
+                                    android:visibility="visible" />
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
 
                     <com.mybus.mybusapp.spichalViews.STextViewBold
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/select_location"
-                        android:id="@+id/myLocationTv"
-                        android:textAlignment="viewStart"
+                        android:layout_marginStart="@dimen/_15sdp"
+                        android:layout_marginTop="@dimen/_8sdp"
+                        android:layout_marginEnd="@dimen/_15sdp"
+                        android:layout_marginBottom="@dimen/_5sdp"
+                        android:paddingStart="@dimen/_15sdp"
+                        android:paddingEnd="@dimen/_15sdp"
+                        android:text="@string/current_request"
                         android:textColor="@color/colorAccent"
-                        android:textSize="@dimen/_14ssp" />
-                    <Space
-                        android:layout_width="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content">
+                        android:textSize="@dimen/_12ssp" />
 
-                    </Space>
-                    <com.mybus.mybusapp.spichalViews.STextViewIcon
-                        android:id="@+id/editMyLocationBtn"
-                        android:layout_width="@dimen/_25sdp"
-                        android:layout_height="@dimen/_25sdp"
-                        android:layout_gravity="top|end"
-                        android:background="@drawable/round_corner_accent_fill"
-                        android:gravity="center"
-                        android:text="@string/fa_pen_edit"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/_13ssp"
-                        android:visibility="gone" />
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_marginStart="@dimen/_15sdp"
+                        android:layout_marginEnd="@dimen/_15sdp"
+                        android:background="@color/colorAccent">
 
-                </LinearLayout>
+                    </View>
 
-                <com.mybus.mybusapp.spichalViews.STextViewBold
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/selectLocation"
-                    android:background="@drawable/round_corner_big_gray_trans"
-                    android:hint="@string/select_your_location"
-                    android:textAlignment="viewStart"
-                    android:layout_marginTop="@dimen/_4sdp"
-                    android:textColor="@color/colorAccent3"
-                    android:padding="@dimen/_8sdp"
-                    android:drawableEnd="@drawable/ic_map_marker"
-                    android:textSize="@dimen/_11ssp" />
+                    <include layout="@layout/layout_pre_loading" />
 
+                    <include layout="@layout/layout_fail_get_data" />
 
-            </LinearLayout>
+                    <include layout="@layout/layout_no_data" />
 
-
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/DestinationLY"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/round_corner_primary_trans"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:layout_marginStart="@dimen/_8sdp"
-            android:layout_marginEnd="@dimen/_8sdp"
-            android:layout_below="@id/selectLocationLY"
-            android:layout_marginTop="@dimen/_8sdp"
-            android:paddingStart="@dimen/_15sdp"
-            android:paddingTop="@dimen/_15sdp"
-            android:paddingEnd="@dimen/_15sdp"
-            android:paddingBottom="@dimen/_10sdp">
-
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical">
-
-                <com.mybus.mybusapp.spichalViews.STextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/select_destination"
-                    android:textAlignment="viewStart"
-                    android:textColor="@color/colorAccent"
-                    android:textSize="@dimen/_14ssp" />
-
-             <LinearLayout
-                 android:layout_width="match_parent"
-                 android:orientation="horizontal"
-                 android:layout_marginTop="@dimen/_2sdp"
-                 android:id="@+id/selectDistinationButton"
-                 android:background="@drawable/round_corner_big_gray_trans"
-                 android:layout_height="wrap_content">
-                 <com.mybus.mybusapp.spichalViews.STextViewBold
-                     android:layout_width="0dp"
-                     android:layout_height="wrap_content"
-                     android:hint="@string/enter_your_destination"
-                     android:textAlignment="viewStart"
-                     android:textColor="@color/colorAccent3"
-                     android:layout_weight="1"
-                     android:id="@+id/selectDestinationBut"
-                     android:padding="@dimen/_8sdp"
-                     android:textSize="@dimen/_11ssp" />
-                 <com.mybus.mybusapp.spichalViews.STextViewIcon
-                     android:id="@+id/searchBtn"
-                     android:layout_width="wrap_content"
-                     android:layout_height="match_parent"
-                     android:layout_gravity="center"
-                     android:gravity="center"
-                     android:padding="@dimen/_5sdp"
-                     android:paddingStart="@dimen/_10sdp"
-                     android:paddingEnd="@dimen/_10sdp"
-                     android:scaleX="@integer/scaleX"
-                     android:text="@string/fa_search"
-                     android:textColor="@color/tabColor1"
-                     android:textSize="@dimen/_15ssp"
-                     android:visibility="visible" />
-             </LinearLayout>
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/DriverLY"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/round_corner_primary_trans"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:layout_marginStart="@dimen/_8sdp"
-            android:layout_marginEnd="@dimen/_8sdp"
-            android:layout_below="@id/DestinationLY"
-            android:layout_marginTop="@dimen/_8sdp"
-            android:paddingStart="@dimen/_15sdp"
-            android:paddingTop="@dimen/_10sdp"
-            android:paddingEnd="@dimen/_15sdp"
-            android:paddingBottom="@dimen/_10sdp">
-
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical">
-
-                <com.mybus.mybusapp.spichalViews.STextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/select_driver"
-                    android:textAlignment="viewStart"
-                    android:textColor="@color/colorAccent"
-                    android:textSize="@dimen/_14ssp" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:orientation="horizontal"
-                    android:layout_marginTop="@dimen/_2sdp"
-                    android:background="@drawable/round_corner_big_gray_trans"
-                    android:layout_height="wrap_content">
-                    <com.mybus.mybusapp.spichalViews.STextViewBold
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:hint="@string/select_driver"
-                        android:textAlignment="viewStart"
-                        android:textColor="@color/colorAccent3"
-                        android:layout_weight="1"
-                        android:id="@+id/selectDriverBut"
-                        android:padding="@dimen/_8sdp"
-                        android:textSize="@dimen/_11ssp" />
-                    <com.mybus.mybusapp.spichalViews.STextViewIcon
-                        android:id="@+id/searchDriverBtn"
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:id="@+id/dataLY"
+                        android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_gravity="center"
-                        android:gravity="center"
-                        android:padding="@dimen/_5sdp"
-                        android:paddingStart="@dimen/_10sdp"
-                        android:paddingEnd="@dimen/_10sdp"
-                        android:scaleX="@integer/scaleX"
-                        android:text="@string/fa_search"
-                        android:textColor="@color/tabColor1"
-                        android:textSize="@dimen/_15ssp"
-                        android:visibility="visible" />
+                        android:orientation="vertical"
+                        android:visibility="visible">
+
+                        <!--                    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout-->
+                        <!--                        android:id="@+id/swipeDataContainer"-->
+                        <!--                        android:layout_width="match_parent"-->
+                        <!--                        android:layout_height="match_parent">-->
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rv"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:clipToPadding="false"
+                            android:paddingStart="@dimen/_15sdp"
+                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                            tools:itemCount="4"
+                            tools:listitem="@layout/row_request" />
+
+                        <!--                    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>-->
+                    </LinearLayout>
+
                 </LinearLayout>
+            </androidx.core.widget.NestedScrollView>
 
-            </LinearLayout>
-
-        </LinearLayout>
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     </RelativeLayout>
 
 
-
-    <com.mybus.mybusapp.spichalViews.STextViewBold
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/_5sdp"
-        android:layout_toEndOf="@id/userImg"
-        android:text="@string/current_request"
-        android:textColor="@color/colorAccent"
-        android:layout_marginTop="@dimen/_8sdp"
-        android:paddingStart="@dimen/_15sdp"
-        android:paddingEnd="@dimen/_15sdp"
-        android:layout_marginStart="@dimen/_15sdp"
-        android:layout_marginEnd="@dimen/_15sdp"
-        android:textSize="@dimen/_12ssp" />
-    <View
-        android:layout_width="match_parent"
-        android:background="@color/colorAccent"
-        android:layout_marginStart="@dimen/_15sdp"
-        android:layout_marginEnd="@dimen/_15sdp"
-        android:layout_height="2dp">
-
-    </View>
-
-    <include layout="@layout/layout_pre_loading" />
-
-    <include layout="@layout/layout_fail_get_data" />
-
-    <include layout="@layout/layout_no_data" />
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:id="@+id/dataLY"
-        android:visibility="gone">
-
-        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-            android:id="@+id/swipeDataContainer"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:clipToPadding="false"
-                android:paddingStart="@dimen/_15sdp"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:itemCount="4"
-                tools:listitem="@layout/row_request" />
-
-        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-    </LinearLayout>
 </LinearLayout>
 

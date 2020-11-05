@@ -260,20 +260,20 @@ class MainActivity : ActivityBase() {
     }
 
 
-    private fun getData() {
-        var allDrivesList: MutableList<RegisterUserModel>? = null
-
-        DataFeacher(object : DataFetcherCallBack {
-            override fun Result(obj: Any?, func: String?, IsSuccess: Boolean) {
-
-                if (func == Constants.SUCCESS) {
-                    allDrivesList = obj as MutableList<RegisterUserModel>?
-                    Log.i("TAG", "Log getAllAccount"+ allDrivesList!![0].mobileWithCountry)
-
-                }
-
-            }
-        }).getAllAccount()
-    }
+//    private fun getData() {
+//        var allDrivesList: MutableList<RegisterUserModel>? = null
+//
+//        DataFeacher(object : DataFetcherCallBack {
+//            override fun Result(obj: Any?, func: String?, IsSuccess: Boolean) {
+//
+//                if (func == Constants.SUCCESS) {
+//                    allDrivesList = obj as MutableList<RegisterUserModel>?
+//                    Log.i("TAG", "Log getAllAccount"+ allDrivesList!![0].mobileWithCountry)
+//
+//                }
+//
+//            }
+//        }).getAllAccount()
+//    }
 
 }

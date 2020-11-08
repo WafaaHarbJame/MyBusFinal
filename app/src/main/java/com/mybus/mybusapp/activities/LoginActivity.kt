@@ -274,10 +274,9 @@ class LoginActivity : ActivityBase() {
 
         val emailStr = NumberHandler.arabicToDecimal(emailTxt.text.toString())
         val passwordStr = NumberHandler.arabicToDecimal(passwordTxt.text.toString())
-
-//        if (emailLog) {
         GlobalData.progressDialog(
-            getActiviy(), R.string.login,
+            getActiviy(),
+            R.string.sign_in,
             R.string.please_wait_login
         )
         DataFeacher(object : DataFetcherCallBack {
@@ -286,11 +285,6 @@ class LoginActivity : ActivityBase() {
                 if (func == Constants.SUCCESS) {
 
                     val user = obj as RegisterUserModel?
-
-//                    Log.i(
-//                        "TAG",
-//                        "Log getAllAccount" + user?.mobileWithCountry.toString()
-//                    )
 
                     selectedCountryCode = user?.countryCode!!
 

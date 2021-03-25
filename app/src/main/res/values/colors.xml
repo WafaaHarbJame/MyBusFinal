@@ -6,7 +6,6 @@
     <color name="header2">@color/black3</color>
     <color name="header3">@color/gray13</color>
     <color name="header5">@color/gray6</color>
-    <color name="colorPrimaryDark2">#823FF2</color>
     <color name="colorAccent2">@color/blue14</color>
     <color name="colorAccent3">#875918</color>
     <color name="tabColor1"> #875918</color>
@@ -17,7 +16,6 @@
     <color name="bottomNavInactive">@color/colorAccent</color>
 
     <color name="white">#ffffff</color>
-    <color name="colorPrimaryLight">#edfbfd</color>
 
     <color name="black">#000000</color>
     <color name="black3">#2a2a2a</color>

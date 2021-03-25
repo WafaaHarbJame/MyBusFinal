@@ -116,7 +116,7 @@
             android:text="@string/confirm_request"
             android:textColor="@color/white"
             android:textSize="@dimen/_13ssp"
-            android:visibility="gone" />
+            android:visibility="visible" />
 
     </FrameLayout>
 

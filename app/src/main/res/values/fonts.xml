@@ -12,8 +12,6 @@
     <string name="fal_times" translatable="false">&#xf00d;</string>
     <string name="fal_file_invoice" translatable="false">&#xf570;</string>
     <string name="fal_search" translatable="false">&#xf002;</string>
-    <string name="fal_power_off" translatable="false">&#xf011;</string>
-    <string name="fal_chair" translatable="false">&#xf6c0;</string>
     <string name="fal_location" translatable="false">&#xf601;</string>
     <string name="fa_pen_edit" translatable="false">&#xf304;</string>
     <string name="fa_search" translatable="false">&#xf002;</string>
@@ -25,6 +23,5 @@
     <string name="fa_circle_o" translatable="false">&#xf10c;</string>
     <string name="fa_clipboard_check" translatable="false">&#xf46c;</string>
     <string name="fa_bus" translatable="false">&#xf207;</string>
-    <string name="fa_map_marker" translatable="false">&#xf041;</string>
 
 </resources>

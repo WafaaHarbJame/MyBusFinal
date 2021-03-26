@@ -74,7 +74,7 @@ class MapActivity : ActivityBase(), OnMapReadyCallback {
             checkLocationPermission()
         } else if (mapType == 2) {
             selectBtn.visibility = View.VISIBLE
-            selectBtn.text = getString(R.string.edit)
+            selectBtn.text = getString(R.string.edit_Location)
 
         } else if (mapType == 3) {
             selectDestinationBtn.visibility = View.VISIBLE

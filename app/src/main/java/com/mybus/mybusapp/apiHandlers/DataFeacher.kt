@@ -264,6 +264,26 @@ class DataFeacher(callBack: DataFetcherCallBack?) {
 
     }
 
+    fun deleteDriver(driverModel: DriverModel) {
+
+//        val phoneNumber = map["mobileWithCountry"] as String
+////        val mobile = map["countryCode"]
+
+        Log.i(TAG, "Log deleteDriver")
+        Log.i(TAG, "Log phoneNumber ${driverModel.mobileWithCountry}")
+
+//        val phoneNumber = memberModel.mobileWithCountry.toString()
+        fireStoreDB!!.collection(ApiUrl.Users.name).document(driverModel.mobileWithCountry!!)
+            .delete()
+            .addOnSuccessListener {
+                dataFetcherCallBack?.Result("", Constants.SUCCESS, true)
+
+            }.addOnFailureListener {
+                dataFetcherCallBack?.Result(null, Constants.FAIL_DATA, false)
+            }
+
+    }
+
     fun updateData(
         mobile: String?,
         lat: Double,

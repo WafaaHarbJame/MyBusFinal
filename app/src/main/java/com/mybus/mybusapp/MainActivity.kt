@@ -144,7 +144,7 @@ class MainActivity : ActivityBase() {
             R.id.mainBtn -> {
                 newFragment = when (userType) {
                     3 -> {
-                        AdminMainScreenFragment()
+                        DriversFragment()
                     }
                     2 -> {
                         HomeDriverFragment()

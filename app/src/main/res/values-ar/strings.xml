@@ -82,7 +82,7 @@
     <string name="select_your_location">Select Your Location</string>
     <string name="sucess_choose_location">Location save successfully</string>
     <string name="fail_to_save_location">fail to save location</string>
-    <string name="edit">Edit Location</string>
+    <string name="edit">تعديل</string>
     <string name="current_request">Current Orders</string>
     <string name="finshed_order">Finished Order</string>
     <string name="all_orders">All Orders</string>
@@ -156,4 +156,10 @@
     <string name="enter_bus_name">ادخل اسم الباص</string>
     <string name="success_edit_driver">تم تعديل السائق</string>
     <string name="fail_to_send">فشل الإرسال</string>
+    <string name="edit_Location">تعديل الموقع</string>
+    <string name="want_delete_driver">هل تريد حذف السائق؟</string>
+    <string name="delete">حذف</string>
+    <string name="cancel2">إلغاء</string>
+    <string name="success_delete_driver">تم حذف السائق</string>
+    <string name="delete_driver">حذف السائق</string>
 </resources>

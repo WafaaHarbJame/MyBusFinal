@@ -14,9 +14,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cf3dacb1-5c6a-47c8-8fdf-f4491d73de14" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/mybus/mybusapp/fragments/DriversFragment.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/delete.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/edit.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable-hdpi/delete.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable-hdpi/edit.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable-ldpi/delete.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable-ldpi/edit.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable-mdpi/delete.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable-mdpi/edit.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable-xhdpi/delete.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable-xhdpi/edit.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable-xxhdpi/delete.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable-xxhdpi/edit.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable-xxxhdpi/delete.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable-xxxhdpi/edit.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.5/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/fileHashes/fileHashes.bin" afterDir="false" />
@@ -28,16 +37,11 @@
       <change beforePath="$PROJECT_DIR$/.gradle/6.5/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/javaCompile/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/mybus/mybusapp/MainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/mybus/mybusapp/MainActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/mybus/mybusapp/activities/DriversActivity.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/mybus/mybusapp/activities/MapActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/mybus/mybusapp/activities/MapActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/mybus/mybusapp/adapters/DriversAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/mybus/mybusapp/adapters/DriversAdapter.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/mybus/mybusapp/adapters/MainAdminAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/mybus/mybusapp/adapters/MainAdminAdapter.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/mybus/mybusapp/apiHandlers/DataFeacher.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/mybus/mybusapp/apiHandlers/DataFeacher.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_driver.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_drivers.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/row_driver.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/row_driver.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values-ar/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values-ar/strings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/mybus/mybusapp/activities/AddDriverActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/mybus/mybusapp/activities/AddDriverActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/mybus/mybusapp/activities/RegisterActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/mybus/mybusapp/activities/RegisterActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/delete.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/delete.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/edit.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/edit.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_add_driver.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_add_driver.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -350,13 +354,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1602489474712</updated>
-    </task>
-    <task id="LOCAL-00001" summary="12-10-2020 add memory heap in gradle">
-      <created>1602490851998</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1602490851998</updated>
     </task>
     <task id="LOCAL-00002" summary="12-10-2020 login using phone,confirm page,translate String">
       <created>1602523973892</created>
@@ -694,7 +691,14 @@
       <option name="project" value="LOCAL" />
       <updated>1616758793225</updated>
     </task>
-    <option name="localTasksCounter" value="50" />
+    <task id="LOCAL-00050" summary="manage drivers 2">
+      <created>1616762045394</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1616762045395</updated>
+    </task>
+    <option name="localTasksCounter" value="51" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -706,7 +710,8 @@
     <MESSAGE value="Make Order Details" />
     <MESSAGE value="Make Order Details now" />
     <MESSAGE value="manage drivers" />
-    <option name="LAST_COMMIT_MESSAGE" value="manage drivers" />
+    <MESSAGE value="manage drivers 2" />
+    <option name="LAST_COMMIT_MESSAGE" value="manage drivers 2" />
   </component>
   <component name="WindowStateProjectService">
     <state x="619" y="245" key="#com.intellij.ide.util.MemberChooser" timestamp="1616760950267">
@@ -725,42 +730,42 @@
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
     <state x="662" y="306" key="AndroidCreateXmlResourceDialog/0.0.1680.1050@0.0.1680.1050" timestamp="1616761902686" />
-    <state x="0" y="214" key="CommitChangelistDialog2" timestamp="1616758793125">
+    <state x="0" y="214" key="CommitChangelistDialog2" timestamp="1616762044153">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
-    <state x="0" y="214" key="CommitChangelistDialog2/0.0.1680.1050@0.0.1680.1050" timestamp="1616758793125" />
-    <state width="1638" height="445" key="GridCell.Tab.0.bottom" timestamp="1616760239227">
-      <screen x="0" y="25" width="1680" height="961" />
+    <state x="0" y="214" key="CommitChangelistDialog2/0.0.1680.1050@0.0.1680.1050" timestamp="1616762044153" />
+    <state width="1638" height="407" key="GridCell.Tab.0.bottom" timestamp="1616763929759">
+      <screen x="0" y="0" width="1680" height="1050" />
     </state>
-    <state width="1638" height="445" key="GridCell.Tab.0.bottom/0.0.1680.1050@0.0.1680.1050" timestamp="1616760123894" />
+    <state width="1638" height="407" key="GridCell.Tab.0.bottom/0.0.1680.1050@0.0.1680.1050" timestamp="1616763929759" />
     <state width="1638" height="445" key="GridCell.Tab.0.bottom/0.25.1680.961@0.25.1680.961" timestamp="1616760239227" />
-    <state width="1638" height="445" key="GridCell.Tab.0.center" timestamp="1616760239226">
-      <screen x="0" y="25" width="1680" height="961" />
+    <state width="1638" height="407" key="GridCell.Tab.0.center" timestamp="1616763929758">
+      <screen x="0" y="0" width="1680" height="1050" />
     </state>
-    <state width="1638" height="445" key="GridCell.Tab.0.center/0.0.1680.1050@0.0.1680.1050" timestamp="1616760123893" />
+    <state width="1638" height="407" key="GridCell.Tab.0.center/0.0.1680.1050@0.0.1680.1050" timestamp="1616763929758" />
     <state width="1638" height="445" key="GridCell.Tab.0.center/0.25.1680.961@0.25.1680.961" timestamp="1616760239226" />
-    <state width="1638" height="445" key="GridCell.Tab.0.left" timestamp="1616760239225">
-      <screen x="0" y="25" width="1680" height="961" />
+    <state width="1638" height="407" key="GridCell.Tab.0.left" timestamp="1616763929757">
+      <screen x="0" y="0" width="1680" height="1050" />
     </state>
-    <state width="1638" height="445" key="GridCell.Tab.0.left/0.0.1680.1050@0.0.1680.1050" timestamp="1616760123892" />
+    <state width="1638" height="407" key="GridCell.Tab.0.left/0.0.1680.1050@0.0.1680.1050" timestamp="1616763929757" />
     <state width="1638" height="445" key="GridCell.Tab.0.left/0.25.1680.961@0.25.1680.961" timestamp="1616760239225" />
-    <state width="1638" height="445" key="GridCell.Tab.0.right" timestamp="1616760239226">
-      <screen x="0" y="25" width="1680" height="961" />
+    <state width="1638" height="407" key="GridCell.Tab.0.right" timestamp="1616763929759">
+      <screen x="0" y="0" width="1680" height="1050" />
     </state>
-    <state width="1638" height="445" key="GridCell.Tab.0.right/0.0.1680.1050@0.0.1680.1050" timestamp="1616760123893" />
+    <state width="1638" height="407" key="GridCell.Tab.0.right/0.0.1680.1050@0.0.1680.1050" timestamp="1616763929759" />
     <state width="1638" height="445" key="GridCell.Tab.0.right/0.25.1680.961@0.25.1680.961" timestamp="1616760239226" />
-    <state x="440" y="262" key="Vcs.Push.Dialog.v2" timestamp="1616758794316">
+    <state x="440" y="262" key="Vcs.Push.Dialog.v2" timestamp="1616762046713">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
-    <state x="440" y="262" key="Vcs.Push.Dialog.v2/0.0.1680.1050@0.0.1680.1050" timestamp="1616758794316" />
-    <state x="620" y="307" key="chooseDestDirectoryDialog" timestamp="1616760698148">
+    <state x="440" y="262" key="Vcs.Push.Dialog.v2/0.0.1680.1050@0.0.1680.1050" timestamp="1616762046713" />
+    <state x="620" y="307" key="chooseDestDirectoryDialog" timestamp="1616762144058">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
-    <state x="620" y="307" key="chooseDestDirectoryDialog/0.0.1680.1050@0.0.1680.1050" timestamp="1616760698148" />
-    <state x="623" y="443" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1616752813567">
+    <state x="620" y="307" key="chooseDestDirectoryDialog/0.0.1680.1050@0.0.1680.1050" timestamp="1616762144058" />
+    <state x="623" y="443" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1616762028757">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
-    <state x="623" y="443" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1680.1050@0.0.1680.1050" timestamp="1616752813567" />
+    <state x="623" y="443" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1680.1050@0.0.1680.1050" timestamp="1616762028757" />
     <state x="532" y="251" width="615" height="548" key="find.popup" timestamp="1616701145946">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>

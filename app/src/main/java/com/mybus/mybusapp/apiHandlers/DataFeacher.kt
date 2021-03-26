@@ -552,10 +552,33 @@ class DataFeacher(callBack: DataFetcherCallBack?) {
 
     }
 
-    fun getAllDrivers() {
+    fun getAllActiveDrivers() {
         Log.i(TAG, "Log getAllDrivers")
         fireStoreDB?.collection(ApiUrl.Users.name)?.whereEqualTo("type", 2)
             ?.whereEqualTo("isDriverActive", true)
+            ?.get()?.addOnCompleteListener {
+                if (it.isSuccessful) {
+                    val query = it.result
+
+                    val allDriversList = mutableListOf<DriverModel>()
+                    for (document in query!!) {
+                        val allDriversModel = document?.toObject(DriverModel::class.java)
+                        allDriversList.add(allDriversModel!!)
+                    }
+
+                    dataFetcherCallBack?.Result(allDriversList, Constants.SUCCESS, true)
+                } else {
+                    it.exception?.printStackTrace()
+                }
+
+            }
+
+    }
+
+    fun getAllDrivers() {
+        Log.i(TAG, "Log getAllDrivers")
+        fireStoreDB?.collection(ApiUrl.Users.name)?.whereEqualTo("type", 2)
+//            ?.whereEqualTo("isDriverActive", true)
             ?.get()?.addOnCompleteListener {
                 if (it.isSuccessful) {
                     val query = it.result

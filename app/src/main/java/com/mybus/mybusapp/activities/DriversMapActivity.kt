@@ -265,7 +265,7 @@ class DriversMapActivity : ActivityBase(), OnMapReadyCallback {
                 AddDriversToMap()
 
             }
-        }).getAllDrivers()
+        }).getAllActiveDrivers()
 
 
     }

@@ -16,6 +16,7 @@ import com.mybus.mybusapp.activities.LoginActivity
 import com.mybus.mybusapp.activities.ProfileActivity
 import com.mybus.mybusapp.classes.UtilityApp
 import com.mybus.mybusapp.dialogs.ChangePasswordDialog
+import com.mybus.mybusapp.models.MemberModel
 import kotlinx.android.synthetic.main.fragment_settings.*
 import kotlinx.android.synthetic.main.tool_bar.*
 
@@ -25,6 +26,8 @@ class SettingsFragment : FragmentBase() {
 
     private var changePasswordDialog: ChangePasswordDialog? = null
     lateinit var container: FrameLayout
+
+    var user: MemberModel? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -42,11 +45,16 @@ class SettingsFragment : FragmentBase() {
         super.onActivityCreated(savedInstanceState)
         activity = getActivity()
 
+        user = UtilityApp.userData
+
         mainTitleTxt.text = getString(R.string.settings)
         homeBtn.visibility = gone
 
 
         if (UtilityApp.isLogin) {
+            if (user?.type == 3) {
+                profileBut.visibility = gone
+            }
             signOutIcon.text = getString(R.string.fal_sign_out)
             signOutLabel.text = getString(R.string.sign_out)
         } else {
@@ -98,7 +106,6 @@ class SettingsFragment : FragmentBase() {
         }
 
     }
-
 
 
     override fun onResume() {

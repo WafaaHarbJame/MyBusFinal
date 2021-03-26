@@ -1,5 +1,5 @@
 <!-- A DrawerLayout is intended to be used as the top-level content view using match_parent for both width and height to consume the full space available. -->
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,33 +9,22 @@
         android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@id/navLY"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_weight="1" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="8dp"
         android:layout_marginTop="-8dp"
-        android:background="@drawable/square_black_gradient_fill"
-        app:layout_constraintBottom_toTopOf="@id/navLY" />
+        android:background="@drawable/square_black_gradient_fill" />
 
-    <View
-        android:id="@+id/bottomLine"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent" />
+    <!--    <View-->
+    <!--        android:id="@+id/bottomLine"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="1dp"-->
+    <!--        android:orientation="horizontal"-->
+    <!--        app:layout_constraintBottom_toBottomOf="parent" />-->
 
-    <LinearLayout
-        android:id="@+id/navLY"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="@id/bottomLine">
-
-        <include layout="@layout/layout_bottom_nav" />
-
-    </LinearLayout>
+    <include layout="@layout/layout_bottom_nav" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

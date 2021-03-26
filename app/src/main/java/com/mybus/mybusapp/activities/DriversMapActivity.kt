@@ -24,7 +24,7 @@ import com.mybus.mybusapp.Utils.MapHandler
 import com.mybus.mybusapp.apiHandlers.DataFeacher
 import com.mybus.mybusapp.apiHandlers.DataFetcherCallBack
 import com.mybus.mybusapp.classes.Constants
-import com.mybus.mybusapp.models.AllDriversModel
+import com.mybus.mybusapp.models.DriverModel
 import io.nlopez.smartlocation.SmartLocation
 import kotlinx.android.synthetic.main.activity_drivers_map.*
 import kotlinx.android.synthetic.main.activity_map.*
@@ -49,7 +49,7 @@ class DriversMapActivity : ActivityBase(), OnMapReadyCallback {
 
     private lateinit var driverId: String
 
-    var allDrivesList: MutableList<AllDriversModel>? = null
+    var allDrivesList: MutableList<DriverModel>? = null
 
     var markers: MutableList<Marker>? = null
 
@@ -115,8 +115,8 @@ class DriversMapActivity : ActivityBase(), OnMapReadyCallback {
         map?.setOnMarkerClickListener { marker ->
             val position = markers!!.indexOf(marker)
             if (markers!![position].title != getString(R.string.destination_location)) {
-                val selectedDriver: AllDriversModel = allDrivesList!![position]
-                driverId = selectedDriver.getMobileWithCountry()
+                val selectedDriver: DriverModel = allDrivesList!![position]
+                driverId = selectedDriver.mobileWithCountry ?: ""
                 Log.i("TAG", "Log driverId $driverId")
                 Toast(driverId)
 
@@ -260,7 +260,7 @@ class DriversMapActivity : ActivityBase(), OnMapReadyCallback {
         DataFeacher(object : DataFetcherCallBack {
             override fun Result(obj: Any?, func: String?, IsSuccess: Boolean) {
                 loadingLY.visibility = gone
-                allDrivesList = obj as MutableList<AllDriversModel>?
+                allDrivesList = obj as MutableList<DriverModel>?
 //                Log.i("allDrivesList", "Log getAllDrivers" + allDrivesList?.get(0)!!.fullName)
                 AddDriversToMap()
 
@@ -275,13 +275,13 @@ class DriversMapActivity : ActivityBase(), OnMapReadyCallback {
         markers!!.clear()
         for (i in allDrivesList?.indices!!) {
 
-            val allDriversModel: AllDriversModel = allDrivesList!![i]
+            val driverModel: DriverModel = allDrivesList!![i]
 
             markers!!.add(
                 createMarker(
-                    allDriversModel.getLat(),
-                    allDriversModel.getLng(),
-                    allDriversModel.getFullName(), allDriversModel.getAddress(),
+                    driverModel.lat,
+                    driverModel.lng,
+                    driverModel.fullName, driverModel.address,
                     R.drawable.bus_icon1
                 )!!
             )

@@ -8,9 +8,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.mybus.mybusapp.R
 import com.mybus.mybusapp.Utils.MapHandler
 import com.mybus.mybusapp.activities.DriversMapActivity
@@ -234,8 +232,7 @@ class HomeClientFragment : FragmentBase() {
                         GlobalData.successDialog(
                             activity,
                             R.string.select_location,
-                            activity?.getString(R.string.sucess_choose_location)
-
+                            activity?.getString(R.string.sucess_choose_location), null
                         )
                     } else {
                         var message = activity?.getString(R.string.fail_to_save_location)

@@ -11,6 +11,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.mybus.mybusapp.R
 import com.mybus.mybusapp.RootApplication
+import com.mybus.mybusapp.apiHandlers.DataFetcherCallBack
 
 object GlobalData {
 
@@ -21,7 +22,7 @@ object GlobalData {
     const val ImageURL = BaseURL
 
     var Position = 0
-    var REFRESH_FAVORITE = false
+    var REFRESH_DRIVERS = false
     var SHOW_CHECK_VERSION = false
     var FAV_POS = -1
     var FAV_STATUS = false
@@ -113,7 +114,8 @@ object GlobalData {
     fun successDialog(
         c: Context?,
         title: Int?,
-        msg: String?
+        msg: String?,
+        callBack: DataFetcherCallBack?
     ) { // to show dialog insert status = true to dismiss doialog status = false
 
 
@@ -126,7 +128,10 @@ object GlobalData {
 //                    .setButtonText(getString(R.string.ok))
 //            .setButtonBackgroundColor(R.color.dialogErrorBackgroundColor)
 
-        successDialog?.show()
+        successDialog?.show()?.setOnDismissListener {
+            callBack?.Result("", "", true)
+        }
+
     }
 
     fun Toast(context: Context?, msg: String?) {

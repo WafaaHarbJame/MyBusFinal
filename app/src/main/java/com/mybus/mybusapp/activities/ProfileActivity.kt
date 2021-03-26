@@ -24,8 +24,8 @@ class ProfileActivity : ActivityBase() {
     var monthStr: Int? = 0
     var dayStr: Int? = 0
     private var ageNumber: Int? = 0
-    private var changeAge: Boolean=false
-    var email :String? = ""
+    private var changeAge: Boolean = false
+    var email: String? = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,13 +54,17 @@ class ProfileActivity : ActivityBase() {
 
 
         ageEt.setOnClickListener {
-            changeAge=true;
+            changeAge = true;
             val dpd = DatePickerDialog(this, { view2, thisYear, thisMonth, thisDay ->
                 monthStr = thisMonth + 1
                 dayStr = thisDay
                 yearStr = thisYear
-                ageEt.setText(" "+ monthStr + "/" + dayStr + "/" + yearStr)
-                ageNumber = DateHandler.getAge(yearStr.toString().toInt(), monthStr.toString().toInt(), dayStr.toString().toInt()).toInt()
+                ageEt.setText(" " + monthStr + "/" + dayStr + "/" + yearStr)
+                ageNumber = DateHandler.getAge(
+                    yearStr.toString().toInt(),
+                    monthStr.toString().toInt(),
+                    dayStr.toString().toInt()
+                ).toInt()
 
                 val newDate: Calendar = Calendar.getInstance()
                 newDate.set(thisYear, thisMonth, thisDay)
@@ -71,16 +75,13 @@ class ProfileActivity : ActivityBase() {
         }
 
         updateBtn.setOnClickListener {
-            if(userType==1){
+            if (userType == 1) {
                 updateProfile()
-            }
-            else{
+            } else {
                 updateDriverProfile()
             }
 
         }
-
-
 
 
     }
@@ -93,14 +94,17 @@ class ProfileActivity : ActivityBase() {
 
                 if (func == Constants.SUCCESS) {
                     val user = obj as MemberModel
-                    nameEt.text= Editable.Factory.getInstance().newEditable(user.fullName)
-                    ageEt.text= Editable.Factory.getInstance().newEditable(user.age.toString())
-                    addressTxt.text= Editable.Factory.getInstance().newEditable(user.address)
-                    busModeTxt.text= Editable.Factory.getInstance().newEditable(user.busModel)
-                    busColoTxt.text= Editable.Factory.getInstance().newEditable(user.busColor)
-                    busCapacityTv.text= Editable.Factory.getInstance().newEditable(user.busLoading.toString())
-                    busNumbTxt.text= Editable.Factory.getInstance().newEditable(user.busNumber.toString())
-                    emailTxt.text=Editable.Factory.getInstance().newEditable(user.email.toString())
+                    nameEt.text = Editable.Factory.getInstance().newEditable(user.fullName)
+                    ageEt.text = Editable.Factory.getInstance().newEditable(user.age.toString())
+                    addressTxt.text = Editable.Factory.getInstance().newEditable(user.address)
+                    busModeTxt.text = Editable.Factory.getInstance().newEditable(user.busModel)
+                    busColoTxt.text = Editable.Factory.getInstance().newEditable(user.busColor)
+                    busCapacityTv.text =
+                        Editable.Factory.getInstance().newEditable(user.busLoading.toString())
+                    busNumbTxt.text =
+                        Editable.Factory.getInstance().newEditable(user.busNumber.toString())
+                    emailTxt.text =
+                        Editable.Factory.getInstance().newEditable(user.email.toString())
                 }
 
 
@@ -109,16 +113,15 @@ class ProfileActivity : ActivityBase() {
     }
 
     private fun updateProfile() {
-        val address=addressTxt.text.toString()
-        val name=nameEt.text.toString()
-        var age:Int
-        val email=emailTxt.text.toString()
+        val address = addressTxt.text.toString()
+        val name = nameEt.text.toString()
+        var age: Int
+        val email = emailTxt.text.toString()
 
-        if(changeAge){
-            age= ageNumber!!
-        }
-        else{
-            age= ageEt.text.toString().toInt()
+        if (changeAge) {
+            age = ageNumber!!
+        } else {
+            age = ageEt.text.toString().toInt()
 
         }
 
@@ -132,7 +135,7 @@ class ProfileActivity : ActivityBase() {
                         GlobalData.successDialog(
                             getActiviy(),
                             R.string.update_profile,
-                            getString(R.string.success_edit)
+                            getString(R.string.success_edit), null
                         )
 
                     } else {
@@ -145,7 +148,7 @@ class ProfileActivity : ActivityBase() {
 
 
                 }
-            }).updateUserData(UtilityApp.userData!!.mobileWithCountry,name,address,age,email)
+            }).updateUserData(UtilityApp.userData!!.mobileWithCountry, name, address, age, email)
 
         } catch (e: Exception) {
 
@@ -154,20 +157,19 @@ class ProfileActivity : ActivityBase() {
     }
 
     private fun updateDriverProfile() {
-        val address=addressTxt.text.toString()
-        val name=nameEt.text.toString()
-        var age:Int
-        val busColor=busColoTxt.text.toString()
-        val busModel=busModeTxt.text.toString()
-        val busNumber=busNumbTxt.text.toString().toInt()
-        val busCapacity=busCapacityTv.text.toString().toInt()
-        val email=emailTxt.text.toString()
+        val address = addressTxt.text.toString()
+        val name = nameEt.text.toString()
+        var age: Int
+        val busColor = busColoTxt.text.toString()
+        val busModel = busModeTxt.text.toString()
+        val busNumber = busNumbTxt.text.toString().toInt()
+        val busCapacity = busCapacityTv.text.toString().toInt()
+        val email = emailTxt.text.toString()
 
-        if(changeAge){
-            age= ageNumber!!
-        }
-        else{
-            age= ageEt.text.toString().toInt()
+        if (changeAge) {
+            age = ageNumber!!
+        } else {
+            age = ageEt.text.toString().toInt()
 
         }
 
@@ -181,7 +183,7 @@ class ProfileActivity : ActivityBase() {
                         GlobalData.successDialog(
                             getActiviy(),
                             R.string.update_profile,
-                            getString(R.string.success_edit)
+                            getString(R.string.success_edit), null
                         )
 
                     } else {
@@ -194,7 +196,17 @@ class ProfileActivity : ActivityBase() {
 
 
                 }
-            }).updateDriverData(UtilityApp.userData!!.mobileWithCountry,name,address,age,busNumber,busColor,busModel,busCapacity,email)
+            }).updateDriverData(
+                UtilityApp.userData!!.mobileWithCountry,
+                name,
+                address,
+                age,
+                busNumber,
+                busColor,
+                busModel,
+                busCapacity,
+                email
+            )
 
         } catch (e: Exception) {
 

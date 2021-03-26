@@ -199,7 +199,7 @@ class LoginActivity : ActivityBase() {
                 ) else mobileStr
 
 //            memberModel.isVerified = false
-            memberModel.password = AESCrypt.encrypt(passwordStr)
+            memberModel.password = passwordStr
             memberModel.mobileWithCountry = selectedCountryCode.toString().plus(memberModel.mobile)
 
 //
@@ -211,12 +211,18 @@ class LoginActivity : ActivityBase() {
             DataFeacher(object : DataFetcherCallBack {
                 override fun Result(obj: Any?, func: String?, IsSuccess: Boolean) {
                     GlobalData.progressDialogHide()
-                    val document: DocumentSnapshot? = obj as DocumentSnapshot
-                    if (document != null) {
+                    if (func == Constants.USER_NOT_EXIST) {
+                        GlobalData.errorDialog(
+                            getActiviy(),
+                            R.string.login,
+                            getString(R.string.not_have_account_q)
+                        )
+                    } else if (func == Constants.SUCCESS) {
+                        val document: DocumentSnapshot = obj as DocumentSnapshot
                         Log.d(TAG, "DocumentSnapshot data: ${document.data}")
 
                         val user = document.toObject(MemberModel::class.java)
-                        val password = user?.password
+                        val password = AESCrypt.decrypt(user?.password)
 
                         val isVerified = document.get("isVerified") as Boolean
 
@@ -238,7 +244,10 @@ class LoginActivity : ActivityBase() {
                             } else {
                                 val intent = Intent(getActiviy(), ConfirmActivity::class.java)
                                 intent.putExtra(Constants.KEY_MEMBER, user)
-                                intent.putExtra(Constants.KEY_MOBILE, memberModel.mobileWithCountry)
+                                intent.putExtra(
+                                    Constants.KEY_MOBILE,
+                                    memberModel.mobileWithCountry
+                                )
                                 startActivity(intent)
 
                             }
@@ -255,7 +264,7 @@ class LoginActivity : ActivityBase() {
                         GlobalData.errorDialog(
                             getActiviy(),
                             R.string.login,
-                            getString(R.string.not_have_account_q)
+                            getString(R.string.fail_to_sign_in)
                         )
 
                     }

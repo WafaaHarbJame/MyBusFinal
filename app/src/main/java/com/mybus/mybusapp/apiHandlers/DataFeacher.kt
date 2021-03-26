@@ -1,8 +1,8 @@
 package com.mybus.mybusapp.apiHandlers
 
-import android.app.DownloadManager
 import android.util.Log
 import com.google.firebase.firestore.Query
+import com.google.firebase.firestore.SetOptions
 import com.google.gson.Gson
 import com.mybus.mybusapp.RootApplication
 import com.mybus.mybusapp.classes.Constants
@@ -33,6 +33,19 @@ class DataFeacher(callBack: DataFetcherCallBack?) {
 
         val phoneNumber = memberModel?.mobileWithCountry
         fireStoreDB?.collection(ApiUrl.Users.name)?.document(phoneNumber!!)?.get()
+            ?.addOnCompleteListener {
+                if (it.isSuccessful) {
+                    val document = it.result
+                    if (document.exists()) {
+                        dataFetcherCallBack?.Result(document, Constants.SUCCESS, true)
+                    } else {
+                        dataFetcherCallBack?.Result(null, Constants.USER_NOT_EXIST, false)
+
+                    }
+                } else {
+                    dataFetcherCallBack?.Result(null, Constants.FAIL_DATA, false)
+                }
+            }
             ?.addOnSuccessListener { document ->
                 if (document.exists()) {
                     dataFetcherCallBack?.Result(document, Constants.SUCCESS, true)
@@ -194,6 +207,62 @@ class DataFeacher(callBack: DataFetcherCallBack?) {
 
     }
 
+
+    fun addDriver(driverModel: DriverModel) {
+
+//        val phoneNumber = map["mobileWithCountry"] as String
+
+        Log.i(TAG, "Log addDoctorHandle")
+        Log.i(TAG, "Log phoneNumber ${driverModel.mobileWithCountry}")
+
+        fireStoreDB!!.collection(ApiUrl.Users.name).document(driverModel.mobileWithCountry!!).get()
+            .addOnCompleteListener {
+                if (it.isSuccessful) {
+                    val document = it.result
+                    if (document?.exists() == true) {
+                        dataFetcherCallBack?.Result(null, Constants.USER_EXIST, false)
+
+                    } else {
+                        fireStoreDB!!.collection(ApiUrl.Users.name)
+                            .document(driverModel.mobileWithCountry!!)
+                            .set(driverModel, SetOptions.merge())
+                            .addOnSuccessListener {
+                                dataFetcherCallBack?.Result("", Constants.SUCCESS, true)
+                            }.addOnFailureListener {
+                                dataFetcherCallBack?.Result(null, Constants.FAIL_DATA, true)
+                            }
+
+                    }
+                } else {
+                    dataFetcherCallBack?.Result(null, Constants.FAIL_DATA, false)
+                }
+            }
+
+
+    }
+
+    fun editDriver(driverModel: DriverModel) {
+
+//        val phoneNumber = map["mobileWithCountry"] as String
+////        val mobile = map["countryCode"]
+
+        Log.i(TAG, "Log editDoctorHandle")
+        Log.i(TAG, "Log phoneNumber ${driverModel.mobileWithCountry}")
+
+//        val phoneNumber = memberModel.mobileWithCountry.toString()
+        fireStoreDB!!.collection(ApiUrl.Users.name).document(driverModel.mobileWithCountry!!).set(
+            driverModel,
+            SetOptions.merge()
+        )
+            .addOnSuccessListener {
+
+                dataFetcherCallBack?.Result("", Constants.SUCCESS, true)
+
+            }.addOnFailureListener {
+                dataFetcherCallBack?.Result(null, Constants.FAIL_DATA, false)
+            }
+
+    }
 
     fun updateData(
         mobile: String?,
@@ -471,9 +540,9 @@ class DataFeacher(callBack: DataFetcherCallBack?) {
                 if (it.isSuccessful) {
                     val query = it.result
 
-                    val allDriversList = mutableListOf<AllDriversModel>()
+                    val allDriversList = mutableListOf<DriverModel>()
                     for (document in query!!) {
-                        val allDriversModel = document?.toObject(AllDriversModel::class.java)
+                        val allDriversModel = document?.toObject(DriverModel::class.java)
                         allDriversList.add(allDriversModel!!)
                     }
 

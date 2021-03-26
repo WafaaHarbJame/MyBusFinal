@@ -279,6 +279,7 @@ class LoginActivity : ActivityBase() {
         }
     }
 
+
     private fun checkEmail() {
 
         val emailStr = NumberHandler.arabicToDecimal(emailTxt.text.toString())

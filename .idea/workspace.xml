@@ -13,9 +13,7 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cf3dacb1-5c6a-47c8-8fdf-f4491d73de14" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/mybus/mybusapp/activities/LoginActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/mybus/mybusapp/activities/LoginActivity.kt" afterDir="false" />
-    </list>
+    <list default="true" id="cf3dacb1-5c6a-47c8-8fdf-f4491d73de14" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -643,7 +641,14 @@
       <option name="project" value="LOCAL" />
       <updated>1616752889586</updated>
     </task>
-    <option name="localTasksCounter" value="46" />
+    <task id="LOCAL-00046" summary="manage drivers">
+      <created>1616757359477</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1616757359477</updated>
+    </task>
+    <option name="localTasksCounter" value="47" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -674,10 +679,10 @@
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
     <state x="662" y="306" key="AndroidCreateXmlResourceDialog/0.0.1680.1050@0.0.1680.1050" timestamp="1616752189602" />
-    <state x="0" y="214" key="CommitChangelistDialog2" timestamp="1616752887982">
+    <state x="0" y="214" key="CommitChangelistDialog2" timestamp="1616757359347">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
-    <state x="0" y="214" key="CommitChangelistDialog2/0.0.1680.1050@0.0.1680.1050" timestamp="1616752887982" />
+    <state x="0" y="214" key="CommitChangelistDialog2/0.0.1680.1050@0.0.1680.1050" timestamp="1616757359347" />
     <state width="1638" height="445" key="GridCell.Tab.0.bottom" timestamp="1616750101666">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
@@ -694,10 +699,10 @@
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
     <state width="1638" height="445" key="GridCell.Tab.0.right/0.0.1680.1050@0.0.1680.1050" timestamp="1616750101665" />
-    <state x="440" y="262" key="Vcs.Push.Dialog.v2" timestamp="1616752890848">
+    <state x="440" y="262" key="Vcs.Push.Dialog.v2" timestamp="1616757360721">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
-    <state x="440" y="262" key="Vcs.Push.Dialog.v2/0.0.1680.1050@0.0.1680.1050" timestamp="1616752890848" />
+    <state x="440" y="262" key="Vcs.Push.Dialog.v2/0.0.1680.1050@0.0.1680.1050" timestamp="1616757360721" />
     <state x="623" y="443" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1616752813567">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>

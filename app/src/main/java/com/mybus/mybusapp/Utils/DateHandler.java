@@ -789,7 +789,8 @@ public class DateHandler {
 
         return diffMinutes;
     }
-    public static String getAge(int year, int month, int day){
+
+    public static String getAge(int year, int month, int day) {
         Calendar dob = Calendar.getInstance();
         Calendar today = Calendar.getInstance();
 
@@ -797,13 +798,13 @@ public class DateHandler {
 
         int age = today.get(Calendar.YEAR) - dob.get(Calendar.YEAR);
 
-        if (today.get(Calendar.DAY_OF_YEAR) < dob.get(Calendar.DAY_OF_YEAR)){
+        if (today.get(Calendar.DAY_OF_YEAR) < dob.get(Calendar.DAY_OF_YEAR)) {
             age--;
         }
 
-        Integer ageInt = new Integer(age);
-        String ageS = ageInt.toString();
+//        Integer ageInt = Integer.valueOf(age);
+//        String ageS = ageInt.toString();
 
-        return ageS;
+        return String.valueOf(age);
     }
 }

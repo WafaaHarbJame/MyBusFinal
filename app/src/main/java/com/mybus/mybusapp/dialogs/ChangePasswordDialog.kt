@@ -78,18 +78,18 @@ class ChangePasswordDialog(
                 override fun Result(obj: Any?, func: String?, IsSuccess: Boolean) {
                     GlobalData.progressDialogHide()
                     if (func == Constants.SUCCESS) {
-                     dialog.dismiss()
+                        dialog.dismiss()
                         GlobalData.successDialog(
                             activity,
                             R.string.change_password,
-                            activity?.getString(R.string.success_change_password)
+                            activity?.getString(R.string.success_change_password), null
                         )
 
 
                     } else {
                         var message = activity?.getString(R.string.fail_to_change_password)
                         if (func == Constants.PASSWORD_WRONG)
-                            message =  activity?.getString(R.string.current_password_wrong)
+                            message = activity?.getString(R.string.current_password_wrong)
 
                         GlobalData.errorDialog(
                             activity,
@@ -100,7 +100,11 @@ class ChangePasswordDialog(
 
 
                 }
-            }).changePassword(mobileStr,AESCrypt.encrypt(currentPasswordStr),AESCrypt.encrypt(newPasswordStr));
+            }).changePassword(
+                mobileStr,
+                AESCrypt.encrypt(currentPasswordStr),
+                AESCrypt.encrypt(newPasswordStr)
+            );
 
         } catch (e: Exception) {
 
@@ -130,7 +134,6 @@ class ChangePasswordDialog(
 
             .validate()
     }
-
 
 
 }

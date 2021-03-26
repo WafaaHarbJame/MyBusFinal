@@ -63,7 +63,7 @@
     <string name="fail_to_change_password">Fail to change password</string>
     <string name="success_change_password">Success change password</string>
     <string name="current_password_wrong">Current password not correct</string>
-    <string name="enter_fill_name">Enter Fill Name</string>
+    <string name="enter_fill_name">Enter Full Name</string>
     <string name="enter_age">Enter Date Birth</string>
     <string name="age_must_be_morethan">Age Must me  more than 18</string>
     <string name="orders">My Orders</string>
@@ -112,7 +112,7 @@
     <string name="accepted">Accepted</string>
     <string name="driver_location">Driver Location</string>
     <string name="complete_order">Complete Order</string>
-    <string name="fail_to_order">fail_to_order</string>
+    <string name="fail_to_order">Fail to order</string>
     <string name="make_order">Make Order</string>
     <string name="please_wait_to_make_order">Please wait to make the order</string>
     <string name="make_order_sucess">Make Order Success</string>
@@ -132,6 +132,31 @@
     <string name="email">"Email "</string>
     <string name="sign_in_with_email">Sign in by email</string>
     <string name="sign_in_with_mobile">Sign In by Mobile</string>
+    <string name="fail_to_sign_in">Fail to sign in</string>
+    <string name="manage_drivers">Manage Drivers</string>
+    <string name="edit_driver">Edit Driver</string>
+    <string name="invalid_mobile">Invalid Mobile</string>
+    <string name="add_driver">Add Driver</string>
+    <string name="please_wait_to_add_driver">Please wait to add driver</string>
+    <string name="success_add_driver">Success add driver</string>
+    <string name="mobile_number_used_before">Mobile number used before</string>
+    <string name="fail_to_add_driver">Fail to add driver</string>
+    <string name="account_active">Account Active</string>
+    <string name="send">Send</string>
+    <string name="new_driver">New Driver</string>
+    <string name="no_drivers">No Drivers</string>
+    <string name="name_key">Name :</string>
+    <string name="mobile_key">Mobile:</string>
+    <string name="bus_number_key">Bus Number:</string>
+    <string name="bus_model_key">Bus Model:</string>
+    <string name="years">Year</string>
+    <string name="user_info">User Info</string>
+    <string name="bus_info">Bus Info</string>
+    <string name="bus_name">Bus Name</string>
+    <string name="invalid_email">Invalid Email</string>
+    <string name="enter_bus_name">Enter bus name</string>
+    <string name="success_edit_driver">Success edit driver</string>
+    <string name="fail_to_send">Fail to send</string>
 
 
 </resources>

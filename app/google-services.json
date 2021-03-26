@@ -15,14 +15,6 @@
       },
       "oauth_client": [
         {
-          "client_id": "17435552953-v7uifaum9lsitm78m5i6fhmvtvn4mfja.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.mybus.mybusapp",
-            "certificate_hash": "00a9051a33f26c73727b3e1365b0ccf4ad61fb00"
-          }
-        },
-        {
           "client_id": "17435552953-vh1hmofim694mnvqrihd33fldhpn8pg1.apps.googleusercontent.com",
           "client_type": 3
         }

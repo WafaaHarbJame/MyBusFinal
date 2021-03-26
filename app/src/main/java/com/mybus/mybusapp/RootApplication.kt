@@ -51,7 +51,7 @@ class RootApplication : LocalizationApplication() {
         fireStoreDB = FirebaseFirestore.getInstance()
         val settings = FirebaseFirestoreSettings.Builder()
             .build()
-        fireStoreDB!!.firestoreSettings = settings
+        fireStoreDB?.firestoreSettings = settings
 
 
         var appLanguage = UtilityApp.language

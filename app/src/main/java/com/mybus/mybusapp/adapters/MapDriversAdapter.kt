@@ -8,17 +8,17 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.mybus.mybusapp.R
 import com.mybus.mybusapp.apiHandlers.DataFetcherCallBack
-import com.mybus.mybusapp.models.AllDriversModel
+import com.mybus.mybusapp.models.DriverModel
 
 class MapDriversAdapter(
     private val activity: Activity,
-    objectsList: MutableList<AllDriversModel>?,
+    objectsList: MutableList<DriverModel>?,
     callBack: DataFetcherCallBack
 ) :
     RecyclerView.Adapter<MapDriversAdapter.ProductsHolder?>() {
 
     var view: View? = null
-    var objectsModelList: MutableList<AllDriversModel>? = objectsList
+    var objectsModelList: MutableList<DriverModel>? = objectsList
     val dataFetcherCallBack = callBack
 
 
@@ -37,8 +37,8 @@ class MapDriversAdapter(
 
         if (objectsModelList != null) {
 
-            val allDriversModel: AllDriversModel = objectsModelList!![position]
-            holder.bind(allDriversModel)
+            val driverModel: DriverModel = objectsModelList!![position]
+            holder.bind(driverModel)
         }
 
     }
@@ -55,10 +55,10 @@ class MapDriversAdapter(
         val addressTxt: TextView = itemView!!.findViewById(R.id.addressTxt)
         val driverNameTxt: TextView = itemView!!.findViewById(R.id.driverNameTxt)
 
-        fun bind(allDriverModel: AllDriversModel) {
+        fun bind(allDriverModel: DriverModel) {
 
-            addressTxt.text = allDriverModel.getAddress()
-            driverNameTxt.text=allDriverModel.getFullName()
+            addressTxt.text = allDriverModel.address
+            driverNameTxt.text = allDriverModel.fullName
         }
 
 

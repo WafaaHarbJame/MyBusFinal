@@ -21,6 +21,7 @@ object Constants {
     const val SUCCESS = "success"
     const val FAIL_DATA = "fail_data"
     const val USER_EXIST = "user_exist"
+    const val USER_NOT_EXIST = "user_not_exist"
     const val ERROR_DATA = "error_data"
     const val NO_CONNECTION = "no_connection"
     const val PASSWORD_WRONG = "password_wrong"
@@ -43,10 +44,12 @@ object Constants {
     const val KEY_DESTINATION_LNG = "key_destination_lng"
     const val KEY_IS_SELECT_LOCATION = "key_is_select_location"
     const val KEY_EDIT = "key_edit"
+    const val KEY_DRIVER_MODEL = "key_driver_model"
     const val KEY_TYPE = "key_type"
     const val KEY_MOBILE = "key_mobile"
     const val KEY_MAP_TYPE = "key_map_type"
     const val KEY_LOGIN_PREFERANCE = "key_login_preferance"
     const val KEY_TO_ORDERS = "key_to_orders"
+
     const val DB_Countries = "countries_db"
 }

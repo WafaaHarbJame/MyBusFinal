@@ -14,19 +14,16 @@ import androidx.annotation.DrawableRes
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.gms.maps.*
-import com.google.android.gms.maps.GoogleMap.OnMarkerClickListener
 import com.google.android.gms.maps.model.*
 import com.kcode.permissionslib.main.OnRequestPermissionsCallBack
 import com.kcode.permissionslib.main.PermissionCompat
 import com.mybus.mybusapp.R
 import com.mybus.mybusapp.Utils.ImageHandler
-import com.mybus.mybusapp.adapters.MapDriversAdapter
 import com.mybus.mybusapp.apiHandlers.DataFeacher
 import com.mybus.mybusapp.apiHandlers.DataFetcherCallBack
 import com.mybus.mybusapp.classes.Constants
-import com.mybus.mybusapp.models.AllDriversModel
+import com.mybus.mybusapp.models.DriverModel
 import io.nlopez.smartlocation.SmartLocation
 import kotlinx.android.synthetic.main.activity_map.*
 import java.util.*
@@ -45,7 +42,7 @@ class MapActivity : ActivityBase(), OnMapReadyCallback {
 
     var isGrantPermission = false
 
-    var allDrivesList: MutableList<AllDriversModel>? = null
+    var allDrivesList: MutableList<DriverModel>? = null
 
     var markers: MutableList<Marker>? = null
 
@@ -73,7 +70,7 @@ class MapActivity : ActivityBase(), OnMapReadyCallback {
         }
 
         if (mapType == 1) {
-            selectBtn.visibility =visible
+            selectBtn.visibility = visible
             checkLocationPermission()
         } else if (mapType == 2) {
             selectBtn.visibility = View.VISIBLE
@@ -353,7 +350,7 @@ class MapActivity : ActivityBase(), OnMapReadyCallback {
     private fun getAllDrivers() {
         DataFeacher(object : DataFetcherCallBack {
             override fun Result(obj: Any?, func: String?, IsSuccess: Boolean) {
-                allDrivesList = obj as MutableList<AllDriversModel>?
+                allDrivesList = obj as MutableList<DriverModel>?
                 initAdapter()
             }
         }).getAllDrivers()
@@ -364,13 +361,13 @@ class MapActivity : ActivityBase(), OnMapReadyCallback {
         markers!!.clear()
         for (i in allDrivesList?.indices!!) {
 
-            val allDriversModel: AllDriversModel = allDrivesList!!.get(i)
+            val driverModel: DriverModel = allDrivesList!!.get(i)
 
             markers!!.add(
                 createMarker(
-                    allDriversModel.getLat(),
-                    allDriversModel.getLng(),
-                    allDriversModel.getFullName(), allDriversModel.getAddress(),
+                    driverModel.lat,
+                    driverModel.lng,
+                    driverModel.fullName, driverModel.address,
                     R.drawable.ic_map_driver
                 )!!
             )

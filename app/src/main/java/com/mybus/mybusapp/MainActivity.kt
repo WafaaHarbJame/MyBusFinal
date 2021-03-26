@@ -2,7 +2,6 @@ package com.mybus.mybusapp
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.KeyEvent
 import android.widget.TextView
 import androidx.core.content.ContextCompat
@@ -11,15 +10,11 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import com.mybus.mybusapp.models.MessageEvent
 import com.mybus.mybusapp.activities.ActivityBase
-import com.mybus.mybusapp.apiHandlers.DataFeacher
-import com.mybus.mybusapp.apiHandlers.DataFetcherCallBack
 import com.mybus.mybusapp.classes.Constants
 import com.mybus.mybusapp.classes.GlobalData
 import com.mybus.mybusapp.classes.UtilityApp
 import com.mybus.mybusapp.fragments.*
-import com.mybus.mybusapp.models.AllDriversModel
 import com.mybus.mybusapp.models.MemberModel
-import com.mybus.mybusapp.models.RegisterUserModel
 import kotlinx.android.synthetic.main.layout_bottom_nav.*
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
@@ -39,7 +34,7 @@ class MainActivity : ActivityBase() {
 
     private lateinit var tabTextArr: Array<TextView>
     private lateinit var tabIconsArr: Array<TextView>
-    private var userType: Int = 0;
+    private var userType: Int = 0
     var user: MemberModel? = null
     private var toOrder: Boolean = false
 
@@ -64,18 +59,23 @@ class MainActivity : ActivityBase() {
 
         userType = user?.type!!
 
-       // getData()
+        // getData()
 
 
-
-        if (userType == 1) {
-            finishOrderBtn.visibility = visible
-            ordersBtn.visibility = gone
-
-        } else if (userType == 2) {
-            finishOrderBtn.visibility = gone
-            ordersBtn.visibility = gone
-            tab2Txt.text = getString(R.string.all_orders);
+        when (userType) {
+            1 -> {
+                finishOrderBtn.visibility = visible
+                ordersBtn.visibility = gone
+            }
+            2 -> {
+                finishOrderBtn.visibility = gone
+                ordersBtn.visibility = gone
+                tab2Txt.text = getString(R.string.all_orders)
+            }
+            3 -> {
+                finishOrderBtn.visibility = gone
+                ordersBtn.visibility = gone
+            }
         }
 
         if (toOrder) {
@@ -142,10 +142,16 @@ class MainActivity : ActivityBase() {
     private fun selectBottomTab(resId: Int) {
         when (resId) {
             R.id.mainBtn -> {
-                newFragment = if (userType == 1) {
-                    HomeClientFragment()
-                } else {
-                    HomeDriverFragment()
+                newFragment = when (userType) {
+                    3 -> {
+                        AdminMainScreenFragment()
+                    }
+                    2 -> {
+                        HomeDriverFragment()
+                    }
+                    else -> {
+                        HomeClientFragment()
+                    }
                 }
                 gui_position = 0
                 mTitle = getString(R.string.home)

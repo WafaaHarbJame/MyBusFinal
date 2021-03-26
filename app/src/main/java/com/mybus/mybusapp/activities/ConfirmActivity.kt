@@ -15,10 +15,7 @@ import com.mybus.mybusapp.classes.GlobalData
 import com.mybus.mybusapp.classes.UtilityApp
 import com.mybus.mybusapp.models.MemberModel
 import com.google.firebase.FirebaseException
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
-import com.google.firebase.auth.PhoneAuthCredential
-import com.google.firebase.auth.PhoneAuthProvider
+import com.google.firebase.auth.*
 import kotlinx.android.synthetic.main.activity_confirm.*
 import java.util.concurrent.TimeUnit
 
@@ -29,8 +26,8 @@ class ConfirmActivity : ActivityBase() {
     val TAG: String? = "ConfirmActivity"
 
     private lateinit var callbacks: PhoneAuthProvider.OnVerificationStateChangedCallbacks
-    private var storedVerificationId: String = ""
-    private lateinit var resendToken: PhoneAuthProvider.ForceResendingToken
+    private var storedVerificationId: String? = null
+    private var resendToken: PhoneAuthProvider.ForceResendingToken? = null
 
     var mobile: String = ""
     lateinit var user: MemberModel
@@ -39,7 +36,10 @@ class ConfirmActivity : ActivityBase() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_confirm)
+
         auth = FirebaseAuth.getInstance()
+        FirebaseAuth.getInstance().firebaseAuthSettings.forceRecaptchaFlowForTesting(false)
+
         title = ""
 
         val bundle = intent.extras
@@ -87,7 +87,7 @@ class ConfirmActivity : ActivityBase() {
 
                                 val intent = Intent(getActiviy(), MainActivity::class.java)
                                 intent.flags =
-                                 Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                                    Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
                                 startActivity(intent)
                                 finish()
                             } else {
@@ -148,7 +148,7 @@ class ConfirmActivity : ActivityBase() {
         callbacks = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
 
             override fun onVerificationCompleted(credential: PhoneAuthCredential) {
-                //signInWithPhoneAuthCredential(credential)
+                signInWithPhoneAuthCredential(credential)
             }
 
             override fun onVerificationFailed(e: FirebaseException) {
@@ -164,13 +164,30 @@ class ConfirmActivity : ActivityBase() {
             }
         }
 
-        PhoneAuthProvider.getInstance().verifyPhoneNumber(
-            phoneNumber,
-            60,
-            TimeUnit.SECONDS,
-            this,
-            callbacks
-        )
+        val options = if (resendToken != null)
+            PhoneAuthOptions.newBuilder(auth)
+                .setForceResendingToken(resendToken!!)
+                .setPhoneNumber(phoneNumber) // Phone number to verify
+                .setTimeout(60L, TimeUnit.SECONDS) // Timeout and unit
+                .setActivity(this) // Activity (for callback binding)
+                .setCallbacks(callbacks) // OnVerificationStateChangedCallbacks
+                .build()
+        else PhoneAuthOptions.newBuilder(auth)
+            .setPhoneNumber(phoneNumber) // Phone number to verify
+            .setTimeout(60L, TimeUnit.SECONDS) // Timeout and unit
+            .setActivity(this) // Activity (for callback binding)
+            .setCallbacks(callbacks) // OnVerificationStateChangedCallbacks
+            .build()
+
+        PhoneAuthProvider.verifyPhoneNumber(options)
+
+//        PhoneAuthProvider.getInstance().verifyPhoneNumber(
+//            phoneNumber,
+//            60,
+//            TimeUnit.SECONDS,
+//            this,
+//            callbacks
+//        )
     }
 
 }

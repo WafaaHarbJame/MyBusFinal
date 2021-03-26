@@ -27,7 +27,18 @@ import com.mybus.mybusapp.classes.UtilityApp
 import com.mybus.mybusapp.dialogs.CountryCodeDialog
 import com.mybus.mybusapp.models.CountryModel
 import com.mybus.mybusapp.models.MemberModel
+import kotlinx.android.synthetic.main.activity_add_driver.*
 import kotlinx.android.synthetic.main.activity_register.*
+import kotlinx.android.synthetic.main.activity_register.busColorInput
+import kotlinx.android.synthetic.main.activity_register.busModelInput
+import kotlinx.android.synthetic.main.activity_register.busNumberInput
+import kotlinx.android.synthetic.main.activity_register.confirmPasswordInput
+import kotlinx.android.synthetic.main.activity_register.countryCodeTxt
+import kotlinx.android.synthetic.main.activity_register.emailInput
+import kotlinx.android.synthetic.main.activity_register.fullNameInput
+import kotlinx.android.synthetic.main.activity_register.mobileInput
+import kotlinx.android.synthetic.main.activity_register.numSeatInput
+import kotlinx.android.synthetic.main.activity_register.passwordInput
 import java.util.*
 
 
@@ -48,10 +59,12 @@ class RegisterActivity : ActivityBase() {
     var busName: String? = ""
     var busColor: String? = ""
     var busModel: String? = ""
-     var yearStr: Int? = 0
-     var monthStr: Int? = 0
-     var dayStr: Int? = 0
-    var email :String? = ""
+
+    var selectedYear: Int? = 0
+    var selectedMonth: Int? = 0
+    var selectedDay: Int? = 0
+    var maxDate: Long = 0
+    var email: String? = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -79,17 +92,27 @@ class RegisterActivity : ActivityBase() {
 
         ageTxt.setOnClickListener {
 
-            val dpd = DatePickerDialog(this, { view2, thisYear, thisMonth, thisDay ->
-                monthStr = thisMonth + 1
-                dayStr = thisDay
-                yearStr = thisYear
-                ageTxt.setText(" "+ monthStr + "/" + dayStr + "/" + yearStr)
+            val datePickerDialog = DatePickerDialog(this, { view2, thisYear, thisMonth, thisDay ->
+                selectedYear = thisYear
+                selectedMonth = thisMonth + 1
+                selectedDay = thisDay
+                ageTxt.text = DateHandler.FormatDate4(
+                    "$selectedYear/$selectedMonth/$selectedDay",
+                    "yyyy-MM-dd",
+                    "yyyy-MM-dd"
+                )
 
-                ageNumber = DateHandler.getAge(yearStr.toString().toInt(), monthStr.toString().toInt(), dayStr.toString().toInt()).toInt()
-                val newDate:Calendar =Calendar.getInstance()
-                newDate.set(thisYear, thisMonth, thisDay)
-            }, yearStr!!, monthStr!!, dayStr!!)
-            dpd.show()
+                ageNumber = DateHandler.getAge(
+                    selectedYear ?: 0,
+                    selectedMonth ?: 0,
+                    selectedDay ?: 0
+                ).toInt()
+
+            }, selectedYear!!, selectedMonth!!, selectedDay!!)
+
+            datePickerDialog.datePicker.maxDate = maxDate
+            datePickerDialog.show()
+            datePickerDialog.datePicker.touchables[0].performClick()
 
 
         }
@@ -113,6 +136,8 @@ class RegisterActivity : ActivityBase() {
             }
 
         }
+
+        initDates()
 
         getFCMToken()
 
@@ -165,8 +190,8 @@ class RegisterActivity : ActivityBase() {
             val mobileStr = NumberHandler.arabicToDecimal(mobileTxt.text.toString())
             val passwordStr = NumberHandler.arabicToDecimal(passwordTxt.text.toString())
             val fullNameStr = NumberHandler.arabicToDecimal(NameTxt.text.toString())
-            val ageStr = NumberHandler.arabicToDecimal(ageTxt.text.toString().trim())
-            val emailStr=NumberHandler.arabicToDecimal(emailTxt.text.toString())
+            val birthDateStr = NumberHandler.arabicToDecimal(ageTxt.text.toString().trim())
+            val emailStr = NumberHandler.arabicToDecimal(emailTxt.text.toString())
 
             if (!isUser) {
                 numSeats = NumberHandler.arabicToDecimal(numSeatTxt.text.toString().trim()).toInt()
@@ -189,6 +214,7 @@ class RegisterActivity : ActivityBase() {
             registerUserModel.password_confirm = AESCrypt.encrypt(passwordStr)
             registerUserModel.mobileWithCountry =
                 selectedCountryCode.toString().plus(registerUserModel.mobile)
+            registerUserModel.birthDate = birthDateStr
             registerUserModel.age = ageNumber!!
             registerUserModel.fullName = fullNameStr
             registerUserModel.busLoading = numSeats
@@ -202,7 +228,7 @@ class RegisterActivity : ActivityBase() {
             registerUserModel.busColor = busColor
             registerUserModel.busName = busName
             registerUserModel.busNumber = busNumber
-            registerUserModel.email=emailStr
+            registerUserModel.email = emailStr
 
 
             GlobalData.progressDialog(
@@ -284,7 +310,6 @@ class RegisterActivity : ActivityBase() {
 
         } else {
             return FormValidator.getInstance()
-
                 .addField(
                     fullNameInput,
                     NonEmptyRule(R.string.enter_fill_name),
@@ -350,6 +375,18 @@ class RegisterActivity : ActivityBase() {
     }
 
 
+    private fun initDates() {
+
+        val c = Calendar.getInstance()
+        c.add(Calendar.HOUR_OF_DAY, 1)
+        maxDate = c.time.time - 60000
+        c[Calendar.YEAR] = 1990
+        selectedYear = c[Calendar.YEAR]
+        selectedMonth = c.get(Calendar.MONTH)
+        selectedDay = c.get(Calendar.DAY_OF_MONTH)
+
+    }
+
     private fun getFCMToken() {
         FCMToken = UtilityApp.fCMToken
         if (FCMToken == null) {
@@ -360,12 +397,6 @@ class RegisterActivity : ActivityBase() {
                 }
         }
     }
-
-
-
-
-
-
 
 
 }

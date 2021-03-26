@@ -118,4 +118,18 @@
     <string name="enter_vaild_email">Enter Valid Email</string>
     <string name="email">"Email "</string>
     <string name="sign_in_with_mobile">Sign In with Mobile</string>
+    <string name="enter_fill_name">ادخل الإسم بالكامل</string>
+    <string name="driver">السائق</string>
+    <string name="next">التالي</string>
+    <string name="enter_your_destination">ادخل الوجهة</string>
+    <string name="fail_to_change_status">فشل تغيير الحالة</string>
+    <string name="bus_number">رقم الباص</string>
+    <string name="bus_color">لون الباص</string>
+    <string name="sucess_change_satus">نجاح</string>
+    <string name="driver_location">موقع السائق</string>
+    <string name="fail_to_order">فشل الطلب</string>
+    <string name="pending">بالإنتظار</string>
+    <string name="payWay">دفع في الطريق</string>
+    <string name="sign_in_with_email">دخول بالبريد الإلكتروني</string>
+    <string name="fail_to_sign_in">فشل تسجيل الدخول</string>
 </resources>

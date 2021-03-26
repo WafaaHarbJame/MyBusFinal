@@ -1,9 +1,11 @@
 <component name="libraryTable">
   <library name="Gradle: com.github.dhaval2404:android-form-validation:1.0@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/1baeab7ab342be53e09d308a025f5e0d/jetified-android-form-validation-1.0/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/1baeab7ab342be53e09d308a025f5e0d/jetified-android-form-validation-1.0/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/1baeab7ab342be53e09d308a025f5e0d/jetified-android-form-validation-1.0/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/12c4e874f717923e9787359328f506c2/jetified-android-form-validation-1.0/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/75dce62be5f70a25ab05042a2ee2e5bb/jetified-android-form-validation-1.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/75dce62be5f70a25ab05042a2ee2e5bb/jetified-android-form-validation-1.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/75dce62be5f70a25ab05042a2ee2e5bb/jetified-android-form-validation-1.0/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.dhaval2404/android-form-validation/1.0/974f3efca946965fd473bcd2095f20af616aa421/android-form-validation-1.0-javadoc.jar!/" />

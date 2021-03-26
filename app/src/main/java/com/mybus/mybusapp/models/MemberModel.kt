@@ -13,6 +13,7 @@ class MemberModel : Serializable {
     var password: String? = null
     var password_confirm: String? = null
     var isVerified: Any? = null
+    var birthDate :String = ""
     var age :Int = 0
     var lat = 0.0
     var lng = 0.0

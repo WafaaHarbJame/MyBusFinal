@@ -264,6 +264,26 @@ class DataFeacher(callBack: DataFetcherCallBack?) {
 
     }
 
+    fun deleteDriver(driverModel: DriverModel) {
+
+//        val phoneNumber = map["mobileWithCountry"] as String
+////        val mobile = map["countryCode"]
+
+        Log.i(TAG, "Log deleteDriver")
+        Log.i(TAG, "Log phoneNumber ${driverModel.mobileWithCountry}")
+
+//        val phoneNumber = memberModel.mobileWithCountry.toString()
+        fireStoreDB!!.collection(ApiUrl.Users.name).document(driverModel.mobileWithCountry!!)
+            .delete()
+            .addOnSuccessListener {
+                dataFetcherCallBack?.Result("", Constants.SUCCESS, true)
+
+            }.addOnFailureListener {
+                dataFetcherCallBack?.Result(null, Constants.FAIL_DATA, false)
+            }
+
+    }
+
     fun updateData(
         mobile: String?,
         lat: Double,
@@ -532,10 +552,33 @@ class DataFeacher(callBack: DataFetcherCallBack?) {
 
     }
 
-    fun getAllDrivers() {
+    fun getAllActiveDrivers() {
         Log.i(TAG, "Log getAllDrivers")
         fireStoreDB?.collection(ApiUrl.Users.name)?.whereEqualTo("type", 2)
             ?.whereEqualTo("isDriverActive", true)
+            ?.get()?.addOnCompleteListener {
+                if (it.isSuccessful) {
+                    val query = it.result
+
+                    val allDriversList = mutableListOf<DriverModel>()
+                    for (document in query!!) {
+                        val allDriversModel = document?.toObject(DriverModel::class.java)
+                        allDriversList.add(allDriversModel!!)
+                    }
+
+                    dataFetcherCallBack?.Result(allDriversList, Constants.SUCCESS, true)
+                } else {
+                    it.exception?.printStackTrace()
+                }
+
+            }
+
+    }
+
+    fun getAllDrivers() {
+        Log.i(TAG, "Log getAllDrivers")
+        fireStoreDB?.collection(ApiUrl.Users.name)?.whereEqualTo("type", 2)
+//            ?.whereEqualTo("isDriverActive", true)
             ?.get()?.addOnCompleteListener {
                 if (it.isSuccessful) {
                     val query = it.result

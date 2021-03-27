@@ -74,7 +74,7 @@ class MapActivity : ActivityBase(), OnMapReadyCallback {
             checkLocationPermission()
         } else if (mapType == 2) {
             selectBtn.visibility = View.VISIBLE
-            selectBtn.text = getString(R.string.edit)
+            selectBtn.text = getString(R.string.edit_Location)
 
         } else if (mapType == 3) {
             selectDestinationBtn.visibility = View.VISIBLE
@@ -347,14 +347,14 @@ class MapActivity : ActivityBase(), OnMapReadyCallback {
         alert.show()
     }
 
-    private fun getAllDrivers() {
-        DataFeacher(object : DataFetcherCallBack {
-            override fun Result(obj: Any?, func: String?, IsSuccess: Boolean) {
-                allDrivesList = obj as MutableList<DriverModel>?
-                initAdapter()
-            }
-        }).getAllDrivers()
-    }
+//    private fun getAllDrivers() {
+//        DataFeacher(object : DataFetcherCallBack {
+//            override fun Result(obj: Any?, func: String?, IsSuccess: Boolean) {
+//                allDrivesList = obj as MutableList<DriverModel>?
+//                initAdapter()
+//            }
+//        }).getAllActiveDrivers()
+//    }
 
     private fun initAdapter() {
         map?.clear()

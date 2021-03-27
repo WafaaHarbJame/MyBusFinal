@@ -36,7 +36,7 @@ import java.util.*
 
 class AddDriverActivity : ActivityBase() {
 
-    var selectedCountryCode = 0
+    var selectedCountryCode = 966
     var countryCodeDialog: CountryCodeDialog? = null
     private var countryModels: MutableList<CountryModel>? = mutableListOf()
 
@@ -104,7 +104,7 @@ class AddDriverActivity : ActivityBase() {
                 selectedMonth = thisMonth + 1
                 selectedDay = thisDay
                 ageTV.text = DateHandler.FormatDate4(
-                    "$selectedYear/$selectedMonth/$selectedDay",
+                    "$selectedYear-$selectedMonth-$selectedDay",
                     "yyyy-MM-dd",
                     "yyyy-MM-dd"
                 )
@@ -117,8 +117,8 @@ class AddDriverActivity : ActivityBase() {
 
             }, selectedYear!!, selectedMonth!!, selectedDay!!)
 
-            datePickerDialog.datePicker.setMaxDate(maxDate!!)
-            datePickerDialog.show();
+            datePickerDialog.datePicker.maxDate = maxDate!!
+            datePickerDialog.show()
             datePickerDialog.datePicker.touchables[0].performClick();
 
         }
@@ -183,7 +183,7 @@ class AddDriverActivity : ActivityBase() {
         busColorET.setText(driverModel?.busColor)
         numSeatET.setText(driverModel?.busLoading.toString())
 
-        activeCB.isChecked = driverModel?.isVerified == true
+        activeCB.isChecked = driverModel?.isDriverActive == true
 
 //        Glide.with(getActiviy())
 //            .asBitmap()
@@ -224,9 +224,10 @@ class AddDriverActivity : ActivityBase() {
             driverModel?.countryCode = selectedCountryCode
             driverModel?.mobile = mobile
             driverModel?.mobileWithCountry = selectedCountryCode.toString().plus(mobile)
-            driverModel?.isVerified = activeCB.isChecked
+            driverModel?.isDriverActive = activeCB.isChecked
             driverModel?.password = AESCrypt.encrypt(passwordStr)
             driverModel?.password_confirm = AESCrypt.encrypt(passwordStr)
+            driverModel?.type = 2
 
             driverModel?.busName = busNameStr
             driverModel?.busNumber = busNumberStr.toInt()

@@ -74,14 +74,14 @@
             <com.mybus.mybusapp.spichalViews.STextView
                 android:id="@+id/ageTV"
                 style="@style/editTextStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_15sdp"
                 android:layout_marginEnd="@dimen/_15sdp"
                 android:layout_marginBottom="@dimen/_10sdp"
-                android:layout_width="match_parent"
-                android:textColor="@color/colorPrimaryDark"
                 android:background="@drawable/round_corner_accent_trans"
-                android:layout_height="wrap_content"
-                android:text="@string/enter_age" />
+                android:hint="@string/enter_age"
+                android:textColor="@color/colorPrimaryDark" />
 
             <!--            <com.mybus.mybusapp.spichalViews.STextInputLayout-->
             <!--                android:id="@+id/specializationInput"-->

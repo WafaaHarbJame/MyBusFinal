@@ -97,7 +97,7 @@ class RegisterActivity : ActivityBase() {
                 selectedMonth = thisMonth + 1
                 selectedDay = thisDay
                 ageTxt.text = DateHandler.FormatDate4(
-                    "$selectedYear/$selectedMonth/$selectedDay",
+                    "$selectedYear-$selectedMonth-$selectedDay",
                     "yyyy-MM-dd",
                     "yyyy-MM-dd"
                 )

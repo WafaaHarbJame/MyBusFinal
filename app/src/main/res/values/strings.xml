@@ -87,7 +87,8 @@
     <string name="select_your_location">Select Your Location</string>
     <string name="sucess_choose_location">Location save successfully</string>
     <string name="fail_to_save_location">fail to save location</string>
-    <string name="edit">Edit Location</string>
+    <string name="edit_Location">Edit Location</string>
+    <string name="edit">Edit</string>
     <string name="fail_to_change_status">Fail to change status</string>
     <string name="current_request">Current Orders</string>
     <string name="finshed_order">Finished Order</string>
@@ -157,6 +158,11 @@
     <string name="enter_bus_name">Enter bus name</string>
     <string name="success_edit_driver">Success edit driver</string>
     <string name="fail_to_send">Fail to send</string>
+    <string name="want_delete_driver">Do you want to delete driver?</string>
+    <string name="delete">Delete</string>
+    <string name="cancel2">Cancel</string>
+    <string name="success_delete_driver">Success delete driver</string>
+    <string name="delete_driver">Delete Driver</string>
 
 
 </resources>

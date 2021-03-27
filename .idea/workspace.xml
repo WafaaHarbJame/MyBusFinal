@@ -13,13 +13,42 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cf3dacb1-5c6a-47c8-8fdf-f4491d73de14" name="Default Changelist" comment="" />
+    <list default="true" id="cf3dacb1-5c6a-47c8-8fdf-f4491d73de14" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable-hdpi/delete.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable-hdpi/edit.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable-ldpi/delete.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable-ldpi/edit.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable-mdpi/delete.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable-mdpi/edit.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable-xhdpi/delete.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable-xhdpi/edit.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable-xxhdpi/delete.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable-xxhdpi/edit.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable-xxxhdpi/delete.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable-xxxhdpi/edit.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.5/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.5/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.5/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/fileHashes/resourceHashesCache.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.5/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/javaCompile/classAnalysis.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.5/javaCompile/jarAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/javaCompile/jarAnalysis.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.5/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/javaCompile/javaCompile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.5/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/javaCompile/taskHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/mybus/mybusapp/activities/AddDriverActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/mybus/mybusapp/activities/AddDriverActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/mybus/mybusapp/activities/RegisterActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/mybus/mybusapp/activities/RegisterActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/delete.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/delete.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/edit.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/edit.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_add_driver.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_add_driver.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[2d1dbbbd]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -76,7 +105,7 @@
     </option>
   </component>
   <component name="GenerateSignedApkSettings">
-    <option name="KEY_STORE_PATH" value="E:\Key Store applications\MyBus\myBus.jks" />
+    <option name="KEY_STORE_PATH" value="$PROJECT_DIR$/../../../key_stores/MyBus/myBus.jks" />
     <option name="KEY_ALIAS" value="key0" />
     <option name="REMEMBER_PASSWORDS" value="true" />
     <option name="BUILD_TARGET_KEY" value="apk" />
@@ -98,7 +127,7 @@
     <property name="BundleExportedModule" value="app" />
     <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="3300c75496b2a295" />
     <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2020-11-04T22:45:43.165Z" />
-    <property name="ExportApk.ApkPath" value="D:\Android Projects\MyBusFinalP\app" />
+    <property name="ExportApk.ApkPath" value="$PROJECT_DIR$/../../../release android apps/MyBus" />
     <property name="ExportApk.BuildVariants" value="release" />
     <property name="ExportApk.SignV1" value="true" />
     <property name="ExportApk.SignV2" value="true" />
@@ -108,7 +137,7 @@
     <property name="android.sdk.path" value="E:/Sdk" />
     <property name="dart.analysis.tool.window.visible" value="false" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/app/src/main/res/drawable" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/src/main/java/com/mybus/mybusapp/adapters" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/src/main/res/drawable" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.17" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -120,6 +149,11 @@
     <option name="LAST_EDITED_BUILD_TYPE" value="release" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.mybus.mybusapp.models" />
+      <recent name="com.mybus.mybusapp.adapters" />
+      <recent name="com.mybus.mybusapp.dialogs" />
+    </key>
     <key name="CopyKotlinDeclarationDialog.RECENTS_KEY">
       <recent name="com.mybus.mybusapp.fragments" />
       <recent name="com.mybus.mybusapp.adapters" />
@@ -136,19 +170,15 @@
     <key name="android.template.-859970026">
       <recent name="com.mybus.mybusapp.activities" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\Android Projects\MyBusFinalP\app\src\main\res\drawable" />
-      <recent name="D:\Android Projects\My Bus\app\src\main\res\layout" />
-    </key>
     <key name="android.template.1494091230">
       <recent name="com.mybus.mybusapp.activities" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/src/main/res/drawable" />
       <recent name="$PROJECT_DIR$/app/src/main/java/com/mybus/mybusapp/adapters" />
       <recent name="$PROJECT_DIR$/app/src/main/java/com/mybus/mybusapp/models" />
       <recent name="$PROJECT_DIR$/app/src/main/java/com/mybus/mybusapp/activities" />
       <recent name="$PROJECT_DIR$/app/src/main/java/com/mybus/mybusapp/fragments" />
-      <recent name="$PROJECT_DIR$/app/src/main/res/layout" />
     </key>
     <key name="android.template.-1091409723">
       <recent name="com.mybus.mybusapp.activities" />
@@ -156,10 +186,9 @@
     <key name="android.template.-1655777280">
       <recent name="com.mybus.mybusapp.activities" />
     </key>
-    <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="com.mybus.mybusapp.models" />
-      <recent name="com.mybus.mybusapp.adapters" />
-      <recent name="com.mybus.mybusapp.dialogs" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Android Projects\MyBusFinalP\app\src\main\res\drawable" />
+      <recent name="D:\Android Projects\My Bus\app\src\main\res\layout" />
     </key>
     <key name="android.template.2146977715">
       <recent name="com.elaj.patient.activities" />
@@ -325,13 +354,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1602489474712</updated>
-    </task>
-    <task id="LOCAL-00001" summary="12-10-2020 add memory heap in gradle">
-      <created>1602490851998</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1602490851998</updated>
     </task>
     <task id="LOCAL-00002" summary="12-10-2020 login using phone,confirm page,translate String">
       <created>1602523973892</created>
@@ -648,7 +670,35 @@
       <option name="project" value="LOCAL" />
       <updated>1616757359477</updated>
     </task>
-    <option name="localTasksCounter" value="47" />
+    <task id="LOCAL-00047" summary="manage drivers">
+      <created>1616757680123</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1616757680123</updated>
+    </task>
+    <task id="LOCAL-00048" summary="manage drivers">
+      <created>1616758759201</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1616758759201</updated>
+    </task>
+    <task id="LOCAL-00049" summary="manage drivers">
+      <created>1616758793225</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1616758793225</updated>
+    </task>
+    <task id="LOCAL-00050" summary="manage drivers 2">
+      <created>1616762045394</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1616762045395</updated>
+    </task>
+    <option name="localTasksCounter" value="51" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -660,53 +710,62 @@
     <MESSAGE value="Make Order Details" />
     <MESSAGE value="Make Order Details now" />
     <MESSAGE value="manage drivers" />
-    <option name="LAST_COMMIT_MESSAGE" value="manage drivers" />
+    <MESSAGE value="manage drivers 2" />
+    <option name="LAST_COMMIT_MESSAGE" value="manage drivers 2" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="619" y="245" key="#com.intellij.ide.util.MemberChooser" timestamp="1616701310313">
+    <state x="619" y="245" key="#com.intellij.ide.util.MemberChooser" timestamp="1616760950267">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
-    <state x="619" y="245" key="#com.intellij.ide.util.MemberChooser/0.0.1680.1050@0.0.1680.1050" timestamp="1616701310313" />
+    <state x="619" y="245" key="#com.intellij.ide.util.MemberChooser/0.0.1680.1050@0.0.1680.1050" timestamp="1616760950267" />
     <state x="0" y="0" width="1680" height="1050" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1616745561947">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
     <state x="0" y="0" width="1680" height="1050" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1680.1050@0.0.1680.1050" timestamp="1616745561947" />
-    <state x="578" y="276" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1616745548076">
+    <state x="578" y="276" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1616759971775">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
-    <state x="578" y="276" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1680.1050@0.0.1680.1050" timestamp="1616745548076" />
-    <state x="662" y="306" key="AndroidCreateXmlResourceDialog" timestamp="1616752189602">
+    <state x="578" y="276" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1680.1050@0.0.1680.1050" timestamp="1616759971775" />
+    <state x="662" y="306" key="AndroidCreateXmlResourceDialog" timestamp="1616761902686">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
-    <state x="662" y="306" key="AndroidCreateXmlResourceDialog/0.0.1680.1050@0.0.1680.1050" timestamp="1616752189602" />
-    <state x="0" y="214" key="CommitChangelistDialog2" timestamp="1616757359347">
+    <state x="662" y="306" key="AndroidCreateXmlResourceDialog/0.0.1680.1050@0.0.1680.1050" timestamp="1616761902686" />
+    <state x="0" y="214" key="CommitChangelistDialog2" timestamp="1616762044153">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
-    <state x="0" y="214" key="CommitChangelistDialog2/0.0.1680.1050@0.0.1680.1050" timestamp="1616757359347" />
-    <state width="1638" height="445" key="GridCell.Tab.0.bottom" timestamp="1616750101666">
+    <state x="0" y="214" key="CommitChangelistDialog2/0.0.1680.1050@0.0.1680.1050" timestamp="1616762044153" />
+    <state width="1638" height="407" key="GridCell.Tab.0.bottom" timestamp="1616763929759">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
-    <state width="1638" height="445" key="GridCell.Tab.0.bottom/0.0.1680.1050@0.0.1680.1050" timestamp="1616750101666" />
-    <state width="1638" height="445" key="GridCell.Tab.0.center" timestamp="1616750101665">
+    <state width="1638" height="407" key="GridCell.Tab.0.bottom/0.0.1680.1050@0.0.1680.1050" timestamp="1616763929759" />
+    <state width="1638" height="445" key="GridCell.Tab.0.bottom/0.25.1680.961@0.25.1680.961" timestamp="1616760239227" />
+    <state width="1638" height="407" key="GridCell.Tab.0.center" timestamp="1616763929758">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
-    <state width="1638" height="445" key="GridCell.Tab.0.center/0.0.1680.1050@0.0.1680.1050" timestamp="1616750101665" />
-    <state width="1638" height="445" key="GridCell.Tab.0.left" timestamp="1616750101664">
+    <state width="1638" height="407" key="GridCell.Tab.0.center/0.0.1680.1050@0.0.1680.1050" timestamp="1616763929758" />
+    <state width="1638" height="445" key="GridCell.Tab.0.center/0.25.1680.961@0.25.1680.961" timestamp="1616760239226" />
+    <state width="1638" height="407" key="GridCell.Tab.0.left" timestamp="1616763929757">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
-    <state width="1638" height="445" key="GridCell.Tab.0.left/0.0.1680.1050@0.0.1680.1050" timestamp="1616750101664" />
-    <state width="1638" height="445" key="GridCell.Tab.0.right" timestamp="1616750101665">
+    <state width="1638" height="407" key="GridCell.Tab.0.left/0.0.1680.1050@0.0.1680.1050" timestamp="1616763929757" />
+    <state width="1638" height="445" key="GridCell.Tab.0.left/0.25.1680.961@0.25.1680.961" timestamp="1616760239225" />
+    <state width="1638" height="407" key="GridCell.Tab.0.right" timestamp="1616763929759">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
-    <state width="1638" height="445" key="GridCell.Tab.0.right/0.0.1680.1050@0.0.1680.1050" timestamp="1616750101665" />
-    <state x="440" y="262" key="Vcs.Push.Dialog.v2" timestamp="1616757360721">
+    <state width="1638" height="407" key="GridCell.Tab.0.right/0.0.1680.1050@0.0.1680.1050" timestamp="1616763929759" />
+    <state width="1638" height="445" key="GridCell.Tab.0.right/0.25.1680.961@0.25.1680.961" timestamp="1616760239226" />
+    <state x="440" y="262" key="Vcs.Push.Dialog.v2" timestamp="1616762046713">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
-    <state x="440" y="262" key="Vcs.Push.Dialog.v2/0.0.1680.1050@0.0.1680.1050" timestamp="1616757360721" />
-    <state x="623" y="443" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1616752813567">
+    <state x="440" y="262" key="Vcs.Push.Dialog.v2/0.0.1680.1050@0.0.1680.1050" timestamp="1616762046713" />
+    <state x="620" y="307" key="chooseDestDirectoryDialog" timestamp="1616762144058">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
-    <state x="623" y="443" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1680.1050@0.0.1680.1050" timestamp="1616752813567" />
+    <state x="620" y="307" key="chooseDestDirectoryDialog/0.0.1680.1050@0.0.1680.1050" timestamp="1616762144058" />
+    <state x="623" y="443" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1616762028757">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state x="623" y="443" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1680.1050@0.0.1680.1050" timestamp="1616762028757" />
     <state x="532" y="251" width="615" height="548" key="find.popup" timestamp="1616701145946">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
@@ -715,10 +774,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="555" y="313" key="git4idea.remote.GitConfigureRemotesDialog/0.0.1536.824@0.0.1536.824" timestamp="1616679783081" />
-    <state width="300" height="104" key="javadoc.popup.new" timestamp="1616752632653">
+    <state width="300" height="104" key="javadoc.popup.new" timestamp="1616761642188">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
-    <state width="300" height="104" key="javadoc.popup.new/0.0.1680.1050@0.0.1680.1050" timestamp="1616752632653" />
+    <state width="300" height="104" key="javadoc.popup.new/0.0.1680.1050@0.0.1680.1050" timestamp="1616761642188" />
     <state x="565" y="327" key="refactoring.ChangeSignatureDialog" timestamp="1616701426242">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>

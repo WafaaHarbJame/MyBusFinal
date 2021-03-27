@@ -55,8 +55,8 @@ class MainAdminAdapter(
 
                     when (mainAdminModel!!.id) {
                         MainAdminModel.MANAGE_DRIVERS -> {
-                            val intent = Intent(activity, DriversActivity::class.java)
-                            activity?.startActivity(intent)
+//                            val intent = Intent(activity, DriversActivity::class.java)
+//                            activity?.startActivity(intent)
                         }
                     }
 

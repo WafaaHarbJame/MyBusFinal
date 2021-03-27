@@ -71,6 +71,8 @@ class RegisterActivity : ActivityBase() {
         setContentView(R.layout.activity_register)
         title = ""
 
+       // setupUI(registerLY)
+
 
         val bundle = intent.extras;
         if (bundle != null) {
